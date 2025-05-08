@@ -129,7 +129,7 @@ const request: AuthorizationApiCreateTokenRequest = {
   createToken: {
     name: "",
     desc: "",
-    expire: new Date('2025-05-15T05:27:47.524590Z'),
+    expire: new Date('2025-05-15T05:29:17.343737Z'),
   },
 };
 
