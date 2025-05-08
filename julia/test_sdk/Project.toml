@@ -1,0 +1,19 @@
+name = "test_julia_sdk"
+uuid = "f5ceb903-888b-40de-b7ec-c0a0c3439f79"
+authors = ["PanHongChang <phchang@qq.com>"]
+version = "0.1.0"
+
+[deps]
+APIClient = "f2488445-005a-44d7-a0a0-0252d116bfc3"
+Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
+CodecZlib = "944b1d66-785c-5afd-91f1-9de20f533193"
+Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
+Tar = "a4e569a6-e804-4fa4-b0f3-eef7a1d5b13e"
+TranscodingStreams = "3bb67fe8-82b1-5028-8e26-92a6c54297fa"
+
+[compat]
+Base64 = "1.11.0"
+CodecZlib = "0.7.8"
+Pkg = "1.11.0"
+Tar = "1.10.0"
+TranscodingStreams = "0.11.3"

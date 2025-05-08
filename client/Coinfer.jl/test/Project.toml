@@ -1,0 +1,9 @@
+[deps]
+DynamicPPL = "366bfd00-2699-11ea-058f-f148b4cae6d8"
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+Mocking = "78c3b35d-d492-501b-9361-3d52fe80e533"
+SHA = "ea8e919c-243c-51af-8825-aaa63cd721ce"
+StableRNGs = "860ef19b-820b-49d6-a774-d7a799459cd3"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+Turing = "fce5fe82-541a-59a6-adf8-730c64b5f9a0"

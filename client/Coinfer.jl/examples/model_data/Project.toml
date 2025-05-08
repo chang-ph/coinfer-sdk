@@ -1,0 +1,10 @@
+[deps]
+AbstractMCMC = "80f14c24-f653-4e6a-9b94-39d6b0f70001"
+Coinfer = "2494631e-bceb-4539-8821-5341beee86e1"
+DynamicPPL = "366bfd00-2699-11ea-058f-f148b4cae6d8"
+Turing = "fce5fe82-541a-59a6-adf8-730c64b5f9a0"
+TuringCallbacks = "ea0860ee-d0ef-45ef-82e6-cc37d6be2f9c"
+
+[sources]
+AbstractMCMC = {rev = "multiple-chains", url = "https://github.com/vectorly-ai/AbstractMCMC.jl"}
+TuringCallbacks = {rev = "multiple-chains", url = "https://github.com/vectorly-ai/TuringCallbacks.jl"}

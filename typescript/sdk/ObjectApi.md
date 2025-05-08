@@ -1,0 +1,325 @@
+# .ObjectApi
+
+All URIs are relative to *https://api.coinfer.ai*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**createObject**](ObjectApi.md#createObject) | **POST** /api/object | Create new object.
+[**deleteObject**](ObjectApi.md#deleteObject) | **DELETE** /api/object | Delete objects.
+[**listObject**](ObjectApi.md#listObject) | **GET** /api/object | List objects.
+[**updateObject**](ObjectApi.md#updateObject) | **POST** /api/object/{objid} | Update object.
+[**viewObject**](ObjectApi.md#viewObject) | **GET** /api/object/{objid} | View object.
+
+
+# **createObject**
+> SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp createObject(createObjectReq)
+
+Create new object.  ### Example Create model: ``` POST /api/object {     \"payload\": {         \"object_type\": \"model\",         \"name\": \"model name\",         \"type\": \"local\",         \"content\": {             \"meta\": {\"entrance_file\": \"main.jl\"},             \"tree\": [],         }     } } ```  Create model from GitHub repo: ``` POST /api/object {     \"payload\": {         \"object_type\": \"model\",         \"repo\": \"vectorly-ai/simple-model\",         \"branch\": \"main\",         \"type\": \"repo\",     } } ```  Create model from GitHub gist: ``` POST /api/object {     \"payload\": {         \"object_type\": \"model\",         \"repo\": \"<the-gist-id>\",         \"type\": \"gist\",     } } ```  Create experiment: ``` POST /api/object {     \"payload\": {         \"object_type\": \"experiment\",         \"name\": \"experiment name\",         \"model_id\": \"M1234567\",     } } ```  Create share of experiment: ``` POST /api/object {     \"payload\": {         \"object_type\": \"share\",         \"objid\": \"X1234567\",         \"password\": \"the-pass\",     } } ```
+
+### Example
+
+
+```typescript
+import { createConfiguration, ObjectApi } from 'coinfer-ts';
+import type { ObjectApiCreateObjectRequest } from 'coinfer-ts';
+
+const configuration = createConfiguration();
+const apiInstance = new ObjectApi(configuration);
+
+const request: ObjectApiCreateObjectRequest = {
+  
+  createObjectReq: {
+    payload: null,
+  },
+};
+
+const data = await apiInstance.createObject(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createObjectReq** | **CreateObjectReq**|  |
+
+
+### Return type
+
+**SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp**
+
+### Authorization
+
+[GlobalAuth](README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **deleteObject**
+> SuccRspNoneType deleteObject()
+
+Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
+
+### Example
+
+
+```typescript
+import { createConfiguration, ObjectApi } from 'coinfer-ts';
+import type { ObjectApiDeleteObjectRequest } from 'coinfer-ts';
+
+const configuration = createConfiguration();
+const apiInstance = new ObjectApi(configuration);
+
+const request: ObjectApiDeleteObjectRequest = {
+  
+  objids: [
+    "objids_example",
+  ],
+};
+
+const data = await apiInstance.deleteObject(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **objids** | **Array&lt;string&gt;** |  | defaults to undefined
+
+
+### Return type
+
+**SuccRspNoneType**
+
+### Authorization
+
+[GlobalAuth](README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **listObject**
+> SuccRspListingRspDataUnionListExperimentRspListModelsRspItem listObject()
+
+### List Objects  By default, the API returns only objects created by the current user, excluding sharing information for performance optimization.  When `shared_with_me` is enabled, the API returns objects owned by other users but shared with the current user, including their sharing details.  Enabling `shared_by_me` will include sharing information for objects that the current user has shared with others.  Setting `with_share_info` to true combines both scenarios: it returns objects shared by the current user as well as objects shared with the current user, complete with their respective sharing information. This effectively merges the functionality of both `shared_by_me` and `shared_with_me`.  ### Example  List models: ``` GET /api/object?object_type=model GET /api/object?object_type=model&shared_by_me=true GET /api/object?object_type=model&shared_with_me=true GET /api/object?object_type=model&with_share_info=true ```  List experiments: ``` GET /api/object?object_type=experiment GET /api/object?object_type=experiment&shared_by_me=true GET /api/object?object_type=experiment&shared_with_me=true GET /api/object?object_type=experiment&with_share_info=true ```
+
+### Example
+
+
+```typescript
+import { createConfiguration, ObjectApi } from 'coinfer-ts';
+import type { ObjectApiListObjectRequest } from 'coinfer-ts';
+
+const configuration = createConfiguration();
+const apiInstance = new ObjectApi(configuration);
+
+const request: ObjectApiListObjectRequest = {
+  
+  objectType: "model",
+    // page number (optional)
+  pageNo: 1,
+    // page size (optional)
+  pageSize: 100,
+    // Whether to return the related share info (optional)
+  withShareInfo: false,
+    // Filter objects shared by the current user (optional)
+  sharedByMe: false,
+    // Filter objects shared with the current user (optional)
+  sharedWithMe: false,
+  
+  modelIds: [
+    "model_ids_example",
+  ],
+  
+  status: "",
+  
+  runOn: "",
+  
+  hasModel: "",
+};
+
+const data = await apiInstance.listObject(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **objectType** | [**&#39;model&#39; | &#39;experiment&#39; | &#39;data&#39;**]**Array<&#39;model&#39; &#124; &#39;experiment&#39; &#124; &#39;data&#39;>** |  | defaults to undefined
+ **pageNo** | [**number**] | page number | (optional) defaults to 1
+ **pageSize** | [**number**] | page size | (optional) defaults to 100
+ **withShareInfo** | [**boolean**] | Whether to return the related share info | (optional) defaults to false
+ **sharedByMe** | [**boolean**] | Filter objects shared by the current user | (optional) defaults to false
+ **sharedWithMe** | [**boolean**] | Filter objects shared with the current user | (optional) defaults to false
+ **modelIds** | **Array&lt;string&gt;** |  | (optional) defaults to undefined
+ **status** | [**&#39;NEW&#39; | &#39;RUN&#39; | &#39;FIN&#39; | &#39;ERR&#39; | &#39;&#39;**]**Array<&#39;NEW&#39; &#124; &#39;RUN&#39; &#124; &#39;FIN&#39; &#124; &#39;ERR&#39; &#124; &#39;&#39;>** |  | (optional) defaults to ''
+ **runOn** | [**&#39;Lambda&#39; | &#39;Fargate&#39; | &#39;Local&#39; | &#39;&#39;**]**Array<&#39;Lambda&#39; &#124; &#39;Fargate&#39; &#124; &#39;Local&#39; &#124; &#39;&#39;>** |  | (optional) defaults to ''
+ **hasModel** | [**&#39;true&#39; | &#39;false&#39; | &#39;&#39;**]**Array<&#39;true&#39; &#124; &#39;false&#39; &#124; &#39;&#39;>** |  | (optional) defaults to ''
+
+
+### Return type
+
+**SuccRspListingRspDataUnionListExperimentRspListModelsRspItem**
+
+### Authorization
+
+[GlobalAuth](README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **updateObject**
+> SuccRspUnionExperimentRspViewModelsRsp updateObject(updateObject)
+
+Update object of certain ID.  ### Example  Update model: ``` POST /api/object/M1234567  {     \"payload\": {         \"object_type\": \"model\",         \"name\": \"model name\",         \"content\": {             \"meta\": {\"entrance_file\": \"main.jl\"},             \"tree\": [],         }     } } ```  Update experiment: ``` POST /api/object/X1234567  {     \"payload\": {         \"object_type\": \"experiment\",         \"name\": \"experiment name\",     } } ```
+
+### Example
+
+
+```typescript
+import { createConfiguration, ObjectApi } from 'coinfer-ts';
+import type { ObjectApiUpdateObjectRequest } from 'coinfer-ts';
+
+const configuration = createConfiguration();
+const apiInstance = new ObjectApi(configuration);
+
+const request: ObjectApiUpdateObjectRequest = {
+  
+  objid: "objid_example",
+  
+  updateObject: {
+    payload: null,
+  },
+};
+
+const data = await apiInstance.updateObject(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **updateObject** | **UpdateObject**|  |
+ **objid** | [**string**] |  | defaults to undefined
+
+
+### Return type
+
+**SuccRspUnionExperimentRspViewModelsRsp**
+
+### Authorization
+
+[GlobalAuth](README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **viewObject**
+> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType viewObject()
+
+View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view model data GET /api/object/X1234567  # view experiment data GET /api/object/S1234566  # view share data ```
+
+### Example
+
+
+```typescript
+import { createConfiguration, ObjectApi } from 'coinfer-ts';
+import type { ObjectApiViewObjectRequest } from 'coinfer-ts';
+
+const configuration = createConfiguration();
+const apiInstance = new ObjectApi(configuration);
+
+const request: ObjectApiViewObjectRequest = {
+  
+  objid: "objid_example",
+  
+  payload: null,
+};
+
+const data = await apiInstance.viewObject(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **objid** | [**string**] |  | defaults to undefined
+ **payload** | **any** |  | (optional) defaults to undefined
+
+
+### Return type
+
+**SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType**
+
+### Authorization
+
+[GlobalAuth](README.md#GlobalAuth), [SharingAuth](README.md#SharingAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+
