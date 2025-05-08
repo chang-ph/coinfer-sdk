@@ -1,0 +1,36 @@
+name: Check Format
+
+on:
+  push:
+    paths:
+      - client/Coinfer.jl/**
+      - .github/workflows/check-format.yaml
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  check:
+    name: check format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: julia-actions/setup-julia@v2
+      - uses: julia-actions/cache@v1
+      - name: 'Format'
+        run: |
+          set -ux +e
+          julia --project=client/Coinfer.jl/ \
+            -e 'using Pkg;
+            Pkg.instantiate();
+            Pkg.add("JuliaFormatter");
+            using JuliaFormatter; format("client/Coinfer.jl/")'
+          output=$(git diff --name-only | grep -v "\(Manifest\|Project\).toml")
+          if [ "$output" != "" ]; then
+              >&2 echo "Some files have not been formatted !!!"
+              echo "$output"
+              git diff
+              exit 1
+          fi
+          exit 0
