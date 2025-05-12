@@ -7,7 +7,7 @@
     CreateToken(;
         name="",
         desc="",
-        expire=OpenAPI.str2zoneddatetime("2025-05-15T05:58:27.907029Z"),
+        expire=nothing,
     )
 
     - name::String
@@ -17,7 +17,7 @@
 Base.@kwdef mutable struct CreateToken <: OpenAPI.APIModel
     name::Union{Nothing, String} = ""
     desc::Union{Nothing, String} = ""
-    expire::Union{Nothing, ZonedDateTime} = OpenAPI.str2zoneddatetime("2025-05-15T05:58:27.907029Z")
+    expire::Union{Nothing, ZonedDateTime} = nothing
 
     function CreateToken(name, desc, expire, )
         OpenAPI.validate_property(CreateToken, Symbol("name"), name)

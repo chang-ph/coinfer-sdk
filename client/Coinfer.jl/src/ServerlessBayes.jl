@@ -502,6 +502,7 @@ function initialize_batch_id()
 end
 
 function inner_sample(args...; kwargs...)
+    println(ENV)
     initialize_batch_id()
     url = endpoint("mcmc", "/protobuf_message")
     exp_id = get_experiment_id()
