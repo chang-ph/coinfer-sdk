@@ -1,11 +1,11 @@
 {
-  "name": "coinfer-ts",
-  "version": "0.0.1",
-  "description": "OpenAPI client for coinfer-ts",
+  "name": "@vectorly-ai/coinfer-ts",
+  "version": "0.0.1747014075+4a4a11e",
+  "description": "OpenAPI client for @vectorly-ai/coinfer-ts",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+    "url": "https://github.com/vectorly-ai/coinfer-sdk.git"
   },
   "keywords": [
     "fetch",

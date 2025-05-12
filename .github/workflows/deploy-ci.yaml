@@ -1,0 +1,45 @@
+name: Build and Publish to Github Packages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'typescript/sdk/package.json'
+
+  pull_request:
+    branches: [main]
+    paths:
+      - 'typescript/sdk/package.json'
+
+jobs:
+  build:
+    permissions: write-all
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest] # , windows-latest, macos-latest]
+        node: [18.x] # [16.x, 18.x]
+
+    steps:
+    - name: Check out the project
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js ${{ matrix.node }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node }}
+
+    - name: Install yarn
+      run: npm install --global yarn
+
+    - name: Setup the Npm environments
+      shell: bash
+      run: |
+        sed "s/__REPO_PKG_TOKEN/${{ secrets.GITHUB_TOKEN }}/g" -i ./typescript/sdk/.npmrc && cp ./typescript/sdk/.npmrc ~/.npmrc
+
+    - name: Install dependencies
+      run: yarn --cwd ./typescript/sdk
+
+    - name: Publish to the Github.
+      run: cd ./typescript/sdk && npm publish
