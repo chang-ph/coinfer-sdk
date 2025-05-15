@@ -350,7 +350,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **view_object**
-> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType view_object(objid, payload=payload)
+> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType view_object(objid, object_type, share_id=share_id)
 
 View object.
 
@@ -394,11 +394,12 @@ with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.ObjectApi(api_client)
     objid = 'objid_example' # str | 
-    payload = None # object |  (optional)
+    object_type = 'object_type_example' # str | 
+    share_id = '' # str |                  Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot (optional) (default to '')
 
     try:
         # View object.
-        api_response = api_instance.view_object(objid, payload=payload)
+        api_response = api_instance.view_object(objid, object_type, share_id=share_id)
         print("The response of ObjectApi->view_object:\n")
         pprint(api_response)
     except Exception as e:
@@ -413,7 +414,8 @@ with openapi_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **objid** | **str**|  | 
- **payload** | [**object**](.md)|  | [optional] 
+ **object_type** | **str**|  | 
+ **share_id** | **str**|                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot | [optional] [default to &#39;&#39;]
 
 ### Return type
 

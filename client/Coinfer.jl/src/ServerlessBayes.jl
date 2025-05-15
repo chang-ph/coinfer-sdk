@@ -24,7 +24,7 @@ using DocStringExtensions
 ### msg_collector
 interval = parse(Int, get(ENV, "COINFER_DATA_SENDING_INTERVAL", "1000"))
 const default_endpoints = get(ENV, "COINFER_SERVER_ENDPOINT", "https://api.coinfer.ai")
-
+println("default_endpoints", default_endpoints)
 mutable struct MsgCollector
     name::String
     datas
@@ -356,11 +356,13 @@ function get_entrance_args(serialized_entrance_args)
 end
 
 function create_experiment()
-    url = endpoint("mcmc", "/object")
+    url = endpoint("api", "/object")
     data = Dict{String,Any}(
-        "object_type" => "experiment",
-        "model_id" => get(ENV, "MODEL_ID", ""),
-        "input_id" => get(ENV, "EXPERIMENT_INPUT", ""),
+        "payload" => Dict{String,Any}(
+            "object_type" => "experiment",
+            "model_id" => get(ENV, "MODEL_ID", ""),
+            "input_id" => get(ENV, "EXPERIMENT_INPUT", ""),
+        ),
     )
     xp_meta = Dict()
     iteration_count = parse(Int, get(ENV, "ITERATION_COUNT", "1000"))
@@ -376,17 +378,20 @@ function create_experiment()
 end
 
 function update_experiment_runinfo(exp_id, batch_id, run_id, status)
-    data = Dict(
-        "meta" => Dict(
-            "run_info" => Dict(
-                "experiment_id" => exp_id,
-                "batch_id" => batch_id,
-                "run_id" => run_id,
-                "status" => status,
+    data = Dict{String,Any}(
+        "payload" => Dict{String,Any}(
+            "object_type" => "experiment",
+            "meta" => Dict(
+                "run_info" => Dict(
+                    "experiment_id" => exp_id,
+                    "batch_id" => batch_id,
+                    "run_id" => run_id,
+                    "status" => status,
+                ),
             ),
         ),
     )
-    url = endpoint("mcmc", "/object/$exp_id")
+    url = endpoint("api", "/object/$exp_id")
     headers = headers_with_token("Content-Type" => "application/json")
     res = @mock HTTP.post(url, headers, JSON.json(data))
     return response_data(res)
@@ -404,7 +409,7 @@ end
 
 function get_experiment_status(xid, endpoint)
     headers = headers_with_token("Content-Type" => "application/json")
-    rsp = HTTP.get("$(endpoint)/mcmc/object/$xid"; headers=headers)
+    rsp = HTTP.get("$(endpoint)/api/object/$xid"; headers=headers)
     return JSON.parse(String(rsp.body))["data"]["status"]
 end
 

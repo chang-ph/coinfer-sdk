@@ -11,102 +11,6 @@ This can be used to construct the `OpenAPI.Clients.Client` instance.
 """
 basepath(::Type{ ModelApi }) = "https://api.coinfer.ai"
 
-const _returntypes_batch_delete_model_ModelApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspNoneType,
-    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
-)
-
-function _oacinternal_batch_delete_model(_api::ModelApi; objids=nothing, _mediaType=nothing)
-    OpenAPI.validate_param("objids", "batch_delete_model", :minItems, objids, 1)
-
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "DELETE", _returntypes_batch_delete_model_ModelApi, "/turing/object", ["GlobalAuth", ])
-    OpenAPI.Clients.set_param(_ctx.query, "objids", objids; style="form", is_explode=true)  # type Vector{String}
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""Delete models in batch.
-
-Delete models in batch.
-
-Params:
-- objids::Vector{String}
-
-Return: SuccRspNoneType, OpenAPI.Clients.ApiResponse
-"""
-function batch_delete_model(_api::ModelApi; objids=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_batch_delete_model(_api; objids=objids, _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function batch_delete_model(_api::ModelApi, response_stream::Channel; objids=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_batch_delete_model(_api; objids=objids, _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
-const _returntypes_create_model_ModelApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspListModelsRspItem,
-    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
-)
-
-function _oacinternal_create_model(_api::ModelApi, create_model_param::CreateModel; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_create_model_ModelApi, "/turing/object", ["GlobalAuth", ], create_model_param)
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json", ] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""Create a new model.
-
-Create a new model.
-
-Params:
-- create_model_param::CreateModel (required)
-
-Return: SuccRspListModelsRspItem, OpenAPI.Clients.ApiResponse
-"""
-function create_model(_api::ModelApi, create_model_param::CreateModel; _mediaType=nothing)
-    _ctx = _oacinternal_create_model(_api, create_model_param; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function create_model(_api::ModelApi, response_stream::Channel, create_model_param::CreateModel; _mediaType=nothing)
-    _ctx = _oacinternal_create_model(_api, create_model_param; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
-const _returntypes_create_model_from_github_ModelApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspListModelsRspItem,
-    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
-)
-
-function _oacinternal_create_model_from_github(_api::ModelApi, import_model_req::ImportModelReq; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_create_model_from_github_ModelApi, "/turing/github/model", ["GlobalAuth", ], import_model_req)
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json", ] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""Create a model from GitHub repository.
-
-Create a model from GitHub repository/gist.  Some details: 1. Use the repository name as the model name. Use gist description as the model name if it is not empty, otherwise use the gist ID as the model name. 2. Assume that the repository/gist contains Project.toml. 3. Assume that the repository/gist contains main.jl as the entrance file. 4. Assume that the entrance file contains a function named model as the entrance function.
-
-Params:
-- import_model_req::ImportModelReq (required)
-
-Return: SuccRspListModelsRspItem, OpenAPI.Clients.ApiResponse
-"""
-function create_model_from_github(_api::ModelApi, import_model_req::ImportModelReq; _mediaType=nothing)
-    _ctx = _oacinternal_create_model_from_github(_api, import_model_req; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function create_model_from_github(_api::ModelApi, response_stream::Channel, import_model_req::ImportModelReq; _mediaType=nothing)
-    _ctx = _oacinternal_create_model_from_github(_api, import_model_req; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
 const _returntypes_get_config_ModelApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspGetConfigRsp,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
@@ -169,49 +73,6 @@ function list_branch(_api::ModelApi, response_stream::Channel, repo::String; _me
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
-const _returntypes_list_models_ModelApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => ListingRspListModelsRspItem,
-)
-
-function _oacinternal_list_models(_api::ModelApi; page_no=nothing, page_size=nothing, model_ids=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, _mediaType=nothing)
-    OpenAPI.validate_param("page_size", "list_models", :maximum, page_size, 1000, false)
-
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_list_models_ModelApi, "/turing/object", ["GlobalAuth", ])
-    OpenAPI.Clients.set_param(_ctx.query, "page_no", page_no; style="form", is_explode=true)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "page_size", page_size; style="form", is_explode=true)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "model_ids", model_ids; style="form", is_explode=true)  # type Vector{String}
-    OpenAPI.Clients.set_param(_ctx.query, "with_share_info", with_share_info; style="form", is_explode=true)  # type Bool
-    OpenAPI.Clients.set_param(_ctx.query, "shared_by_me", shared_by_me; style="form", is_explode=true)  # type Bool
-    OpenAPI.Clients.set_param(_ctx.query, "shared_with_me", shared_with_me; style="form", is_explode=true)  # type Bool
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""List models.
-
-By default, the API returns only models created by the current user, excluding sharing information for performance optimization.  When `shared_with_me` is enabled, the API returns models owned by other users but shared with the current user, including their sharing details.  Enabling `shared_by_me` will include sharing information for models that the current user has shared with others.  Setting `with_share_info` to true combines both scenarios: it returns models shared by the current user as well as models shared with the current user, complete with their respective sharing information. This effectively merges the functionality of both `shared_by_me` and `shared_with_me`.
-
-Params:
-- page_no::Int64
-- page_size::Int64
-- model_ids::Vector{String}
-- with_share_info::Bool
-- shared_by_me::Bool
-- shared_with_me::Bool
-
-Return: ListingRspListModelsRspItem, OpenAPI.Clients.ApiResponse
-"""
-function list_models(_api::ModelApi; page_no=nothing, page_size=nothing, model_ids=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_list_models(_api; page_no=page_no, page_size=page_size, model_ids=model_ids, with_share_info=with_share_info, shared_by_me=shared_by_me, shared_with_me=shared_with_me, _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function list_models(_api::ModelApi, response_stream::Channel; page_no=nothing, page_size=nothing, model_ids=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_list_models(_api; page_no=page_no, page_size=page_size, model_ids=model_ids, with_share_info=with_share_info, shared_by_me=shared_by_me, shared_with_me=shared_with_me, _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
 const _returntypes_list_repository_ModelApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspListRepositoryRsp,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
@@ -245,71 +106,6 @@ end
 
 function list_repository(_api::ModelApi, response_stream::Channel; page_no=nothing, page_size=nothing, _mediaType=nothing)
     _ctx = _oacinternal_list_repository(_api; page_no=page_no, page_size=page_size, _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
-const _returntypes_update_model_ModelApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspListModelsRspItem,
-    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
-)
-
-function _oacinternal_update_model(_api::ModelApi, objid::String, update_model_param::UpdateModel; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_update_model_ModelApi, "/turing/object/{objid}", ["GlobalAuth", ], update_model_param)
-    OpenAPI.Clients.set_param(_ctx.path, "objid", objid)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json", ] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""Update a model by its ID.
-
-Update a model by its ID.  NOTE: The status of model is manipulated by the system. So normally you should not call this API to update the status.
-
-Params:
-- objid::String (required)
-- update_model_param::UpdateModel (required)
-
-Return: SuccRspListModelsRspItem, OpenAPI.Clients.ApiResponse
-"""
-function update_model(_api::ModelApi, objid::String, update_model_param::UpdateModel; _mediaType=nothing)
-    _ctx = _oacinternal_update_model(_api, objid, update_model_param; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function update_model(_api::ModelApi, response_stream::Channel, objid::String, update_model_param::UpdateModel; _mediaType=nothing)
-    _ctx = _oacinternal_update_model(_api, objid, update_model_param; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
-const _returntypes_view_model_ModelApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspViewModelsRsp,
-    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
-)
-
-function _oacinternal_view_model(_api::ModelApi, objid::String; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_view_model_ModelApi, "/turing/object/{objid}", ["SharingAuth", ])
-    OpenAPI.Clients.set_param(_ctx.path, "objid", objid)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""View a model by its ID.
-
-This API is primarily designed for model owners to view their models, requiring a valid access token for authentication.  For shared models, access is granted based on the sharing configuration: 1. Password-protected sharing: Requires the share password for access, eg. `X-Share-Password` in the header 2. Public sharing: Allows access without any password 3. User-specific sharing: Permits access for designated users without requiring a password
-
-Params:
-- objid::String (required)
-
-Return: SuccRspViewModelsRsp, OpenAPI.Clients.ApiResponse
-"""
-function view_model(_api::ModelApi, objid::String; _mediaType=nothing)
-    _ctx = _oacinternal_view_model(_api, objid; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function view_model(_api::ModelApi, response_stream::Channel, objid::String; _mediaType=nothing)
-    _ctx = _oacinternal_view_model(_api, objid; _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -347,13 +143,7 @@ function view_shared_model(_api::ModelApi, response_stream::Channel, objid::Stri
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
-export batch_delete_model
-export create_model
-export create_model_from_github
 export get_config
 export list_branch
-export list_models
 export list_repository
-export update_model
-export view_model
 export view_shared_model

@@ -473,7 +473,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[GlobalAuth](README.md#GlobalAuth)
 
 ### HTTP request headers
 

@@ -264,7 +264,7 @@ const _returntypes_user_info_AuthorizationApi = Dict{Regex,Type}(
 )
 
 function _oacinternal_user_info(_api::AuthorizationApi; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_user_info_AuthorizationApi, "/base/user", [])
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_user_info_AuthorizationApi, "/base/user", ["GlobalAuth", ])
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx

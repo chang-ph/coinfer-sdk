@@ -164,10 +164,11 @@ const _returntypes_view_object_ObjectApi = Dict{Regex,Type}(
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
-function _oacinternal_view_object(_api::ObjectApi, objid::String; payload=nothing, _mediaType=nothing)
+function _oacinternal_view_object(_api::ObjectApi, objid::String, object_type::String; share_id=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_view_object_ObjectApi, "/api/object/{objid}", ["GlobalAuth", "SharingAuth", ])
     OpenAPI.Clients.set_param(_ctx.path, "objid", objid)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "payload", payload; style="form", is_explode=true)  # type Any
+    OpenAPI.Clients.set_param(_ctx.query, "object_type", object_type; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "share_id", share_id; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -179,17 +180,18 @@ View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view mo
 
 Params:
 - objid::String (required)
-- payload::Any
+- object_type::String (required)
+- share_id::String
 
 Return: SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, OpenAPI.Clients.ApiResponse
 """
-function view_object(_api::ObjectApi, objid::String; payload=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_view_object(_api, objid; payload=payload, _mediaType=_mediaType)
+function view_object(_api::ObjectApi, objid::String, object_type::String; share_id=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_view_object(_api, objid, object_type; share_id=share_id, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function view_object(_api::ObjectApi, response_stream::Channel, objid::String; payload=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_view_object(_api, objid; payload=payload, _mediaType=_mediaType)
+function view_object(_api::ObjectApi, response_stream::Channel, objid::String, object_type::String; share_id=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_view_object(_api, objid, object_type; share_id=share_id, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 

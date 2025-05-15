@@ -5,11 +5,8 @@ All URIs are relative to *https://api.coinfer.ai*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**coinferApisNoAuthApiGetExperimentShare**](ShareApi.md#coinferApisNoAuthApiGetExperimentShare) | **GET** /api/object/share/{share_id} | Get sharing information of an experiment.
-[**createExperimentShare**](ShareApi.md#createExperimentShare) | **POST** /mcmc/experiment/{exp_id}/share | Share an experiment.
 [**createModelShare**](ShareApi.md#createModelShare) | **POST** /turing/model/{model_id}/share | Share a model specified by model ID.
-[**deleteExperimentShare**](ShareApi.md#deleteExperimentShare) | **DELETE** /mcmc/experiment/share/{share_id} | Delete experiment shares.
 [**deleteModelShare**](ShareApi.md#deleteModelShare) | **DELETE** /turing/model/share/{share_id} | Delete model shares.
-[**getExperimentShare**](ShareApi.md#getExperimentShare) | **GET** /mcmc/experiment/share/{share_id} | Get sharing information of an experiment.
 [**getModelShare**](ShareApi.md#getModelShare) | **GET** /turing/model/share/{share_id} | Get basic share information of a model sharing.
 
 
@@ -55,68 +52,6 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**400** | Bad Request |  -  |
-
-[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
-
-# **createExperimentShare**
-> SuccRspCreateExperimentShareRsp createExperimentShare(createExperimentShare)
-
-Share an experiment specified by experiment ID.  Currently we support three types of sharing:  1. Public sharing: The experiment is shared publicly. Create a public share by not specifying `target_user` and share password in the request body.  2. User-specific sharing: The experiment is shared with a specific user. Create a user-specific share by specifying `target_user` in the request body. The `target_user` should be in the format of `name(@id)`. This is exactly the format what the user info API returns.  3. Password-protected sharing: The experiment is shared with a password. Create a password-protected share by specifying `password` in the request body.
-
-### Example
-
-
-```typescript
-import { createConfiguration, ShareApi } from 'coinfer-ts';
-import type { ShareApiCreateExperimentShareRequest } from 'coinfer-ts';
-
-const configuration = createConfiguration();
-const apiInstance = new ShareApi(configuration);
-
-const request: ShareApiCreateExperimentShareRequest = {
-  
-  expId: "exp_id_example",
-  
-  createExperimentShare: {
-    objectType: "share",
-    objid: "objid_example",
-    password: "",
-    targetUser: "",
-  },
-};
-
-const data = await apiInstance.createExperimentShare(request);
-console.log('API called successfully. Returned data:', data);
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createExperimentShare** | **CreateExperimentShare**|  |
- **expId** | [**string**] |  | defaults to undefined
-
-
-### Return type
-
-**SuccRspCreateExperimentShareRsp**
-
-### Authorization
-
-[GlobalAuth](README.md#GlobalAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
  - **Accept**: application/json
 
 
@@ -188,60 +123,6 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **deleteExperimentShare**
-> SuccRspNoneType deleteExperimentShare()
-
-Deletion in batch is supported by passing \"-\" separated share ids in the path param.
-
-### Example
-
-
-```typescript
-import { createConfiguration, ShareApi } from 'coinfer-ts';
-import type { ShareApiDeleteExperimentShareRequest } from 'coinfer-ts';
-
-const configuration = createConfiguration();
-const apiInstance = new ShareApi(configuration);
-
-const request: ShareApiDeleteExperimentShareRequest = {
-    // \"-\"separated share ids
-  shareId: "share_id_example",
-};
-
-const data = await apiInstance.deleteExperimentShare(request);
-console.log('API called successfully. Returned data:', data);
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **shareId** | [**string**] | \&quot;-\&quot;separated share ids | defaults to undefined
-
-
-### Return type
-
-**SuccRspNoneType**
-
-### Authorization
-
-[GlobalAuth](README.md#GlobalAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**400** | Bad Request |  -  |
-
-[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
-
 # **deleteModelShare**
 > SuccRspNoneType deleteModelShare()
 
@@ -281,60 +162,6 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [GlobalAuth](README.md#GlobalAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**400** | Bad Request |  -  |
-
-[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
-
-# **getExperimentShare**
-> SuccRspGetExperimentShareRsp getExperimentShare()
-
-Returns very basic sharing info without any authorization. Currently it only returns one field `require_password`, which is used when opening a share URL. If `require_password` is true, then a password input box is open. Else the page should be directly displayed.
-
-### Example
-
-
-```typescript
-import { createConfiguration, ShareApi } from 'coinfer-ts';
-import type { ShareApiGetExperimentShareRequest } from 'coinfer-ts';
-
-const configuration = createConfiguration();
-const apiInstance = new ShareApi(configuration);
-
-const request: ShareApiGetExperimentShareRequest = {
-  
-  shareId: "share_id_example",
-};
-
-const data = await apiInstance.getExperimentShare(request);
-console.log('API called successfully. Returned data:', data);
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **shareId** | [**string**] |  | defaults to undefined
-
-
-### Return type
-
-**SuccRspGetExperimentShareRsp**
-
-### Authorization
-
-No authorization required
 
 ### HTTP request headers
 

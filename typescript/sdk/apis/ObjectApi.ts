@@ -132,7 +132,7 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
      * @param runOn 
      * @param hasModel 
      */
-    public async listObject(objectType: 'model' | 'experiment' | 'data', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', _options?: Configuration): Promise<RequestContext> {
+    public async listObject(objectType: 'model' | 'experiment' | 'share', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'objectType' is not null or undefined
@@ -169,7 +169,7 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
 
         // Query Params
         if (objectType !== undefined) {
-            requestContext.setQueryParam("object_type", ObjectSerializer.serialize(objectType, "'model' | 'experiment' | 'data'", ""));
+            requestContext.setQueryParam("object_type", ObjectSerializer.serialize(objectType, "'model' | 'experiment' | 'share'", ""));
         }
 
         // Query Params
@@ -288,14 +288,21 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
      *
      * View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view model data GET /api/object/X1234567  # view experiment data GET /api/object/S1234566  # view share data ```
      * @param objid 
-     * @param payload 
+     * @param objectType 
+     * @param shareId                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
      */
-    public async viewObject(objid: string, payload?: any, _options?: Configuration): Promise<RequestContext> {
+    public async viewObject(objid: string, objectType: 'model' | 'experiment' | 'share', shareId?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'objid' is not null or undefined
         if (objid === null || objid === undefined) {
             throw new RequiredError("ObjectApi", "viewObject", "objid");
+        }
+
+
+        // verify required parameter 'objectType' is not null or undefined
+        if (objectType === null || objectType === undefined) {
+            throw new RequiredError("ObjectApi", "viewObject", "objectType");
         }
 
 
@@ -309,11 +316,13 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
 
         // Query Params
-        if (payload !== undefined) {
-            const serializedParams = ObjectSerializer.serialize(payload, "any", "");
-            for (const key of Object.keys(serializedParams)) {
-                requestContext.setQueryParam(key, serializedParams[key]);
-            }
+        if (objectType !== undefined) {
+            requestContext.setQueryParam("object_type", ObjectSerializer.serialize(objectType, "'model' | 'experiment' | 'share'", ""));
+        }
+
+        // Query Params
+        if (shareId !== undefined) {
+            requestContext.setQueryParam("share_id", ObjectSerializer.serialize(shareId, "string", ""));
         }
 
 

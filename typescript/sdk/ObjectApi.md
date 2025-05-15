@@ -172,7 +172,7 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **objectType** | [**&#39;model&#39; | &#39;experiment&#39; | &#39;data&#39;**]**Array<&#39;model&#39; &#124; &#39;experiment&#39; &#124; &#39;data&#39;>** |  | defaults to undefined
+ **objectType** | [**&#39;model&#39; | &#39;experiment&#39; | &#39;share&#39;**]**Array<&#39;model&#39; &#124; &#39;experiment&#39; &#124; &#39;share&#39;>** |  | defaults to undefined
  **pageNo** | [**number**] | page number | (optional) defaults to 1
  **pageSize** | [**number**] | page size | (optional) defaults to 100
  **withShareInfo** | [**boolean**] | Whether to return the related share info | (optional) defaults to false
@@ -284,7 +284,9 @@ const request: ObjectApiViewObjectRequest = {
   
   objid: "objid_example",
   
-  payload: null,
+  objectType: "model",
+    //                  Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot (optional)
+  shareId: "",
 };
 
 const data = await apiInstance.viewObject(request);
@@ -297,7 +299,8 @@ console.log('API called successfully. Returned data:', data);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **objid** | [**string**] |  | defaults to undefined
- **payload** | **any** |  | (optional) defaults to undefined
+ **objectType** | [**&#39;model&#39; | &#39;experiment&#39; | &#39;share&#39;**]**Array<&#39;model&#39; &#124; &#39;experiment&#39; &#124; &#39;share&#39;>** |  | defaults to undefined
+ **shareId** | [**string**] |                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot | (optional) defaults to ''
 
 
 ### Return type

@@ -3,8 +3,6 @@ import { Configuration} from '../configuration'
 
 import { Auth0ConfigRsp } from '../models/Auth0ConfigRsp';
 import { Auth0LoginRsp } from '../models/Auth0LoginRsp';
-import { BatchDeleteExperiment } from '../models/BatchDeleteExperiment';
-import { BatchDeleteModel } from '../models/BatchDeleteModel';
 import { CreateExperiment } from '../models/CreateExperiment';
 import { CreateExperimentShare } from '../models/CreateExperimentShare';
 import { CreateExperimentShareRsp } from '../models/CreateExperimentShareRsp';
@@ -17,7 +15,6 @@ import { Data } from '../models/Data';
 import { Data1 } from '../models/Data1';
 import { Data2 } from '../models/Data2';
 import { Data3 } from '../models/Data3';
-import { DeleteExperimentShare } from '../models/DeleteExperimentShare';
 import { DeleteModelShare } from '../models/DeleteModelShare';
 import { DeleteObject } from '../models/DeleteObject';
 import { ErrRsp } from '../models/ErrRsp';
@@ -29,23 +26,15 @@ import { GetNotificationReq } from '../models/GetNotificationReq';
 import { GetSampleDataRsp } from '../models/GetSampleDataRsp';
 import { GetTokensRsp } from '../models/GetTokensRsp';
 import { GistRsp } from '../models/GistRsp';
-import { ImportModelReq } from '../models/ImportModelReq';
 import { ListBranchRsp } from '../models/ListBranchRsp';
 import { ListExperimentRsp } from '../models/ListExperimentRsp';
 import { ListGitHubRepository } from '../models/ListGitHubRepository';
-import { ListModels } from '../models/ListModels';
 import { ListModelsRspItem } from '../models/ListModelsRspItem';
-import { ListObject } from '../models/ListObject';
-import { ListObjectRsp } from '../models/ListObjectRsp';
 import { ListObjectTmp } from '../models/ListObjectTmp';
 import { ListRepositoryRsp } from '../models/ListRepositoryRsp';
-import { ListingRspDataListModelsRspItem } from '../models/ListingRspDataListModelsRspItem';
-import { ListingRspDataListObjectRsp } from '../models/ListingRspDataListObjectRsp';
 import { ListingRspDataNotificationDict } from '../models/ListingRspDataNotificationDict';
 import { ListingRspDataUnionListExperimentRspListModelsRspItem } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItem';
 import { ListingRspDataUnionListExperimentRspListModelsRspItemObjectsInner } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemObjectsInner';
-import { ListingRspListModelsRspItem } from '../models/ListingRspListModelsRspItem';
-import { ListingRspListObjectRsp } from '../models/ListingRspListObjectRsp';
 import { MarkNotificationReadReq } from '../models/MarkNotificationReadReq';
 import { MetaModel } from '../models/MetaModel';
 import { ModelContent } from '../models/ModelContent';
@@ -60,13 +49,11 @@ import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
 import { Payload2 } from '../models/Payload2';
-import { PlaceHolder } from '../models/PlaceHolder';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAny } from '../models/SuccRspAny';
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
-import { SuccRspCreateExperimentShareRsp } from '../models/SuccRspCreateExperimentShareRsp';
 import { SuccRspCreateModelShareRsp } from '../models/SuccRspCreateModelShareRsp';
 import { SuccRspGetConfigRsp } from '../models/SuccRspGetConfigRsp';
 import { SuccRspGetExperimentShareRsp } from '../models/SuccRspGetExperimentShareRsp';
@@ -75,7 +62,6 @@ import { SuccRspGetSampleDataRsp } from '../models/SuccRspGetSampleDataRsp';
 import { SuccRspGetTokensRsp } from '../models/SuccRspGetTokensRsp';
 import { SuccRspListBranchRsp } from '../models/SuccRspListBranchRsp';
 import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
-import { SuccRspListModelsRspItem } from '../models/SuccRspListModelsRspItem';
 import { SuccRspListRepositoryRsp } from '../models/SuccRspListRepositoryRsp';
 import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingRspDataNotificationDict';
 import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItem } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItem';
@@ -88,11 +74,9 @@ import { SuccRspUserLoginRsp } from '../models/SuccRspUserLoginRsp';
 import { SuccRspViewCloudwatchLogsRsp } from '../models/SuccRspViewCloudwatchLogsRsp';
 import { SuccRspViewModelsRsp } from '../models/SuccRspViewModelsRsp';
 import { UpdateBase } from '../models/UpdateBase';
-import { UpdateData } from '../models/UpdateData';
 import { UpdateExperiment } from '../models/UpdateExperiment';
 import { UpdateModel } from '../models/UpdateModel';
 import { UpdateObject } from '../models/UpdateObject';
-import { UpdateXP } from '../models/UpdateXP';
 import { UserInfoRsp } from '../models/UserInfoRsp';
 import { UserLogin } from '../models/UserLogin';
 import { UserLoginRsp } from '../models/UserLoginRsp';
@@ -100,7 +84,8 @@ import { ViewCloudwatchLogsRsp } from '../models/ViewCloudwatchLogsRsp';
 import { ViewExperimentShareRsp } from '../models/ViewExperimentShareRsp';
 import { ViewModelShareInfo } from '../models/ViewModelShareInfo';
 import { ViewModelsRsp } from '../models/ViewModelsRsp';
-import { ViewXP } from '../models/ViewXP';
+import { ViewObject } from '../models/ViewObject';
+import { ViewObjectTmp } from '../models/ViewObjectTmp';
 
 import { ObservableAuthorizationApi } from "./ObservableAPI";
 import { AuthorizationApiRequestFactory, AuthorizationApiResponseProcessor} from "../apis/AuthorizationApi";
@@ -392,36 +377,6 @@ export class ObjectAuthorizationApi {
 import { ObservableExperimentApi } from "./ObservableAPI";
 import { ExperimentApiRequestFactory, ExperimentApiResponseProcessor} from "../apis/ExperimentApi";
 
-export interface ExperimentApiBatchDeleteExperimentRequest {
-    /**
-     * 
-     * Defaults to: undefined
-     * @type Array&lt;string&gt;
-     * @memberof ExperimentApibatchDeleteExperiment
-     */
-    objids?: Array<string>
-    /**
-     * 
-     * Defaults to: undefined
-     * @type Array&lt;string&gt;
-     * @memberof ExperimentApibatchDeleteExperiment
-     */
-    modelIds?: Array<string>
-}
-
-export interface ExperimentApiCreateObjectV1Request {
-}
-
-export interface ExperimentApiDeleteDataRequest {
-    /**
-     * 
-     * Defaults to: undefined
-     * @type string
-     * @memberof ExperimentApideleteData
-     */
-    objid: string
-}
-
 export interface ExperimentApiExperimentNotebookRequest {
     /**
      * 
@@ -459,153 +414,6 @@ export interface ExperimentApiGetSampleDataRequest {
     fmt: 'csv' | 'grist'
 }
 
-export interface ExperimentApiListObjectsRequest {
-    /**
-     * 
-     * Defaults to: 1
-     * @type number
-     * @memberof ExperimentApilistObjects
-     */
-    pageNo?: number
-    /**
-     * 
-     * Defaults to: 100
-     * @type number
-     * @memberof ExperimentApilistObjects
-     */
-    pageSize?: number
-    /**
-     * Whether to return the related share info
-     * Defaults to: false
-     * @type boolean
-     * @memberof ExperimentApilistObjects
-     */
-    withShareInfo?: boolean
-    /**
-     * Filter experiments shared by the current user
-     * Defaults to: false
-     * @type boolean
-     * @memberof ExperimentApilistObjects
-     */
-    sharedByMe?: boolean
-    /**
-     * Filter experiments shared with the current user
-     * Defaults to: false
-     * @type boolean
-     * @memberof ExperimentApilistObjects
-     */
-    sharedWithMe?: boolean
-    /**
-     * 
-     * Defaults to: &#39;experiment&#39;
-     * @type &#39;data&#39; | &#39;experiment&#39;
-     * @memberof ExperimentApilistObjects
-     */
-    objectType?: 'data' | 'experiment'
-    /**
-     * 
-     * Defaults to: &#39;&#39;
-     * @type &#39;NEW&#39; | &#39;RUN&#39; | &#39;FIN&#39; | &#39;ERR&#39; | &#39;&#39;
-     * @memberof ExperimentApilistObjects
-     */
-    status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | ''
-    /**
-     * 
-     * Defaults to: &#39;&#39;
-     * @type &#39;Lambda&#39; | &#39;Fargate&#39; | &#39;Local&#39; | &#39;&#39;
-     * @memberof ExperimentApilistObjects
-     */
-    runOn?: 'Lambda' | 'Fargate' | 'Local' | ''
-    /**
-     * 
-     * Defaults to: &#39;&#39;
-     * @type &#39;true&#39; | &#39;false&#39; | &#39;&#39;
-     * @memberof ExperimentApilistObjects
-     */
-    hasModel?: 'true' | 'false' | ''
-}
-
-export interface ExperimentApiUpdateDataRequest {
-    /**
-     * 
-     * Defaults to: undefined
-     * @type string
-     * @memberof ExperimentApiupdateData
-     */
-    objid: string
-    /**
-     * 
-     * Defaults to: undefined
-     * @type string
-     * @memberof ExperimentApiupdateData
-     */
-    fmt: string
-    /**
-     * 
-     * Defaults to: undefined
-     * @type HttpFile
-     * @memberof ExperimentApiupdateData
-     */
-    file: HttpFile
-    /**
-     * 
-     * Defaults to: &#39;main&#39;
-     * @type string
-     * @memberof ExperimentApiupdateData
-     */
-    use?: string
-}
-
-export interface ExperimentApiUpdateExperimentRequest {
-    /**
-     * 
-     * Defaults to: undefined
-     * @type string
-     * @memberof ExperimentApiupdateExperiment
-     */
-    objid: string
-    /**
-     * 
-     * @type UpdateXP
-     * @memberof ExperimentApiupdateExperiment
-     */
-    updateXP: UpdateXP
-}
-
-export interface ExperimentApiViewDataRequest {
-    /**
-     * 
-     * Defaults to: undefined
-     * @type string
-     * @memberof ExperimentApiviewData
-     */
-    objid: string
-}
-
-export interface ExperimentApiViewExperimentRequest {
-    /**
-     * 
-     * Defaults to: undefined
-     * @type string
-     * @memberof ExperimentApiviewExperiment
-     */
-    objid: string
-    /**
-     * 
-     * Defaults to: &#39;None&#39;
-     * @type string
-     * @memberof ExperimentApiviewExperiment
-     */
-    o?: string
-    /**
-     * 
-     * Defaults to: undefined
-     * @type string
-     * @memberof ExperimentApiviewExperiment
-     */
-    log?: string
-}
-
 export interface ExperimentApiViewXpCloudwatchLogsRequest {
     /**
      * 
@@ -621,60 +429,6 @@ export class ObjectExperimentApi {
 
     public constructor(configuration: Configuration, requestFactory?: ExperimentApiRequestFactory, responseProcessor?: ExperimentApiResponseProcessor) {
         this.api = new ObservableExperimentApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * Delete experiments in batch.  There are two ways to specify the experiments to be deleted: 1. By experiment IDs. In this case all experiments with the specified IDs will be deleted. 2. By model IDs. In this case all experiments with the specified model IDs will be deleted.
-     * Delete experiments in batch.
-     * @param param the request object
-     */
-    public batchDeleteExperimentWithHttpInfo(param: ExperimentApiBatchDeleteExperimentRequest = {}, options?: Configuration): Promise<HttpInfo<SuccRspNoneType>> {
-        return this.api.batchDeleteExperimentWithHttpInfo(param.objids, param.modelIds,  options).toPromise();
-    }
-
-    /**
-     * Delete experiments in batch.  There are two ways to specify the experiments to be deleted: 1. By experiment IDs. In this case all experiments with the specified IDs will be deleted. 2. By model IDs. In this case all experiments with the specified model IDs will be deleted.
-     * Delete experiments in batch.
-     * @param param the request object
-     */
-    public batchDeleteExperiment(param: ExperimentApiBatchDeleteExperimentRequest = {}, options?: Configuration): Promise<SuccRspNoneType> {
-        return this.api.batchDeleteExperiment(param.objids, param.modelIds,  options).toPromise();
-    }
-
-    /**
-     * The API allows you to create a new experiment.
-     * Create an experiment.
-     * @param param the request object
-     */
-    public createObjectV1WithHttpInfo(param: ExperimentApiCreateObjectV1Request = {}, options?: Configuration): Promise<HttpInfo<SuccRspAny>> {
-        return this.api.createObjectV1WithHttpInfo( options).toPromise();
-    }
-
-    /**
-     * The API allows you to create a new experiment.
-     * Create an experiment.
-     * @param param the request object
-     */
-    public createObjectV1(param: ExperimentApiCreateObjectV1Request = {}, options?: Configuration): Promise<SuccRspAny> {
-        return this.api.createObjectV1( options).toPromise();
-    }
-
-    /**
-     * NOTE: the \'D\' prefix in URL is part of the ID.
-     * Delete a data object by its ID.
-     * @param param the request object
-     */
-    public deleteDataWithHttpInfo(param: ExperimentApiDeleteDataRequest, options?: Configuration): Promise<HttpInfo<SuccRspNoneType>> {
-        return this.api.deleteDataWithHttpInfo(param.objid,  options).toPromise();
-    }
-
-    /**
-     * NOTE: the \'D\' prefix in URL is part of the ID.
-     * Delete a data object by its ID.
-     * @param param the request object
-     */
-    public deleteData(param: ExperimentApiDeleteDataRequest, options?: Configuration): Promise<SuccRspNoneType> {
-        return this.api.deleteData(param.objid,  options).toPromise();
     }
 
     /**
@@ -730,96 +484,6 @@ export class ObjectExperimentApi {
     }
 
     /**
-     * ### List Experiment  By default, the API returns only experiments created by the current user, excluding sharing information for performance optimization.  When `shared_with_me` is enabled, the API returns experiments owned by other users but shared with the current user, including their sharing details.  Enabling `shared_by_me` will include sharing information for experiments that the current user has shared with others.  Setting `with_share_info` to true combines both scenarios: it returns experiments shared by the current user as well as experiments shared with the current user, complete with their respective sharing information. This effectively merges the functionality of both `shared_by_me` and `shared_with_me`.
-     * List experiments or data.
-     * @param param the request object
-     */
-    public listObjectsWithHttpInfo(param: ExperimentApiListObjectsRequest = {}, options?: Configuration): Promise<HttpInfo<ListingRspListObjectRsp>> {
-        return this.api.listObjectsWithHttpInfo(param.pageNo, param.pageSize, param.withShareInfo, param.sharedByMe, param.sharedWithMe, param.objectType, param.status, param.runOn, param.hasModel,  options).toPromise();
-    }
-
-    /**
-     * ### List Experiment  By default, the API returns only experiments created by the current user, excluding sharing information for performance optimization.  When `shared_with_me` is enabled, the API returns experiments owned by other users but shared with the current user, including their sharing details.  Enabling `shared_by_me` will include sharing information for experiments that the current user has shared with others.  Setting `with_share_info` to true combines both scenarios: it returns experiments shared by the current user as well as experiments shared with the current user, complete with their respective sharing information. This effectively merges the functionality of both `shared_by_me` and `shared_with_me`.
-     * List experiments or data.
-     * @param param the request object
-     */
-    public listObjects(param: ExperimentApiListObjectsRequest = {}, options?: Configuration): Promise<ListingRspListObjectRsp> {
-        return this.api.listObjects(param.pageNo, param.pageSize, param.withShareInfo, param.sharedByMe, param.sharedWithMe, param.objectType, param.status, param.runOn, param.hasModel,  options).toPromise();
-    }
-
-    /**
-     * NOTE: the \'D\' prefix in URL is part of the ID.
-     * Update a data object by its ID.
-     * @param param the request object
-     */
-    public updateDataWithHttpInfo(param: ExperimentApiUpdateDataRequest, options?: Configuration): Promise<HttpInfo<SuccRspAny>> {
-        return this.api.updateDataWithHttpInfo(param.objid, param.fmt, param.file, param.use,  options).toPromise();
-    }
-
-    /**
-     * NOTE: the \'D\' prefix in URL is part of the ID.
-     * Update a data object by its ID.
-     * @param param the request object
-     */
-    public updateData(param: ExperimentApiUpdateDataRequest, options?: Configuration): Promise<SuccRspAny> {
-        return this.api.updateData(param.objid, param.fmt, param.file, param.use,  options).toPromise();
-    }
-
-    /**
-     * NOTE: the \'D\' prefix in URL is part of the ID.  NOTE: The status of experiment is manipulated by the system. So normally you should not call this API to update the status.
-     * Update an experiment by its ID.
-     * @param param the request object
-     */
-    public updateExperimentWithHttpInfo(param: ExperimentApiUpdateExperimentRequest, options?: Configuration): Promise<HttpInfo<SuccRspAny>> {
-        return this.api.updateExperimentWithHttpInfo(param.objid, param.updateXP,  options).toPromise();
-    }
-
-    /**
-     * NOTE: the \'D\' prefix in URL is part of the ID.  NOTE: The status of experiment is manipulated by the system. So normally you should not call this API to update the status.
-     * Update an experiment by its ID.
-     * @param param the request object
-     */
-    public updateExperiment(param: ExperimentApiUpdateExperimentRequest, options?: Configuration): Promise<SuccRspAny> {
-        return this.api.updateExperiment(param.objid, param.updateXP,  options).toPromise();
-    }
-
-    /**
-     * NOTE: the \'D\' prefix in URL is part of the ID.
-     * View a data object by its ID.
-     * @param param the request object
-     */
-    public viewDataWithHttpInfo(param: ExperimentApiViewDataRequest, options?: Configuration): Promise<HttpInfo<SuccRspAny>> {
-        return this.api.viewDataWithHttpInfo(param.objid,  options).toPromise();
-    }
-
-    /**
-     * NOTE: the \'D\' prefix in URL is part of the ID.
-     * View a data object by its ID.
-     * @param param the request object
-     */
-    public viewData(param: ExperimentApiViewDataRequest, options?: Configuration): Promise<SuccRspAny> {
-        return this.api.viewData(param.objid,  options).toPromise();
-    }
-
-    /**
-     * NOTE: the \'D\' prefix in URL is part of the ID.  This API is primarily designed for experiment owners to view their experiments, requiring a valid access token for authentication.  For shared experiments, access is granted based on the sharing configuration: 1. Password-protected sharing: Requires the share password for access, eg. `X-Share-Password` in the header 2. Public sharing: Allows access without any password 3. User-specific sharing: Permits access for designated users without requiring a password
-     * View an experiment by its ID.
-     * @param param the request object
-     */
-    public viewExperimentWithHttpInfo(param: ExperimentApiViewExperimentRequest, options?: Configuration): Promise<HttpInfo<SuccRspAny>> {
-        return this.api.viewExperimentWithHttpInfo(param.objid, param.o, param.log,  options).toPromise();
-    }
-
-    /**
-     * NOTE: the \'D\' prefix in URL is part of the ID.  This API is primarily designed for experiment owners to view their experiments, requiring a valid access token for authentication.  For shared experiments, access is granted based on the sharing configuration: 1. Password-protected sharing: Requires the share password for access, eg. `X-Share-Password` in the header 2. Public sharing: Allows access without any password 3. User-specific sharing: Permits access for designated users without requiring a password
-     * View an experiment by its ID.
-     * @param param the request object
-     */
-    public viewExperiment(param: ExperimentApiViewExperimentRequest, options?: Configuration): Promise<SuccRspAny> {
-        return this.api.viewExperiment(param.objid, param.o, param.log,  options).toPromise();
-    }
-
-    /**
      * As logs may contain sensetive info, this api can only be used by admin
      * Get Cloudwatch logs
      * @param param the request object
@@ -842,34 +506,6 @@ export class ObjectExperimentApi {
 import { ObservableModelApi } from "./ObservableAPI";
 import { ModelApiRequestFactory, ModelApiResponseProcessor} from "../apis/ModelApi";
 
-export interface ModelApiBatchDeleteModelRequest {
-    /**
-     * 
-     * Defaults to: undefined
-     * @type Array&lt;string&gt;
-     * @memberof ModelApibatchDeleteModel
-     */
-    objids?: Array<string>
-}
-
-export interface ModelApiCreateModelRequest {
-    /**
-     * 
-     * @type CreateModel
-     * @memberof ModelApicreateModel
-     */
-    createModel: CreateModel
-}
-
-export interface ModelApiCreateModelFromGithubRequest {
-    /**
-     * 
-     * @type ImportModelReq
-     * @memberof ModelApicreateModelFromGithub
-     */
-    importModelReq: ImportModelReq
-}
-
 export interface ModelApiGetConfigRequest {
 }
 
@@ -881,52 +517,6 @@ export interface ModelApiListBranchRequest {
      * @memberof ModelApilistBranch
      */
     repo: string
-}
-
-export interface ModelApiListModelsRequest {
-    /**
-     * page number
-     * Defaults to: 1
-     * @type number
-     * @memberof ModelApilistModels
-     */
-    pageNo?: number
-    /**
-     * page size
-     * Maximum: 1000
-     * Defaults to: 100
-     * @type number
-     * @memberof ModelApilistModels
-     */
-    pageSize?: number
-    /**
-     * 
-     * Defaults to: undefined
-     * @type Array&lt;string&gt;
-     * @memberof ModelApilistModels
-     */
-    modelIds?: Array<string>
-    /**
-     * Whether to return the related share info
-     * Defaults to: false
-     * @type boolean
-     * @memberof ModelApilistModels
-     */
-    withShareInfo?: boolean
-    /**
-     * Filter models shared by the current user
-     * Defaults to: false
-     * @type boolean
-     * @memberof ModelApilistModels
-     */
-    sharedByMe?: boolean
-    /**
-     * Filter models shared with the current user
-     * Defaults to: false
-     * @type boolean
-     * @memberof ModelApilistModels
-     */
-    sharedWithMe?: boolean
 }
 
 export interface ModelApiListRepositoryRequest {
@@ -945,32 +535,6 @@ export interface ModelApiListRepositoryRequest {
      * @memberof ModelApilistRepository
      */
     pageSize?: number
-}
-
-export interface ModelApiUpdateModelRequest {
-    /**
-     * 
-     * Defaults to: undefined
-     * @type string
-     * @memberof ModelApiupdateModel
-     */
-    objid: string
-    /**
-     * 
-     * @type UpdateModel
-     * @memberof ModelApiupdateModel
-     */
-    updateModel: UpdateModel
-}
-
-export interface ModelApiViewModelRequest {
-    /**
-     * 
-     * Defaults to: undefined
-     * @type string
-     * @memberof ModelApiviewModel
-     */
-    objid: string
 }
 
 export interface ModelApiViewSharedModelRequest {
@@ -995,60 +559,6 @@ export class ObjectModelApi {
 
     public constructor(configuration: Configuration, requestFactory?: ModelApiRequestFactory, responseProcessor?: ModelApiResponseProcessor) {
         this.api = new ObservableModelApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * Delete models in batch.
-     * Delete models in batch.
-     * @param param the request object
-     */
-    public batchDeleteModelWithHttpInfo(param: ModelApiBatchDeleteModelRequest = {}, options?: Configuration): Promise<HttpInfo<SuccRspNoneType>> {
-        return this.api.batchDeleteModelWithHttpInfo(param.objids,  options).toPromise();
-    }
-
-    /**
-     * Delete models in batch.
-     * Delete models in batch.
-     * @param param the request object
-     */
-    public batchDeleteModel(param: ModelApiBatchDeleteModelRequest = {}, options?: Configuration): Promise<SuccRspNoneType> {
-        return this.api.batchDeleteModel(param.objids,  options).toPromise();
-    }
-
-    /**
-     * Create a new model.
-     * Create a new model.
-     * @param param the request object
-     */
-    public createModelWithHttpInfo(param: ModelApiCreateModelRequest, options?: Configuration): Promise<HttpInfo<SuccRspListModelsRspItem>> {
-        return this.api.createModelWithHttpInfo(param.createModel,  options).toPromise();
-    }
-
-    /**
-     * Create a new model.
-     * Create a new model.
-     * @param param the request object
-     */
-    public createModel(param: ModelApiCreateModelRequest, options?: Configuration): Promise<SuccRspListModelsRspItem> {
-        return this.api.createModel(param.createModel,  options).toPromise();
-    }
-
-    /**
-     * Create a model from GitHub repository/gist.  Some details: 1. Use the repository name as the model name. Use gist description as the model name if it is not empty, otherwise use the gist ID as the model name. 2. Assume that the repository/gist contains Project.toml. 3. Assume that the repository/gist contains main.jl as the entrance file. 4. Assume that the entrance file contains a function named model as the entrance function.
-     * Create a model from GitHub repository.
-     * @param param the request object
-     */
-    public createModelFromGithubWithHttpInfo(param: ModelApiCreateModelFromGithubRequest, options?: Configuration): Promise<HttpInfo<SuccRspListModelsRspItem>> {
-        return this.api.createModelFromGithubWithHttpInfo(param.importModelReq,  options).toPromise();
-    }
-
-    /**
-     * Create a model from GitHub repository/gist.  Some details: 1. Use the repository name as the model name. Use gist description as the model name if it is not empty, otherwise use the gist ID as the model name. 2. Assume that the repository/gist contains Project.toml. 3. Assume that the repository/gist contains main.jl as the entrance file. 4. Assume that the entrance file contains a function named model as the entrance function.
-     * Create a model from GitHub repository.
-     * @param param the request object
-     */
-    public createModelFromGithub(param: ModelApiCreateModelFromGithubRequest, options?: Configuration): Promise<SuccRspListModelsRspItem> {
-        return this.api.createModelFromGithub(param.importModelReq,  options).toPromise();
     }
 
     /**
@@ -1088,24 +598,6 @@ export class ObjectModelApi {
     }
 
     /**
-     * By default, the API returns only models created by the current user, excluding sharing information for performance optimization.  When `shared_with_me` is enabled, the API returns models owned by other users but shared with the current user, including their sharing details.  Enabling `shared_by_me` will include sharing information for models that the current user has shared with others.  Setting `with_share_info` to true combines both scenarios: it returns models shared by the current user as well as models shared with the current user, complete with their respective sharing information. This effectively merges the functionality of both `shared_by_me` and `shared_with_me`.
-     * List models.
-     * @param param the request object
-     */
-    public listModelsWithHttpInfo(param: ModelApiListModelsRequest = {}, options?: Configuration): Promise<HttpInfo<ListingRspListModelsRspItem>> {
-        return this.api.listModelsWithHttpInfo(param.pageNo, param.pageSize, param.modelIds, param.withShareInfo, param.sharedByMe, param.sharedWithMe,  options).toPromise();
-    }
-
-    /**
-     * By default, the API returns only models created by the current user, excluding sharing information for performance optimization.  When `shared_with_me` is enabled, the API returns models owned by other users but shared with the current user, including their sharing details.  Enabling `shared_by_me` will include sharing information for models that the current user has shared with others.  Setting `with_share_info` to true combines both scenarios: it returns models shared by the current user as well as models shared with the current user, complete with their respective sharing information. This effectively merges the functionality of both `shared_by_me` and `shared_with_me`.
-     * List models.
-     * @param param the request object
-     */
-    public listModels(param: ModelApiListModelsRequest = {}, options?: Configuration): Promise<ListingRspListModelsRspItem> {
-        return this.api.listModels(param.pageNo, param.pageSize, param.modelIds, param.withShareInfo, param.sharedByMe, param.sharedWithMe,  options).toPromise();
-    }
-
-    /**
      * List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can\'t uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
      * List repositories and gists.
      * @param param the request object
@@ -1121,42 +613,6 @@ export class ObjectModelApi {
      */
     public listRepository(param: ModelApiListRepositoryRequest = {}, options?: Configuration): Promise<SuccRspListRepositoryRsp> {
         return this.api.listRepository(param.pageNo, param.pageSize,  options).toPromise();
-    }
-
-    /**
-     * Update a model by its ID.  NOTE: The status of model is manipulated by the system. So normally you should not call this API to update the status.
-     * Update a model by its ID.
-     * @param param the request object
-     */
-    public updateModelWithHttpInfo(param: ModelApiUpdateModelRequest, options?: Configuration): Promise<HttpInfo<SuccRspListModelsRspItem>> {
-        return this.api.updateModelWithHttpInfo(param.objid, param.updateModel,  options).toPromise();
-    }
-
-    /**
-     * Update a model by its ID.  NOTE: The status of model is manipulated by the system. So normally you should not call this API to update the status.
-     * Update a model by its ID.
-     * @param param the request object
-     */
-    public updateModel(param: ModelApiUpdateModelRequest, options?: Configuration): Promise<SuccRspListModelsRspItem> {
-        return this.api.updateModel(param.objid, param.updateModel,  options).toPromise();
-    }
-
-    /**
-     * This API is primarily designed for model owners to view their models, requiring a valid access token for authentication.  For shared models, access is granted based on the sharing configuration: 1. Password-protected sharing: Requires the share password for access, eg. `X-Share-Password` in the header 2. Public sharing: Allows access without any password 3. User-specific sharing: Permits access for designated users without requiring a password
-     * View a model by its ID.
-     * @param param the request object
-     */
-    public viewModelWithHttpInfo(param: ModelApiViewModelRequest, options?: Configuration): Promise<HttpInfo<SuccRspViewModelsRsp>> {
-        return this.api.viewModelWithHttpInfo(param.objid,  options).toPromise();
-    }
-
-    /**
-     * This API is primarily designed for model owners to view their models, requiring a valid access token for authentication.  For shared models, access is granted based on the sharing configuration: 1. Password-protected sharing: Requires the share password for access, eg. `X-Share-Password` in the header 2. Public sharing: Allows access without any password 3. User-specific sharing: Permits access for designated users without requiring a password
-     * View a model by its ID.
-     * @param param the request object
-     */
-    public viewModel(param: ModelApiViewModelRequest, options?: Configuration): Promise<SuccRspViewModelsRsp> {
-        return this.api.viewModel(param.objid,  options).toPromise();
     }
 
     /**
@@ -1287,10 +743,10 @@ export interface ObjectApiListObjectRequest {
     /**
      * 
      * Defaults to: undefined
-     * @type &#39;model&#39; | &#39;experiment&#39; | &#39;data&#39;
+     * @type &#39;model&#39; | &#39;experiment&#39; | &#39;share&#39;
      * @memberof ObjectApilistObject
      */
-    objectType: 'model' | 'experiment' | 'data'
+    objectType: 'model' | 'experiment' | 'share'
     /**
      * page number
      * Defaults to: 1
@@ -1384,10 +840,17 @@ export interface ObjectApiViewObjectRequest {
     /**
      * 
      * Defaults to: undefined
-     * @type any
+     * @type &#39;model&#39; | &#39;experiment&#39; | &#39;share&#39;
      * @memberof ObjectApiviewObject
      */
-    payload?: any
+    objectType: 'model' | 'experiment' | 'share'
+    /**
+     *                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
+     * Defaults to: &#39;&#39;
+     * @type string
+     * @memberof ObjectApiviewObject
+     */
+    shareId?: string
 }
 
 export class ObjectObjectApi {
@@ -1475,7 +938,7 @@ export class ObjectObjectApi {
      * @param param the request object
      */
     public viewObjectWithHttpInfo(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
-        return this.api.viewObjectWithHttpInfo(param.objid, param.payload,  options).toPromise();
+        return this.api.viewObjectWithHttpInfo(param.objid, param.objectType, param.shareId,  options).toPromise();
     }
 
     /**
@@ -1484,7 +947,7 @@ export class ObjectObjectApi {
      * @param param the request object
      */
     public viewObject(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
-        return this.api.viewObject(param.objid, param.payload,  options).toPromise();
+        return this.api.viewObject(param.objid, param.objectType, param.shareId,  options).toPromise();
     }
 
 }
@@ -1500,22 +963,6 @@ export interface ShareApiCoinferApisNoAuthApiGetExperimentShareRequest {
      * @memberof ShareApicoinferApisNoAuthApiGetExperimentShare
      */
     shareId: string
-}
-
-export interface ShareApiCreateExperimentShareRequest {
-    /**
-     * 
-     * Defaults to: undefined
-     * @type string
-     * @memberof ShareApicreateExperimentShare
-     */
-    expId: string
-    /**
-     * 
-     * @type CreateExperimentShare
-     * @memberof ShareApicreateExperimentShare
-     */
-    createExperimentShare: CreateExperimentShare
 }
 
 export interface ShareApiCreateModelShareRequest {
@@ -1534,32 +981,12 @@ export interface ShareApiCreateModelShareRequest {
     createModelShare: CreateModelShare
 }
 
-export interface ShareApiDeleteExperimentShareRequest {
-    /**
-     * \&quot;-\&quot;separated share ids
-     * Defaults to: undefined
-     * @type string
-     * @memberof ShareApideleteExperimentShare
-     */
-    shareId: string
-}
-
 export interface ShareApiDeleteModelShareRequest {
     /**
      * \&quot;-\&quot;separated share ids
      * Defaults to: undefined
      * @type string
      * @memberof ShareApideleteModelShare
-     */
-    shareId: string
-}
-
-export interface ShareApiGetExperimentShareRequest {
-    /**
-     * 
-     * Defaults to: undefined
-     * @type string
-     * @memberof ShareApigetExperimentShare
      */
     shareId: string
 }
@@ -1598,24 +1025,6 @@ export class ObjectShareApi {
     }
 
     /**
-     * Share an experiment specified by experiment ID.  Currently we support three types of sharing:  1. Public sharing: The experiment is shared publicly. Create a public share by not specifying `target_user` and share password in the request body.  2. User-specific sharing: The experiment is shared with a specific user. Create a user-specific share by specifying `target_user` in the request body. The `target_user` should be in the format of `name(@id)`. This is exactly the format what the user info API returns.  3. Password-protected sharing: The experiment is shared with a password. Create a password-protected share by specifying `password` in the request body.
-     * Share an experiment.
-     * @param param the request object
-     */
-    public createExperimentShareWithHttpInfo(param: ShareApiCreateExperimentShareRequest, options?: Configuration): Promise<HttpInfo<SuccRspCreateExperimentShareRsp>> {
-        return this.api.createExperimentShareWithHttpInfo(param.expId, param.createExperimentShare,  options).toPromise();
-    }
-
-    /**
-     * Share an experiment specified by experiment ID.  Currently we support three types of sharing:  1. Public sharing: The experiment is shared publicly. Create a public share by not specifying `target_user` and share password in the request body.  2. User-specific sharing: The experiment is shared with a specific user. Create a user-specific share by specifying `target_user` in the request body. The `target_user` should be in the format of `name(@id)`. This is exactly the format what the user info API returns.  3. Password-protected sharing: The experiment is shared with a password. Create a password-protected share by specifying `password` in the request body.
-     * Share an experiment.
-     * @param param the request object
-     */
-    public createExperimentShare(param: ShareApiCreateExperimentShareRequest, options?: Configuration): Promise<SuccRspCreateExperimentShareRsp> {
-        return this.api.createExperimentShare(param.expId, param.createExperimentShare,  options).toPromise();
-    }
-
-    /**
      * Share a model specified by model ID.  Currently we support three types of sharing:  1. Public sharing: The model is shared publicly. Create a public share by not specifying `target_user` and share password in the request body.  2. User-specific sharing: The model is shared with a specific user. Create a user-specific share by specifying `target_user` in the request body. The `target_user` should be in the format of `name(@id)`. This is exactly the format what the user info API returns.  3. Password-protected sharing: The model is shared with a password. Create a password-protected share by specifying `password` in the request body.
      * Share a model specified by model ID.
      * @param param the request object
@@ -1634,24 +1043,6 @@ export class ObjectShareApi {
     }
 
     /**
-     * Deletion in batch is supported by passing \"-\" separated share ids in the path param.
-     * Delete experiment shares.
-     * @param param the request object
-     */
-    public deleteExperimentShareWithHttpInfo(param: ShareApiDeleteExperimentShareRequest, options?: Configuration): Promise<HttpInfo<SuccRspNoneType>> {
-        return this.api.deleteExperimentShareWithHttpInfo(param.shareId,  options).toPromise();
-    }
-
-    /**
-     * Deletion in batch is supported by passing \"-\" separated share ids in the path param.
-     * Delete experiment shares.
-     * @param param the request object
-     */
-    public deleteExperimentShare(param: ShareApiDeleteExperimentShareRequest, options?: Configuration): Promise<SuccRspNoneType> {
-        return this.api.deleteExperimentShare(param.shareId,  options).toPromise();
-    }
-
-    /**
      *      
      * Delete model shares.
      * @param param the request object
@@ -1667,24 +1058,6 @@ export class ObjectShareApi {
      */
     public deleteModelShare(param: ShareApiDeleteModelShareRequest, options?: Configuration): Promise<SuccRspNoneType> {
         return this.api.deleteModelShare(param.shareId,  options).toPromise();
-    }
-
-    /**
-     * Returns very basic sharing info without any authorization. Currently it only returns one field `require_password`, which is used when opening a share URL. If `require_password` is true, then a password input box is open. Else the page should be directly displayed.
-     * Get sharing information of an experiment.
-     * @param param the request object
-     */
-    public getExperimentShareWithHttpInfo(param: ShareApiGetExperimentShareRequest, options?: Configuration): Promise<HttpInfo<SuccRspGetExperimentShareRsp>> {
-        return this.api.getExperimentShareWithHttpInfo(param.shareId,  options).toPromise();
-    }
-
-    /**
-     * Returns very basic sharing info without any authorization. Currently it only returns one field `require_password`, which is used when opening a share URL. If `require_password` is true, then a password input box is open. Else the page should be directly displayed.
-     * Get sharing information of an experiment.
-     * @param param the request object
-     */
-    public getExperimentShare(param: ShareApiGetExperimentShareRequest, options?: Configuration): Promise<SuccRspGetExperimentShareRsp> {
-        return this.api.getExperimentShare(param.shareId,  options).toPromise();
     }
 
     /**

@@ -53,18 +53,22 @@ class Client:
             data.setdefault('meta', {}).setdefault('run_info', {}).update(self.run_info)
             if data.get('status'):
                 data["meta"]["run_info"]["status"] = data["status"]
-        url = self.endpoint("mcmc", f"/object/{exp_id}")
-        res = self.session.post(url, data=json.dumps(data), headers=self.headers_with_auth())
+        url = self.endpoint("api", f"/object/{exp_id}")
+        res = self.session.post(
+            url, data=json.dumps({"payload": {"object_type": "experiment", **data}}), headers=self.headers_with_auth()
+        )
         return self.response_data(res)
 
     def create_experiment(self, model_id, input_id, xp_meta, name=""):
-        url = self.endpoint("mcmc", "/object")
+        url = self.endpoint("api", "/object")
         data = {
-            "object_type": "experiment",
-            "model_id": model_id,
-            "input_id": input_id,
-            "xp_meta": xp_meta,
-            "name": name,
+            "payload": {
+                "object_type": "experiment",
+                "model_id": model_id,
+                "input_id": input_id,
+                "xp_meta": xp_meta,
+                "name": name,
+            }
         }
         headers = self.headers_with_auth()
         headers["Content-Type"] = "application/json"
@@ -72,7 +76,7 @@ class Client:
         return self.response_data(res)
 
     def get_experiment(self, exp_id):
-        url = self.endpoint("mcmc", f"/object/{exp_id}")
+        url = self.endpoint("api", f"/object/{exp_id}")
         headers = self.headers_with_auth()
         res = self.session.get(url, headers=headers)
         return self.response_data(res)
@@ -95,7 +99,9 @@ class Client:
         return self.response_data(res)
 
     def create_model(self, content, name=""):
-        url = self.endpoint("turing", "/object")
+        url = self.endpoint("api", "/object")
         headers = self.headers_with_auth()
-        res = self.session.post(url, headers=headers, json={"name": name, "content": content})
+        res = self.session.post(
+            url, headers=headers, json={"payload": {"object_type": "model", "name": name, "content": content}}
+        )
         return self.response_data(res)["short_id"]

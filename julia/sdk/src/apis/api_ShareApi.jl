@@ -41,39 +41,6 @@ function coinfer_apis_no_auth_api_get_experiment_share(_api::ShareApi, response_
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
-const _returntypes_create_experiment_share_ShareApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspCreateExperimentShareRsp,
-    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
-)
-
-function _oacinternal_create_experiment_share(_api::ShareApi, exp_id::String, create_experiment_share_param::CreateExperimentShare; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_create_experiment_share_ShareApi, "/mcmc/experiment/{exp_id}/share", ["GlobalAuth", ], create_experiment_share_param)
-    OpenAPI.Clients.set_param(_ctx.path, "exp_id", exp_id)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json", ] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""Share an experiment.
-
-Share an experiment specified by experiment ID.  Currently we support three types of sharing:  1. Public sharing: The experiment is shared publicly. Create a public share by not specifying `target_user` and share password in the request body.  2. User-specific sharing: The experiment is shared with a specific user. Create a user-specific share by specifying `target_user` in the request body. The `target_user` should be in the format of `name(@id)`. This is exactly the format what the user info API returns.  3. Password-protected sharing: The experiment is shared with a password. Create a password-protected share by specifying `password` in the request body.
-
-Params:
-- exp_id::String (required)
-- create_experiment_share_param::CreateExperimentShare (required)
-
-Return: SuccRspCreateExperimentShareRsp, OpenAPI.Clients.ApiResponse
-"""
-function create_experiment_share(_api::ShareApi, exp_id::String, create_experiment_share_param::CreateExperimentShare; _mediaType=nothing)
-    _ctx = _oacinternal_create_experiment_share(_api, exp_id, create_experiment_share_param; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function create_experiment_share(_api::ShareApi, response_stream::Channel, exp_id::String, create_experiment_share_param::CreateExperimentShare; _mediaType=nothing)
-    _ctx = _oacinternal_create_experiment_share(_api, exp_id, create_experiment_share_param; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
 const _returntypes_create_model_share_ShareApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspCreateModelShareRsp,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
@@ -107,38 +74,6 @@ function create_model_share(_api::ShareApi, response_stream::Channel, model_id::
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
-const _returntypes_delete_experiment_share_ShareApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspNoneType,
-    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
-)
-
-function _oacinternal_delete_experiment_share(_api::ShareApi, share_id::String; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "DELETE", _returntypes_delete_experiment_share_ShareApi, "/mcmc/experiment/share/{share_id}", ["GlobalAuth", ])
-    OpenAPI.Clients.set_param(_ctx.path, "share_id", share_id)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""Delete experiment shares.
-
-Deletion in batch is supported by passing \"-\" separated share ids in the path param.
-
-Params:
-- share_id::String (required)
-
-Return: SuccRspNoneType, OpenAPI.Clients.ApiResponse
-"""
-function delete_experiment_share(_api::ShareApi, share_id::String; _mediaType=nothing)
-    _ctx = _oacinternal_delete_experiment_share(_api, share_id; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function delete_experiment_share(_api::ShareApi, response_stream::Channel, share_id::String; _mediaType=nothing)
-    _ctx = _oacinternal_delete_experiment_share(_api, share_id; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
 const _returntypes_delete_model_share_ShareApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspNoneType,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
@@ -168,38 +103,6 @@ end
 
 function delete_model_share(_api::ShareApi, response_stream::Channel, share_id::String; _mediaType=nothing)
     _ctx = _oacinternal_delete_model_share(_api, share_id; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
-const _returntypes_get_experiment_share_ShareApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspGetExperimentShareRsp,
-    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
-)
-
-function _oacinternal_get_experiment_share(_api::ShareApi, share_id::String; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_experiment_share_ShareApi, "/mcmc/experiment/share/{share_id}", [])
-    OpenAPI.Clients.set_param(_ctx.path, "share_id", share_id)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""Get sharing information of an experiment.
-
-Returns very basic sharing info without any authorization. Currently it only returns one field `require_password`, which is used when opening a share URL. If `require_password` is true, then a password input box is open. Else the page should be directly displayed.
-
-Params:
-- share_id::String (required)
-
-Return: SuccRspGetExperimentShareRsp, OpenAPI.Clients.ApiResponse
-"""
-function get_experiment_share(_api::ShareApi, share_id::String; _mediaType=nothing)
-    _ctx = _oacinternal_get_experiment_share(_api, share_id; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function get_experiment_share(_api::ShareApi, response_stream::Channel, share_id::String; _mediaType=nothing)
-    _ctx = _oacinternal_get_experiment_share(_api, share_id; _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -236,9 +139,6 @@ function get_model_share(_api::ShareApi, response_stream::Channel, share_id::Str
 end
 
 export coinfer_apis_no_auth_api_get_experiment_share
-export create_experiment_share
 export create_model_share
-export delete_experiment_share
 export delete_model_share
-export get_experiment_share
 export get_model_share

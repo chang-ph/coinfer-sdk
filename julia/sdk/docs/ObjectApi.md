@@ -147,8 +147,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **view_object**
-> view_object(_api::ObjectApi, objid::String; payload=nothing, _mediaType=nothing) -> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, OpenAPI.Clients.ApiResponse <br/>
-> view_object(_api::ObjectApi, response_stream::Channel, objid::String; payload=nothing, _mediaType=nothing) -> Channel{ SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType }, OpenAPI.Clients.ApiResponse
+> view_object(_api::ObjectApi, objid::String, object_type::String; share_id=nothing, _mediaType=nothing) -> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, OpenAPI.Clients.ApiResponse <br/>
+> view_object(_api::ObjectApi, response_stream::Channel, objid::String, object_type::String; share_id=nothing, _mediaType=nothing) -> Channel{ SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType }, OpenAPI.Clients.ApiResponse
 
 View object.
 
@@ -160,12 +160,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_api** | **ObjectApi** | API context | 
 **objid** | **String** |  |
+**object_type** | **String** |  |
 
 ### Optional Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **payload** | [**Any**](.md) |  | [default to nothing]
+ **share_id** | **String** |                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot | [default to &quot;&quot;]
 
 ### Return type
 
