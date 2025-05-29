@@ -313,24 +313,6 @@ export class PromiseExperimentApi {
     }
 
     /**
-     * Download a notebook which can be used to load and visualize the experiment result
-     * @param expid
-     */
-    public experimentNotebookWithHttpInfo(expid: string, _options?: Configuration): Promise<HttpInfo<SuccRspAny>> {
-        const result = this.api.experimentNotebookWithHttpInfo(expid, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * Download a notebook which can be used to load and visualize the experiment result
-     * @param expid
-     */
-    public experimentNotebook(expid: string, _options?: Configuration): Promise<SuccRspAny> {
-        const result = this.api.experimentNotebook(expid, _options);
-        return result.toPromise();
-    }
-
-    /**
      * Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
      * Get a link of the notebook in Colab
      * @param expid

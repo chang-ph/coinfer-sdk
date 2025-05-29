@@ -11,35 +11,6 @@ This can be used to construct the `OpenAPI.Clients.Client` instance.
 """
 basepath(::Type{ ExperimentApi }) = "https://api.coinfer.ai"
 
-const _returntypes_experiment_notebook_ExperimentApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspAny,
-)
-
-function _oacinternal_experiment_notebook(_api::ExperimentApi, expid::String; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_experiment_notebook_ExperimentApi, "/mcmc/experiment/{expid}/notebook", ["GlobalAuth", ])
-    OpenAPI.Clients.set_param(_ctx.path, "expid", expid)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""Download a notebook which can be used to load and visualize the experiment result
-
-Params:
-- expid::String (required)
-
-Return: SuccRspAny, OpenAPI.Clients.ApiResponse
-"""
-function experiment_notebook(_api::ExperimentApi, expid::String; _mediaType=nothing)
-    _ctx = _oacinternal_experiment_notebook(_api, expid; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function experiment_notebook(_api::ExperimentApi, response_stream::Channel, expid::String; _mediaType=nothing)
-    _ctx = _oacinternal_experiment_notebook(_api, expid; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
 const _returntypes_experiment_notebook_colab_ExperimentApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspAny,
 )
@@ -137,7 +108,6 @@ function view_xp_cloudwatch_logs(_api::ExperimentApi, response_stream::Channel, 
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
-export experiment_notebook
 export experiment_notebook_colab
 export get_sample_data
 export view_xp_cloudwatch_logs

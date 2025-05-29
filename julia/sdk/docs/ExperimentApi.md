@@ -4,39 +4,10 @@ All URIs are relative to *https://api.coinfer.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**experiment_notebook**](ExperimentApi.md#experiment_notebook) | **GET** /mcmc/experiment/{expid}/notebook | Download a notebook which can be used to load and visualize the experiment result
 [**experiment_notebook_colab**](ExperimentApi.md#experiment_notebook_colab) | **GET** /mcmc/experiment/{expid}/notebook/colab | Get a link of the notebook in Colab
 [**get_sample_data**](ExperimentApi.md#get_sample_data) | **GET** /mcmc/experiment/{experiment_id}/sampledata/{fmt} | Get sample data
 [**view_xp_cloudwatch_logs**](ExperimentApi.md#view_xp_cloudwatch_logs) | **GET** /mcmc/object/{objid}/cloudwatch-logs | Get Cloudwatch logs
 
-
-# **experiment_notebook**
-> experiment_notebook(_api::ExperimentApi, expid::String; _mediaType=nothing) -> SuccRspAny, OpenAPI.Clients.ApiResponse <br/>
-> experiment_notebook(_api::ExperimentApi, response_stream::Channel, expid::String; _mediaType=nothing) -> Channel{ SuccRspAny }, OpenAPI.Clients.ApiResponse
-
-Download a notebook which can be used to load and visualize the experiment result
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **ExperimentApi** | API context | 
-**expid** | **String** |  |
-
-### Return type
-
-[**SuccRspAny**](SuccRspAny.md)
-
-### Authorization
-
-[GlobalAuth](../README.md#GlobalAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **experiment_notebook_colab**
 > experiment_notebook_colab(_api::ExperimentApi, expid::String; _mediaType=nothing) -> SuccRspAny, OpenAPI.Clients.ApiResponse <br/>

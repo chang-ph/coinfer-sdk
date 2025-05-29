@@ -351,16 +351,6 @@ export class ObjectAuthorizationApi {
 import { ObservableExperimentApi } from "./ObservableAPI";
 import { ExperimentApiRequestFactory, ExperimentApiResponseProcessor} from "../apis/ExperimentApi";
 
-export interface ExperimentApiExperimentNotebookRequest {
-    /**
-     * 
-     * Defaults to: undefined
-     * @type string
-     * @memberof ExperimentApiexperimentNotebook
-     */
-    expid: string
-}
-
 export interface ExperimentApiExperimentNotebookColabRequest {
     /**
      * 
@@ -403,22 +393,6 @@ export class ObjectExperimentApi {
 
     public constructor(configuration: Configuration, requestFactory?: ExperimentApiRequestFactory, responseProcessor?: ExperimentApiResponseProcessor) {
         this.api = new ObservableExperimentApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * Download a notebook which can be used to load and visualize the experiment result
-     * @param param the request object
-     */
-    public experimentNotebookWithHttpInfo(param: ExperimentApiExperimentNotebookRequest, options?: Configuration): Promise<HttpInfo<SuccRspAny>> {
-        return this.api.experimentNotebookWithHttpInfo(param.expid,  options).toPromise();
-    }
-
-    /**
-     * Download a notebook which can be used to load and visualize the experiment result
-     * @param param the request object
-     */
-    public experimentNotebook(param: ExperimentApiExperimentNotebookRequest, options?: Configuration): Promise<SuccRspAny> {
-        return this.api.experimentNotebook(param.expid,  options).toPromise();
     }
 
     /**
