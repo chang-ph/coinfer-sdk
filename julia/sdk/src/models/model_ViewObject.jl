@@ -5,7 +5,7 @@
 @doc raw"""ViewObject
 
     ViewObject(;
-        object_type=nothing,
+        object_type="",
         share_id="",
     )
 
@@ -13,7 +13,7 @@
     - share_id::String :                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
 """
 Base.@kwdef mutable struct ViewObject <: OpenAPI.APIModel
-    object_type::Union{Nothing, String} = nothing
+    object_type::Union{Nothing, String} = ""
     share_id::Union{Nothing, String} = ""
 
     function ViewObject(object_type, share_id, )
@@ -27,14 +27,13 @@ const _property_types_ViewObject = Dict{Symbol,String}(Symbol("object_type")=>"S
 OpenAPI.property_type(::Type{ ViewObject }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_ViewObject[name]))}
 
 function check_required(o::ViewObject)
-    o.object_type === nothing && (return false)
     true
 end
 
 function OpenAPI.validate_property(::Type{ ViewObject }, name::Symbol, val)
 
     if name === Symbol("object_type")
-        OpenAPI.validate_param(name, "ViewObject", :enum, val, ["model", "experiment", "share"])
+        OpenAPI.validate_param(name, "ViewObject", :enum, val, ["model", "experiment", "share", "event", "callback", "relation", ""])
     end
 
 

@@ -11,7 +11,6 @@ Method | HTTP request | Description
 [**get_tokens**](AuthorizationApi.md#get_tokens) | **GET** /base/user/tokens | List all of current user&#39;s tokens.
 [**modify_current_user**](AuthorizationApi.md#modify_current_user) | **PUT** /base/user | Update information of current user.
 [**modify_token**](AuthorizationApi.md#modify_token) | **PUT** /base/user/token/{token_id} | Update a token by its ID.
-[**update**](AuthorizationApi.md#update) | **POST** /base/update | Update current user or a token
 [**user_info**](AuthorizationApi.md#user_info) | **GET** /base/user | Get information of current user.
 [**user_login**](AuthorizationApi.md#user_login) | **POST** /base/login | Login with password.
 [**user_logout**](AuthorizationApi.md#user_logout) | **POST** /base/logout | Logout the system.
@@ -209,36 +208,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SuccRspGetTokensRsp**](SuccRspGetTokensRsp.md)
-
-### Authorization
-
-[GlobalAuth](../README.md#GlobalAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-# **update**
-> update(_api::AuthorizationApi, update_base::UpdateBase; _mediaType=nothing) -> SuccRspUnionUserInfoRspGetTokensRsp, OpenAPI.Clients.ApiResponse <br/>
-> update(_api::AuthorizationApi, response_stream::Channel, update_base::UpdateBase; _mediaType=nothing) -> Channel{ SuccRspUnionUserInfoRspGetTokensRsp }, OpenAPI.Clients.ApiResponse
-
-Update current user or a token
-
-This API is multi-functional. It can: 1. update the data of the current user 2. update the data of a specific token  Because of this, it support different set of parameters, discrimated by the \"type\" field:  ```js {\"payload\": {\"type\": \"update_user\", ...}} // or {\"payload\": {\"type\": \"update_token\", ...}} ```
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **AuthorizationApi** | API context | 
-**update_base** | [**UpdateBase**](UpdateBase.md) |  |
-
-### Return type
-
-[**SuccRspUnionUserInfoRspGetTokensRsp**](SuccRspUnionUserInfoRspGetTokensRsp.md)
 
 ### Authorization
 

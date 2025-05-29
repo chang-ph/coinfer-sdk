@@ -1,5 +1,5 @@
-from .logged_requests import requests
+from .logged_requests import requests, CheckResponseSubject
 from .client import Client
 
 
-__all__ = ["requests", "Client"]
+__all__ = ["requests", "Client", "CheckResponseSubject"]

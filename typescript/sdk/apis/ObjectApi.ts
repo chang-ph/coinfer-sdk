@@ -10,11 +10,11 @@ import {SecurityAuthentication} from '../auth/auth';
 
 import { CreateObjectReq } from '../models/CreateObjectReq';
 import { ErrRsp } from '../models/ErrRsp';
+import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
-import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItem } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItem';
+import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
 import { SuccRspNoneType } from '../models/SuccRspNoneType';
-import { SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp } from '../models/SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp';
-import { SuccRspUnionExperimentRspViewModelsRsp } from '../models/SuccRspUnionExperimentRspViewModelsRsp';
+import { SuccRspUnionExperimentRspViewModelsRspNoneType } from '../models/SuccRspUnionExperimentRspViewModelsRspNoneType';
 import { UpdateObject } from '../models/UpdateObject';
 
 /**
@@ -132,7 +132,7 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
      * @param runOn 
      * @param hasModel 
      */
-    public async listObject(objectType: 'model' | 'experiment' | 'share', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', _options?: Configuration): Promise<RequestContext> {
+    public async listObject(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'objectType' is not null or undefined
@@ -169,7 +169,7 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
 
         // Query Params
         if (objectType !== undefined) {
-            requestContext.setQueryParam("object_type", ObjectSerializer.serialize(objectType, "'model' | 'experiment' | 'share'", ""));
+            requestContext.setQueryParam("object_type", ObjectSerializer.serialize(objectType, "'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | ''", ""));
         }
 
         // Query Params
@@ -291,7 +291,7 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
      * @param objectType 
      * @param shareId                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
      */
-    public async viewObject(objid: string, objectType: 'model' | 'experiment' | 'share', shareId?: string, _options?: Configuration): Promise<RequestContext> {
+    public async viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'objid' is not null or undefined
@@ -299,11 +299,6 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
             throw new RequiredError("ObjectApi", "viewObject", "objid");
         }
 
-
-        // verify required parameter 'objectType' is not null or undefined
-        if (objectType === null || objectType === undefined) {
-            throw new RequiredError("ObjectApi", "viewObject", "objectType");
-        }
 
 
 
@@ -317,7 +312,7 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
 
         // Query Params
         if (objectType !== undefined) {
-            requestContext.setQueryParam("object_type", ObjectSerializer.serialize(objectType, "'model' | 'experiment' | 'share'", ""));
+            requestContext.setQueryParam("object_type", ObjectSerializer.serialize(objectType, "'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | ''", ""));
         }
 
         // Query Params
@@ -357,13 +352,13 @@ export class ObjectApiResponseProcessor {
      * @params response Response returned by the server for a request to createObject
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp >> {
+     public async createObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp = ObjectSerializer.deserialize(
+            const body: SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp", ""
-            ) as SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp;
+                "SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType", ""
+            ) as SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -376,10 +371,10 @@ export class ObjectApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp = ObjectSerializer.deserialize(
+            const body: SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp", ""
-            ) as SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp;
+                "SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType", ""
+            ) as SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
@@ -429,13 +424,13 @@ export class ObjectApiResponseProcessor {
      * @params response Response returned by the server for a request to listObject
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspListingRspDataUnionListExperimentRspListModelsRspItem >> {
+     public async listObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: SuccRspListingRspDataUnionListExperimentRspListModelsRspItem = ObjectSerializer.deserialize(
+            const body: SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspListingRspDataUnionListExperimentRspListModelsRspItem", ""
-            ) as SuccRspListingRspDataUnionListExperimentRspListModelsRspItem;
+                "SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp", ""
+            ) as SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -448,10 +443,10 @@ export class ObjectApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: SuccRspListingRspDataUnionListExperimentRspListModelsRspItem = ObjectSerializer.deserialize(
+            const body: SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspListingRspDataUnionListExperimentRspListModelsRspItem", ""
-            ) as SuccRspListingRspDataUnionListExperimentRspListModelsRspItem;
+                "SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp", ""
+            ) as SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
@@ -465,13 +460,13 @@ export class ObjectApiResponseProcessor {
      * @params response Response returned by the server for a request to updateObject
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async updateObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspUnionExperimentRspViewModelsRsp >> {
+     public async updateObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspUnionExperimentRspViewModelsRspNoneType >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: SuccRspUnionExperimentRspViewModelsRsp = ObjectSerializer.deserialize(
+            const body: SuccRspUnionExperimentRspViewModelsRspNoneType = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspUnionExperimentRspViewModelsRsp", ""
-            ) as SuccRspUnionExperimentRspViewModelsRsp;
+                "SuccRspUnionExperimentRspViewModelsRspNoneType", ""
+            ) as SuccRspUnionExperimentRspViewModelsRspNoneType;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -484,10 +479,10 @@ export class ObjectApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: SuccRspUnionExperimentRspViewModelsRsp = ObjectSerializer.deserialize(
+            const body: SuccRspUnionExperimentRspViewModelsRspNoneType = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspUnionExperimentRspViewModelsRsp", ""
-            ) as SuccRspUnionExperimentRspViewModelsRsp;
+                "SuccRspUnionExperimentRspViewModelsRspNoneType", ""
+            ) as SuccRspUnionExperimentRspViewModelsRspNoneType;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 

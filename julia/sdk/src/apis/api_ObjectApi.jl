@@ -12,7 +12,7 @@ This can be used to construct the `OpenAPI.Clients.Client` instance.
 basepath(::Type{ ObjectApi }) = "https://api.coinfer.ai"
 
 const _returntypes_create_object_ObjectApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp,
+    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
@@ -30,7 +30,7 @@ Create new object.  ### Example Create model: ``` POST /api/object {     \"paylo
 Params:
 - create_object_req::CreateObjectReq (required)
 
-Return: SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp, OpenAPI.Clients.ApiResponse
+Return: SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, OpenAPI.Clients.ApiResponse
 """
 function create_object(_api::ObjectApi, create_object_req::CreateObjectReq; _mediaType=nothing)
     _ctx = _oacinternal_create_object(_api, create_object_req; _mediaType=_mediaType)
@@ -75,7 +75,7 @@ function delete_object(_api::ObjectApi, response_stream::Channel, objids::Vector
 end
 
 const _returntypes_list_object_ObjectApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspListingRspDataUnionListExperimentRspListModelsRspItem,
+    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
@@ -114,7 +114,7 @@ Params:
 - run_on::String
 - has_model::String
 
-Return: SuccRspListingRspDataUnionListExperimentRspListModelsRspItem, OpenAPI.Clients.ApiResponse
+Return: SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp, OpenAPI.Clients.ApiResponse
 """
 function list_object(_api::ObjectApi, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, _mediaType=nothing)
     _ctx = _oacinternal_list_object(_api, object_type; page_no=page_no, page_size=page_size, with_share_info=with_share_info, shared_by_me=shared_by_me, shared_with_me=shared_with_me, model_ids=model_ids, status=status, run_on=run_on, has_model=has_model, _mediaType=_mediaType)
@@ -127,7 +127,7 @@ function list_object(_api::ObjectApi, response_stream::Channel, object_type::Str
 end
 
 const _returntypes_update_object_ObjectApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspUnionExperimentRspViewModelsRsp,
+    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspUnionExperimentRspViewModelsRspNoneType,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
@@ -147,7 +147,7 @@ Params:
 - objid::String (required)
 - update_object_param::UpdateObject (required)
 
-Return: SuccRspUnionExperimentRspViewModelsRsp, OpenAPI.Clients.ApiResponse
+Return: SuccRspUnionExperimentRspViewModelsRspNoneType, OpenAPI.Clients.ApiResponse
 """
 function update_object(_api::ObjectApi, objid::String, update_object_param::UpdateObject; _mediaType=nothing)
     _ctx = _oacinternal_update_object(_api, objid, update_object_param; _mediaType=_mediaType)
@@ -164,7 +164,7 @@ const _returntypes_view_object_ObjectApi = Dict{Regex,Type}(
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
-function _oacinternal_view_object(_api::ObjectApi, objid::String, object_type::String; share_id=nothing, _mediaType=nothing)
+function _oacinternal_view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_view_object_ObjectApi, "/api/object/{objid}", ["GlobalAuth", "SharingAuth", ])
     OpenAPI.Clients.set_param(_ctx.path, "objid", objid)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "object_type", object_type; style="form", is_explode=true)  # type String
@@ -180,18 +180,18 @@ View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view mo
 
 Params:
 - objid::String (required)
-- object_type::String (required)
+- object_type::String
 - share_id::String
 
 Return: SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, OpenAPI.Clients.ApiResponse
 """
-function view_object(_api::ObjectApi, objid::String, object_type::String; share_id=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_view_object(_api, objid, object_type; share_id=share_id, _mediaType=_mediaType)
+function view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function view_object(_api::ObjectApi, response_stream::Channel, objid::String, object_type::String; share_id=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_view_object(_api, objid, object_type; share_id=share_id, _mediaType=_mediaType)
+function view_object(_api::ObjectApi, response_stream::Channel, objid::String; object_type=nothing, share_id=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 

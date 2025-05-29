@@ -7,20 +7,14 @@
 
     Data2(; value=nothing)
 """
-mutable struct Data2 <: OpenAPI.OneOfAPIModel
-    value::Any # Union{ ExperimentRsp, ViewExperimentShareRsp, ViewModelsRsp }
+mutable struct Data2 <: OpenAPI.AnyOfAPIModel
+    value::Any # Union{ ExperimentRsp, ViewModelsRsp }
     Data2() = new()
     Data2(value) = new(value)
 end # type Data2
 
 function OpenAPI.property_type(::Type{ Data2 }, name::Symbol, json::Dict{String,Any})
-    discriminator = json["object_type"]
-    if discriminator == "experiment"
-        return eval(Base.Meta.parse("ExperimentRsp"))
-    elseif discriminator == "model"
-        return eval(Base.Meta.parse("ViewModelsRsp"))
-    elseif discriminator == "share"
-        return eval(Base.Meta.parse("ViewExperimentShareRsp"))
-    end
-    throw(OpenAPI.ValidationException("Invalid discriminator value: $discriminator for Data2"))
+    
+    # no discriminator specified, can't determine the exact type
+    return fieldtype(Data2, name)
 end

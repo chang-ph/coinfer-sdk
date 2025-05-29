@@ -17,10 +17,8 @@ import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
 import { SuccRspGetTokensRsp } from '../models/SuccRspGetTokensRsp';
 import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
 import { SuccRspNoneType } from '../models/SuccRspNoneType';
-import { SuccRspUnionUserInfoRspGetTokensRsp } from '../models/SuccRspUnionUserInfoRspGetTokensRsp';
 import { SuccRspUserInfoRsp } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp } from '../models/SuccRspUserLoginRsp';
-import { UpdateBase } from '../models/UpdateBase';
 import { UserLogin } from '../models/UserLogin';
 
 /**
@@ -279,55 +277,6 @@ export class AuthorizationApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
             ObjectSerializer.serialize(modifyToken, "ModifyToken", ""),
-            contentType
-        );
-        requestContext.setBody(serializedBody);
-
-        let authMethod: SecurityAuthentication | undefined;
-        // Apply auth methods
-        authMethod = _config.authMethods["GlobalAuth"]
-        if (authMethod?.applySecurityAuthentication) {
-            await authMethod?.applySecurityAuthentication(requestContext);
-        }
-        
-        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
-        if (defaultAuth?.applySecurityAuthentication) {
-            await defaultAuth?.applySecurityAuthentication(requestContext);
-        }
-
-        return requestContext;
-    }
-
-    /**
-     * Update current user or a token
-     *
-     * This API is multi-functional. It can: 1. update the data of the current user 2. update the data of a specific token  Because of this, it support different set of parameters, discrimated by the \"type\" field:  ```js {\"payload\": {\"type\": \"update_user\", ...}} // or {\"payload\": {\"type\": \"update_token\", ...}} ```
-     * @param updateBase 
-     */
-    public async update(updateBase: UpdateBase, _options?: Configuration): Promise<RequestContext> {
-        let _config = _options || this.configuration;
-
-        // verify required parameter 'updateBase' is not null or undefined
-        if (updateBase === null || updateBase === undefined) {
-            throw new RequiredError("AuthorizationApi", "update", "updateBase");
-        }
-
-
-        // Path Params
-        const localVarPath = '/base/update';
-
-        // Make Request Context
-        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
-
-
-        // Body Params
-        const contentType = ObjectSerializer.getPreferredMediaType([
-            "application/json"
-        ]);
-        requestContext.setHeaderParam("Content-Type", contentType);
-        const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(updateBase, "UpdateBase", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -688,42 +637,6 @@ export class AuthorizationApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "SuccRspGetTokensRsp", ""
             ) as SuccRspGetTokensRsp;
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
-        }
-
-        throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
-    }
-
-    /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to update
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-     public async updateWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspUnionUserInfoRspGetTokensRsp >> {
-        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
-        if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: SuccRspUnionUserInfoRspGetTokensRsp = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspUnionUserInfoRspGetTokensRsp", ""
-            ) as SuccRspUnionUserInfoRspGetTokensRsp;
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
-        }
-        if (isCodeInRange("400", response.httpStatusCode)) {
-            const body: ErrRsp = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "ErrRsp", ""
-            ) as ErrRsp;
-            throw new ApiException<ErrRsp>(response.httpStatusCode, "Bad Request", body, response.headers);
-        }
-
-        // Work around for missing responses in specification, e.g. for petstore.yaml
-        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: SuccRspUnionUserInfoRspGetTokensRsp = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspUnionUserInfoRspGetTokensRsp", ""
-            ) as SuccRspUnionUserInfoRspGetTokensRsp;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 

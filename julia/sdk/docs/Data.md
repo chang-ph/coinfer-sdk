@@ -5,9 +5,15 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**value** | This is a anyOf model. The value must be any of the following types: GetTokensRsp, UserInfoRsp |  | [optional] 
+**value** | This is a oneOf model. The value must be exactly one of the following types: CreateCallbackRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, ExperimentRsp, ListModelsRspItem |  | [optional] 
 
-
+The discriminator field is `object_type` with the following mapping:
+ - `callback`: `CreateCallbackRsp`
+ - `event`: `CreateEventRsp`
+ - `experiment`: `ExperimentRsp`
+ - `model`: `ListModelsRspItem`
+ - `relation`: `CreateRelationRsp`
+ - `share`: `CreateExperimentShareRsp`
 
 
 

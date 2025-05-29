@@ -11,7 +11,6 @@ Method | HTTP request | Description
 [**getTokens**](AuthorizationApi.md#getTokens) | **GET** /base/user/tokens | List all of current user\&#39;s tokens.
 [**modifyCurrentUser**](AuthorizationApi.md#modifyCurrentUser) | **PUT** /base/user | Update information of current user.
 [**modifyToken**](AuthorizationApi.md#modifyToken) | **PUT** /base/user/token/{token_id} | Update a token by its ID.
-[**update**](AuthorizationApi.md#update) | **POST** /base/update | Update current user or a token
 [**userInfo**](AuthorizationApi.md#userInfo) | **GET** /base/user | Get information of current user.
 [**userLogin**](AuthorizationApi.md#userLogin) | **POST** /base/login | Login with password.
 [**userLogout**](AuthorizationApi.md#userLogout) | **POST** /base/logout | Logout the system.
@@ -367,62 +366,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 **SuccRspGetTokensRsp**
-
-### Authorization
-
-[GlobalAuth](README.md#GlobalAuth)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**400** | Bad Request |  -  |
-
-[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
-
-# **update**
-> SuccRspUnionUserInfoRspGetTokensRsp update(updateBase)
-
-This API is multi-functional. It can: 1. update the data of the current user 2. update the data of a specific token  Because of this, it support different set of parameters, discrimated by the \"type\" field:  ```js {\"payload\": {\"type\": \"update_user\", ...}} // or {\"payload\": {\"type\": \"update_token\", ...}} ```
-
-### Example
-
-
-```typescript
-import { createConfiguration, AuthorizationApi } from 'coinfer-ts';
-import type { AuthorizationApiUpdateRequest } from 'coinfer-ts';
-
-const configuration = createConfiguration();
-const apiInstance = new AuthorizationApi(configuration);
-
-const request: AuthorizationApiUpdateRequest = {
-  
-  updateBase: {
-    payload: null,
-  },
-};
-
-const data = await apiInstance.update(request);
-console.log('API called successfully. Returned data:', data);
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **updateBase** | **UpdateBase**|  |
-
-
-### Return type
-
-**SuccRspUnionUserInfoRspGetTokensRsp**
 
 ### Authorization
 

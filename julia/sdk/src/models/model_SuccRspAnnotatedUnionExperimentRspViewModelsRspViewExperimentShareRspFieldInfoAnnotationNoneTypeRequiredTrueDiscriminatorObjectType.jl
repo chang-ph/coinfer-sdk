@@ -10,11 +10,11 @@
     )
 
     - status::String
-    - data::Data2
+    - data::Data1
 """
 Base.@kwdef mutable struct SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType <: OpenAPI.APIModel
     status::Union{Nothing, String} = nothing
-    data = nothing # spec type: Union{ Nothing, Data2 }
+    data = nothing # spec type: Union{ Nothing, Data1 }
 
     function SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType(status, data, )
         OpenAPI.validate_property(SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, Symbol("status"), status)
@@ -23,7 +23,7 @@ Base.@kwdef mutable struct SuccRspAnnotatedUnionExperimentRspViewModelsRspViewEx
     end
 end # type SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType
 
-const _property_types_SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType = Dict{Symbol,String}(Symbol("status")=>"String", Symbol("data")=>"Data2", )
+const _property_types_SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType = Dict{Symbol,String}(Symbol("status")=>"String", Symbol("data")=>"Data1", )
 OpenAPI.property_type(::Type{ SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType[name]))}
 
 function check_required(o::SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType)

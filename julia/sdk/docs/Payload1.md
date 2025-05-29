@@ -5,12 +5,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**value** | This is a oneOf model. The value must be exactly one of the following types: CreateExperiment, CreateExperimentShare, CreateModel |  | [optional] 
+**value** | This is a oneOf model. The value must be exactly one of the following types: UpdateEventReq, UpdateExperiment, UpdateModel |  | [optional] 
 
 The discriminator field is `object_type` with the following mapping:
- - `experiment`: `CreateExperiment`
- - `model`: `CreateModel`
- - `share`: `CreateExperimentShare`
+ - `event`: `UpdateEventReq`
+ - `experiment`: `UpdateExperiment`
+ - `model`: `UpdateModel`
 
 
 

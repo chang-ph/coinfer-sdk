@@ -4,6 +4,10 @@ import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
 import { Auth0ConfigRsp } from '../models/Auth0ConfigRsp';
 import { Auth0LoginRsp } from '../models/Auth0LoginRsp';
+import { CreateCallbackReq } from '../models/CreateCallbackReq';
+import { CreateCallbackRsp } from '../models/CreateCallbackRsp';
+import { CreateEventReq } from '../models/CreateEventReq';
+import { CreateEventRsp } from '../models/CreateEventRsp';
 import { CreateExperiment } from '../models/CreateExperiment';
 import { CreateExperimentShare } from '../models/CreateExperimentShare';
 import { CreateExperimentShareRsp } from '../models/CreateExperimentShareRsp';
@@ -11,11 +15,12 @@ import { CreateModel } from '../models/CreateModel';
 import { CreateModelShare } from '../models/CreateModelShare';
 import { CreateModelShareRsp } from '../models/CreateModelShareRsp';
 import { CreateObjectReq } from '../models/CreateObjectReq';
+import { CreateRelationReq } from '../models/CreateRelationReq';
+import { CreateRelationRsp } from '../models/CreateRelationRsp';
 import { CreateToken } from '../models/CreateToken';
 import { Data } from '../models/Data';
 import { Data1 } from '../models/Data1';
 import { Data2 } from '../models/Data2';
-import { Data3 } from '../models/Data3';
 import { DeleteModelShare } from '../models/DeleteModelShare';
 import { DeleteObject } from '../models/DeleteObject';
 import { ErrRsp } from '../models/ErrRsp';
@@ -34,8 +39,8 @@ import { ListModelsRspItem } from '../models/ListModelsRspItem';
 import { ListObjectTmp } from '../models/ListObjectTmp';
 import { ListRepositoryRsp } from '../models/ListRepositoryRsp';
 import { ListingRspDataNotificationDict } from '../models/ListingRspDataNotificationDict';
-import { ListingRspDataUnionListExperimentRspListModelsRspItem } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItem';
-import { ListingRspDataUnionListExperimentRspListModelsRspItemObjectsInner } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemObjectsInner';
+import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
+import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspObjectsInner } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspObjectsInner';
 import { MarkNotificationReadReq } from '../models/MarkNotificationReadReq';
 import { MetaModel } from '../models/MetaModel';
 import { ModelContent } from '../models/ModelContent';
@@ -43,14 +48,12 @@ import { ModelMeta } from '../models/ModelMeta';
 import { ModelMetaInRsp } from '../models/ModelMetaInRsp';
 import { ModelTreeNode } from '../models/ModelTreeNode';
 import { ModifyCurrentUser } from '../models/ModifyCurrentUser';
-import { ModifyCurrentUserNew } from '../models/ModifyCurrentUserNew';
 import { ModifyToken } from '../models/ModifyToken';
-import { ModifyTokenNew } from '../models/ModifyTokenNew';
 import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
-import { Payload2 } from '../models/Payload2';
 import { ShareInfoModel } from '../models/ShareInfoModel';
+import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAny } from '../models/SuccRspAny';
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
@@ -65,16 +68,14 @@ import { SuccRspListBranchRsp } from '../models/SuccRspListBranchRsp';
 import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
 import { SuccRspListRepositoryRsp } from '../models/SuccRspListRepositoryRsp';
 import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingRspDataNotificationDict';
-import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItem } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItem';
+import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
 import { SuccRspNoneType } from '../models/SuccRspNoneType';
-import { SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp } from '../models/SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp';
-import { SuccRspUnionExperimentRspViewModelsRsp } from '../models/SuccRspUnionExperimentRspViewModelsRsp';
-import { SuccRspUnionUserInfoRspGetTokensRsp } from '../models/SuccRspUnionUserInfoRspGetTokensRsp';
+import { SuccRspUnionExperimentRspViewModelsRspNoneType } from '../models/SuccRspUnionExperimentRspViewModelsRspNoneType';
 import { SuccRspUserInfoRsp } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp } from '../models/SuccRspUserLoginRsp';
 import { SuccRspViewCloudwatchLogsRsp } from '../models/SuccRspViewCloudwatchLogsRsp';
 import { SuccRspViewModelsRsp } from '../models/SuccRspViewModelsRsp';
-import { UpdateBase } from '../models/UpdateBase';
+import { UpdateEventReq } from '../models/UpdateEventReq';
 import { UpdateExperiment } from '../models/UpdateExperiment';
 import { UpdateModel } from '../models/UpdateModel';
 import { UpdateObject } from '../models/UpdateObject';
@@ -329,39 +330,6 @@ export class ObservableAuthorizationApi {
      */
     public modifyToken(tokenId: string, modifyToken: ModifyToken, _options?: Configuration): Observable<SuccRspGetTokensRsp> {
         return this.modifyTokenWithHttpInfo(tokenId, modifyToken, _options).pipe(map((apiResponse: HttpInfo<SuccRspGetTokensRsp>) => apiResponse.data));
-    }
-
-    /**
-     * This API is multi-functional. It can: 1. update the data of the current user 2. update the data of a specific token  Because of this, it support different set of parameters, discrimated by the \"type\" field:  ```js {\"payload\": {\"type\": \"update_user\", ...}} // or {\"payload\": {\"type\": \"update_token\", ...}} ```
-     * Update current user or a token
-     * @param updateBase
-     */
-    public updateWithHttpInfo(updateBase: UpdateBase, _options?: Configuration): Observable<HttpInfo<SuccRspUnionUserInfoRspGetTokensRsp>> {
-        const requestContextPromise = this.requestFactory.update(updateBase, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.updateWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * This API is multi-functional. It can: 1. update the data of the current user 2. update the data of a specific token  Because of this, it support different set of parameters, discrimated by the \"type\" field:  ```js {\"payload\": {\"type\": \"update_user\", ...}} // or {\"payload\": {\"type\": \"update_token\", ...}} ```
-     * Update current user or a token
-     * @param updateBase
-     */
-    public update(updateBase: UpdateBase, _options?: Configuration): Observable<SuccRspUnionUserInfoRspGetTokensRsp> {
-        return this.updateWithHttpInfo(updateBase, _options).pipe(map((apiResponse: HttpInfo<SuccRspUnionUserInfoRspGetTokensRsp>) => apiResponse.data));
     }
 
     /**
@@ -872,7 +840,7 @@ export class ObservableObjectApi {
      * Create new object.
      * @param createObjectReq
      */
-    public createObjectWithHttpInfo(createObjectReq: CreateObjectReq, _options?: Configuration): Observable<HttpInfo<SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp>> {
+    public createObjectWithHttpInfo(createObjectReq: CreateObjectReq, _options?: Configuration): Observable<HttpInfo<SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
         const requestContextPromise = this.requestFactory.createObject(createObjectReq, _options);
 
         // build promise chain
@@ -896,8 +864,8 @@ export class ObservableObjectApi {
      * Create new object.
      * @param createObjectReq
      */
-    public createObject(createObjectReq: CreateObjectReq, _options?: Configuration): Observable<SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp> {
-        return this.createObjectWithHttpInfo(createObjectReq, _options).pipe(map((apiResponse: HttpInfo<SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp>) => apiResponse.data));
+    public createObject(createObjectReq: CreateObjectReq, _options?: Configuration): Observable<SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
+        return this.createObjectWithHttpInfo(createObjectReq, _options).pipe(map((apiResponse: HttpInfo<SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>) => apiResponse.data));
     }
 
     /**
@@ -947,7 +915,7 @@ export class ObservableObjectApi {
      * @param [runOn]
      * @param [hasModel]
      */
-    public listObjectWithHttpInfo(objectType: 'model' | 'experiment' | 'share', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', _options?: Configuration): Observable<HttpInfo<SuccRspListingRspDataUnionListExperimentRspListModelsRspItem>> {
+    public listObjectWithHttpInfo(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', _options?: Configuration): Observable<HttpInfo<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp>> {
         const requestContextPromise = this.requestFactory.listObject(objectType, pageNo, pageSize, withShareInfo, sharedByMe, sharedWithMe, modelIds, status, runOn, hasModel, _options);
 
         // build promise chain
@@ -980,8 +948,8 @@ export class ObservableObjectApi {
      * @param [runOn]
      * @param [hasModel]
      */
-    public listObject(objectType: 'model' | 'experiment' | 'share', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', _options?: Configuration): Observable<SuccRspListingRspDataUnionListExperimentRspListModelsRspItem> {
-        return this.listObjectWithHttpInfo(objectType, pageNo, pageSize, withShareInfo, sharedByMe, sharedWithMe, modelIds, status, runOn, hasModel, _options).pipe(map((apiResponse: HttpInfo<SuccRspListingRspDataUnionListExperimentRspListModelsRspItem>) => apiResponse.data));
+    public listObject(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', _options?: Configuration): Observable<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp> {
+        return this.listObjectWithHttpInfo(objectType, pageNo, pageSize, withShareInfo, sharedByMe, sharedWithMe, modelIds, status, runOn, hasModel, _options).pipe(map((apiResponse: HttpInfo<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp>) => apiResponse.data));
     }
 
     /**
@@ -990,7 +958,7 @@ export class ObservableObjectApi {
      * @param objid
      * @param updateObject
      */
-    public updateObjectWithHttpInfo(objid: string, updateObject: UpdateObject, _options?: Configuration): Observable<HttpInfo<SuccRspUnionExperimentRspViewModelsRsp>> {
+    public updateObjectWithHttpInfo(objid: string, updateObject: UpdateObject, _options?: Configuration): Observable<HttpInfo<SuccRspUnionExperimentRspViewModelsRspNoneType>> {
         const requestContextPromise = this.requestFactory.updateObject(objid, updateObject, _options);
 
         // build promise chain
@@ -1015,18 +983,18 @@ export class ObservableObjectApi {
      * @param objid
      * @param updateObject
      */
-    public updateObject(objid: string, updateObject: UpdateObject, _options?: Configuration): Observable<SuccRspUnionExperimentRspViewModelsRsp> {
-        return this.updateObjectWithHttpInfo(objid, updateObject, _options).pipe(map((apiResponse: HttpInfo<SuccRspUnionExperimentRspViewModelsRsp>) => apiResponse.data));
+    public updateObject(objid: string, updateObject: UpdateObject, _options?: Configuration): Observable<SuccRspUnionExperimentRspViewModelsRspNoneType> {
+        return this.updateObjectWithHttpInfo(objid, updateObject, _options).pipe(map((apiResponse: HttpInfo<SuccRspUnionExperimentRspViewModelsRspNoneType>) => apiResponse.data));
     }
 
     /**
      * View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view model data GET /api/object/X1234567  # view experiment data GET /api/object/S1234566  # view share data ```
      * View object.
      * @param objid
-     * @param objectType
+     * @param [objectType]
      * @param [shareId]                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
      */
-    public viewObjectWithHttpInfo(objid: string, objectType: 'model' | 'experiment' | 'share', shareId?: string, _options?: Configuration): Observable<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
+    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, _options?: Configuration): Observable<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
         const requestContextPromise = this.requestFactory.viewObject(objid, objectType, shareId, _options);
 
         // build promise chain
@@ -1049,10 +1017,10 @@ export class ObservableObjectApi {
      * View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view model data GET /api/object/X1234567  # view experiment data GET /api/object/S1234566  # view share data ```
      * View object.
      * @param objid
-     * @param objectType
+     * @param [objectType]
      * @param [shareId]                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
      */
-    public viewObject(objid: string, objectType: 'model' | 'experiment' | 'share', shareId?: string, _options?: Configuration): Observable<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
+    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, _options?: Configuration): Observable<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
         return this.viewObjectWithHttpInfo(objid, objectType, shareId, _options).pipe(map((apiResponse: HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>) => apiResponse.data));
     }
 

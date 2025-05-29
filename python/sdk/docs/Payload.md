@@ -5,13 +5,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | **str** |  | [optional] [default to 'update_user']
-**new_password** | **str** |  | [optional] 
-**password** | **str** |  | [optional] 
-**id** | **int** |  | 
-**name** | **str** |  | [optional] 
-**desc** | **str** |  | [optional] 
-**expire** | **datetime** |  | [optional] 
+**object_type** | **str** |  | 
+**repo** | **str** | repo in the form of repo_owner/repo_name or gist id in case of importing from gist | [optional] [default to '']
+**branch** | **str** | branch name or gist description in case of importing from gist | [optional] [default to '']
+**type** | **str** | repo or gist | [optional] [default to 'local']
+**model_name** | **str** | [deprecated] model name | [optional] [default to '']
+**env** | **str** |  | [optional] 
+**name** | **str** |  | 
+**content** | [**ModelContent**](ModelContent.md) |  | [optional] 
+**is_demo** | **bool** |  | [optional] [default to False]
+**model_id** | **str** |  | 
+**xp_meta** | **object** |  | [optional] 
+**meta** | **object** |  | [optional] 
+**objid** | **str** |  | 
+**password** | **str** |  | [optional] [default to '']
+**target_user** | **str** |  | [optional] [default to '']
+**lang** | **str** |  | 
+**gist_id** | **str** |  | 
+**single_instance** | **bool** | Only allow one instance of this callback to run at a time. | [optional] [default to True]
+**object1_id** | **str** |  | 
+**object2_id** | **str** |  | 
 
 ## Example
 

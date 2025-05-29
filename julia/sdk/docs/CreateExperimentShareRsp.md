@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**object_type** | **String** |  | [default to nothing]
 **id** | **Int64** |  | [default to nothing]
 **user_id** | **Int64** |  | [default to nothing]
 **short_id** | **String** |  | [default to nothing]

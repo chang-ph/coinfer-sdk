@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **create_object**
-> SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp create_object(create_object_req)
+> SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType create_object(create_object_req)
 
 Create new object.
 
@@ -25,7 +25,7 @@ Create new object.  ### Example Create model: ``` POST /api/object {     \"paylo
 ```python
 import openapi_client
 from openapi_client.models.create_object_req import CreateObjectReq
-from openapi_client.models.succ_rsp_union_experiment_rsp_list_models_rsp_item_create_experiment_share_rsp import SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp
+from openapi_client.models.succ_rsp_annotated_union_experiment_rsp_list_models_rsp_item_create_experiment_share_rsp_create_event_rsp_create_callback_rsp_create_relation_rsp_field_info_annotation_none_type_required_true_discriminator_object_type import SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType
 from openapi_client.rest import ApiException
 from pprint import pprint
 
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp**](SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp.md)
+[**SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType**](SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType.md)
 
 ### Authorization
 
@@ -171,7 +171,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_object**
-> SuccRspListingRspDataUnionListExperimentRspListModelsRspItem list_object(object_type, page_no=page_no, page_size=page_size, with_share_info=with_share_info, shared_by_me=shared_by_me, shared_with_me=shared_with_me, model_ids=model_ids, status=status, run_on=run_on, has_model=has_model)
+> SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp list_object(object_type, page_no=page_no, page_size=page_size, with_share_info=with_share_info, shared_by_me=shared_by_me, shared_with_me=shared_with_me, model_ids=model_ids, status=status, run_on=run_on, has_model=has_model)
 
 List objects.
 
@@ -183,7 +183,7 @@ List objects.
 
 ```python
 import openapi_client
-from openapi_client.models.succ_rsp_listing_rsp_data_union_list_experiment_rsp_list_models_rsp_item import SuccRspListingRspDataUnionListExperimentRspListModelsRspItem
+from openapi_client.models.succ_rsp_listing_rsp_data_union_list_experiment_rsp_list_models_rsp_item_create_event_rsp_create_callback_rsp_create_relation_rsp import SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp
 from openapi_client.rest import ApiException
 from pprint import pprint
 
@@ -247,7 +247,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SuccRspListingRspDataUnionListExperimentRspListModelsRspItem**](SuccRspListingRspDataUnionListExperimentRspListModelsRspItem.md)
+[**SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp**](SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp.md)
 
 ### Authorization
 
@@ -268,7 +268,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_object**
-> SuccRspUnionExperimentRspViewModelsRsp update_object(objid, update_object)
+> SuccRspUnionExperimentRspViewModelsRspNoneType update_object(objid, update_object)
 
 Update object.
 
@@ -280,7 +280,7 @@ Update object of certain ID.  ### Example  Update model: ``` POST /api/object/M1
 
 ```python
 import openapi_client
-from openapi_client.models.succ_rsp_union_experiment_rsp_view_models_rsp import SuccRspUnionExperimentRspViewModelsRsp
+from openapi_client.models.succ_rsp_union_experiment_rsp_view_models_rsp_none_type import SuccRspUnionExperimentRspViewModelsRspNoneType
 from openapi_client.models.update_object import UpdateObject
 from openapi_client.rest import ApiException
 from pprint import pprint
@@ -329,7 +329,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SuccRspUnionExperimentRspViewModelsRsp**](SuccRspUnionExperimentRspViewModelsRsp.md)
+[**SuccRspUnionExperimentRspViewModelsRspNoneType**](SuccRspUnionExperimentRspViewModelsRspNoneType.md)
 
 ### Authorization
 
@@ -350,7 +350,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **view_object**
-> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType view_object(objid, object_type, share_id=share_id)
+> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType view_object(objid, object_type=object_type, share_id=share_id)
 
 View object.
 
@@ -394,12 +394,12 @@ with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.ObjectApi(api_client)
     objid = 'objid_example' # str | 
-    object_type = 'object_type_example' # str | 
+    object_type =  # str |  (optional) (default to )
     share_id = '' # str |                  Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot (optional) (default to '')
 
     try:
         # View object.
-        api_response = api_instance.view_object(objid, object_type, share_id=share_id)
+        api_response = api_instance.view_object(objid, object_type=object_type, share_id=share_id)
         print("The response of ObjectApi->view_object:\n")
         pprint(api_response)
     except Exception as e:
@@ -414,7 +414,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **objid** | **str**|  | 
- **object_type** | **str**|  | 
+ **object_type** | **str**|  | [optional] [default to ]
  **share_id** | **str**|                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot | [optional] [default to &#39;&#39;]
 
 ### Return type

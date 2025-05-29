@@ -1,5 +1,6 @@
 import json
 import subprocess
+import argparse
 
 import httpx
 
@@ -29,7 +30,11 @@ rm -rf {target_lang_dir}/sdk \
 
 
 def main():
-    rsp = httpx.get("https://dev.coinfer.ai/openapi.json")
+    parser = argparse.ArgumentParser()
+    parser.add_argument('http_endpoint', nargs='?', default='https://dev.coinfer.ai')
+    args = parser.parse_args()
+    print(args.http_endpoint)
+    rsp = httpx.get(f"{args.http_endpoint}/openapi.json")
     openapi_json = rsp.json()
     for path, path_item in openapi_json['paths'].items():
         for method, operation in path_item.items():

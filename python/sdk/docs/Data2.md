@@ -23,7 +23,6 @@ Name | Type | Description | Notes
 **id** | **int** |  | 
 **env** | **str** |  | 
 **content** | **object** |  | [optional] 
-**require_password** | **bool** |  | 
 
 ## Example
 

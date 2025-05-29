@@ -5,15 +5,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**object_type** | **str** |  | 
+**short_id** | **str** |  | 
+**name** | **str** |  | 
+**model_id** | **str** |  | [optional] [default to '']
+**status** | **str** |  | [optional] [default to '']
+**meta** | [**ModelMetaInRsp**](ModelMetaInRsp.md) |  | 
+**n_chains** | **int** |  | [optional] [default to 0]
+**n_variables** | **int** |  | [optional] [default to 0]
+**n_samples** | **int** |  | [optional] [default to 0]
+**sample_update_time** | **datetime** |  | [optional] 
+**run_on** | **str** |  | [optional] [default to '']
+**input** | **str** |  | [optional] 
+**output** | **str** |  | [optional] 
+**share_info** | [**List[ShareInfoModel]**](ShareInfoModel.md) |  | [optional] 
+**model_name** | **str** |  | 
 **id** | **int** |  | 
-**username** | **str** |  | 
-**super** | **bool** |  | 
-**roles** | **List[str]** |  | 
-**is_github_user** | **bool** |  | 
+**env** | **str** |  | 
+**content** | **object** |  | [optional] 
+**user_id** | **int** |  | 
+**experiment_id** | **str** |  | 
+**experiment_name** | **str** |  | 
+**password** | **str** |  | 
+**created_at** | **datetime** |  | 
+**from_user** | **str** |  | [optional] 
+**to_user** | **str** |  | [optional] 
+**lang** | **str** |  | 
+**code** | **str** |  | 
 **token** | **str** |  | 
-**token_name** | **str** |  | 
-**token_desc** | **str** |  | 
-**token_expire** | **datetime** |  | 
+**object1_id** | **str** |  | 
+**object2_id** | **str** |  | 
 
 ## Example
 

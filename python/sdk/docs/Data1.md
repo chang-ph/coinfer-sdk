@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | 
 **model_id** | **str** |  | [optional] [default to '']
 **status** | **str** |  | [optional] [default to '']
-**meta** | [**ModelMetaInRsp**](ModelMetaInRsp.md) |  | 
+**meta** | **object** |  | [optional] 
 **n_chains** | **int** |  | [optional] [default to 0]
 **n_variables** | **int** |  | [optional] [default to 0]
 **n_samples** | **int** |  | [optional] [default to 0]
@@ -18,18 +18,12 @@ Name | Type | Description | Notes
 **run_on** | **str** |  | [optional] [default to '']
 **input** | **str** |  | [optional] 
 **output** | **str** |  | [optional] 
-**share_info** | [**List[ShareInfoModel]**](ShareInfoModel.md) |  | [optional] 
+**share_info** | [**List[ViewModelShareInfo]**](ViewModelShareInfo.md) |  | [optional] 
 **model_name** | **str** |  | 
 **id** | **int** |  | 
 **env** | **str** |  | 
 **content** | **object** |  | [optional] 
-**user_id** | **int** |  | 
-**experiment_id** | **str** |  | 
-**experiment_name** | **str** |  | 
-**password** | **str** |  | 
-**created_at** | **datetime** |  | 
-**from_user** | **str** |  | [optional] 
-**to_user** | **str** |  | [optional] 
+**require_password** | **bool** |  | 
 
 ## Example
 

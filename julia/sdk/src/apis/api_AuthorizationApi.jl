@@ -226,37 +226,6 @@ function modify_token(_api::AuthorizationApi, response_stream::Channel, token_id
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
-const _returntypes_update_AuthorizationApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspUnionUserInfoRspGetTokensRsp,
-    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
-)
-
-function _oacinternal_update(_api::AuthorizationApi, update_base::UpdateBase; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_update_AuthorizationApi, "/base/update", ["GlobalAuth", ], update_base)
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json", ] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""Update current user or a token
-
-This API is multi-functional. It can: 1. update the data of the current user 2. update the data of a specific token  Because of this, it support different set of parameters, discrimated by the \"type\" field:  ```js {\"payload\": {\"type\": \"update_user\", ...}} // or {\"payload\": {\"type\": \"update_token\", ...}} ```
-
-Params:
-- update_base::UpdateBase (required)
-
-Return: SuccRspUnionUserInfoRspGetTokensRsp, OpenAPI.Clients.ApiResponse
-"""
-function update(_api::AuthorizationApi, update_base::UpdateBase; _mediaType=nothing)
-    _ctx = _oacinternal_update(_api, update_base; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function update(_api::AuthorizationApi, response_stream::Channel, update_base::UpdateBase; _mediaType=nothing)
-    _ctx = _oacinternal_update(_api, update_base; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
 const _returntypes_user_info_AuthorizationApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspUserInfoRsp,
     Regex("^" * replace("401", "x"=>".") * "\$") => ErrRsp,
@@ -356,7 +325,6 @@ export delete_token
 export get_tokens
 export modify_current_user
 export modify_token
-export update
 export user_info
 export user_login
 export user_logout

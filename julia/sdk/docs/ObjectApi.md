@@ -12,8 +12,8 @@ Method | HTTP request | Description
 
 
 # **create_object**
-> create_object(_api::ObjectApi, create_object_req::CreateObjectReq; _mediaType=nothing) -> SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp, OpenAPI.Clients.ApiResponse <br/>
-> create_object(_api::ObjectApi, response_stream::Channel, create_object_req::CreateObjectReq; _mediaType=nothing) -> Channel{ SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp }, OpenAPI.Clients.ApiResponse
+> create_object(_api::ObjectApi, create_object_req::CreateObjectReq; _mediaType=nothing) -> SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, OpenAPI.Clients.ApiResponse <br/>
+> create_object(_api::ObjectApi, response_stream::Channel, create_object_req::CreateObjectReq; _mediaType=nothing) -> Channel{ SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType }, OpenAPI.Clients.ApiResponse
 
 Create new object.
 
@@ -28,7 +28,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp**](SuccRspUnionExperimentRspListModelsRspItemCreateExperimentShareRsp.md)
+[**SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType**](SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType.md)
 
 ### Authorization
 
@@ -72,8 +72,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **list_object**
-> list_object(_api::ObjectApi, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, _mediaType=nothing) -> SuccRspListingRspDataUnionListExperimentRspListModelsRspItem, OpenAPI.Clients.ApiResponse <br/>
-> list_object(_api::ObjectApi, response_stream::Channel, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, _mediaType=nothing) -> Channel{ SuccRspListingRspDataUnionListExperimentRspListModelsRspItem }, OpenAPI.Clients.ApiResponse
+> list_object(_api::ObjectApi, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, _mediaType=nothing) -> SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp, OpenAPI.Clients.ApiResponse <br/>
+> list_object(_api::ObjectApi, response_stream::Channel, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, _mediaType=nothing) -> Channel{ SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp }, OpenAPI.Clients.ApiResponse
 
 List objects.
 
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SuccRspListingRspDataUnionListExperimentRspListModelsRspItem**](SuccRspListingRspDataUnionListExperimentRspListModelsRspItem.md)
+[**SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp**](SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp.md)
 
 ### Authorization
 
@@ -116,8 +116,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **update_object**
-> update_object(_api::ObjectApi, objid::String, update_object_param::UpdateObject; _mediaType=nothing) -> SuccRspUnionExperimentRspViewModelsRsp, OpenAPI.Clients.ApiResponse <br/>
-> update_object(_api::ObjectApi, response_stream::Channel, objid::String, update_object_param::UpdateObject; _mediaType=nothing) -> Channel{ SuccRspUnionExperimentRspViewModelsRsp }, OpenAPI.Clients.ApiResponse
+> update_object(_api::ObjectApi, objid::String, update_object_param::UpdateObject; _mediaType=nothing) -> SuccRspUnionExperimentRspViewModelsRspNoneType, OpenAPI.Clients.ApiResponse <br/>
+> update_object(_api::ObjectApi, response_stream::Channel, objid::String, update_object_param::UpdateObject; _mediaType=nothing) -> Channel{ SuccRspUnionExperimentRspViewModelsRspNoneType }, OpenAPI.Clients.ApiResponse
 
 Update object.
 
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SuccRspUnionExperimentRspViewModelsRsp**](SuccRspUnionExperimentRspViewModelsRsp.md)
+[**SuccRspUnionExperimentRspViewModelsRspNoneType**](SuccRspUnionExperimentRspViewModelsRspNoneType.md)
 
 ### Authorization
 
@@ -147,8 +147,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **view_object**
-> view_object(_api::ObjectApi, objid::String, object_type::String; share_id=nothing, _mediaType=nothing) -> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, OpenAPI.Clients.ApiResponse <br/>
-> view_object(_api::ObjectApi, response_stream::Channel, objid::String, object_type::String; share_id=nothing, _mediaType=nothing) -> Channel{ SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType }, OpenAPI.Clients.ApiResponse
+> view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, _mediaType=nothing) -> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, OpenAPI.Clients.ApiResponse <br/>
+> view_object(_api::ObjectApi, response_stream::Channel, objid::String; object_type=nothing, share_id=nothing, _mediaType=nothing) -> Channel{ SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType }, OpenAPI.Clients.ApiResponse
 
 View object.
 
@@ -160,12 +160,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_api** | **ObjectApi** | API context | 
 **objid** | **String** |  |
-**object_type** | **String** |  |
 
 ### Optional Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **object_type** | **String** |  | [default to &quot;&quot;]
  **share_id** | **String** |                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot | [default to &quot;&quot;]
 
 ### Return type

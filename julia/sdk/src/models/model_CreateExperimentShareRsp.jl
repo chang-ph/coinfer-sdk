@@ -5,6 +5,7 @@
 @doc raw"""CreateExperimentShareRsp
 
     CreateExperimentShareRsp(;
+        object_type=nothing,
         id=nothing,
         user_id=nothing,
         short_id=nothing,
@@ -16,6 +17,7 @@
         to_user=nothing,
     )
 
+    - object_type::String
     - id::Int64
     - user_id::Int64
     - short_id::String
@@ -27,6 +29,7 @@
     - to_user::String
 """
 Base.@kwdef mutable struct CreateExperimentShareRsp <: OpenAPI.APIModel
+    object_type::Union{Nothing, String} = nothing
     id::Union{Nothing, Int64} = nothing
     user_id::Union{Nothing, Int64} = nothing
     short_id::Union{Nothing, String} = nothing
@@ -37,7 +40,8 @@ Base.@kwdef mutable struct CreateExperimentShareRsp <: OpenAPI.APIModel
     from_user::Union{Nothing, String} = nothing
     to_user::Union{Nothing, String} = nothing
 
-    function CreateExperimentShareRsp(id, user_id, short_id, experiment_id, experiment_name, password, created_at, from_user, to_user, )
+    function CreateExperimentShareRsp(object_type, id, user_id, short_id, experiment_id, experiment_name, password, created_at, from_user, to_user, )
+        OpenAPI.validate_property(CreateExperimentShareRsp, Symbol("object_type"), object_type)
         OpenAPI.validate_property(CreateExperimentShareRsp, Symbol("id"), id)
         OpenAPI.validate_property(CreateExperimentShareRsp, Symbol("user_id"), user_id)
         OpenAPI.validate_property(CreateExperimentShareRsp, Symbol("short_id"), short_id)
@@ -47,14 +51,15 @@ Base.@kwdef mutable struct CreateExperimentShareRsp <: OpenAPI.APIModel
         OpenAPI.validate_property(CreateExperimentShareRsp, Symbol("created_at"), created_at)
         OpenAPI.validate_property(CreateExperimentShareRsp, Symbol("from_user"), from_user)
         OpenAPI.validate_property(CreateExperimentShareRsp, Symbol("to_user"), to_user)
-        return new(id, user_id, short_id, experiment_id, experiment_name, password, created_at, from_user, to_user, )
+        return new(object_type, id, user_id, short_id, experiment_id, experiment_name, password, created_at, from_user, to_user, )
     end
 end # type CreateExperimentShareRsp
 
-const _property_types_CreateExperimentShareRsp = Dict{Symbol,String}(Symbol("id")=>"Int64", Symbol("user_id")=>"Int64", Symbol("short_id")=>"String", Symbol("experiment_id")=>"String", Symbol("experiment_name")=>"String", Symbol("password")=>"String", Symbol("created_at")=>"ZonedDateTime", Symbol("from_user")=>"String", Symbol("to_user")=>"String", )
+const _property_types_CreateExperimentShareRsp = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("id")=>"Int64", Symbol("user_id")=>"Int64", Symbol("short_id")=>"String", Symbol("experiment_id")=>"String", Symbol("experiment_name")=>"String", Symbol("password")=>"String", Symbol("created_at")=>"ZonedDateTime", Symbol("from_user")=>"String", Symbol("to_user")=>"String", )
 OpenAPI.property_type(::Type{ CreateExperimentShareRsp }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_CreateExperimentShareRsp[name]))}
 
 function check_required(o::CreateExperimentShareRsp)
+    o.object_type === nothing && (return false)
     o.id === nothing && (return false)
     o.user_id === nothing && (return false)
     o.short_id === nothing && (return false)
@@ -66,6 +71,11 @@ function check_required(o::CreateExperimentShareRsp)
 end
 
 function OpenAPI.validate_property(::Type{ CreateExperimentShareRsp }, name::Symbol, val)
+
+    if name === Symbol("object_type")
+        OpenAPI.validate_param(name, "CreateExperimentShareRsp", :enum, val, ["share"])
+    end
+
 
 
 

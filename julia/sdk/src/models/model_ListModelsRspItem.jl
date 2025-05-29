@@ -5,6 +5,7 @@
 @doc raw"""ListModelsRspItem
 
     ListModelsRspItem(;
+        object_type=nothing,
         id=nothing,
         short_id=nothing,
         name=nothing,
@@ -14,6 +15,7 @@
         meta=nothing,
     )
 
+    - object_type::String
     - id::Int64
     - short_id::String
     - name::String
@@ -23,6 +25,7 @@
     - meta::ModelMetaInRsp
 """
 Base.@kwdef mutable struct ListModelsRspItem <: OpenAPI.APIModel
+    object_type::Union{Nothing, String} = nothing
     id::Union{Nothing, Int64} = nothing
     short_id::Union{Nothing, String} = nothing
     name::Union{Nothing, String} = nothing
@@ -31,7 +34,8 @@ Base.@kwdef mutable struct ListModelsRspItem <: OpenAPI.APIModel
     content::Union{Nothing, Any} = nothing
     meta = nothing # spec type: Union{ Nothing, ModelMetaInRsp }
 
-    function ListModelsRspItem(id, short_id, name, env, share_info, content, meta, )
+    function ListModelsRspItem(object_type, id, short_id, name, env, share_info, content, meta, )
+        OpenAPI.validate_property(ListModelsRspItem, Symbol("object_type"), object_type)
         OpenAPI.validate_property(ListModelsRspItem, Symbol("id"), id)
         OpenAPI.validate_property(ListModelsRspItem, Symbol("short_id"), short_id)
         OpenAPI.validate_property(ListModelsRspItem, Symbol("name"), name)
@@ -39,14 +43,15 @@ Base.@kwdef mutable struct ListModelsRspItem <: OpenAPI.APIModel
         OpenAPI.validate_property(ListModelsRspItem, Symbol("share_info"), share_info)
         OpenAPI.validate_property(ListModelsRspItem, Symbol("content"), content)
         OpenAPI.validate_property(ListModelsRspItem, Symbol("meta"), meta)
-        return new(id, short_id, name, env, share_info, content, meta, )
+        return new(object_type, id, short_id, name, env, share_info, content, meta, )
     end
 end # type ListModelsRspItem
 
-const _property_types_ListModelsRspItem = Dict{Symbol,String}(Symbol("id")=>"Int64", Symbol("short_id")=>"String", Symbol("name")=>"String", Symbol("env")=>"String", Symbol("share_info")=>"Vector{ShareInfoModel}", Symbol("content")=>"Any", Symbol("meta")=>"ModelMetaInRsp", )
+const _property_types_ListModelsRspItem = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("id")=>"Int64", Symbol("short_id")=>"String", Symbol("name")=>"String", Symbol("env")=>"String", Symbol("share_info")=>"Vector{ShareInfoModel}", Symbol("content")=>"Any", Symbol("meta")=>"ModelMetaInRsp", )
 OpenAPI.property_type(::Type{ ListModelsRspItem }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_ListModelsRspItem[name]))}
 
 function check_required(o::ListModelsRspItem)
+    o.object_type === nothing && (return false)
     o.id === nothing && (return false)
     o.short_id === nothing && (return false)
     o.name === nothing && (return false)
@@ -56,6 +61,11 @@ function check_required(o::ListModelsRspItem)
 end
 
 function OpenAPI.validate_property(::Type{ ListModelsRspItem }, name::Symbol, val)
+
+    if name === Symbol("object_type")
+        OpenAPI.validate_param(name, "ListModelsRspItem", :enum, val, ["model"])
+    end
+
 
 
 
