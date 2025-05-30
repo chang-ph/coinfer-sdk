@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **object_type** | **str** |  | [optional] [default to '']
 **share_id** | **str** |                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot | [optional] [default to '']
+**sampledata** | **bool** |  | [optional] [default to False]
+**fmt** | **str** |  | [optional] [default to 'csv']
 
 ## Example
 

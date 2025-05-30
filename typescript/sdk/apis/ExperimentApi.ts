@@ -10,7 +10,6 @@ import {SecurityAuthentication} from '../auth/auth';
 
 import { ErrRsp } from '../models/ErrRsp';
 import { SuccRspAny } from '../models/SuccRspAny';
-import { SuccRspGetSampleDataRsp } from '../models/SuccRspGetSampleDataRsp';
 import { SuccRspViewCloudwatchLogsRsp } from '../models/SuccRspViewCloudwatchLogsRsp';
 
 /**
@@ -45,53 +44,6 @@ export class ExperimentApiRequestFactory extends BaseAPIRequestFactory {
         let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
         authMethod = _config.authMethods["GlobalAuth"]
-        if (authMethod?.applySecurityAuthentication) {
-            await authMethod?.applySecurityAuthentication(requestContext);
-        }
-        
-        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
-        if (defaultAuth?.applySecurityAuthentication) {
-            await defaultAuth?.applySecurityAuthentication(requestContext);
-        }
-
-        return requestContext;
-    }
-
-    /**
-     * Get sample data
-     *
-     * It takes time for the system to build the sample data file.  If the sample data file not ready yet, the API will return with the `progress` field set to `generating` and the sample data file is then generating in the background by the system. You may need to call this API later to see if the sample data is ready.  If it is ready, the API will return with the `progress` field set to `done` and the `url` field is the presigned URL of the sample data file.
-     * @param experimentId 
-     * @param fmt 
-     */
-    public async getSampleData(experimentId: string, fmt: 'csv' | 'grist', _options?: Configuration): Promise<RequestContext> {
-        let _config = _options || this.configuration;
-
-        // verify required parameter 'experimentId' is not null or undefined
-        if (experimentId === null || experimentId === undefined) {
-            throw new RequiredError("ExperimentApi", "getSampleData", "experimentId");
-        }
-
-
-        // verify required parameter 'fmt' is not null or undefined
-        if (fmt === null || fmt === undefined) {
-            throw new RequiredError("ExperimentApi", "getSampleData", "fmt");
-        }
-
-
-        // Path Params
-        const localVarPath = '/mcmc/experiment/{experiment_id}/sampledata/{fmt}'
-            .replace('{' + 'experiment_id' + '}', encodeURIComponent(String(experimentId)))
-            .replace('{' + 'fmt' + '}', encodeURIComponent(String(fmt)));
-
-        // Make Request Context
-        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
-
-
-        let authMethod: SecurityAuthentication | undefined;
-        // Apply auth methods
-        authMethod = _config.authMethods["SharingAuth"]
         if (authMethod?.applySecurityAuthentication) {
             await authMethod?.applySecurityAuthentication(requestContext);
         }
@@ -170,42 +122,6 @@ export class ExperimentApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "SuccRspAny", ""
             ) as SuccRspAny;
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
-        }
-
-        throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
-    }
-
-    /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to getSampleData
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-     public async getSampleDataWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspGetSampleDataRsp >> {
-        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
-        if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: SuccRspGetSampleDataRsp = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspGetSampleDataRsp", ""
-            ) as SuccRspGetSampleDataRsp;
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
-        }
-        if (isCodeInRange("400", response.httpStatusCode)) {
-            const body: ErrRsp = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "ErrRsp", ""
-            ) as ErrRsp;
-            throw new ApiException<ErrRsp>(response.httpStatusCode, "Bad Request", body, response.headers);
-        }
-
-        // Work around for missing responses in specification, e.g. for petstore.yaml
-        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: SuccRspGetSampleDataRsp = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspGetSampleDataRsp", ""
-            ) as SuccRspGetSampleDataRsp;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 

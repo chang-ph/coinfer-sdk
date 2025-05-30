@@ -160,15 +160,17 @@ function update_object(_api::ObjectApi, response_stream::Channel, objid::String,
 end
 
 const _returntypes_view_object_ObjectApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType,
+    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
-function _oacinternal_view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, _mediaType=nothing)
+function _oacinternal_view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_view_object_ObjectApi, "/api/object/{objid}", ["GlobalAuth", "SharingAuth", ])
     OpenAPI.Clients.set_param(_ctx.path, "objid", objid)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "object_type", object_type; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "share_id", share_id; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "sampledata", sampledata; style="form", is_explode=true)  # type Bool
+    OpenAPI.Clients.set_param(_ctx.query, "fmt", fmt; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -182,16 +184,18 @@ Params:
 - objid::String (required)
 - object_type::String
 - share_id::String
+- sampledata::Bool
+- fmt::String
 
-Return: SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, OpenAPI.Clients.ApiResponse
+Return: SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, OpenAPI.Clients.ApiResponse
 """
-function view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, _mediaType=_mediaType)
+function view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function view_object(_api::ObjectApi, response_stream::Channel, objid::String; object_type=nothing, share_id=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, _mediaType=_mediaType)
+function view_object(_api::ObjectApi, response_stream::Channel, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 

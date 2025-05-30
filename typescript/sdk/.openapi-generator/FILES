@@ -50,7 +50,6 @@ models/GetConfigRsp.ts
 models/GetExperimentShareRsp.ts
 models/GetModelShareRsp.ts
 models/GetNotificationReq.ts
-models/GetSampleDataRsp.ts
 models/GetTokensRsp.ts
 models/GistRsp.ts
 models/ListBranchRsp.ts
@@ -74,9 +73,10 @@ models/NotificationDict.ts
 models/ObjectSerializer.ts
 models/Payload.ts
 models/Payload1.ts
+models/SampleDataExperimentRsp.ts
 models/ShareInfoModel.ts
 models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType.ts
-models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType.ts
+models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType.ts
 models/SuccRspAny.ts
 models/SuccRspAuth0ConfigRsp.ts
 models/SuccRspAuth0LoginRsp.ts
@@ -84,7 +84,6 @@ models/SuccRspCreateModelShareRsp.ts
 models/SuccRspGetConfigRsp.ts
 models/SuccRspGetExperimentShareRsp.ts
 models/SuccRspGetModelShareRsp.ts
-models/SuccRspGetSampleDataRsp.ts
 models/SuccRspGetTokensRsp.ts
 models/SuccRspListBranchRsp.ts
 models/SuccRspListGetTokensRsp.ts

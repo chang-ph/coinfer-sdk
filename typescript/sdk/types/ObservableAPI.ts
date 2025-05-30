@@ -29,7 +29,6 @@ import { GetConfigRsp } from '../models/GetConfigRsp';
 import { GetExperimentShareRsp } from '../models/GetExperimentShareRsp';
 import { GetModelShareRsp } from '../models/GetModelShareRsp';
 import { GetNotificationReq } from '../models/GetNotificationReq';
-import { GetSampleDataRsp } from '../models/GetSampleDataRsp';
 import { GetTokensRsp } from '../models/GetTokensRsp';
 import { GistRsp } from '../models/GistRsp';
 import { ListBranchRsp } from '../models/ListBranchRsp';
@@ -52,9 +51,10 @@ import { ModifyToken } from '../models/ModifyToken';
 import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
+import { SampleDataExperimentRsp } from '../models/SampleDataExperimentRsp';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
-import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
+import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAny } from '../models/SuccRspAny';
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
@@ -62,7 +62,6 @@ import { SuccRspCreateModelShareRsp } from '../models/SuccRspCreateModelShareRsp
 import { SuccRspGetConfigRsp } from '../models/SuccRspGetConfigRsp';
 import { SuccRspGetExperimentShareRsp } from '../models/SuccRspGetExperimentShareRsp';
 import { SuccRspGetModelShareRsp } from '../models/SuccRspGetModelShareRsp';
-import { SuccRspGetSampleDataRsp } from '../models/SuccRspGetSampleDataRsp';
 import { SuccRspGetTokensRsp } from '../models/SuccRspGetTokensRsp';
 import { SuccRspListBranchRsp } from '../models/SuccRspListBranchRsp';
 import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
@@ -476,41 +475,6 @@ export class ObservableExperimentApi {
      */
     public experimentNotebookColab(expid: string, _options?: Configuration): Observable<SuccRspAny> {
         return this.experimentNotebookColabWithHttpInfo(expid, _options).pipe(map((apiResponse: HttpInfo<SuccRspAny>) => apiResponse.data));
-    }
-
-    /**
-     * It takes time for the system to build the sample data file.  If the sample data file not ready yet, the API will return with the `progress` field set to `generating` and the sample data file is then generating in the background by the system. You may need to call this API later to see if the sample data is ready.  If it is ready, the API will return with the `progress` field set to `done` and the `url` field is the presigned URL of the sample data file.
-     * Get sample data
-     * @param experimentId
-     * @param fmt
-     */
-    public getSampleDataWithHttpInfo(experimentId: string, fmt: 'csv' | 'grist', _options?: Configuration): Observable<HttpInfo<SuccRspGetSampleDataRsp>> {
-        const requestContextPromise = this.requestFactory.getSampleData(experimentId, fmt, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getSampleDataWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * It takes time for the system to build the sample data file.  If the sample data file not ready yet, the API will return with the `progress` field set to `generating` and the sample data file is then generating in the background by the system. You may need to call this API later to see if the sample data is ready.  If it is ready, the API will return with the `progress` field set to `done` and the `url` field is the presigned URL of the sample data file.
-     * Get sample data
-     * @param experimentId
-     * @param fmt
-     */
-    public getSampleData(experimentId: string, fmt: 'csv' | 'grist', _options?: Configuration): Observable<SuccRspGetSampleDataRsp> {
-        return this.getSampleDataWithHttpInfo(experimentId, fmt, _options).pipe(map((apiResponse: HttpInfo<SuccRspGetSampleDataRsp>) => apiResponse.data));
     }
 
     /**
@@ -962,9 +926,11 @@ export class ObservableObjectApi {
      * @param objid
      * @param [objectType]
      * @param [shareId]                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
+     * @param [sampledata]
+     * @param [fmt]
      */
-    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, _options?: Configuration): Observable<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
-        const requestContextPromise = this.requestFactory.viewObject(objid, objectType, shareId, _options);
+    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: string, _options?: Configuration): Observable<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
+        const requestContextPromise = this.requestFactory.viewObject(objid, objectType, shareId, sampledata, fmt, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -988,9 +954,11 @@ export class ObservableObjectApi {
      * @param objid
      * @param [objectType]
      * @param [shareId]                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
+     * @param [sampledata]
+     * @param [fmt]
      */
-    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, _options?: Configuration): Observable<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
-        return this.viewObjectWithHttpInfo(objid, objectType, shareId, _options).pipe(map((apiResponse: HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>) => apiResponse.data));
+    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: string, _options?: Configuration): Observable<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
+        return this.viewObjectWithHttpInfo(objid, objectType, shareId, sampledata, fmt, _options).pipe(map((apiResponse: HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>) => apiResponse.data));
     }
 
 }

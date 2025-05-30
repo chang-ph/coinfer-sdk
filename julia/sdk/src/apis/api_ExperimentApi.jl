@@ -42,40 +42,6 @@ function experiment_notebook_colab(_api::ExperimentApi, response_stream::Channel
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
-const _returntypes_get_sample_data_ExperimentApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspGetSampleDataRsp,
-    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
-)
-
-function _oacinternal_get_sample_data(_api::ExperimentApi, experiment_id::String, fmt::String; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_sample_data_ExperimentApi, "/mcmc/experiment/{experiment_id}/sampledata/{fmt}", ["SharingAuth", ])
-    OpenAPI.Clients.set_param(_ctx.path, "experiment_id", experiment_id)  # type String
-    OpenAPI.Clients.set_param(_ctx.path, "fmt", fmt)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""Get sample data
-
-It takes time for the system to build the sample data file.  If the sample data file not ready yet, the API will return with the `progress` field set to `generating` and the sample data file is then generating in the background by the system. You may need to call this API later to see if the sample data is ready.  If it is ready, the API will return with the `progress` field set to `done` and the `url` field is the presigned URL of the sample data file.
-
-Params:
-- experiment_id::String (required)
-- fmt::String (required)
-
-Return: SuccRspGetSampleDataRsp, OpenAPI.Clients.ApiResponse
-"""
-function get_sample_data(_api::ExperimentApi, experiment_id::String, fmt::String; _mediaType=nothing)
-    _ctx = _oacinternal_get_sample_data(_api, experiment_id, fmt; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function get_sample_data(_api::ExperimentApi, response_stream::Channel, experiment_id::String, fmt::String; _mediaType=nothing)
-    _ctx = _oacinternal_get_sample_data(_api, experiment_id, fmt; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
 const _returntypes_view_xp_cloudwatch_logs_ExperimentApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspViewCloudwatchLogsRsp,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
@@ -109,5 +75,4 @@ function view_xp_cloudwatch_logs(_api::ExperimentApi, response_stream::Channel, 
 end
 
 export experiment_notebook_colab
-export get_sample_data
 export view_xp_cloudwatch_logs

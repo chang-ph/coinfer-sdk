@@ -28,7 +28,6 @@ import { GetConfigRsp } from '../models/GetConfigRsp';
 import { GetExperimentShareRsp } from '../models/GetExperimentShareRsp';
 import { GetModelShareRsp } from '../models/GetModelShareRsp';
 import { GetNotificationReq } from '../models/GetNotificationReq';
-import { GetSampleDataRsp } from '../models/GetSampleDataRsp';
 import { GetTokensRsp } from '../models/GetTokensRsp';
 import { GistRsp } from '../models/GistRsp';
 import { ListBranchRsp } from '../models/ListBranchRsp';
@@ -51,9 +50,10 @@ import { ModifyToken } from '../models/ModifyToken';
 import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
+import { SampleDataExperimentRsp } from '../models/SampleDataExperimentRsp';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
-import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
+import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAny } from '../models/SuccRspAny';
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
@@ -61,7 +61,6 @@ import { SuccRspCreateModelShareRsp } from '../models/SuccRspCreateModelShareRsp
 import { SuccRspGetConfigRsp } from '../models/SuccRspGetConfigRsp';
 import { SuccRspGetExperimentShareRsp } from '../models/SuccRspGetExperimentShareRsp';
 import { SuccRspGetModelShareRsp } from '../models/SuccRspGetModelShareRsp';
-import { SuccRspGetSampleDataRsp } from '../models/SuccRspGetSampleDataRsp';
 import { SuccRspGetTokensRsp } from '../models/SuccRspGetTokensRsp';
 import { SuccRspListBranchRsp } from '../models/SuccRspListBranchRsp';
 import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
@@ -361,23 +360,6 @@ export interface ExperimentApiExperimentNotebookColabRequest {
     expid: string
 }
 
-export interface ExperimentApiGetSampleDataRequest {
-    /**
-     * 
-     * Defaults to: undefined
-     * @type string
-     * @memberof ExperimentApigetSampleData
-     */
-    experimentId: string
-    /**
-     * 
-     * Defaults to: undefined
-     * @type &#39;csv&#39; | &#39;grist&#39;
-     * @memberof ExperimentApigetSampleData
-     */
-    fmt: 'csv' | 'grist'
-}
-
 export interface ExperimentApiViewXpCloudwatchLogsRequest {
     /**
      * 
@@ -411,24 +393,6 @@ export class ObjectExperimentApi {
      */
     public experimentNotebookColab(param: ExperimentApiExperimentNotebookColabRequest, options?: Configuration): Promise<SuccRspAny> {
         return this.api.experimentNotebookColab(param.expid,  options).toPromise();
-    }
-
-    /**
-     * It takes time for the system to build the sample data file.  If the sample data file not ready yet, the API will return with the `progress` field set to `generating` and the sample data file is then generating in the background by the system. You may need to call this API later to see if the sample data is ready.  If it is ready, the API will return with the `progress` field set to `done` and the `url` field is the presigned URL of the sample data file.
-     * Get sample data
-     * @param param the request object
-     */
-    public getSampleDataWithHttpInfo(param: ExperimentApiGetSampleDataRequest, options?: Configuration): Promise<HttpInfo<SuccRspGetSampleDataRsp>> {
-        return this.api.getSampleDataWithHttpInfo(param.experimentId, param.fmt,  options).toPromise();
-    }
-
-    /**
-     * It takes time for the system to build the sample data file.  If the sample data file not ready yet, the API will return with the `progress` field set to `generating` and the sample data file is then generating in the background by the system. You may need to call this API later to see if the sample data is ready.  If it is ready, the API will return with the `progress` field set to `done` and the `url` field is the presigned URL of the sample data file.
-     * Get sample data
-     * @param param the request object
-     */
-    public getSampleData(param: ExperimentApiGetSampleDataRequest, options?: Configuration): Promise<SuccRspGetSampleDataRsp> {
-        return this.api.getSampleData(param.experimentId, param.fmt,  options).toPromise();
     }
 
     /**
@@ -799,6 +763,20 @@ export interface ObjectApiViewObjectRequest {
      * @memberof ObjectApiviewObject
      */
     shareId?: string
+    /**
+     * 
+     * Defaults to: false
+     * @type boolean
+     * @memberof ObjectApiviewObject
+     */
+    sampledata?: boolean
+    /**
+     * 
+     * Defaults to: &#39;csv&#39;
+     * @type string
+     * @memberof ObjectApiviewObject
+     */
+    fmt?: string
 }
 
 export class ObjectObjectApi {
@@ -885,8 +863,8 @@ export class ObjectObjectApi {
      * View object.
      * @param param the request object
      */
-    public viewObjectWithHttpInfo(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
-        return this.api.viewObjectWithHttpInfo(param.objid, param.objectType, param.shareId,  options).toPromise();
+    public viewObjectWithHttpInfo(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
+        return this.api.viewObjectWithHttpInfo(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt,  options).toPromise();
     }
 
     /**
@@ -894,8 +872,8 @@ export class ObjectObjectApi {
      * View object.
      * @param param the request object
      */
-    public viewObject(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
-        return this.api.viewObject(param.objid, param.objectType, param.shareId,  options).toPromise();
+    public viewObject(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
+        return this.api.viewObject(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt,  options).toPromise();
     }
 
 }

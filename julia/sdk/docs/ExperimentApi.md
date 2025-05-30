@@ -5,7 +5,6 @@ All URIs are relative to *https://api.coinfer.ai*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**experiment_notebook_colab**](ExperimentApi.md#experiment_notebook_colab) | **GET** /mcmc/experiment/{expid}/notebook/colab | Get a link of the notebook in Colab
-[**get_sample_data**](ExperimentApi.md#get_sample_data) | **GET** /mcmc/experiment/{experiment_id}/sampledata/{fmt} | Get sample data
 [**view_xp_cloudwatch_logs**](ExperimentApi.md#view_xp_cloudwatch_logs) | **GET** /mcmc/object/{objid}/cloudwatch-logs | Get Cloudwatch logs
 
 
@@ -31,37 +30,6 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [GlobalAuth](../README.md#GlobalAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-# **get_sample_data**
-> get_sample_data(_api::ExperimentApi, experiment_id::String, fmt::String; _mediaType=nothing) -> SuccRspGetSampleDataRsp, OpenAPI.Clients.ApiResponse <br/>
-> get_sample_data(_api::ExperimentApi, response_stream::Channel, experiment_id::String, fmt::String; _mediaType=nothing) -> Channel{ SuccRspGetSampleDataRsp }, OpenAPI.Clients.ApiResponse
-
-Get sample data
-
-It takes time for the system to build the sample data file.  If the sample data file not ready yet, the API will return with the `progress` field set to `generating` and the sample data file is then generating in the background by the system. You may need to call this API later to see if the sample data is ready.  If it is ready, the API will return with the `progress` field set to `done` and the `url` field is the presigned URL of the sample data file.
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **ExperimentApi** | API context | 
-**experiment_id** | **String** |  |
-**fmt** | **String** |  |
-
-### Return type
-
-[**SuccRspGetSampleDataRsp**](SuccRspGetSampleDataRsp.md)
-
-### Authorization
-
-[SharingAuth](../README.md#SharingAuth)
 
 ### HTTP request headers
 

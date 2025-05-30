@@ -7,23 +7,31 @@
     ViewObject(;
         object_type="",
         share_id="",
+        sampledata=false,
+        fmt="csv",
     )
 
     - object_type::String
     - share_id::String :                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
+    - sampledata::Bool
+    - fmt::String
 """
 Base.@kwdef mutable struct ViewObject <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = ""
     share_id::Union{Nothing, String} = ""
+    sampledata::Union{Nothing, Bool} = false
+    fmt::Union{Nothing, String} = "csv"
 
-    function ViewObject(object_type, share_id, )
+    function ViewObject(object_type, share_id, sampledata, fmt, )
         OpenAPI.validate_property(ViewObject, Symbol("object_type"), object_type)
         OpenAPI.validate_property(ViewObject, Symbol("share_id"), share_id)
-        return new(object_type, share_id, )
+        OpenAPI.validate_property(ViewObject, Symbol("sampledata"), sampledata)
+        OpenAPI.validate_property(ViewObject, Symbol("fmt"), fmt)
+        return new(object_type, share_id, sampledata, fmt, )
     end
 end # type ViewObject
 
-const _property_types_ViewObject = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("share_id")=>"String", )
+const _property_types_ViewObject = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("share_id")=>"String", Symbol("sampledata")=>"Bool", Symbol("fmt")=>"String", )
 OpenAPI.property_type(::Type{ ViewObject }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_ViewObject[name]))}
 
 function check_required(o::ViewObject)
@@ -35,6 +43,8 @@ function OpenAPI.validate_property(::Type{ ViewObject }, name::Symbol, val)
     if name === Symbol("object_type")
         OpenAPI.validate_param(name, "ViewObject", :enum, val, ["model", "experiment", "share", "event", "callback", "relation", ""])
     end
+
+
 
 
 end

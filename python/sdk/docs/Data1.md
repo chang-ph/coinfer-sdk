@@ -24,6 +24,9 @@ Name | Type | Description | Notes
 **env** | **str** |  | 
 **content** | **object** |  | [optional] 
 **require_password** | **bool** |  | 
+**url** | **str** |  | 
+**progress** | **str** |  | 
+**message** | **str** |  | [optional] [default to '']
 
 ## Example
 

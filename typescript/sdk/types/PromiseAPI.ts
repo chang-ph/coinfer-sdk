@@ -28,7 +28,6 @@ import { GetConfigRsp } from '../models/GetConfigRsp';
 import { GetExperimentShareRsp } from '../models/GetExperimentShareRsp';
 import { GetModelShareRsp } from '../models/GetModelShareRsp';
 import { GetNotificationReq } from '../models/GetNotificationReq';
-import { GetSampleDataRsp } from '../models/GetSampleDataRsp';
 import { GetTokensRsp } from '../models/GetTokensRsp';
 import { GistRsp } from '../models/GistRsp';
 import { ListBranchRsp } from '../models/ListBranchRsp';
@@ -51,9 +50,10 @@ import { ModifyToken } from '../models/ModifyToken';
 import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
+import { SampleDataExperimentRsp } from '../models/SampleDataExperimentRsp';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
-import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
+import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAny } from '../models/SuccRspAny';
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
@@ -61,7 +61,6 @@ import { SuccRspCreateModelShareRsp } from '../models/SuccRspCreateModelShareRsp
 import { SuccRspGetConfigRsp } from '../models/SuccRspGetConfigRsp';
 import { SuccRspGetExperimentShareRsp } from '../models/SuccRspGetExperimentShareRsp';
 import { SuccRspGetModelShareRsp } from '../models/SuccRspGetModelShareRsp';
-import { SuccRspGetSampleDataRsp } from '../models/SuccRspGetSampleDataRsp';
 import { SuccRspGetTokensRsp } from '../models/SuccRspGetTokensRsp';
 import { SuccRspListBranchRsp } from '../models/SuccRspListBranchRsp';
 import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
@@ -329,28 +328,6 @@ export class PromiseExperimentApi {
      */
     public experimentNotebookColab(expid: string, _options?: Configuration): Promise<SuccRspAny> {
         const result = this.api.experimentNotebookColab(expid, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * It takes time for the system to build the sample data file.  If the sample data file not ready yet, the API will return with the `progress` field set to `generating` and the sample data file is then generating in the background by the system. You may need to call this API later to see if the sample data is ready.  If it is ready, the API will return with the `progress` field set to `done` and the `url` field is the presigned URL of the sample data file.
-     * Get sample data
-     * @param experimentId
-     * @param fmt
-     */
-    public getSampleDataWithHttpInfo(experimentId: string, fmt: 'csv' | 'grist', _options?: Configuration): Promise<HttpInfo<SuccRspGetSampleDataRsp>> {
-        const result = this.api.getSampleDataWithHttpInfo(experimentId, fmt, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * It takes time for the system to build the sample data file.  If the sample data file not ready yet, the API will return with the `progress` field set to `generating` and the sample data file is then generating in the background by the system. You may need to call this API later to see if the sample data is ready.  If it is ready, the API will return with the `progress` field set to `done` and the `url` field is the presigned URL of the sample data file.
-     * Get sample data
-     * @param experimentId
-     * @param fmt
-     */
-    public getSampleData(experimentId: string, fmt: 'csv' | 'grist', _options?: Configuration): Promise<SuccRspGetSampleDataRsp> {
-        const result = this.api.getSampleData(experimentId, fmt, _options);
         return result.toPromise();
     }
 
@@ -663,9 +640,11 @@ export class PromiseObjectApi {
      * @param objid
      * @param [objectType]
      * @param [shareId]                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
+     * @param [sampledata]
+     * @param [fmt]
      */
-    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, _options?: Configuration): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
-        const result = this.api.viewObjectWithHttpInfo(objid, objectType, shareId, _options);
+    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: string, _options?: Configuration): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
+        const result = this.api.viewObjectWithHttpInfo(objid, objectType, shareId, sampledata, fmt, _options);
         return result.toPromise();
     }
 
@@ -675,9 +654,11 @@ export class PromiseObjectApi {
      * @param objid
      * @param [objectType]
      * @param [shareId]                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
+     * @param [sampledata]
+     * @param [fmt]
      */
-    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, _options?: Configuration): Promise<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
-        const result = this.api.viewObject(objid, objectType, shareId, _options);
+    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: string, _options?: Configuration): Promise<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
+        const result = this.api.viewObject(objid, objectType, shareId, sampledata, fmt, _options);
         return result.toPromise();
     }
 

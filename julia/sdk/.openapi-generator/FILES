@@ -29,7 +29,6 @@ docs/GetConfigRsp.md
 docs/GetExperimentShareRsp.md
 docs/GetModelShareRsp.md
 docs/GetNotificationReq.md
-docs/GetSampleDataRsp.md
 docs/GetTokensRsp.md
 docs/GistRsp.md
 docs/ListBranchRsp.md
@@ -55,10 +54,11 @@ docs/NotificationDict.md
 docs/ObjectApi.md
 docs/Payload.md
 docs/Payload1.md
+docs/SampleDataExperimentRsp.md
 docs/ShareApi.md
 docs/ShareInfoModel.md
 docs/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType.md
-docs/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType.md
+docs/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType.md
 docs/SuccRspAny.md
 docs/SuccRspAuth0ConfigRsp.md
 docs/SuccRspAuth0LoginRsp.md
@@ -66,7 +66,6 @@ docs/SuccRspCreateModelShareRsp.md
 docs/SuccRspGetConfigRsp.md
 docs/SuccRspGetExperimentShareRsp.md
 docs/SuccRspGetModelShareRsp.md
-docs/SuccRspGetSampleDataRsp.md
 docs/SuccRspGetTokensRsp.md
 docs/SuccRspListBranchRsp.md
 docs/SuccRspListGetTokensRsp.md
@@ -127,7 +126,6 @@ src/models/model_GetConfigRsp.jl
 src/models/model_GetExperimentShareRsp.jl
 src/models/model_GetModelShareRsp.jl
 src/models/model_GetNotificationReq.jl
-src/models/model_GetSampleDataRsp.jl
 src/models/model_GetTokensRsp.jl
 src/models/model_GistRsp.jl
 src/models/model_ListBranchRsp.jl
@@ -150,9 +148,10 @@ src/models/model_ModifyToken.jl
 src/models/model_NotificationDict.jl
 src/models/model_Payload.jl
 src/models/model_Payload1.jl
+src/models/model_SampleDataExperimentRsp.jl
 src/models/model_ShareInfoModel.jl
 src/models/model_SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType.jl
-src/models/model_SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType.jl
+src/models/model_SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType.jl
 src/models/model_SuccRspAny.jl
 src/models/model_SuccRspAuth0ConfigRsp.jl
 src/models/model_SuccRspAuth0LoginRsp.jl
@@ -160,7 +159,6 @@ src/models/model_SuccRspCreateModelShareRsp.jl
 src/models/model_SuccRspGetConfigRsp.jl
 src/models/model_SuccRspGetExperimentShareRsp.jl
 src/models/model_SuccRspGetModelShareRsp.jl
-src/models/model_SuccRspGetSampleDataRsp.jl
 src/models/model_SuccRspGetTokensRsp.jl
 src/models/model_SuccRspListBranchRsp.jl
 src/models/model_SuccRspListGetTokensRsp.jl
