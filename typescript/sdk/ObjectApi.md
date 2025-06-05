@@ -266,7 +266,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **viewObject**
-> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType viewObject()
+> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType viewObject()
 
 View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view model data GET /api/object/X1234567  # view experiment data GET /api/object/S1234566  # view share data ```
 
@@ -291,6 +291,8 @@ const request: ObjectApiViewObjectRequest = {
   sampledata: false,
   
   fmt: "csv",
+  
+  cloudwatchLog: false,
 };
 
 const data = await apiInstance.viewObject(request);
@@ -307,11 +309,12 @@ Name | Type | Description  | Notes
  **shareId** | [**string**] |                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot | (optional) defaults to ''
  **sampledata** | [**boolean**] |  | (optional) defaults to false
  **fmt** | [**string**] |  | (optional) defaults to 'csv'
+ **cloudwatchLog** | [**boolean**] |  | (optional) defaults to false
 
 
 ### Return type
 
-**SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType**
+**SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType**
 
 ### Authorization
 

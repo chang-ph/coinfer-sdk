@@ -5,11 +5,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**value** | This is a oneOf model. The value must be exactly one of the following types: ExperimentRsp, SampleDataExperimentRsp, ViewExperimentShareRsp, ViewModelsRsp |  | [optional] 
+**value** | This is a oneOf model. The value must be exactly one of the following types: ExperimentCloudwatchLogRsp, ExperimentRsp, ExperimentSampleDataRsp, ViewExperimentShareRsp, ViewModelsRsp |  | [optional] 
 
 The discriminator field is `object_type` with the following mapping:
  - `experiment`: `ExperimentRsp`
- - `experiment.sampledata`: `SampleDataExperimentRsp`
+ - `experiment.cloudwatch_log`: `ExperimentCloudwatchLogRsp`
+ - `experiment.sampledata`: `ExperimentSampleDataRsp`
  - `model`: `ViewModelsRsp`
  - `share`: `ViewExperimentShareRsp`
 

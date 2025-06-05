@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **url** | **str** |  | 
 **progress** | **str** |  | 
 **message** | **str** |  | [optional] [default to '']
+**logs** | **List[List[object]]** |  | 
 
 ## Example
 

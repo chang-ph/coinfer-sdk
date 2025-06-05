@@ -11,8 +11,6 @@ import { CreateExperiment } from '../models/CreateExperiment';
 import { CreateExperimentShare } from '../models/CreateExperimentShare';
 import { CreateExperimentShareRsp } from '../models/CreateExperimentShareRsp';
 import { CreateModel } from '../models/CreateModel';
-import { CreateModelShare } from '../models/CreateModelShare';
-import { CreateModelShareRsp } from '../models/CreateModelShareRsp';
 import { CreateObjectReq } from '../models/CreateObjectReq';
 import { CreateRelationReq } from '../models/CreateRelationReq';
 import { CreateRelationRsp } from '../models/CreateRelationRsp';
@@ -20,13 +18,13 @@ import { CreateToken } from '../models/CreateToken';
 import { Data } from '../models/Data';
 import { Data1 } from '../models/Data1';
 import { Data2 } from '../models/Data2';
-import { DeleteModelShare } from '../models/DeleteModelShare';
 import { DeleteObject } from '../models/DeleteObject';
 import { ErrRsp } from '../models/ErrRsp';
+import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
 import { ExperimentRsp } from '../models/ExperimentRsp';
+import { ExperimentSampleDataRsp } from '../models/ExperimentSampleDataRsp';
 import { GetConfigRsp } from '../models/GetConfigRsp';
 import { GetExperimentShareRsp } from '../models/GetExperimentShareRsp';
-import { GetModelShareRsp } from '../models/GetModelShareRsp';
 import { GetNotificationReq } from '../models/GetNotificationReq';
 import { GetTokensRsp } from '../models/GetTokensRsp';
 import { GistRsp } from '../models/GistRsp';
@@ -50,17 +48,14 @@ import { ModifyToken } from '../models/ModifyToken';
 import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
-import { SampleDataExperimentRsp } from '../models/SampleDataExperimentRsp';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
-import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
+import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAny } from '../models/SuccRspAny';
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
-import { SuccRspCreateModelShareRsp } from '../models/SuccRspCreateModelShareRsp';
 import { SuccRspGetConfigRsp } from '../models/SuccRspGetConfigRsp';
 import { SuccRspGetExperimentShareRsp } from '../models/SuccRspGetExperimentShareRsp';
-import { SuccRspGetModelShareRsp } from '../models/SuccRspGetModelShareRsp';
 import { SuccRspGetTokensRsp } from '../models/SuccRspGetTokensRsp';
 import { SuccRspListBranchRsp } from '../models/SuccRspListBranchRsp';
 import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
@@ -72,7 +67,6 @@ import { SuccRspUnionExperimentRspViewModelsRspNoneType } from '../models/SuccRs
 import { SuccRspUserInfoRsp } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp } from '../models/SuccRspUserLoginRsp';
 import { SuccRspViewCloudwatchLogsRsp } from '../models/SuccRspViewCloudwatchLogsRsp';
-import { SuccRspViewModelsRsp } from '../models/SuccRspViewModelsRsp';
 import { UpdateEventReq } from '../models/UpdateEventReq';
 import { UpdateExperiment } from '../models/UpdateExperiment';
 import { UpdateModel } from '../models/UpdateModel';
@@ -397,7 +391,7 @@ export class ObjectExperimentApi {
 
     /**
      * As logs may contain sensetive info, this api can only be used by admin
-     * Get Cloudwatch logs
+     * [DEPRECATED] Get Cloudwatch logs
      * @param param the request object
      */
     public viewXpCloudwatchLogsWithHttpInfo(param: ExperimentApiViewXpCloudwatchLogsRequest, options?: Configuration): Promise<HttpInfo<SuccRspViewCloudwatchLogsRsp>> {
@@ -406,7 +400,7 @@ export class ObjectExperimentApi {
 
     /**
      * As logs may contain sensetive info, this api can only be used by admin
-     * Get Cloudwatch logs
+     * [DEPRECATED] Get Cloudwatch logs
      * @param param the request object
      */
     public viewXpCloudwatchLogs(param: ExperimentApiViewXpCloudwatchLogsRequest, options?: Configuration): Promise<SuccRspViewCloudwatchLogsRsp> {
@@ -447,23 +441,6 @@ export interface ModelApiListRepositoryRequest {
      * @memberof ModelApilistRepository
      */
     pageSize?: number
-}
-
-export interface ModelApiViewSharedModelRequest {
-    /**
-     * 
-     * Defaults to: undefined
-     * @type string
-     * @memberof ModelApiviewSharedModel
-     */
-    objid: string
-    /**
-     * 
-     * Defaults to: undefined
-     * @type string
-     * @memberof ModelApiviewSharedModel
-     */
-    shareId: string
 }
 
 export class ObjectModelApi {
@@ -525,24 +502,6 @@ export class ObjectModelApi {
      */
     public listRepository(param: ModelApiListRepositoryRequest = {}, options?: Configuration): Promise<SuccRspListRepositoryRsp> {
         return this.api.listRepository(param.pageNo, param.pageSize,  options).toPromise();
-    }
-
-    /**
-     * View the snapshot of a model which is created when creating the share.  The snapshot is assured to remain unchanged even when the model undergoes modifications. This guarantees that discussions regarding shared resources among users are grounded in a solid foundation.
-     * View share snapshot of a model
-     * @param param the request object
-     */
-    public viewSharedModelWithHttpInfo(param: ModelApiViewSharedModelRequest, options?: Configuration): Promise<HttpInfo<SuccRspViewModelsRsp>> {
-        return this.api.viewSharedModelWithHttpInfo(param.objid, param.shareId,  options).toPromise();
-    }
-
-    /**
-     * View the snapshot of a model which is created when creating the share.  The snapshot is assured to remain unchanged even when the model undergoes modifications. This guarantees that discussions regarding shared resources among users are grounded in a solid foundation.
-     * View share snapshot of a model
-     * @param param the request object
-     */
-    public viewSharedModel(param: ModelApiViewSharedModelRequest, options?: Configuration): Promise<SuccRspViewModelsRsp> {
-        return this.api.viewSharedModel(param.objid, param.shareId,  options).toPromise();
     }
 
 }
@@ -777,6 +736,13 @@ export interface ObjectApiViewObjectRequest {
      * @memberof ObjectApiviewObject
      */
     fmt?: string
+    /**
+     * 
+     * Defaults to: false
+     * @type boolean
+     * @memberof ObjectApiviewObject
+     */
+    cloudwatchLog?: boolean
 }
 
 export class ObjectObjectApi {
@@ -863,8 +829,8 @@ export class ObjectObjectApi {
      * View object.
      * @param param the request object
      */
-    public viewObjectWithHttpInfo(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
-        return this.api.viewObjectWithHttpInfo(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt,  options).toPromise();
+    public viewObjectWithHttpInfo(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
+        return this.api.viewObjectWithHttpInfo(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt, param.cloudwatchLog,  options).toPromise();
     }
 
     /**
@@ -872,8 +838,8 @@ export class ObjectObjectApi {
      * View object.
      * @param param the request object
      */
-    public viewObject(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
-        return this.api.viewObject(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt,  options).toPromise();
+    public viewObject(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
+        return this.api.viewObject(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt, param.cloudwatchLog,  options).toPromise();
     }
 
 }
@@ -887,42 +853,6 @@ export interface ShareApiCoinferApisNoAuthApiGetExperimentShareRequest {
      * Defaults to: undefined
      * @type string
      * @memberof ShareApicoinferApisNoAuthApiGetExperimentShare
-     */
-    shareId: string
-}
-
-export interface ShareApiCreateModelShareRequest {
-    /**
-     * 
-     * Defaults to: undefined
-     * @type string
-     * @memberof ShareApicreateModelShare
-     */
-    modelId: string
-    /**
-     * 
-     * @type CreateModelShare
-     * @memberof ShareApicreateModelShare
-     */
-    createModelShare: CreateModelShare
-}
-
-export interface ShareApiDeleteModelShareRequest {
-    /**
-     * \&quot;-\&quot;separated share ids
-     * Defaults to: undefined
-     * @type string
-     * @memberof ShareApideleteModelShare
-     */
-    shareId: string
-}
-
-export interface ShareApiGetModelShareRequest {
-    /**
-     * 
-     * Defaults to: undefined
-     * @type string
-     * @memberof ShareApigetModelShare
      */
     shareId: string
 }
@@ -948,60 +878,6 @@ export class ObjectShareApi {
      */
     public coinferApisNoAuthApiGetExperimentShare(param: ShareApiCoinferApisNoAuthApiGetExperimentShareRequest, options?: Configuration): Promise<SuccRspGetExperimentShareRsp> {
         return this.api.coinferApisNoAuthApiGetExperimentShare(param.shareId,  options).toPromise();
-    }
-
-    /**
-     * Share a model specified by model ID.  Currently we support three types of sharing:  1. Public sharing: The model is shared publicly. Create a public share by not specifying `target_user` and share password in the request body.  2. User-specific sharing: The model is shared with a specific user. Create a user-specific share by specifying `target_user` in the request body. The `target_user` should be in the format of `name(@id)`. This is exactly the format what the user info API returns.  3. Password-protected sharing: The model is shared with a password. Create a password-protected share by specifying `password` in the request body.
-     * Share a model specified by model ID.
-     * @param param the request object
-     */
-    public createModelShareWithHttpInfo(param: ShareApiCreateModelShareRequest, options?: Configuration): Promise<HttpInfo<SuccRspCreateModelShareRsp>> {
-        return this.api.createModelShareWithHttpInfo(param.modelId, param.createModelShare,  options).toPromise();
-    }
-
-    /**
-     * Share a model specified by model ID.  Currently we support three types of sharing:  1. Public sharing: The model is shared publicly. Create a public share by not specifying `target_user` and share password in the request body.  2. User-specific sharing: The model is shared with a specific user. Create a user-specific share by specifying `target_user` in the request body. The `target_user` should be in the format of `name(@id)`. This is exactly the format what the user info API returns.  3. Password-protected sharing: The model is shared with a password. Create a password-protected share by specifying `password` in the request body.
-     * Share a model specified by model ID.
-     * @param param the request object
-     */
-    public createModelShare(param: ShareApiCreateModelShareRequest, options?: Configuration): Promise<SuccRspCreateModelShareRsp> {
-        return this.api.createModelShare(param.modelId, param.createModelShare,  options).toPromise();
-    }
-
-    /**
-     *      
-     * Delete model shares.
-     * @param param the request object
-     */
-    public deleteModelShareWithHttpInfo(param: ShareApiDeleteModelShareRequest, options?: Configuration): Promise<HttpInfo<SuccRspNoneType>> {
-        return this.api.deleteModelShareWithHttpInfo(param.shareId,  options).toPromise();
-    }
-
-    /**
-     *      
-     * Delete model shares.
-     * @param param the request object
-     */
-    public deleteModelShare(param: ShareApiDeleteModelShareRequest, options?: Configuration): Promise<SuccRspNoneType> {
-        return this.api.deleteModelShare(param.shareId,  options).toPromise();
-    }
-
-    /**
-     * Returns very basic share information without authorization. Currently it only returns one field `require_password`, which is used when opening a share URL. If `require_password` is true, then a password input box is open. Else the page should be directly displayed.
-     * Get basic share information of a model sharing.
-     * @param param the request object
-     */
-    public getModelShareWithHttpInfo(param: ShareApiGetModelShareRequest, options?: Configuration): Promise<HttpInfo<SuccRspGetModelShareRsp>> {
-        return this.api.getModelShareWithHttpInfo(param.shareId,  options).toPromise();
-    }
-
-    /**
-     * Returns very basic share information without authorization. Currently it only returns one field `require_password`, which is used when opening a share URL. If `require_password` is true, then a password input box is open. Else the page should be directly displayed.
-     * Get basic share information of a model sharing.
-     * @param param the request object
-     */
-    public getModelShare(param: ShareApiGetModelShareRequest, options?: Configuration): Promise<SuccRspGetModelShareRsp> {
-        return this.api.getModelShare(param.shareId,  options).toPromise();
     }
 
 }

@@ -7,7 +7,6 @@ Method | HTTP request | Description
 [**get_config**](ModelApi.md#get_config) | **GET** /turing/config | Get configuration about how to run a model.
 [**list_branch**](ModelApi.md#list_branch) | **GET** /turing/github/branch | List branches.
 [**list_repository**](ModelApi.md#list_repository) | **GET** /turing/github/repository | List repositories and gists.
-[**view_shared_model**](ModelApi.md#view_shared_model) | **GET** /turing/object/{objid}/share/{share_id} | View share snapshot of a model
 
 
 # **get_config**
@@ -94,37 +93,6 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [GlobalAuth](../README.md#GlobalAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-# **view_shared_model**
-> view_shared_model(_api::ModelApi, objid::String, share_id::String; _mediaType=nothing) -> SuccRspViewModelsRsp, OpenAPI.Clients.ApiResponse <br/>
-> view_shared_model(_api::ModelApi, response_stream::Channel, objid::String, share_id::String; _mediaType=nothing) -> Channel{ SuccRspViewModelsRsp }, OpenAPI.Clients.ApiResponse
-
-View share snapshot of a model
-
-View the snapshot of a model which is created when creating the share.  The snapshot is assured to remain unchanged even when the model undergoes modifications. This guarantees that discussions regarding shared resources among users are grounded in a solid foundation.
-
-### Required Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **_api** | **ModelApi** | API context | 
-**objid** | **String** |  |
-**share_id** | **String** |  |
-
-### Return type
-
-[**SuccRspViewModelsRsp**](SuccRspViewModelsRsp.md)
-
-### Authorization
-
-[SharingAuth](../README.md#SharingAuth)
 
 ### HTTP request headers
 

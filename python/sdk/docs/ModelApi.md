@@ -7,7 +7,6 @@ Method | HTTP request | Description
 [**get_config**](ModelApi.md#get_config) | **GET** /turing/config | Get configuration about how to run a model.
 [**list_branch**](ModelApi.md#list_branch) | **GET** /turing/github/branch | List branches.
 [**list_repository**](ModelApi.md#list_repository) | **GET** /turing/github/repository | List repositories and gists.
-[**view_shared_model**](ModelApi.md#view_shared_model) | **GET** /turing/object/{objid}/share/{share_id} | View share snapshot of a model
 
 
 # **get_config**
@@ -230,88 +229,6 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [GlobalAuth](../README.md#GlobalAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**400** | Bad Request |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **view_shared_model**
-> SuccRspViewModelsRsp view_shared_model(objid, share_id)
-
-View share snapshot of a model
-
-View the snapshot of a model which is created when creating the share.  The snapshot is assured to remain unchanged even when the model undergoes modifications. This guarantees that discussions regarding shared resources among users are grounded in a solid foundation.
-
-### Example
-
-* Api Key Authentication (SharingAuth):
-
-```python
-import openapi_client
-from openapi_client.models.succ_rsp_view_models_rsp import SuccRspViewModelsRsp
-from openapi_client.rest import ApiException
-from pprint import pprint
-
-# Defining the host is optional and defaults to https://api.coinfer.ai
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "https://api.coinfer.ai"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: SharingAuth
-configuration.api_key['SharingAuth'] = os.environ["API_KEY"]
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['SharingAuth'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = openapi_client.ModelApi(api_client)
-    objid = 'objid_example' # str | 
-    share_id = 'share_id_example' # str | 
-
-    try:
-        # View share snapshot of a model
-        api_response = api_instance.view_shared_model(objid, share_id)
-        print("The response of ModelApi->view_shared_model:\n")
-        pprint(api_response)
-    except Exception as e:
-        print("Exception when calling ModelApi->view_shared_model: %s\n" % e)
-```
-
-
-
-### Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **objid** | **str**|  | 
- **share_id** | **str**|  | 
-
-### Return type
-
-[**SuccRspViewModelsRsp**](SuccRspViewModelsRsp.md)
-
-### Authorization
-
-[SharingAuth](../README.md#SharingAuth)
 
 ### HTTP request headers
 

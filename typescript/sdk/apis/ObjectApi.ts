@@ -11,7 +11,7 @@ import {SecurityAuthentication} from '../auth/auth';
 import { CreateObjectReq } from '../models/CreateObjectReq';
 import { ErrRsp } from '../models/ErrRsp';
 import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
-import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
+import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
 import { SuccRspNoneType } from '../models/SuccRspNoneType';
 import { SuccRspUnionExperimentRspViewModelsRspNoneType } from '../models/SuccRspUnionExperimentRspViewModelsRspNoneType';
@@ -292,14 +292,16 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
      * @param shareId                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
      * @param sampledata 
      * @param fmt 
+     * @param cloudwatchLog 
      */
-    public async viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: string, _options?: Configuration): Promise<RequestContext> {
+    public async viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: string, cloudwatchLog?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'objid' is not null or undefined
         if (objid === null || objid === undefined) {
             throw new RequiredError("ObjectApi", "viewObject", "objid");
         }
+
 
 
 
@@ -332,6 +334,11 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fmt !== undefined) {
             requestContext.setQueryParam("fmt", ObjectSerializer.serialize(fmt, "string", ""));
+        }
+
+        // Query Params
+        if (cloudwatchLog !== undefined) {
+            requestContext.setQueryParam("cloudwatch_log", ObjectSerializer.serialize(cloudwatchLog, "boolean", ""));
         }
 
 
@@ -510,13 +517,13 @@ export class ObjectApiResponseProcessor {
      * @params response Response returned by the server for a request to viewObject
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async viewObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType >> {
+     public async viewObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType = ObjectSerializer.deserialize(
+            const body: SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType", ""
-            ) as SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType;
+                "SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType", ""
+            ) as SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -529,10 +536,10 @@ export class ObjectApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType = ObjectSerializer.deserialize(
+            const body: SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType", ""
-            ) as SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspSampleDataExperimentRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType;
+                "SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType", ""
+            ) as SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 

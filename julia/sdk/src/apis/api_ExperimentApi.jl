@@ -55,7 +55,7 @@ function _oacinternal_view_xp_cloudwatch_logs(_api::ExperimentApi, objid::String
     return _ctx
 end
 
-@doc raw"""Get Cloudwatch logs
+@doc raw"""[DEPRECATED] Get Cloudwatch logs
 
 As logs may contain sensetive info, this api can only be used by admin
 

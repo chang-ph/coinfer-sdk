@@ -57,7 +57,7 @@ export class ExperimentApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Get Cloudwatch logs
+     * [DEPRECATED] Get Cloudwatch logs
      *
      * As logs may contain sensetive info, this api can only be used by admin
      * @param objid 

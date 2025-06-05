@@ -7,7 +7,6 @@ Method | HTTP request | Description
 [**getConfig**](ModelApi.md#getConfig) | **GET** /turing/config | Get configuration about how to run a model.
 [**listBranch**](ModelApi.md#listBranch) | **GET** /turing/github/branch | List branches.
 [**listRepository**](ModelApi.md#listRepository) | **GET** /turing/github/repository | List repositories and gists.
-[**viewSharedModel**](ModelApi.md#viewSharedModel) | **GET** /turing/object/{objid}/share/{share_id} | View share snapshot of a model
 
 
 # **getConfig**
@@ -153,63 +152,6 @@ Name | Type | Description  | Notes
 ### Authorization
 
 [GlobalAuth](README.md#GlobalAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**400** | Bad Request |  -  |
-
-[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
-
-# **viewSharedModel**
-> SuccRspViewModelsRsp viewSharedModel()
-
-View the snapshot of a model which is created when creating the share.  The snapshot is assured to remain unchanged even when the model undergoes modifications. This guarantees that discussions regarding shared resources among users are grounded in a solid foundation.
-
-### Example
-
-
-```typescript
-import { createConfiguration, ModelApi } from 'coinfer-ts';
-import type { ModelApiViewSharedModelRequest } from 'coinfer-ts';
-
-const configuration = createConfiguration();
-const apiInstance = new ModelApi(configuration);
-
-const request: ModelApiViewSharedModelRequest = {
-  
-  objid: "objid_example",
-  
-  shareId: "share_id_example",
-};
-
-const data = await apiInstance.viewSharedModel(request);
-console.log('API called successfully. Returned data:', data);
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **objid** | [**string**] |  | defaults to undefined
- **shareId** | [**string**] |  | defaults to undefined
-
-
-### Return type
-
-**SuccRspViewModelsRsp**
-
-### Authorization
-
-[SharingAuth](README.md#SharingAuth)
 
 ### HTTP request headers
 

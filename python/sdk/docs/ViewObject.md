@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **share_id** | **str** |                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot | [optional] [default to '']
 **sampledata** | **bool** |  | [optional] [default to False]
 **fmt** | **str** |  | [optional] [default to 'csv']
+**cloudwatch_log** | **bool** |  | [optional] [default to False]
 
 ## Example
 

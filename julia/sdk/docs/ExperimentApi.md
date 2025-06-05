@@ -5,7 +5,7 @@ All URIs are relative to *https://api.coinfer.ai*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**experiment_notebook_colab**](ExperimentApi.md#experiment_notebook_colab) | **GET** /mcmc/experiment/{expid}/notebook/colab | Get a link of the notebook in Colab
-[**view_xp_cloudwatch_logs**](ExperimentApi.md#view_xp_cloudwatch_logs) | **GET** /mcmc/object/{objid}/cloudwatch-logs | Get Cloudwatch logs
+[**view_xp_cloudwatch_logs**](ExperimentApi.md#view_xp_cloudwatch_logs) | **GET** /mcmc/object/{objid}/cloudwatch-logs | [DEPRECATED] Get Cloudwatch logs
 
 
 # **experiment_notebook_colab**
@@ -42,7 +42,7 @@ Name | Type | Description  | Notes
 > view_xp_cloudwatch_logs(_api::ExperimentApi, objid::String; _mediaType=nothing) -> SuccRspViewCloudwatchLogsRsp, OpenAPI.Clients.ApiResponse <br/>
 > view_xp_cloudwatch_logs(_api::ExperimentApi, response_stream::Channel, objid::String; _mediaType=nothing) -> Channel{ SuccRspViewCloudwatchLogsRsp }, OpenAPI.Clients.ApiResponse
 
-Get Cloudwatch logs
+[DEPRECATED] Get Cloudwatch logs
 
 As logs may contain sensetive info, this api can only be used by admin
 

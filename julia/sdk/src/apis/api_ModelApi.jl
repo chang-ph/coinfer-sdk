@@ -109,41 +109,6 @@ function list_repository(_api::ModelApi, response_stream::Channel; page_no=nothi
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
-const _returntypes_view_shared_model_ModelApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspViewModelsRsp,
-    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
-)
-
-function _oacinternal_view_shared_model(_api::ModelApi, objid::String, share_id::String; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_view_shared_model_ModelApi, "/turing/object/{objid}/share/{share_id}", ["SharingAuth", ])
-    OpenAPI.Clients.set_param(_ctx.path, "objid", objid)  # type String
-    OpenAPI.Clients.set_param(_ctx.path, "share_id", share_id)  # type String
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""View share snapshot of a model
-
-View the snapshot of a model which is created when creating the share.  The snapshot is assured to remain unchanged even when the model undergoes modifications. This guarantees that discussions regarding shared resources among users are grounded in a solid foundation.
-
-Params:
-- objid::String (required)
-- share_id::String (required)
-
-Return: SuccRspViewModelsRsp, OpenAPI.Clients.ApiResponse
-"""
-function view_shared_model(_api::ModelApi, objid::String, share_id::String; _mediaType=nothing)
-    _ctx = _oacinternal_view_shared_model(_api, objid, share_id; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function view_shared_model(_api::ModelApi, response_stream::Channel, objid::String, share_id::String; _mediaType=nothing)
-    _ctx = _oacinternal_view_shared_model(_api, objid, share_id; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
 export get_config
 export list_branch
 export list_repository
-export view_shared_model

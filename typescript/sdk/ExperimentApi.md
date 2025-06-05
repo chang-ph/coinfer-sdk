@@ -5,7 +5,7 @@ All URIs are relative to *https://api.coinfer.ai*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**experimentNotebookColab**](ExperimentApi.md#experimentNotebookColab) | **GET** /mcmc/experiment/{expid}/notebook/colab | Get a link of the notebook in Colab
-[**viewXpCloudwatchLogs**](ExperimentApi.md#viewXpCloudwatchLogs) | **GET** /mcmc/object/{objid}/cloudwatch-logs | Get Cloudwatch logs
+[**viewXpCloudwatchLogs**](ExperimentApi.md#viewXpCloudwatchLogs) | **GET** /mcmc/object/{objid}/cloudwatch-logs | [DEPRECATED] Get Cloudwatch logs
 
 
 # **experimentNotebookColab**
