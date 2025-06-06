@@ -14,15 +14,17 @@ Name | Type | Description | Notes
 **name** | **str** |  | 
 **content** | [**ModelContent**](ModelContent.md) |  | [optional] 
 **is_demo** | **bool** |  | [optional] [default to False]
+**kind** | [**CloudFunctionKind**](CloudFunctionKind.md) |  | [optional] 
+**single_instance** | **bool** | Only allow one instance of this callback to run at a time. | [optional] [default to True]
+**lang** | **str** |  | 
+**entrance_file** | **str** |  | [optional] [default to '']
 **model_id** | **str** |  | 
 **xp_meta** | **object** |  | [optional] 
 **meta** | **object** |  | [optional] 
 **objid** | **str** |  | 
 **password** | **str** |  | [optional] [default to '']
 **target_user** | **str** |  | [optional] [default to '']
-**lang** | **str** |  | 
-**gist_id** | **str** |  | 
-**single_instance** | **bool** | Only allow one instance of this callback to run at a time. | [optional] [default to True]
+**code** | **str** | code location specification. Can be: 1. GitHub gist: gist:&lt;gist-id&gt;:&lt;entrance-file&gt; 2. GitHub repo: repo:&lt;repo-owner&gt;/&lt;repo-name&gt;:&lt;entrance-file&gt; | 
 **object1_id** | **str** |  | 
 **object2_id** | **str** |  | 
 

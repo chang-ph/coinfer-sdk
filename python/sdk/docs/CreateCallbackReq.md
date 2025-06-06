@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **object_type** | **str** |  | 
 **lang** | **str** |  | 
-**gist_id** | **str** |  | 
+**code** | **str** | code location specification. Can be: 1. GitHub gist: gist:&lt;gist-id&gt;:&lt;entrance-file&gt; 2. GitHub repo: repo:&lt;repo-owner&gt;/&lt;repo-name&gt;:&lt;entrance-file&gt; | 
 **single_instance** | **bool** | Only allow one instance of this callback to run at a time. | [optional] [default to True]
 
 ## Example

@@ -14,6 +14,10 @@ Name | Type | Description | Notes
 **name** | **str** | model name | [optional] [default to '']
 **content** | [**ModelContent**](ModelContent.md) |  | [optional] 
 **is_demo** | **bool** |  | [optional] [default to False]
+**kind** | [**CloudFunctionKind**](CloudFunctionKind.md) |  | [optional] 
+**single_instance** | **bool** | Only allow one instance to run as cloud function at a time. | [optional] [default to True]
+**lang** | [**CloudFunctionLang**](CloudFunctionLang.md) |  | [optional] 
+**entrance_file** | **str** |  | [optional] [default to '']
 
 ## Example
 

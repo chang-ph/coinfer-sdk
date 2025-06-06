@@ -13,6 +13,10 @@ Name | Type | Description | Notes
 **name** | **String** | model name | [optional] [default to ""]
 **content** | [***ModelContent**](ModelContent.md) |  | [optional] [default to nothing]
 **is_demo** | **Bool** |  | [optional] [default to false]
+**kind** | [***CloudFunctionKind**](CloudFunctionKind.md) |  | [optional] [default to nothing]
+**single_instance** | **Bool** | Only allow one instance to run as cloud function at a time. | [optional] [default to true]
+**lang** | [***CloudFunctionLang**](CloudFunctionLang.md) |  | [optional] [default to nothing]
+**entrance_file** | **String** |  | [optional] [default to ""]
 
 
 [[Back to Model list]](../README.md#models) [[Back to API list]](../README.md#api-endpoints) [[Back to README]](../README.md)

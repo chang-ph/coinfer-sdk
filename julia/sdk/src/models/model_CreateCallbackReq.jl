@@ -7,37 +7,37 @@
     CreateCallbackReq(;
         object_type=nothing,
         lang=nothing,
-        gist_id=nothing,
+        code=nothing,
         single_instance=true,
     )
 
     - object_type::String
     - lang::String
-    - gist_id::String
+    - code::String : code location specification. Can be: 1. GitHub gist: gist:&lt;gist-id&gt;:&lt;entrance-file&gt; 2. GitHub repo: repo:&lt;repo-owner&gt;/&lt;repo-name&gt;:&lt;entrance-file&gt;
     - single_instance::Bool : Only allow one instance of this callback to run at a time.
 """
 Base.@kwdef mutable struct CreateCallbackReq <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
     lang::Union{Nothing, String} = nothing
-    gist_id::Union{Nothing, String} = nothing
+    code::Union{Nothing, String} = nothing
     single_instance::Union{Nothing, Bool} = true
 
-    function CreateCallbackReq(object_type, lang, gist_id, single_instance, )
+    function CreateCallbackReq(object_type, lang, code, single_instance, )
         OpenAPI.validate_property(CreateCallbackReq, Symbol("object_type"), object_type)
         OpenAPI.validate_property(CreateCallbackReq, Symbol("lang"), lang)
-        OpenAPI.validate_property(CreateCallbackReq, Symbol("gist_id"), gist_id)
+        OpenAPI.validate_property(CreateCallbackReq, Symbol("code"), code)
         OpenAPI.validate_property(CreateCallbackReq, Symbol("single_instance"), single_instance)
-        return new(object_type, lang, gist_id, single_instance, )
+        return new(object_type, lang, code, single_instance, )
     end
 end # type CreateCallbackReq
 
-const _property_types_CreateCallbackReq = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("lang")=>"String", Symbol("gist_id")=>"String", Symbol("single_instance")=>"Bool", )
+const _property_types_CreateCallbackReq = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("lang")=>"String", Symbol("code")=>"String", Symbol("single_instance")=>"Bool", )
 OpenAPI.property_type(::Type{ CreateCallbackReq }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_CreateCallbackReq[name]))}
 
 function check_required(o::CreateCallbackReq)
     o.object_type === nothing && (return false)
     o.lang === nothing && (return false)
-    o.gist_id === nothing && (return false)
+    o.code === nothing && (return false)
     true
 end
 

@@ -3,6 +3,8 @@ import { Configuration} from '../configuration'
 
 import { Auth0ConfigRsp } from '../models/Auth0ConfigRsp';
 import { Auth0LoginRsp } from '../models/Auth0LoginRsp';
+import { CloudFunctionKind } from '../models/CloudFunctionKind';
+import { CloudFunctionLang } from '../models/CloudFunctionLang';
 import { CreateCallbackReq } from '../models/CreateCallbackReq';
 import { CreateCallbackRsp } from '../models/CreateCallbackRsp';
 import { CreateEventReq } from '../models/CreateEventReq';
@@ -11,6 +13,7 @@ import { CreateExperiment } from '../models/CreateExperiment';
 import { CreateExperimentShare } from '../models/CreateExperimentShare';
 import { CreateExperimentShareRsp } from '../models/CreateExperimentShareRsp';
 import { CreateModel } from '../models/CreateModel';
+import { CreateNSampleStatReq } from '../models/CreateNSampleStatReq';
 import { CreateObjectReq } from '../models/CreateObjectReq';
 import { CreateRelationReq } from '../models/CreateRelationReq';
 import { CreateRelationRsp } from '../models/CreateRelationRsp';
@@ -682,6 +685,13 @@ export interface ObjectApiListObjectRequest {
      * @memberof ObjectApilistObject
      */
     hasModel?: 'true' | 'false' | ''
+    /**
+     * Filter by kind
+     * Defaults to: undefined
+     * @type string
+     * @memberof ObjectApilistObject
+     */
+    kind?: string
 }
 
 export interface ObjectApiUpdateObjectRequest {
@@ -794,7 +804,7 @@ export class ObjectObjectApi {
      * @param param the request object
      */
     public listObjectWithHttpInfo(param: ObjectApiListObjectRequest, options?: Configuration): Promise<HttpInfo<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp>> {
-        return this.api.listObjectWithHttpInfo(param.objectType, param.pageNo, param.pageSize, param.withShareInfo, param.sharedByMe, param.sharedWithMe, param.modelIds, param.status, param.runOn, param.hasModel,  options).toPromise();
+        return this.api.listObjectWithHttpInfo(param.objectType, param.pageNo, param.pageSize, param.withShareInfo, param.sharedByMe, param.sharedWithMe, param.modelIds, param.status, param.runOn, param.hasModel, param.kind,  options).toPromise();
     }
 
     /**
@@ -803,7 +813,7 @@ export class ObjectObjectApi {
      * @param param the request object
      */
     public listObject(param: ObjectApiListObjectRequest, options?: Configuration): Promise<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp> {
-        return this.api.listObject(param.objectType, param.pageNo, param.pageSize, param.withShareInfo, param.sharedByMe, param.sharedWithMe, param.modelIds, param.status, param.runOn, param.hasModel,  options).toPromise();
+        return this.api.listObject(param.objectType, param.pageNo, param.pageSize, param.withShareInfo, param.sharedByMe, param.sharedWithMe, param.modelIds, param.status, param.runOn, param.hasModel, param.kind,  options).toPromise();
     }
 
     /**

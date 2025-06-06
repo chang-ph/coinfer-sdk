@@ -131,14 +131,16 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
      * @param status 
      * @param runOn 
      * @param hasModel 
+     * @param kind Filter by kind
      */
-    public async listObject(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', _options?: Configuration): Promise<RequestContext> {
+    public async listObject(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', kind?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'objectType' is not null or undefined
         if (objectType === null || objectType === undefined) {
             throw new RequiredError("ObjectApi", "listObject", "objectType");
         }
+
 
 
 
@@ -208,6 +210,14 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (hasModel !== undefined) {
             requestContext.setQueryParam("has_model", ObjectSerializer.serialize(hasModel, "'true' | 'false' | ''", ""));
+        }
+
+        // Query Params
+        if (kind !== undefined) {
+            const serializedParams = ObjectSerializer.serialize(kind, "string", "");
+            for (const key of Object.keys(serializedParams)) {
+                requestContext.setQueryParam(key, serializedParams[key]);
+            }
         }
 
 

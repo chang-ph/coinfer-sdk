@@ -79,7 +79,7 @@ const _returntypes_list_object_ObjectApi = Dict{Regex,Type}(
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
-function _oacinternal_list_object(_api::ObjectApi, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, _mediaType=nothing)
+function _oacinternal_list_object(_api::ObjectApi, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, kind=nothing, _mediaType=nothing)
     OpenAPI.validate_param("page_size", "list_object", :maximum, page_size, 1000, false)
 
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_list_object_ObjectApi, "/api/object", ["GlobalAuth", ])
@@ -93,6 +93,7 @@ function _oacinternal_list_object(_api::ObjectApi, object_type::String; page_no=
     OpenAPI.Clients.set_param(_ctx.query, "status", status; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "run_on", run_on; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "has_model", has_model; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "kind", kind; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -113,16 +114,17 @@ Params:
 - status::String
 - run_on::String
 - has_model::String
+- kind::String
 
 Return: SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp, OpenAPI.Clients.ApiResponse
 """
-function list_object(_api::ObjectApi, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_list_object(_api, object_type; page_no=page_no, page_size=page_size, with_share_info=with_share_info, shared_by_me=shared_by_me, shared_with_me=shared_with_me, model_ids=model_ids, status=status, run_on=run_on, has_model=has_model, _mediaType=_mediaType)
+function list_object(_api::ObjectApi, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, kind=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_list_object(_api, object_type; page_no=page_no, page_size=page_size, with_share_info=with_share_info, shared_by_me=shared_by_me, shared_with_me=shared_with_me, model_ids=model_ids, status=status, run_on=run_on, has_model=has_model, kind=kind, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function list_object(_api::ObjectApi, response_stream::Channel, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_list_object(_api, object_type; page_no=page_no, page_size=page_size, with_share_info=with_share_info, shared_by_me=shared_by_me, shared_with_me=shared_with_me, model_ids=model_ids, status=status, run_on=run_on, has_model=has_model, _mediaType=_mediaType)
+function list_object(_api::ObjectApi, response_stream::Channel, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, kind=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_list_object(_api, object_type; page_no=page_no, page_size=page_size, with_share_info=with_share_info, shared_by_me=shared_by_me, shared_with_me=shared_with_me, model_ids=model_ids, status=status, run_on=run_on, has_model=has_model, kind=kind, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 

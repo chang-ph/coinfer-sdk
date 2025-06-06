@@ -3,6 +3,8 @@ README.md
 docs/Auth0ConfigRsp.md
 docs/Auth0LoginRsp.md
 docs/AuthorizationApi.md
+docs/CloudFunctionKind.md
+docs/CloudFunctionLang.md
 docs/CreateCallbackReq.md
 docs/CreateCallbackRsp.md
 docs/CreateEventReq.md
@@ -11,6 +13,7 @@ docs/CreateExperiment.md
 docs/CreateExperimentShare.md
 docs/CreateExperimentShareRsp.md
 docs/CreateModel.md
+docs/CreateNSampleStatReq.md
 docs/CreateObjectReq.md
 docs/CreateRelationReq.md
 docs/CreateRelationRsp.md
@@ -95,6 +98,8 @@ src/apis/api_ShareApi.jl
 src/modelincludes.jl
 src/models/model_Auth0ConfigRsp.jl
 src/models/model_Auth0LoginRsp.jl
+src/models/model_CloudFunctionKind.jl
+src/models/model_CloudFunctionLang.jl
 src/models/model_CreateCallbackReq.jl
 src/models/model_CreateCallbackRsp.jl
 src/models/model_CreateEventReq.jl
@@ -103,6 +108,7 @@ src/models/model_CreateExperiment.jl
 src/models/model_CreateExperimentShare.jl
 src/models/model_CreateExperimentShareRsp.jl
 src/models/model_CreateModel.jl
+src/models/model_CreateNSampleStatReq.jl
 src/models/model_CreateObjectReq.jl
 src/models/model_CreateRelationReq.jl
 src/models/model_CreateRelationRsp.jl

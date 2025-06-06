@@ -25,6 +25,8 @@ index.ts
 middleware.ts
 models/Auth0ConfigRsp.ts
 models/Auth0LoginRsp.ts
+models/CloudFunctionKind.ts
+models/CloudFunctionLang.ts
 models/CreateCallbackReq.ts
 models/CreateCallbackRsp.ts
 models/CreateEventReq.ts
@@ -33,6 +35,7 @@ models/CreateExperiment.ts
 models/CreateExperimentShare.ts
 models/CreateExperimentShareRsp.ts
 models/CreateModel.ts
+models/CreateNSampleStatReq.ts
 models/CreateObjectReq.ts
 models/CreateRelationReq.ts
 models/CreateRelationRsp.ts
