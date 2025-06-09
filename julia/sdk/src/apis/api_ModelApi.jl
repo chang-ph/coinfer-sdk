@@ -23,9 +23,9 @@ function _oacinternal_get_config(_api::ModelApi; _mediaType=nothing)
     return _ctx
 end
 
-@doc raw"""Get configuration about how to run a model.
+@doc raw"""[DEPRECATED] Get configuration about how to run a model.
 
-This API is used to get the configuration about how to run a model. Currently the configuration includes the URL of the proxy lambda function which is used to run the model.
+DEPRECATED: Use `/sys/config` instead.  This API is used to get the configuration about how to run a model. Currently the configuration includes the URL of the proxy lambda function which is used to run the model.
 
 Params:
 
@@ -54,9 +54,9 @@ function _oacinternal_list_branch(_api::ModelApi, repo::String; _mediaType=nothi
     return _ctx
 end
 
-@doc raw"""List branches.
+@doc raw"""[DEPRECATED] List branches.
 
-List branches of the specified repository.
+DEPRECATED: Use `/sys/github/branch` instead.  List branches of the specified repository.
 
 Params:
 - repo::String (required)
@@ -89,9 +89,9 @@ function _oacinternal_list_repository(_api::ModelApi; page_no=nothing, page_size
     return _ctx
 end
 
-@doc raw"""List repositories and gists.
+@doc raw"""[DEPRECATED] List repositories and gists.
 
-List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can't uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
+DEPRECATED: Use `/sys/github/repository` instead.  List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can't uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
 
 Params:
 - page_no::Int64

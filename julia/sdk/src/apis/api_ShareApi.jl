@@ -11,13 +11,13 @@ This can be used to construct the `OpenAPI.Clients.Client` instance.
 """
 basepath(::Type{ ShareApi }) = "https://api.coinfer.ai"
 
-const _returntypes_coinfer_apis_no_auth_api_get_experiment_share_ShareApi = Dict{Regex,Type}(
+const _returntypes_get_experiment_share_ShareApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspGetExperimentShareRsp,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
-function _oacinternal_coinfer_apis_no_auth_api_get_experiment_share(_api::ShareApi, share_id::String; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_coinfer_apis_no_auth_api_get_experiment_share_ShareApi, "/api/object/share/{share_id}", [])
+function _oacinternal_get_experiment_share(_api::ShareApi, share_id::String; _mediaType=nothing)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_get_experiment_share_ShareApi, "/api/object/share/{share_id}", [])
     OpenAPI.Clients.set_param(_ctx.path, "share_id", share_id)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
@@ -31,14 +31,14 @@ Params:
 
 Return: SuccRspGetExperimentShareRsp, OpenAPI.Clients.ApiResponse
 """
-function coinfer_apis_no_auth_api_get_experiment_share(_api::ShareApi, share_id::String; _mediaType=nothing)
-    _ctx = _oacinternal_coinfer_apis_no_auth_api_get_experiment_share(_api, share_id; _mediaType=_mediaType)
+function get_experiment_share(_api::ShareApi, share_id::String; _mediaType=nothing)
+    _ctx = _oacinternal_get_experiment_share(_api, share_id; _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function coinfer_apis_no_auth_api_get_experiment_share(_api::ShareApi, response_stream::Channel, share_id::String; _mediaType=nothing)
-    _ctx = _oacinternal_coinfer_apis_no_auth_api_get_experiment_share(_api, share_id; _mediaType=_mediaType)
+function get_experiment_share(_api::ShareApi, response_stream::Channel, share_id::String; _mediaType=nothing)
+    _ctx = _oacinternal_get_experiment_share(_api, share_id; _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
-export coinfer_apis_no_auth_api_get_experiment_share
+export get_experiment_share

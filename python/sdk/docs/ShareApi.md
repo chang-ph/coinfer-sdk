@@ -4,11 +4,11 @@ All URIs are relative to *https://api.coinfer.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**coinfer_apis_no_auth_api_get_experiment_share**](ShareApi.md#coinfer_apis_no_auth_api_get_experiment_share) | **GET** /api/object/share/{share_id} | Get sharing information of an experiment.
+[**get_experiment_share**](ShareApi.md#get_experiment_share) | **GET** /api/object/share/{share_id} | Get sharing information of an experiment.
 
 
-# **coinfer_apis_no_auth_api_get_experiment_share**
-> SuccRspGetExperimentShareRsp coinfer_apis_no_auth_api_get_experiment_share(share_id)
+# **get_experiment_share**
+> SuccRspGetExperimentShareRsp get_experiment_share(share_id)
 
 Get sharing information of an experiment.
 
@@ -36,11 +36,11 @@ with openapi_client.ApiClient(configuration) as api_client:
 
     try:
         # Get sharing information of an experiment.
-        api_response = api_instance.coinfer_apis_no_auth_api_get_experiment_share(share_id)
-        print("The response of ShareApi->coinfer_apis_no_auth_api_get_experiment_share:\n")
+        api_response = api_instance.get_experiment_share(share_id)
+        print("The response of ShareApi->get_experiment_share:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ShareApi->coinfer_apis_no_auth_api_get_experiment_share: %s\n" % e)
+        print("Exception when calling ShareApi->get_experiment_share: %s\n" % e)
 ```
 
 

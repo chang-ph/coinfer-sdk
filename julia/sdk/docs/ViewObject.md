@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **sampledata** | **Bool** |  | [optional] [default to false]
 **fmt** | **String** |  | [optional] [default to "csv"]
 **cloudwatch_log** | **Bool** |  | [optional] [default to false]
+**batch_id** | **String** |  | [optional] [default to ""]
+**run_id** | **String** |  | [optional] [default to ""]
 
 
 [[Back to Model list]](../README.md#models) [[Back to API list]](../README.md#api-endpoints) [[Back to README]](../README.md)

@@ -10,6 +10,8 @@
         sampledata=false,
         fmt="csv",
         cloudwatch_log=false,
+        batch_id="",
+        run_id="",
     )
 
     - object_type::String
@@ -17,6 +19,8 @@
     - sampledata::Bool
     - fmt::String
     - cloudwatch_log::Bool
+    - batch_id::String
+    - run_id::String
 """
 Base.@kwdef mutable struct ViewObject <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = ""
@@ -24,18 +28,22 @@ Base.@kwdef mutable struct ViewObject <: OpenAPI.APIModel
     sampledata::Union{Nothing, Bool} = false
     fmt::Union{Nothing, String} = "csv"
     cloudwatch_log::Union{Nothing, Bool} = false
+    batch_id::Union{Nothing, String} = ""
+    run_id::Union{Nothing, String} = ""
 
-    function ViewObject(object_type, share_id, sampledata, fmt, cloudwatch_log, )
+    function ViewObject(object_type, share_id, sampledata, fmt, cloudwatch_log, batch_id, run_id, )
         OpenAPI.validate_property(ViewObject, Symbol("object_type"), object_type)
         OpenAPI.validate_property(ViewObject, Symbol("share_id"), share_id)
         OpenAPI.validate_property(ViewObject, Symbol("sampledata"), sampledata)
         OpenAPI.validate_property(ViewObject, Symbol("fmt"), fmt)
         OpenAPI.validate_property(ViewObject, Symbol("cloudwatch_log"), cloudwatch_log)
-        return new(object_type, share_id, sampledata, fmt, cloudwatch_log, )
+        OpenAPI.validate_property(ViewObject, Symbol("batch_id"), batch_id)
+        OpenAPI.validate_property(ViewObject, Symbol("run_id"), run_id)
+        return new(object_type, share_id, sampledata, fmt, cloudwatch_log, batch_id, run_id, )
     end
 end # type ViewObject
 
-const _property_types_ViewObject = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("share_id")=>"String", Symbol("sampledata")=>"Bool", Symbol("fmt")=>"String", Symbol("cloudwatch_log")=>"Bool", )
+const _property_types_ViewObject = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("share_id")=>"String", Symbol("sampledata")=>"Bool", Symbol("fmt")=>"String", Symbol("cloudwatch_log")=>"Bool", Symbol("batch_id")=>"String", Symbol("run_id")=>"String", )
 OpenAPI.property_type(::Type{ ViewObject }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_ViewObject[name]))}
 
 function check_required(o::ViewObject)
@@ -48,6 +56,12 @@ function OpenAPI.validate_property(::Type{ ViewObject }, name::Symbol, val)
         OpenAPI.validate_param(name, "ViewObject", :enum, val, ["model", "experiment", "share", "event", "callback", "relation", ""])
     end
 
+
+
+
+    if name === Symbol("fmt")
+        OpenAPI.validate_param(name, "ViewObject", :enum, val, ["csv", "grist"])
+    end
 
 
 

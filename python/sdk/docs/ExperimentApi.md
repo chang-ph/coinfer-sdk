@@ -4,16 +4,16 @@ All URIs are relative to *https://api.coinfer.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**experiment_notebook_colab**](ExperimentApi.md#experiment_notebook_colab) | **GET** /mcmc/experiment/{expid}/notebook/colab | Get a link of the notebook in Colab
+[**experiment_notebook_colab**](ExperimentApi.md#experiment_notebook_colab) | **GET** /mcmc/experiment/{expid}/notebook/colab | [DEPRECATED] Get a link of the notebook in Colab
 [**view_xp_cloudwatch_logs**](ExperimentApi.md#view_xp_cloudwatch_logs) | **GET** /mcmc/object/{objid}/cloudwatch-logs | [DEPRECATED] Get Cloudwatch logs
 
 
 # **experiment_notebook_colab**
 > SuccRspAny experiment_notebook_colab(expid)
 
-Get a link of the notebook in Colab
+[DEPRECATED] Get a link of the notebook in Colab
 
-Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
+DEPRECATED: Use /sys/colab instead.  Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
 
 ### Example
 
@@ -48,7 +48,7 @@ with openapi_client.ApiClient(configuration) as api_client:
     expid = 'expid_example' # str | 
 
     try:
-        # Get a link of the notebook in Colab
+        # [DEPRECATED] Get a link of the notebook in Colab
         api_response = api_instance.experiment_notebook_colab(expid)
         print("The response of ExperimentApi->experiment_notebook_colab:\n")
         pprint(api_response)
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 [DEPRECATED] Get Cloudwatch logs
 
-As logs may contain sensetive info, this api can only be used by admin
+DEPRECATED: Use `/api/object/[experiment_id]?object_type=experiment.cloudwatch` instead.  As logs may contain sensetive info, this api can only be used by admin
 
 ### Example
 

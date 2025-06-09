@@ -14,10 +14,10 @@ import dirToJson from './unified_model_format'
 
 // const token:string = "b2cd04be-ea1b-488a-9733-43bce6725d0d"
 // const endpoint:string = "https://dev.coinfer.ai"
-const local_utoken: string = "cdb72cfb-367c-4e57-ab2f-bf7c17257c50"
+const local_utoken: string = "e903a567-8ffe-4b87-8ae0-364e67d66ca8"
 const gh_utoken: string = ""
 const gh_utoken2: string = ""
-const endpoint: string = "http://localhost:8000"
+const endpoint: string = "https://dev.coinfer.ai"
 
 const sharesCreated = new Map()
 const socketNotification = new WebSocket(endpoint.replace('http', 'ws') + '/api/notification');

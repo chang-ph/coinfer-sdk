@@ -5,12 +5,14 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**value** | This is a oneOf model. The value must be exactly one of the following types: CreateNSampleStatReq, UpdateEventReq, UpdateExperiment, UpdateModel |  | [optional] 
+**value** | This is a oneOf model. The value must be exactly one of the following types: CreateNSampleStatReq, CreateProtobufMessageReq, CreateTextMessageReq, UpdateEventReq, UpdateExperiment, UpdateModel |  | [optional] 
 
 The discriminator field is `object_type` with the following mapping:
  - `event`: `UpdateEventReq`
  - `experiment`: `UpdateExperiment`
  - `experiment.nsample_stat`: `CreateNSampleStatReq`
+ - `experiment.protobuf_message`: `CreateProtobufMessageReq`
+ - `experiment.text_message`: `CreateTextMessageReq`
  - `model`: `UpdateModel`
 
 

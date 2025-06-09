@@ -1,19 +1,34 @@
 import json
 import logging
+from typing import TypedDict, Required
 
 from .logged_requests import requests
-
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
+class RunInfoData(TypedDict, total=False):
+    experiment_id: Required[str]
+    batch_id: Required[str]
+    run_id: Required[str]
+    log_group: str
+    log_stream: str
+    run_on: str
+    status: str
+
+
 class Client:
     session = requests
+    run_info: RunInfoData
 
     def __init__(self, endpoints, coinfer_auth_token):
         self.endpoints = endpoints.rstrip("/")
         self.coinfer_auth_token = coinfer_auth_token
-        self.run_info = {}
+        self.run_info = {
+            "experiment_id": "",
+            "batch_id": "",
+            "run_id": "",
+        }
 
     def endpoint(self, name, path):
         sep = "/"
@@ -34,8 +49,10 @@ class Client:
         return rdata["data"]
 
     def sendmsg(self, group, data, mtype="object_broadcast"):
-        url = self.endpoint("mcmc", "/message")
+        url = self.endpoint("api", "/object/" + self.run_info["experiment_id"])
         data = {
+                "payload": {
+                    "object_type": "experiment.text_message",
             "datas": [
                 {
                     "group": group,
@@ -43,8 +60,8 @@ class Client:
                     "message": data,
                 }
             ]
-        }
-        data.update(self.run_info)
+        }}
+        data["payload"].update(self.run_info)
         res = self.session.post(url, data=json.dumps(data), headers=self.headers_with_auth())
         return self.response_data(res)
 
@@ -89,11 +106,11 @@ class Client:
         print(res.json())
         return self.response_data(res)["script"]
 
-    def set_experiment_run_info(self, run_info: dict):
+    def set_experiment_run_info(self, run_info: RunInfoData):
         self.run_info = run_info
 
     def get_experiment_run_info(self, experiment_id: str, batch_id: str, run_id: str):
-        url = self.endpoint("mcmc", f"/experiment/{experiment_id}/runinfo/{batch_id}/{run_id}")
+        url = self.endpoint("api", f"/object/{experiment_id}?object_type=experiment&batch_id={batch_id}&run_id={run_id}")
         headers = self.headers_with_auth()
         res = self.session.get(url, headers=headers)
         return self.response_data(res)

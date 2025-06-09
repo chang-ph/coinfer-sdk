@@ -1,7 +1,7 @@
 name = "Coinfer"
 uuid = "2494631e-bceb-4539-8821-5341beee86e1"
 authors = ["withdata.io"]
-version = "0.0.1"
+version = "0.0.2"
 
 [deps]
 AbstractMCMC = "80f14c24-f653-4e6a-9b94-39d6b0f70001"

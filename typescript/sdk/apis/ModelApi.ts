@@ -19,9 +19,9 @@ import { SuccRspListRepositoryRsp } from '../models/SuccRspListRepositoryRsp';
 export class ModelApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * Get configuration about how to run a model.
+     * [DEPRECATED] Get configuration about how to run a model.
      *
-     * This API is used to get the configuration about how to run a model. Currently the configuration includes the URL of the proxy lambda function which is used to run the model.
+     * DEPRECATED: Use `/sys/config` instead.  This API is used to get the configuration about how to run a model. Currently the configuration includes the URL of the proxy lambda function which is used to run the model.
      */
     public async getConfig(_options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
@@ -50,9 +50,9 @@ export class ModelApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * List branches.
+     * [DEPRECATED] List branches.
      *
-     * List branches of the specified repository.
+     * DEPRECATED: Use `/sys/github/branch` instead.  List branches of the specified repository.
      * @param repo 
      */
     public async listBranch(repo: string, _options?: Configuration): Promise<RequestContext> {
@@ -93,9 +93,9 @@ export class ModelApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * List repositories and gists.
+     * [DEPRECATED] List repositories and gists.
      *
-     * List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can\'t uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
+     * DEPRECATED: Use `/sys/github/repository` instead.  List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can\'t uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
      * @param pageNo page number
      * @param pageSize page size
      */

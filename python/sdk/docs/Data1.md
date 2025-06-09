@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **short_id** | **str** |  | 
 **name** | **str** |  | 
 **model_id** | **str** |  | [optional] [default to '']
-**status** | **str** |  | [optional] [default to '']
+**status** | **str** |  | 
 **meta** | **object** |  | [optional] 
 **n_chains** | **int** |  | [optional] [default to 0]
 **n_variables** | **int** |  | [optional] [default to 0]

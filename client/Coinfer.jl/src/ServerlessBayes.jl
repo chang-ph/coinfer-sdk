@@ -435,15 +435,17 @@ end
 function send_msg_func(datas)
     body = JSON.json(
         Dict(
-            "datas" => datas,
-            "batch_id" => ENV["BATCH_ID"],
-            "run_id" => ENV["RUN_ID"],
-            "experiment_id" => ENV["EXPERIMENT_ID"],
+            "payload" => Dict(
+                "object_type" => "experiment.text_message",
+                "datas" => datas,
+                "batch_id" => ENV["BATCH_ID"],
+                "run_id" => ENV["RUN_ID"],
+            ),
         ),
     )
     headers = headers_with_token("Content-Type" => "application/json")
 
-    url = endpoint("mcmc", "/message")
+    url = endpoint("api", "/object/" * ENV["EXPERIMENT_ID"])
     resp = @mock HTTP.post(url, headers, body)
     return response_data(resp)
 end
@@ -454,7 +456,7 @@ function send_msg(collector::MsgCollector, message; group="", type="object_broad
         return nothing
     end
     isempty(group) && (group = "object_$(get_experiment_id())")
-    data = Dict("group" => group, "type" => type, "message" => message)
+    data = Dict{Symbol,Any}(:group => group, :type => type, :message => message)
     return collect_msg!(collector, data)
 end
 
@@ -509,17 +511,19 @@ end
 function inner_sample(args...; kwargs...)
     println(default_endpoints)
     initialize_batch_id()
-    url = endpoint("mcmc", "/protobuf_message")
+    url = endpoint("api", "/object/" * ENV["EXPERIMENT_ID"])
     exp_id = get_experiment_id()
 
     function send_sample_func(log_data)
         headers = headers_with_token("Content-Type" => "application/json")
         body = JSON.json(
             Dict(
-                "logs" => log_data,
-                "batch_id" => ENV["BATCH_ID"],
-                "run_id" => ENV["RUN_ID"],
-                "experiment_id" => ENV["EXPERIMENT_ID"],
+                "payload" => Dict(
+                    "object_type" => "experiment.protobuf_message",
+                    "logs" => log_data,
+                    "batch_id" => ENV["BATCH_ID"],
+                    "run_id" => ENV["RUN_ID"],
+                ),
             ),
         )
         resp = @mock HTTP.post(
@@ -564,6 +568,7 @@ mutable struct CoinferLogger <: TensorBoardLogger.AbstractLogger
     step_increment::Int
     min_level::LogLevel
     collector::MsgCollector
+    iteration::Int
 end
 
 function CoinferLogger(
@@ -584,6 +589,7 @@ function CoinferLogger(
         step_increment,
         min_level,
         collector,
+        0,
     )
 end
 
@@ -608,6 +614,10 @@ function CoreLogging.handle_message(
     if !isempty(kwargs)
         data = Vector{Pair{String,Any}}()
         for (key, val) in pairs(kwargs)
+            if key == :iteration
+                log[:iteration] = val
+                continue
+            end
             # special key describing step increment
             if key == :log_step_increment
                 i_step = val

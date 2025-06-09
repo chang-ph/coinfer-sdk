@@ -1,3 +1,4 @@
+import sys
 import json
 import subprocess
 import argparse
@@ -36,6 +37,7 @@ def main():
     print(args.http_endpoint)
     rsp = httpx.get(f"{args.http_endpoint}/openapi.json")
     openapi_json = rsp.json()
+    # remove common prefix to make the method name shorter
     for path, path_item in openapi_json['paths'].items():
         for method, operation in path_item.items():
             operation["operationId"] = (
@@ -45,7 +47,24 @@ def main():
                 .removeprefix("coinfer_apis_mcmc_api_")
                 .removeprefix("coinfer_apis_notification_api_")
                 .removeprefix("coinfer_apis_unified_api_")
+                .removeprefix("coinfer_apis_system_api_")
+                .removeprefix("coinfer_apis_no_auth_api_")
             )
+
+    # check if all the operationIds are fixed
+    check_uniq = set()
+    for path, path_item in openapi_json['paths'].items():
+        for method, operation in path_item.items():
+            opid = operation["operationId"]
+            if opid.startswith("coinfer_apis_"):
+                print(f'{opid} has invalid naming', file=sys.stderr)
+                sys.exit(1)
+
+            if opid in check_uniq:
+                print(f'{opid} conflict', file=sys.stderr)
+                sys.exit(2)
+            check_uniq.add(opid)
+
     with open("openapi.json", "wt") as fout:
         json.dump(openapi_json, fout)
 

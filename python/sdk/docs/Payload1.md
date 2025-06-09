@@ -21,6 +21,8 @@ Name | Type | Description | Notes
 **params** | **str** |  | [optional] [default to '']
 **engine** | **str** |  | [optional] [default to 'lambda']
 **lock_key** | **str** |  | [optional] [default to '']
+**datas** | **List[Dict[str, object]]** | list of messages | 
+**logs** | [**List[DataTyping]**](DataTyping.md) |  | 
 
 ## Example
 

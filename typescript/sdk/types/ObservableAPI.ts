@@ -16,18 +16,22 @@ import { CreateExperimentShareRsp } from '../models/CreateExperimentShareRsp';
 import { CreateModel } from '../models/CreateModel';
 import { CreateNSampleStatReq } from '../models/CreateNSampleStatReq';
 import { CreateObjectReq } from '../models/CreateObjectReq';
+import { CreateProtobufMessageReq } from '../models/CreateProtobufMessageReq';
 import { CreateRelationReq } from '../models/CreateRelationReq';
 import { CreateRelationRsp } from '../models/CreateRelationRsp';
+import { CreateTextMessageReq } from '../models/CreateTextMessageReq';
 import { CreateToken } from '../models/CreateToken';
 import { Data } from '../models/Data';
 import { Data1 } from '../models/Data1';
 import { Data2 } from '../models/Data2';
+import { DataTyping } from '../models/DataTyping';
 import { DeleteObject } from '../models/DeleteObject';
 import { ErrRsp } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
 import { ExperimentRsp } from '../models/ExperimentRsp';
 import { ExperimentSampleDataRsp } from '../models/ExperimentSampleDataRsp';
 import { GetConfigRsp } from '../models/GetConfigRsp';
+import { GetExperimentRunInfoRsp } from '../models/GetExperimentRunInfoRsp';
 import { GetExperimentShareRsp } from '../models/GetExperimentShareRsp';
 import { GetNotificationReq } from '../models/GetNotificationReq';
 import { GetTokensRsp } from '../models/GetTokensRsp';
@@ -54,7 +58,7 @@ import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
-import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
+import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAny } from '../models/SuccRspAny';
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
@@ -442,8 +446,8 @@ export class ObservableExperimentApi {
     }
 
     /**
-     * Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
-     * Get a link of the notebook in Colab
+     * DEPRECATED: Use /sys/colab instead.  Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
+     * [DEPRECATED] Get a link of the notebook in Colab
      * @param expid
      */
     public experimentNotebookColabWithHttpInfo(expid: string, _options?: Configuration): Observable<HttpInfo<SuccRspAny>> {
@@ -466,8 +470,8 @@ export class ObservableExperimentApi {
     }
 
     /**
-     * Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
-     * Get a link of the notebook in Colab
+     * DEPRECATED: Use /sys/colab instead.  Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
+     * [DEPRECATED] Get a link of the notebook in Colab
      * @param expid
      */
     public experimentNotebookColab(expid: string, _options?: Configuration): Observable<SuccRspAny> {
@@ -475,7 +479,7 @@ export class ObservableExperimentApi {
     }
 
     /**
-     * As logs may contain sensetive info, this api can only be used by admin
+     * DEPRECATED: Use `/api/object/[experiment_id]?object_type=experiment.cloudwatch` instead.  As logs may contain sensetive info, this api can only be used by admin
      * [DEPRECATED] Get Cloudwatch logs
      * @param objid
      */
@@ -499,7 +503,7 @@ export class ObservableExperimentApi {
     }
 
     /**
-     * As logs may contain sensetive info, this api can only be used by admin
+     * DEPRECATED: Use `/api/object/[experiment_id]?object_type=experiment.cloudwatch` instead.  As logs may contain sensetive info, this api can only be used by admin
      * [DEPRECATED] Get Cloudwatch logs
      * @param objid
      */
@@ -526,8 +530,8 @@ export class ObservableModelApi {
     }
 
     /**
-     * This API is used to get the configuration about how to run a model. Currently the configuration includes the URL of the proxy lambda function which is used to run the model.
-     * Get configuration about how to run a model.
+     * DEPRECATED: Use `/sys/config` instead.  This API is used to get the configuration about how to run a model. Currently the configuration includes the URL of the proxy lambda function which is used to run the model.
+     * [DEPRECATED] Get configuration about how to run a model.
      */
     public getConfigWithHttpInfo(_options?: Configuration): Observable<HttpInfo<SuccRspGetConfigRsp>> {
         const requestContextPromise = this.requestFactory.getConfig(_options);
@@ -549,16 +553,16 @@ export class ObservableModelApi {
     }
 
     /**
-     * This API is used to get the configuration about how to run a model. Currently the configuration includes the URL of the proxy lambda function which is used to run the model.
-     * Get configuration about how to run a model.
+     * DEPRECATED: Use `/sys/config` instead.  This API is used to get the configuration about how to run a model. Currently the configuration includes the URL of the proxy lambda function which is used to run the model.
+     * [DEPRECATED] Get configuration about how to run a model.
      */
     public getConfig(_options?: Configuration): Observable<SuccRspGetConfigRsp> {
         return this.getConfigWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<SuccRspGetConfigRsp>) => apiResponse.data));
     }
 
     /**
-     * List branches of the specified repository.
-     * List branches.
+     * DEPRECATED: Use `/sys/github/branch` instead.  List branches of the specified repository.
+     * [DEPRECATED] List branches.
      * @param repo
      */
     public listBranchWithHttpInfo(repo: string, _options?: Configuration): Observable<HttpInfo<SuccRspListBranchRsp>> {
@@ -581,8 +585,8 @@ export class ObservableModelApi {
     }
 
     /**
-     * List branches of the specified repository.
-     * List branches.
+     * DEPRECATED: Use `/sys/github/branch` instead.  List branches of the specified repository.
+     * [DEPRECATED] List branches.
      * @param repo
      */
     public listBranch(repo: string, _options?: Configuration): Observable<SuccRspListBranchRsp> {
@@ -590,8 +594,8 @@ export class ObservableModelApi {
     }
 
     /**
-     * List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can\'t uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
-     * List repositories and gists.
+     * DEPRECATED: Use `/sys/github/repository` instead.  List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can\'t uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
+     * [DEPRECATED] List repositories and gists.
      * @param [pageNo] page number
      * @param [pageSize] page size
      */
@@ -615,8 +619,8 @@ export class ObservableModelApi {
     }
 
     /**
-     * List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can\'t uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
-     * List repositories and gists.
+     * DEPRECATED: Use `/sys/github/repository` instead.  List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can\'t uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
+     * [DEPRECATED] List repositories and gists.
      * @param [pageNo] page number
      * @param [pageSize] page size
      */
@@ -893,9 +897,11 @@ export class ObservableObjectApi {
      * @param [sampledata]
      * @param [fmt]
      * @param [cloudwatchLog]
+     * @param [batchId]
+     * @param [runId]
      */
-    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: string, cloudwatchLog?: boolean, _options?: Configuration): Observable<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
-        const requestContextPromise = this.requestFactory.viewObject(objid, objectType, shareId, sampledata, fmt, cloudwatchLog, _options);
+    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist', cloudwatchLog?: boolean, batchId?: string, runId?: string, _options?: Configuration): Observable<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
+        const requestContextPromise = this.requestFactory.viewObject(objid, objectType, shareId, sampledata, fmt, cloudwatchLog, batchId, runId, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -922,9 +928,11 @@ export class ObservableObjectApi {
      * @param [sampledata]
      * @param [fmt]
      * @param [cloudwatchLog]
+     * @param [batchId]
+     * @param [runId]
      */
-    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: string, cloudwatchLog?: boolean, _options?: Configuration): Observable<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
-        return this.viewObjectWithHttpInfo(objid, objectType, shareId, sampledata, fmt, cloudwatchLog, _options).pipe(map((apiResponse: HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>) => apiResponse.data));
+    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist', cloudwatchLog?: boolean, batchId?: string, runId?: string, _options?: Configuration): Observable<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
+        return this.viewObjectWithHttpInfo(objid, objectType, shareId, sampledata, fmt, cloudwatchLog, batchId, runId, _options).pipe(map((apiResponse: HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>) => apiResponse.data));
     }
 
 }
@@ -949,8 +957,8 @@ export class ObservableShareApi {
      * Get sharing information of an experiment.
      * @param shareId
      */
-    public coinferApisNoAuthApiGetExperimentShareWithHttpInfo(shareId: string, _options?: Configuration): Observable<HttpInfo<SuccRspGetExperimentShareRsp>> {
-        const requestContextPromise = this.requestFactory.coinferApisNoAuthApiGetExperimentShare(shareId, _options);
+    public getExperimentShareWithHttpInfo(shareId: string, _options?: Configuration): Observable<HttpInfo<SuccRspGetExperimentShareRsp>> {
+        const requestContextPromise = this.requestFactory.getExperimentShare(shareId, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -964,7 +972,7 @@ export class ObservableShareApi {
                 for (const middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.coinferApisNoAuthApiGetExperimentShareWithHttpInfo(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.getExperimentShareWithHttpInfo(rsp)));
             }));
     }
 
@@ -972,8 +980,156 @@ export class ObservableShareApi {
      * Get sharing information of an experiment.
      * @param shareId
      */
-    public coinferApisNoAuthApiGetExperimentShare(shareId: string, _options?: Configuration): Observable<SuccRspGetExperimentShareRsp> {
-        return this.coinferApisNoAuthApiGetExperimentShareWithHttpInfo(shareId, _options).pipe(map((apiResponse: HttpInfo<SuccRspGetExperimentShareRsp>) => apiResponse.data));
+    public getExperimentShare(shareId: string, _options?: Configuration): Observable<SuccRspGetExperimentShareRsp> {
+        return this.getExperimentShareWithHttpInfo(shareId, _options).pipe(map((apiResponse: HttpInfo<SuccRspGetExperimentShareRsp>) => apiResponse.data));
+    }
+
+}
+
+import { SystemApiRequestFactory, SystemApiResponseProcessor} from "../apis/SystemApi";
+export class ObservableSystemApi {
+    private requestFactory: SystemApiRequestFactory;
+    private responseProcessor: SystemApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: SystemApiRequestFactory,
+        responseProcessor?: SystemApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new SystemApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new SystemApiResponseProcessor();
+    }
+
+    /**
+     * List branches of the specified repository.
+     * List branches.
+     * @param repo
+     */
+    public branchWithHttpInfo(repo: string, _options?: Configuration): Observable<HttpInfo<SuccRspListBranchRsp>> {
+        const requestContextPromise = this.requestFactory.branch(repo, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.branchWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * List branches of the specified repository.
+     * List branches.
+     * @param repo
+     */
+    public branch(repo: string, _options?: Configuration): Observable<SuccRspListBranchRsp> {
+        return this.branchWithHttpInfo(repo, _options).pipe(map((apiResponse: HttpInfo<SuccRspListBranchRsp>) => apiResponse.data));
+    }
+
+    /**
+     * Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
+     * Get a link of the notebook in Colab
+     */
+    public colabWithHttpInfo(_options?: Configuration): Observable<HttpInfo<SuccRspAny>> {
+        const requestContextPromise = this.requestFactory.colab(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.colabWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
+     * Get a link of the notebook in Colab
+     */
+    public colab(_options?: Configuration): Observable<SuccRspAny> {
+        return this.colabWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<SuccRspAny>) => apiResponse.data));
+    }
+
+    /**
+     * This API is used to get the configuration about how to run a model. Currently the configuration includes the URL of the proxy lambda function which is used to run the model.
+     * Get configuration about how to run a model.
+     */
+    public configWithHttpInfo(_options?: Configuration): Observable<HttpInfo<SuccRspGetConfigRsp>> {
+        const requestContextPromise = this.requestFactory.config(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.configWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * This API is used to get the configuration about how to run a model. Currently the configuration includes the URL of the proxy lambda function which is used to run the model.
+     * Get configuration about how to run a model.
+     */
+    public config(_options?: Configuration): Observable<SuccRspGetConfigRsp> {
+        return this.configWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<SuccRspGetConfigRsp>) => apiResponse.data));
+    }
+
+    /**
+     * List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can\'t uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
+     * List repositories and gists.
+     * @param [pageNo] page number
+     * @param [pageSize] page size
+     */
+    public repositoryWithHttpInfo(pageNo?: number, pageSize?: number, _options?: Configuration): Observable<HttpInfo<SuccRspListRepositoryRsp>> {
+        const requestContextPromise = this.requestFactory.repository(pageNo, pageSize, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.repositoryWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can\'t uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
+     * List repositories and gists.
+     * @param [pageNo] page number
+     * @param [pageSize] page size
+     */
+    public repository(pageNo?: number, pageSize?: number, _options?: Configuration): Observable<SuccRspListRepositoryRsp> {
+        return this.repositoryWithHttpInfo(pageNo, pageSize, _options).pipe(map((apiResponse: HttpInfo<SuccRspListRepositoryRsp>) => apiResponse.data));
     }
 
 }

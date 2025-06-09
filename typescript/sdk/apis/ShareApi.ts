@@ -21,12 +21,12 @@ export class ShareApiRequestFactory extends BaseAPIRequestFactory {
      *
      * @param shareId 
      */
-    public async coinferApisNoAuthApiGetExperimentShare(shareId: string, _options?: Configuration): Promise<RequestContext> {
+    public async getExperimentShare(shareId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'shareId' is not null or undefined
         if (shareId === null || shareId === undefined) {
-            throw new RequiredError("ShareApi", "coinferApisNoAuthApiGetExperimentShare", "shareId");
+            throw new RequiredError("ShareApi", "getExperimentShare", "shareId");
         }
 
 
@@ -56,10 +56,10 @@ export class ShareApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to coinferApisNoAuthApiGetExperimentShare
+     * @params response Response returned by the server for a request to getExperimentShare
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async coinferApisNoAuthApiGetExperimentShareWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspGetExperimentShareRsp >> {
+     public async getExperimentShareWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspGetExperimentShareRsp >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: SuccRspGetExperimentShareRsp = ObjectSerializer.deserialize(

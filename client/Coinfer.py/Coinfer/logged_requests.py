@@ -14,6 +14,7 @@ class CheckResponseSubject(Flag):
     STATUS_CODE = auto()
     JSON = auto()
     STATUS = auto()
+    ALL = TIMEOUT | STATUS_CODE | JSON | STATUS
 
 
 def check_response(

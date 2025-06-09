@@ -4,17 +4,17 @@ All URIs are relative to *https://api.coinfer.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_config**](ModelApi.md#get_config) | **GET** /turing/config | Get configuration about how to run a model.
-[**list_branch**](ModelApi.md#list_branch) | **GET** /turing/github/branch | List branches.
-[**list_repository**](ModelApi.md#list_repository) | **GET** /turing/github/repository | List repositories and gists.
+[**get_config**](ModelApi.md#get_config) | **GET** /turing/config | [DEPRECATED] Get configuration about how to run a model.
+[**list_branch**](ModelApi.md#list_branch) | **GET** /turing/github/branch | [DEPRECATED] List branches.
+[**list_repository**](ModelApi.md#list_repository) | **GET** /turing/github/repository | [DEPRECATED] List repositories and gists.
 
 
 # **get_config**
 > SuccRspGetConfigRsp get_config()
 
-Get configuration about how to run a model.
+[DEPRECATED] Get configuration about how to run a model.
 
-This API is used to get the configuration about how to run a model. Currently the configuration includes the URL of the proxy lambda function which is used to run the model.
+DEPRECATED: Use `/sys/config` instead.  This API is used to get the configuration about how to run a model. Currently the configuration includes the URL of the proxy lambda function which is used to run the model.
 
 ### Example
 
@@ -48,7 +48,7 @@ with openapi_client.ApiClient(configuration) as api_client:
     api_instance = openapi_client.ModelApi(api_client)
 
     try:
-        # Get configuration about how to run a model.
+        # [DEPRECATED] Get configuration about how to run a model.
         api_response = api_instance.get_config()
         print("The response of ModelApi->get_config:\n")
         pprint(api_response)
@@ -87,9 +87,9 @@ This endpoint does not need any parameter.
 # **list_branch**
 > SuccRspListBranchRsp list_branch(repo)
 
-List branches.
+[DEPRECATED] List branches.
 
-List branches of the specified repository.
+DEPRECATED: Use `/sys/github/branch` instead.  List branches of the specified repository.
 
 ### Example
 
@@ -124,7 +124,7 @@ with openapi_client.ApiClient(configuration) as api_client:
     repo = 'repo_example' # str | 
 
     try:
-        # List branches.
+        # [DEPRECATED] List branches.
         api_response = api_instance.list_branch(repo)
         print("The response of ModelApi->list_branch:\n")
         pprint(api_response)
@@ -166,9 +166,9 @@ Name | Type | Description  | Notes
 # **list_repository**
 > SuccRspListRepositoryRsp list_repository(page_no=page_no, page_size=page_size)
 
-List repositories and gists.
+[DEPRECATED] List repositories and gists.
 
-List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can't uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
+DEPRECATED: Use `/sys/github/repository` instead.  List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can't uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
 
 ### Example
 
@@ -204,7 +204,7 @@ with openapi_client.ApiClient(configuration) as api_client:
     page_size = 100 # int | page size (optional) (default to 100)
 
     try:
-        # List repositories and gists.
+        # [DEPRECATED] List repositories and gists.
         api_response = api_instance.list_repository(page_no=page_no, page_size=page_size)
         print("The response of ModelApi->list_repository:\n")
         pprint(api_response)

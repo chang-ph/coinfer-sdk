@@ -4,7 +4,7 @@ All URIs are relative to *https://api.coinfer.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**experiment_notebook_colab**](ExperimentApi.md#experiment_notebook_colab) | **GET** /mcmc/experiment/{expid}/notebook/colab | Get a link of the notebook in Colab
+[**experiment_notebook_colab**](ExperimentApi.md#experiment_notebook_colab) | **GET** /mcmc/experiment/{expid}/notebook/colab | [DEPRECATED] Get a link of the notebook in Colab
 [**view_xp_cloudwatch_logs**](ExperimentApi.md#view_xp_cloudwatch_logs) | **GET** /mcmc/object/{objid}/cloudwatch-logs | [DEPRECATED] Get Cloudwatch logs
 
 
@@ -12,9 +12,9 @@ Method | HTTP request | Description
 > experiment_notebook_colab(_api::ExperimentApi, expid::String; _mediaType=nothing) -> SuccRspAny, OpenAPI.Clients.ApiResponse <br/>
 > experiment_notebook_colab(_api::ExperimentApi, response_stream::Channel, expid::String; _mediaType=nothing) -> Channel{ SuccRspAny }, OpenAPI.Clients.ApiResponse
 
-Get a link of the notebook in Colab
+[DEPRECATED] Get a link of the notebook in Colab
 
-Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
+DEPRECATED: Use /sys/colab instead.  Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
 
 ### Required Parameters
 
@@ -44,7 +44,7 @@ Name | Type | Description  | Notes
 
 [DEPRECATED] Get Cloudwatch logs
 
-As logs may contain sensetive info, this api can only be used by admin
+DEPRECATED: Use `/api/object/[experiment_id]?object_type=experiment.cloudwatch` instead.  As logs may contain sensetive info, this api can only be used by admin
 
 ### Required Parameters
 

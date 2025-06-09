@@ -18,9 +18,9 @@ import { SuccRspViewCloudwatchLogsRsp } from '../models/SuccRspViewCloudwatchLog
 export class ExperimentApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * Get a link of the notebook in Colab
+     * [DEPRECATED] Get a link of the notebook in Colab
      *
-     * Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
+     * DEPRECATED: Use /sys/colab instead.  Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
      * @param expid 
      */
     public async experimentNotebookColab(expid: string, _options?: Configuration): Promise<RequestContext> {
@@ -59,7 +59,7 @@ export class ExperimentApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * [DEPRECATED] Get Cloudwatch logs
      *
-     * As logs may contain sensetive info, this api can only be used by admin
+     * DEPRECATED: Use `/api/object/[experiment_id]?object_type=experiment.cloudwatch` instead.  As logs may contain sensetive info, this api can only be used by admin
      * @param objid 
      */
     public async viewXpCloudwatchLogs(objid: string, _options?: Configuration): Promise<RequestContext> {

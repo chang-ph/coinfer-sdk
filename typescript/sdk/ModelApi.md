@@ -4,15 +4,15 @@ All URIs are relative to *https://api.coinfer.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getConfig**](ModelApi.md#getConfig) | **GET** /turing/config | Get configuration about how to run a model.
-[**listBranch**](ModelApi.md#listBranch) | **GET** /turing/github/branch | List branches.
-[**listRepository**](ModelApi.md#listRepository) | **GET** /turing/github/repository | List repositories and gists.
+[**getConfig**](ModelApi.md#getConfig) | **GET** /turing/config | [DEPRECATED] Get configuration about how to run a model.
+[**listBranch**](ModelApi.md#listBranch) | **GET** /turing/github/branch | [DEPRECATED] List branches.
+[**listRepository**](ModelApi.md#listRepository) | **GET** /turing/github/repository | [DEPRECATED] List repositories and gists.
 
 
 # **getConfig**
 > SuccRspGetConfigRsp getConfig()
 
-This API is used to get the configuration about how to run a model. Currently the configuration includes the URL of the proxy lambda function which is used to run the model.
+DEPRECATED: Use `/sys/config` instead.  This API is used to get the configuration about how to run a model. Currently the configuration includes the URL of the proxy lambda function which is used to run the model.
 
 ### Example
 
@@ -59,7 +59,7 @@ This endpoint does not need any parameter.
 # **listBranch**
 > SuccRspListBranchRsp listBranch()
 
-List branches of the specified repository.
+DEPRECATED: Use `/sys/github/branch` instead.  List branches of the specified repository.
 
 ### Example
 
@@ -113,7 +113,7 @@ Name | Type | Description  | Notes
 # **listRepository**
 > SuccRspListRepositoryRsp listRepository()
 
-List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can\'t uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
+DEPRECATED: Use `/sys/github/repository` instead.  List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can\'t uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
 
 ### Example
 

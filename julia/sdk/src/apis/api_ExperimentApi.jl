@@ -23,9 +23,9 @@ function _oacinternal_experiment_notebook_colab(_api::ExperimentApi, expid::Stri
     return _ctx
 end
 
-@doc raw"""Get a link of the notebook in Colab
+@doc raw"""[DEPRECATED] Get a link of the notebook in Colab
 
-Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
+DEPRECATED: Use /sys/colab instead.  Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
 
 Params:
 - expid::String (required)
@@ -57,7 +57,7 @@ end
 
 @doc raw"""[DEPRECATED] Get Cloudwatch logs
 
-As logs may contain sensetive info, this api can only be used by admin
+DEPRECATED: Use `/api/object/[experiment_id]?object_type=experiment.cloudwatch` instead.  As logs may contain sensetive info, this api can only be used by admin
 
 Params:
 - objid::String (required)

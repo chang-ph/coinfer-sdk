@@ -269,7 +269,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **viewObject**
-> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType viewObject()
+> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType viewObject()
 
 View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view model data GET /api/object/X1234567  # view experiment data GET /api/object/S1234566  # view share data ```
 
@@ -296,6 +296,10 @@ const request: ObjectApiViewObjectRequest = {
   fmt: "csv",
   
   cloudwatchLog: false,
+  
+  batchId: "",
+  
+  runId: "",
 };
 
 const data = await apiInstance.viewObject(request);
@@ -311,13 +315,15 @@ Name | Type | Description  | Notes
  **objectType** | [**&#39;model&#39; | &#39;experiment&#39; | &#39;share&#39; | &#39;event&#39; | &#39;callback&#39; | &#39;relation&#39; | &#39;&#39;**]**Array<&#39;model&#39; &#124; &#39;experiment&#39; &#124; &#39;share&#39; &#124; &#39;event&#39; &#124; &#39;callback&#39; &#124; &#39;relation&#39; &#124; &#39;&#39;>** |  | (optional) defaults to ''
  **shareId** | [**string**] |                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot | (optional) defaults to ''
  **sampledata** | [**boolean**] |  | (optional) defaults to false
- **fmt** | [**string**] |  | (optional) defaults to 'csv'
+ **fmt** | [**&#39;csv&#39; | &#39;grist&#39;**]**Array<&#39;csv&#39; &#124; &#39;grist&#39;>** |  | (optional) defaults to 'csv'
  **cloudwatchLog** | [**boolean**] |  | (optional) defaults to false
+ **batchId** | [**string**] |  | (optional) defaults to ''
+ **runId** | [**string**] |  | (optional) defaults to ''
 
 
 ### Return type
 
-**SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType**
+**SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType**
 
 ### Authorization
 

@@ -4,11 +4,11 @@ All URIs are relative to *https://api.coinfer.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**coinferApisNoAuthApiGetExperimentShare**](ShareApi.md#coinferApisNoAuthApiGetExperimentShare) | **GET** /api/object/share/{share_id} | Get sharing information of an experiment.
+[**getExperimentShare**](ShareApi.md#getExperimentShare) | **GET** /api/object/share/{share_id} | Get sharing information of an experiment.
 
 
-# **coinferApisNoAuthApiGetExperimentShare**
-> SuccRspGetExperimentShareRsp coinferApisNoAuthApiGetExperimentShare()
+# **getExperimentShare**
+> SuccRspGetExperimentShareRsp getExperimentShare()
 
 
 ### Example
@@ -16,17 +16,17 @@ Method | HTTP request | Description
 
 ```typescript
 import { createConfiguration, ShareApi } from 'coinfer-ts';
-import type { ShareApiCoinferApisNoAuthApiGetExperimentShareRequest } from 'coinfer-ts';
+import type { ShareApiGetExperimentShareRequest } from 'coinfer-ts';
 
 const configuration = createConfiguration();
 const apiInstance = new ShareApi(configuration);
 
-const request: ShareApiCoinferApisNoAuthApiGetExperimentShareRequest = {
+const request: ShareApiGetExperimentShareRequest = {
   
   shareId: "share_id_example",
 };
 
-const data = await apiInstance.coinferApisNoAuthApiGetExperimentShare(request);
+const data = await apiInstance.getExperimentShare(request);
 console.log('API called successfully. Returned data:', data);
 ```
 

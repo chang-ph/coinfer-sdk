@@ -4,14 +4,14 @@ All URIs are relative to *https://api.coinfer.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**experimentNotebookColab**](ExperimentApi.md#experimentNotebookColab) | **GET** /mcmc/experiment/{expid}/notebook/colab | Get a link of the notebook in Colab
+[**experimentNotebookColab**](ExperimentApi.md#experimentNotebookColab) | **GET** /mcmc/experiment/{expid}/notebook/colab | [DEPRECATED] Get a link of the notebook in Colab
 [**viewXpCloudwatchLogs**](ExperimentApi.md#viewXpCloudwatchLogs) | **GET** /mcmc/object/{objid}/cloudwatch-logs | [DEPRECATED] Get Cloudwatch logs
 
 
 # **experimentNotebookColab**
 > SuccRspAny experimentNotebookColab()
 
-Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
+DEPRECATED: Use /sys/colab instead.  Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
 
 ### Example
 
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 # **viewXpCloudwatchLogs**
 > SuccRspViewCloudwatchLogsRsp viewXpCloudwatchLogs()
 
-As logs may contain sensetive info, this api can only be used by admin
+DEPRECATED: Use `/api/object/[experiment_id]?object_type=experiment.cloudwatch` instead.  As logs may contain sensetive info, this api can only be used by admin
 
 ### Example
 

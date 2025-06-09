@@ -352,7 +352,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **view_object**
-> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType view_object(objid, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, cloudwatch_log=cloudwatch_log)
+> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType view_object(objid, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id)
 
 View object.
 
@@ -365,7 +365,7 @@ View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view mo
 
 ```python
 import openapi_client
-from openapi_client.models.succ_rsp_annotated_union_experiment_rsp_view_models_rsp_view_experiment_share_rsp_experiment_sample_data_rsp_experiment_cloudwatch_log_rsp_field_info_annotation_none_type_required_true_discriminator_object_type import SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType
+from openapi_client.models.succ_rsp_annotated_union_experiment_rsp_view_models_rsp_view_experiment_share_rsp_experiment_sample_data_rsp_experiment_cloudwatch_log_rsp_get_experiment_run_info_rsp_field_info_annotation_none_type_required_true_discriminator_object_type import SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType
 from openapi_client.rest import ApiException
 from pprint import pprint
 
@@ -399,12 +399,14 @@ with openapi_client.ApiClient(configuration) as api_client:
     object_type =  # str |  (optional) (default to )
     share_id = '' # str |                  Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot (optional) (default to '')
     sampledata = False # bool |  (optional) (default to False)
-    fmt = 'csv' # str |  (optional) (default to 'csv')
+    fmt = csv # str |  (optional) (default to csv)
     cloudwatch_log = False # bool |  (optional) (default to False)
+    batch_id = '' # str |  (optional) (default to '')
+    run_id = '' # str |  (optional) (default to '')
 
     try:
         # View object.
-        api_response = api_instance.view_object(objid, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, cloudwatch_log=cloudwatch_log)
+        api_response = api_instance.view_object(objid, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id)
         print("The response of ObjectApi->view_object:\n")
         pprint(api_response)
     except Exception as e:
@@ -422,12 +424,14 @@ Name | Type | Description  | Notes
  **object_type** | **str**|  | [optional] [default to ]
  **share_id** | **str**|                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot | [optional] [default to &#39;&#39;]
  **sampledata** | **bool**|  | [optional] [default to False]
- **fmt** | **str**|  | [optional] [default to &#39;csv&#39;]
+ **fmt** | **str**|  | [optional] [default to csv]
  **cloudwatch_log** | **bool**|  | [optional] [default to False]
+ **batch_id** | **str**|  | [optional] [default to &#39;&#39;]
+ **run_id** | **str**|  | [optional] [default to &#39;&#39;]
 
 ### Return type
 
-[**SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType**](SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType.md)
+[**SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType**](SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType.md)
 
 ### Authorization
 

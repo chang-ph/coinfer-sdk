@@ -10,6 +10,8 @@ Name | Type | Description | Notes
 **sampledata** | **bool** |  | [optional] [default to False]
 **fmt** | **str** |  | [optional] [default to 'csv']
 **cloudwatch_log** | **bool** |  | [optional] [default to False]
+**batch_id** | **str** |  | [optional] [default to '']
+**run_id** | **str** |  | [optional] [default to '']
 
 ## Example
 
