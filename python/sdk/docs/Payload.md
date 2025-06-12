@@ -18,9 +18,10 @@ Name | Type | Description | Notes
 **single_instance** | **bool** | Only allow one instance of this callback to run at a time. | [optional] [default to True]
 **lang** | **str** |  | 
 **entrance_file** | **str** |  | [optional] [default to '']
-**model_id** | **str** |  | 
+**model_id** | **str** |  | [optional] [default to '']
 **xp_meta** | **object** |  | [optional] 
 **meta** | **object** |  | [optional] 
+**data_files** | **List[str]** | File data in base64 format | [optional] 
 **objid** | **str** |  | 
 **password** | **str** |  | [optional] [default to '']
 **target_user** | **str** |  | [optional] [default to '']

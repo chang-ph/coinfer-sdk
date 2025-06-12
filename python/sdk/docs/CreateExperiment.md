@@ -6,10 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **object_type** | **str** |  | 
-**model_id** | **str** |  | 
+**model_id** | **str** |  | [optional] [default to '']
 **xp_meta** | **object** |  | [optional] 
 **meta** | **object** |  | [optional] 
 **name** | **str** |  | [optional] [default to '']
+**data_files** | **List[str]** | File data in base64 format | [optional] 
 
 ## Example
 

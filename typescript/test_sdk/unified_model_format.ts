@@ -1,13 +1,15 @@
 import fs from 'fs/promises';
 import path from 'path';
+import * as coinfer_sdk from '../sdk/'
 
+type DirEntry = coinfer_sdk.ModelTreeNode
 
-interface DirEntry {
-  name: string;
-  type: 'folder' | 'file';
-  children?: DirEntry[];
-  content?: string;
-}
+// interface DirEntry {
+//   name: string;
+//   type: 'folder' | 'file';
+//   children?: DirEntry[];
+//   content?: string;
+// }
 
 async function dirToJson(dirPath: string): Promise<DirEntry[]> {
   const children: DirEntry[] = [];
@@ -27,7 +29,7 @@ async function dirToJson(dirPath: string): Promise<DirEntry[]> {
 
         children.push({
           name: entry,
-          type: 'file',
+          type: coinfer_sdk.ModelTreeNodeTypeEnum.File,
           content,
         });
       }

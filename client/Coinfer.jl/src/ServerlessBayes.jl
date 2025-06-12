@@ -428,7 +428,7 @@ end
 
 function get_proxy_lambda_endpoint(endpoint::String)
     headers = headers_with_token("Content-Type" => "application/json")
-    rsp = HTTP.get("$(endpoint)/turing/config"; headers=headers)
+    rsp = HTTP.get("$(endpoint)/sys/config"; headers=headers)
     return JSON.parse(String(rsp.body))["data"]["run_model_url"]
 end
 
@@ -481,7 +481,7 @@ end
 
 function notify_after_sample(exp_id)
     headers = headers_with_token("Content-Type" => "application/json")
-    url = endpoint("turing", "/config")
+    url = endpoint("sys", "/config")
     rsp = HTTP.get(url; headers=headers)
     url = JSON.parse(String(rsp.body))["data"]["run_model_url"]
     resp = @mock HTTP.post(
