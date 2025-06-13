@@ -10,6 +10,7 @@ import {SecurityAuthentication} from '../auth/auth';
 
 import { CreateObjectReq } from '../models/CreateObjectReq';
 import { ErrRsp } from '../models/ErrRsp';
+import { Payload } from '../models/Payload';
 import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
@@ -121,35 +122,15 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
      * List objects.
      *
      * ### List Objects  By default, the API returns only objects created by the current user, excluding sharing information for performance optimization.  When `shared_with_me` is enabled, the API returns objects owned by other users but shared with the current user, including their sharing details.  Enabling `shared_by_me` will include sharing information for objects that the current user has shared with others.  Setting `with_share_info` to true combines both scenarios: it returns objects shared by the current user as well as objects shared with the current user, complete with their respective sharing information. This effectively merges the functionality of both `shared_by_me` and `shared_with_me`.  ### Example  List models: ``` GET /api/object?object_type=model GET /api/object?object_type=model&shared_by_me=true GET /api/object?object_type=model&shared_with_me=true GET /api/object?object_type=model&with_share_info=true ```  List experiments: ``` GET /api/object?object_type=experiment GET /api/object?object_type=experiment&shared_by_me=true GET /api/object?object_type=experiment&shared_with_me=true GET /api/object?object_type=experiment&with_share_info=true ```
-     * @param objectType 
-     * @param pageNo page number
-     * @param pageSize page size
-     * @param withShareInfo Whether to return the related share info
-     * @param sharedByMe Filter objects shared by the current user
-     * @param sharedWithMe Filter objects shared with the current user
-     * @param modelIds 
-     * @param status 
-     * @param runOn 
-     * @param hasModel 
-     * @param kind Filter by kind
+     * @param payload 
      */
-    public async listObject(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', kind?: string, _options?: Configuration): Promise<RequestContext> {
+    public async listObject(payload: Payload, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'objectType' is not null or undefined
-        if (objectType === null || objectType === undefined) {
-            throw new RequiredError("ObjectApi", "listObject", "objectType");
+        // verify required parameter 'payload' is not null or undefined
+        if (payload === null || payload === undefined) {
+            throw new RequiredError("ObjectApi", "listObject", "payload");
         }
-
-
-
-
-
-
-
-
-
-
 
 
         // Path Params
@@ -160,61 +141,8 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
 
         // Query Params
-        if (pageNo !== undefined) {
-            requestContext.setQueryParam("page_no", ObjectSerializer.serialize(pageNo, "number", ""));
-        }
-
-        // Query Params
-        if (pageSize !== undefined) {
-            requestContext.setQueryParam("page_size", ObjectSerializer.serialize(pageSize, "number", ""));
-        }
-
-        // Query Params
-        if (objectType !== undefined) {
-            requestContext.setQueryParam("object_type", ObjectSerializer.serialize(objectType, "'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | ''", ""));
-        }
-
-        // Query Params
-        if (withShareInfo !== undefined) {
-            requestContext.setQueryParam("with_share_info", ObjectSerializer.serialize(withShareInfo, "boolean", ""));
-        }
-
-        // Query Params
-        if (sharedByMe !== undefined) {
-            requestContext.setQueryParam("shared_by_me", ObjectSerializer.serialize(sharedByMe, "boolean", ""));
-        }
-
-        // Query Params
-        if (sharedWithMe !== undefined) {
-            requestContext.setQueryParam("shared_with_me", ObjectSerializer.serialize(sharedWithMe, "boolean", ""));
-        }
-
-        // Query Params
-        if (modelIds !== undefined) {
-            const serializedParams = ObjectSerializer.serialize(modelIds, "Array<string>", "");
-            for (const serializedParam of serializedParams) {
-                requestContext.appendQueryParam("model_ids", serializedParam);
-            }
-        }
-
-        // Query Params
-        if (status !== undefined) {
-            requestContext.setQueryParam("status", ObjectSerializer.serialize(status, "'NEW' | 'RUN' | 'FIN' | 'ERR' | ''", ""));
-        }
-
-        // Query Params
-        if (runOn !== undefined) {
-            requestContext.setQueryParam("run_on", ObjectSerializer.serialize(runOn, "'Lambda' | 'Fargate' | 'Local' | ''", ""));
-        }
-
-        // Query Params
-        if (hasModel !== undefined) {
-            requestContext.setQueryParam("has_model", ObjectSerializer.serialize(hasModel, "'true' | 'false' | ''", ""));
-        }
-
-        // Query Params
-        if (kind !== undefined) {
-            const serializedParams = ObjectSerializer.serialize(kind, "string", "");
+        if (payload !== undefined) {
+            const serializedParams = ObjectSerializer.serialize(payload, "Payload", "");
             for (const key of Object.keys(serializedParams)) {
                 requestContext.setQueryParam(key, serializedParams[key]);
             }

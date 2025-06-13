@@ -72,8 +72,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **list_object**
-> list_object(_api::ObjectApi, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, kind=nothing, _mediaType=nothing) -> SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp, OpenAPI.Clients.ApiResponse <br/>
-> list_object(_api::ObjectApi, response_stream::Channel, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, kind=nothing, _mediaType=nothing) -> Channel{ SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp }, OpenAPI.Clients.ApiResponse
+> list_object(_api::ObjectApi, payload::Payload; _mediaType=nothing) -> SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp, OpenAPI.Clients.ApiResponse <br/>
+> list_object(_api::ObjectApi, response_stream::Channel, payload::Payload; _mediaType=nothing) -> Channel{ SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp }, OpenAPI.Clients.ApiResponse
 
 List objects.
 
@@ -84,22 +84,7 @@ List objects.
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_api** | **ObjectApi** | API context | 
-**object_type** | **String** |  |
-
-### Optional Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **page_no** | **Int64** | page number | [default to 1]
- **page_size** | **Int64** | page size | [default to 100]
- **with_share_info** | **Bool** | Whether to return the related share info | [default to false]
- **shared_by_me** | **Bool** | Filter objects shared by the current user | [default to false]
- **shared_with_me** | **Bool** | Filter objects shared with the current user | [default to false]
- **model_ids** | [**Vector{String}**](String.md) |  | [default to nothing]
- **status** | **String** |  | [default to &quot;&quot;]
- **run_on** | **String** |  | [default to &quot;&quot;]
- **has_model** | **String** |  | [default to &quot;&quot;]
- **kind** | [**String**](.md) | Filter by kind | [default to nothing]
+**payload** | [**Payload**](.md) |  |
 
 ### Return type
 

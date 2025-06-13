@@ -171,7 +171,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_object**
-> SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp list_object(object_type, page_no=page_no, page_size=page_size, with_share_info=with_share_info, shared_by_me=shared_by_me, shared_with_me=shared_with_me, model_ids=model_ids, status=status, run_on=run_on, has_model=has_model, kind=kind)
+> SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp list_object(payload)
 
 List objects.
 
@@ -207,21 +207,11 @@ configuration = openapi_client.Configuration(
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.ObjectApi(api_client)
-    object_type = 'object_type_example' # str | 
-    page_no = 1 # int | page number (optional) (default to 1)
-    page_size = 100 # int | page size (optional) (default to 100)
-    with_share_info = False # bool | Whether to return the related share info (optional) (default to False)
-    shared_by_me = False # bool | Filter objects shared by the current user (optional) (default to False)
-    shared_with_me = False # bool | Filter objects shared with the current user (optional) (default to False)
-    model_ids = ['model_ids_example'] # List[str] |  (optional)
-    status =  # str |  (optional) (default to )
-    run_on =  # str |  (optional) (default to )
-    has_model =  # str |  (optional) (default to )
-    kind = 'kind_example' # str | Filter by kind (optional)
+    payload = openapi_client.Payload() # Payload | 
 
     try:
         # List objects.
-        api_response = api_instance.list_object(object_type, page_no=page_no, page_size=page_size, with_share_info=with_share_info, shared_by_me=shared_by_me, shared_with_me=shared_with_me, model_ids=model_ids, status=status, run_on=run_on, has_model=has_model, kind=kind)
+        api_response = api_instance.list_object(payload)
         print("The response of ObjectApi->list_object:\n")
         pprint(api_response)
     except Exception as e:
@@ -235,17 +225,7 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **object_type** | **str**|  | 
- **page_no** | **int**| page number | [optional] [default to 1]
- **page_size** | **int**| page size | [optional] [default to 100]
- **with_share_info** | **bool**| Whether to return the related share info | [optional] [default to False]
- **shared_by_me** | **bool**| Filter objects shared by the current user | [optional] [default to False]
- **shared_with_me** | **bool**| Filter objects shared with the current user | [optional] [default to False]
- **model_ids** | [**List[str]**](str.md)|  | [optional] 
- **status** | **str**|  | [optional] [default to ]
- **run_on** | **str**|  | [optional] [default to ]
- **has_model** | **str**|  | [optional] [default to ]
- **kind** | [**str**](.md)| Filter by kind | [optional] 
+ **payload** | [**Payload**](.md)|  | 
 
 ### Return type
 

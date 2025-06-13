@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**payload** | [***Payload1**](Payload1.md) |  | [default to nothing]
+**payload** | [***Payload2**](Payload2.md) |  | [default to nothing]
 
 
 [[Back to Model list]](../README.md#models) [[Back to API list]](../README.md#api-endpoints) [[Back to README]](../README.md)

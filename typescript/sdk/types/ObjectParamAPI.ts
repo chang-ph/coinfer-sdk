@@ -36,11 +36,16 @@ import { GetNotificationReq } from '../models/GetNotificationReq';
 import { GetTokensRsp } from '../models/GetTokensRsp';
 import { GistRsp } from '../models/GistRsp';
 import { ListBranchRsp } from '../models/ListBranchRsp';
+import { ListEvent } from '../models/ListEvent';
+import { ListExperiment } from '../models/ListExperiment';
 import { ListExperimentRsp } from '../models/ListExperimentRsp';
 import { ListGitHubRepository } from '../models/ListGitHubRepository';
+import { ListModel } from '../models/ListModel';
 import { ListModelsRspItem } from '../models/ListModelsRspItem';
 import { ListObjectTmp } from '../models/ListObjectTmp';
+import { ListRelation } from '../models/ListRelation';
 import { ListRepositoryRsp } from '../models/ListRepositoryRsp';
+import { ListShare } from '../models/ListShare';
 import { ListingRspDataNotificationDict } from '../models/ListingRspDataNotificationDict';
 import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
 import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspObjectsInner } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspObjectsInner';
@@ -55,6 +60,7 @@ import { ModifyToken } from '../models/ModifyToken';
 import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
+import { Payload2 } from '../models/Payload2';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
@@ -621,81 +627,10 @@ export interface ObjectApiListObjectRequest {
     /**
      * 
      * Defaults to: undefined
-     * @type &#39;model&#39; | &#39;experiment&#39; | &#39;share&#39; | &#39;event&#39; | &#39;callback&#39; | &#39;relation&#39; | &#39;&#39;
+     * @type Payload
      * @memberof ObjectApilistObject
      */
-    objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | ''
-    /**
-     * page number
-     * Defaults to: 1
-     * @type number
-     * @memberof ObjectApilistObject
-     */
-    pageNo?: number
-    /**
-     * page size
-     * Maximum: 1000
-     * Defaults to: 100
-     * @type number
-     * @memberof ObjectApilistObject
-     */
-    pageSize?: number
-    /**
-     * Whether to return the related share info
-     * Defaults to: false
-     * @type boolean
-     * @memberof ObjectApilistObject
-     */
-    withShareInfo?: boolean
-    /**
-     * Filter objects shared by the current user
-     * Defaults to: false
-     * @type boolean
-     * @memberof ObjectApilistObject
-     */
-    sharedByMe?: boolean
-    /**
-     * Filter objects shared with the current user
-     * Defaults to: false
-     * @type boolean
-     * @memberof ObjectApilistObject
-     */
-    sharedWithMe?: boolean
-    /**
-     * 
-     * Defaults to: undefined
-     * @type Array&lt;string&gt;
-     * @memberof ObjectApilistObject
-     */
-    modelIds?: Array<string>
-    /**
-     * 
-     * Defaults to: &#39;&#39;
-     * @type &#39;NEW&#39; | &#39;RUN&#39; | &#39;FIN&#39; | &#39;ERR&#39; | &#39;&#39;
-     * @memberof ObjectApilistObject
-     */
-    status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | ''
-    /**
-     * 
-     * Defaults to: &#39;&#39;
-     * @type &#39;Lambda&#39; | &#39;Fargate&#39; | &#39;Local&#39; | &#39;&#39;
-     * @memberof ObjectApilistObject
-     */
-    runOn?: 'Lambda' | 'Fargate' | 'Local' | ''
-    /**
-     * 
-     * Defaults to: &#39;&#39;
-     * @type &#39;true&#39; | &#39;false&#39; | &#39;&#39;
-     * @memberof ObjectApilistObject
-     */
-    hasModel?: 'true' | 'false' | ''
-    /**
-     * Filter by kind
-     * Defaults to: undefined
-     * @type string
-     * @memberof ObjectApilistObject
-     */
-    kind?: string
+    payload: Payload
 }
 
 export interface ObjectApiUpdateObjectRequest {
@@ -822,7 +757,7 @@ export class ObjectObjectApi {
      * @param param the request object
      */
     public listObjectWithHttpInfo(param: ObjectApiListObjectRequest, options?: Configuration): Promise<HttpInfo<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp>> {
-        return this.api.listObjectWithHttpInfo(param.objectType, param.pageNo, param.pageSize, param.withShareInfo, param.sharedByMe, param.sharedWithMe, param.modelIds, param.status, param.runOn, param.hasModel, param.kind,  options).toPromise();
+        return this.api.listObjectWithHttpInfo(param.payload,  options).toPromise();
     }
 
     /**
@@ -831,7 +766,7 @@ export class ObjectObjectApi {
      * @param param the request object
      */
     public listObject(param: ObjectApiListObjectRequest, options?: Configuration): Promise<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp> {
-        return this.api.listObject(param.objectType, param.pageNo, param.pageSize, param.withShareInfo, param.sharedByMe, param.sharedWithMe, param.modelIds, param.status, param.runOn, param.hasModel, param.kind,  options).toPromise();
+        return this.api.listObject(param.payload,  options).toPromise();
     }
 
     /**

@@ -140,29 +140,7 @@ const apiInstance = new ObjectApi(configuration);
 
 const request: ObjectApiListObjectRequest = {
   
-  objectType: "model",
-    // page number (optional)
-  pageNo: 1,
-    // page size (optional)
-  pageSize: 100,
-    // Whether to return the related share info (optional)
-  withShareInfo: false,
-    // Filter objects shared by the current user (optional)
-  sharedByMe: false,
-    // Filter objects shared with the current user (optional)
-  sharedWithMe: false,
-  
-  modelIds: [
-    "model_ids_example",
-  ],
-  
-  status: "",
-  
-  runOn: "",
-  
-  hasModel: "",
-    // Filter by kind (optional)
-  kind: null,
+  payload: null,
 };
 
 const data = await apiInstance.listObject(request);
@@ -174,17 +152,7 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **objectType** | [**&#39;model&#39; | &#39;experiment&#39; | &#39;share&#39; | &#39;event&#39; | &#39;callback&#39; | &#39;relation&#39; | &#39;&#39;**]**Array<&#39;model&#39; &#124; &#39;experiment&#39; &#124; &#39;share&#39; &#124; &#39;event&#39; &#124; &#39;callback&#39; &#124; &#39;relation&#39; &#124; &#39;&#39;>** |  | defaults to undefined
- **pageNo** | [**number**] | page number | (optional) defaults to 1
- **pageSize** | [**number**] | page size | (optional) defaults to 100
- **withShareInfo** | [**boolean**] | Whether to return the related share info | (optional) defaults to false
- **sharedByMe** | [**boolean**] | Filter objects shared by the current user | (optional) defaults to false
- **sharedWithMe** | [**boolean**] | Filter objects shared with the current user | (optional) defaults to false
- **modelIds** | **Array&lt;string&gt;** |  | (optional) defaults to undefined
- **status** | [**&#39;NEW&#39; | &#39;RUN&#39; | &#39;FIN&#39; | &#39;ERR&#39; | &#39;&#39;**]**Array<&#39;NEW&#39; &#124; &#39;RUN&#39; &#124; &#39;FIN&#39; &#124; &#39;ERR&#39; &#124; &#39;&#39;>** |  | (optional) defaults to ''
- **runOn** | [**&#39;Lambda&#39; | &#39;Fargate&#39; | &#39;Local&#39; | &#39;&#39;**]**Array<&#39;Lambda&#39; &#124; &#39;Fargate&#39; &#124; &#39;Local&#39; &#124; &#39;&#39;>** |  | (optional) defaults to ''
- **hasModel** | [**&#39;true&#39; | &#39;false&#39; | &#39;&#39;**]**Array<&#39;true&#39; &#124; &#39;false&#39; &#124; &#39;&#39;>** |  | (optional) defaults to ''
- **kind** | **Array<&#39;model&#39; &#124; &#39;script&#39;>** | Filter by kind | (optional) defaults to undefined
+ **payload** | **Payload** |  | defaults to undefined
 
 
 ### Return type

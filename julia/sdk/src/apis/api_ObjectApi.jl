@@ -79,21 +79,9 @@ const _returntypes_list_object_ObjectApi = Dict{Regex,Type}(
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
-function _oacinternal_list_object(_api::ObjectApi, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, kind=nothing, _mediaType=nothing)
-    OpenAPI.validate_param("page_size", "list_object", :maximum, page_size, 1000, false)
-
+function _oacinternal_list_object(_api::ObjectApi, payload::Payload; _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_list_object_ObjectApi, "/api/object", ["GlobalAuth", ])
-    OpenAPI.Clients.set_param(_ctx.query, "page_no", page_no; style="form", is_explode=true)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "page_size", page_size; style="form", is_explode=true)  # type Int64
-    OpenAPI.Clients.set_param(_ctx.query, "object_type", object_type; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "with_share_info", with_share_info; style="form", is_explode=true)  # type Bool
-    OpenAPI.Clients.set_param(_ctx.query, "shared_by_me", shared_by_me; style="form", is_explode=true)  # type Bool
-    OpenAPI.Clients.set_param(_ctx.query, "shared_with_me", shared_with_me; style="form", is_explode=true)  # type Bool
-    OpenAPI.Clients.set_param(_ctx.query, "model_ids", model_ids; style="form", is_explode=true)  # type Vector{String}
-    OpenAPI.Clients.set_param(_ctx.query, "status", status; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "run_on", run_on; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "has_model", has_model; style="form", is_explode=true)  # type String
-    OpenAPI.Clients.set_param(_ctx.query, "kind", kind; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "payload", payload; style="form", is_explode=true)  # type Payload
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -104,27 +92,17 @@ end
 ### List Objects  By default, the API returns only objects created by the current user, excluding sharing information for performance optimization.  When `shared_with_me` is enabled, the API returns objects owned by other users but shared with the current user, including their sharing details.  Enabling `shared_by_me` will include sharing information for objects that the current user has shared with others.  Setting `with_share_info` to true combines both scenarios: it returns objects shared by the current user as well as objects shared with the current user, complete with their respective sharing information. This effectively merges the functionality of both `shared_by_me` and `shared_with_me`.  ### Example  List models: ``` GET /api/object?object_type=model GET /api/object?object_type=model&shared_by_me=true GET /api/object?object_type=model&shared_with_me=true GET /api/object?object_type=model&with_share_info=true ```  List experiments: ``` GET /api/object?object_type=experiment GET /api/object?object_type=experiment&shared_by_me=true GET /api/object?object_type=experiment&shared_with_me=true GET /api/object?object_type=experiment&with_share_info=true ```
 
 Params:
-- object_type::String (required)
-- page_no::Int64
-- page_size::Int64
-- with_share_info::Bool
-- shared_by_me::Bool
-- shared_with_me::Bool
-- model_ids::Vector{String}
-- status::String
-- run_on::String
-- has_model::String
-- kind::String
+- payload::Payload (required)
 
 Return: SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp, OpenAPI.Clients.ApiResponse
 """
-function list_object(_api::ObjectApi, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, kind=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_list_object(_api, object_type; page_no=page_no, page_size=page_size, with_share_info=with_share_info, shared_by_me=shared_by_me, shared_with_me=shared_with_me, model_ids=model_ids, status=status, run_on=run_on, has_model=has_model, kind=kind, _mediaType=_mediaType)
+function list_object(_api::ObjectApi, payload::Payload; _mediaType=nothing)
+    _ctx = _oacinternal_list_object(_api, payload; _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function list_object(_api::ObjectApi, response_stream::Channel, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, kind=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_list_object(_api, object_type; page_no=page_no, page_size=page_size, with_share_info=with_share_info, shared_by_me=shared_by_me, shared_with_me=shared_with_me, model_ids=model_ids, status=status, run_on=run_on, has_model=has_model, kind=kind, _mediaType=_mediaType)
+function list_object(_api::ObjectApi, response_stream::Channel, payload::Payload; _mediaType=nothing)
+    _ctx = _oacinternal_list_object(_api, payload; _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 

@@ -2,104 +2,31 @@
 # Do not modify this file directly. Modify the OpenAPI specification instead.
 
 
-@doc raw"""_ListObjectTmp
+@doc raw"""ListObjectTmp
 
     ListObjectTmp(;
-        page_no=1,
-        page_size=100,
-        object_type=nothing,
-        with_share_info=false,
-        shared_by_me=false,
-        shared_with_me=false,
-        model_ids=nothing,
-        status="",
-        run_on="",
-        has_model="",
-        kind=nothing,
+        payload=nothing,
     )
 
-    - page_no::Int64 : page number
-    - page_size::Int64 : page size
-    - object_type::String
-    - with_share_info::Bool : Whether to return the related share info
-    - shared_by_me::Bool : Filter objects shared by the current user
-    - shared_with_me::Bool : Filter objects shared with the current user
-    - model_ids::Vector{String}
-    - status::String
-    - run_on::String
-    - has_model::String
-    - kind::String
+    - payload::Payload
 """
 Base.@kwdef mutable struct ListObjectTmp <: OpenAPI.APIModel
-    page_no::Union{Nothing, Int64} = 1
-    page_size::Union{Nothing, Int64} = 100
-    object_type::Union{Nothing, String} = nothing
-    with_share_info::Union{Nothing, Bool} = false
-    shared_by_me::Union{Nothing, Bool} = false
-    shared_with_me::Union{Nothing, Bool} = false
-    model_ids::Union{Nothing, Vector{String}} = nothing
-    status::Union{Nothing, String} = ""
-    run_on::Union{Nothing, String} = ""
-    has_model::Union{Nothing, String} = ""
-    kind::Union{Nothing, String} = nothing
+    payload = nothing # spec type: Union{ Nothing, Payload }
 
-    function ListObjectTmp(page_no, page_size, object_type, with_share_info, shared_by_me, shared_with_me, model_ids, status, run_on, has_model, kind, )
-        OpenAPI.validate_property(ListObjectTmp, Symbol("page_no"), page_no)
-        OpenAPI.validate_property(ListObjectTmp, Symbol("page_size"), page_size)
-        OpenAPI.validate_property(ListObjectTmp, Symbol("object_type"), object_type)
-        OpenAPI.validate_property(ListObjectTmp, Symbol("with_share_info"), with_share_info)
-        OpenAPI.validate_property(ListObjectTmp, Symbol("shared_by_me"), shared_by_me)
-        OpenAPI.validate_property(ListObjectTmp, Symbol("shared_with_me"), shared_with_me)
-        OpenAPI.validate_property(ListObjectTmp, Symbol("model_ids"), model_ids)
-        OpenAPI.validate_property(ListObjectTmp, Symbol("status"), status)
-        OpenAPI.validate_property(ListObjectTmp, Symbol("run_on"), run_on)
-        OpenAPI.validate_property(ListObjectTmp, Symbol("has_model"), has_model)
-        OpenAPI.validate_property(ListObjectTmp, Symbol("kind"), kind)
-        return new(page_no, page_size, object_type, with_share_info, shared_by_me, shared_with_me, model_ids, status, run_on, has_model, kind, )
+    function ListObjectTmp(payload, )
+        OpenAPI.validate_property(ListObjectTmp, Symbol("payload"), payload)
+        return new(payload, )
     end
 end # type ListObjectTmp
 
-const _property_types_ListObjectTmp = Dict{Symbol,String}(Symbol("page_no")=>"Int64", Symbol("page_size")=>"Int64", Symbol("object_type")=>"String", Symbol("with_share_info")=>"Bool", Symbol("shared_by_me")=>"Bool", Symbol("shared_with_me")=>"Bool", Symbol("model_ids")=>"Vector{String}", Symbol("status")=>"String", Symbol("run_on")=>"String", Symbol("has_model")=>"String", Symbol("kind")=>"String", )
+const _property_types_ListObjectTmp = Dict{Symbol,String}(Symbol("payload")=>"Payload", )
 OpenAPI.property_type(::Type{ ListObjectTmp }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_ListObjectTmp[name]))}
 
 function check_required(o::ListObjectTmp)
-    o.object_type === nothing && (return false)
+    o.payload === nothing && (return false)
     true
 end
 
 function OpenAPI.validate_property(::Type{ ListObjectTmp }, name::Symbol, val)
-
-
-    if name === Symbol("page_size")
-        OpenAPI.validate_param(name, "ListObjectTmp", :maximum, val, 1000, false)
-    end
-
-    if name === Symbol("object_type")
-        OpenAPI.validate_param(name, "ListObjectTmp", :enum, val, ["model", "experiment", "share", "event", "callback", "relation", ""])
-    end
-
-
-
-
-
-
-    if name === Symbol("status")
-        OpenAPI.validate_param(name, "ListObjectTmp", :enum, val, ["NEW", "RUN", "FIN", "ERR", ""])
-    end
-
-
-    if name === Symbol("run_on")
-        OpenAPI.validate_param(name, "ListObjectTmp", :enum, val, ["Lambda", "Fargate", "Local", ""])
-    end
-
-
-    if name === Symbol("has_model")
-        OpenAPI.validate_param(name, "ListObjectTmp", :enum, val, ["true", "false", ""])
-    end
-
-
-    if name === Symbol("kind")
-        OpenAPI.validate_param(name, "ListObjectTmp", :enum, val, ["model", "script"])
-    end
 
 end

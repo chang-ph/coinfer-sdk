@@ -8,15 +8,23 @@
     Payload2(; value=nothing)
 """
 mutable struct Payload2 <: OpenAPI.OneOfAPIModel
-    value::Any # Union{ UpdateExperiment, UpdateModel }
+    value::Any # Union{ CreateNSampleStatReq, CreateProtobufMessageReq, CreateTextMessageReq, UpdateEventReq, UpdateExperiment, UpdateModel }
     Payload2() = new()
     Payload2(value) = new(value)
 end # type Payload2
 
 function OpenAPI.property_type(::Type{ Payload2 }, name::Symbol, json::Dict{String,Any})
     discriminator = json["object_type"]
-    if discriminator == "experiment"
+    if discriminator == "event"
+        return eval(Base.Meta.parse("UpdateEventReq"))
+    elseif discriminator == "experiment"
         return eval(Base.Meta.parse("UpdateExperiment"))
+    elseif discriminator == "experiment.nsample_stat"
+        return eval(Base.Meta.parse("CreateNSampleStatReq"))
+    elseif discriminator == "experiment.protobuf_message"
+        return eval(Base.Meta.parse("CreateProtobufMessageReq"))
+    elseif discriminator == "experiment.text_message"
+        return eval(Base.Meta.parse("CreateTextMessageReq"))
     elseif discriminator == "model"
         return eval(Base.Meta.parse("UpdateModel"))
     end
