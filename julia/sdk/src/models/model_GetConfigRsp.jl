@@ -6,27 +6,39 @@
 
     GetConfigRsp(;
         run_model_url=nothing,
+        max_upload_sample_size=nothing,
+        max_upload_sample_file=nothing,
     )
 
     - run_model_url::String
+    - max_upload_sample_size::Int64
+    - max_upload_sample_file::Int64
 """
 Base.@kwdef mutable struct GetConfigRsp <: OpenAPI.APIModel
     run_model_url::Union{Nothing, String} = nothing
+    max_upload_sample_size::Union{Nothing, Int64} = nothing
+    max_upload_sample_file::Union{Nothing, Int64} = nothing
 
-    function GetConfigRsp(run_model_url, )
+    function GetConfigRsp(run_model_url, max_upload_sample_size, max_upload_sample_file, )
         OpenAPI.validate_property(GetConfigRsp, Symbol("run_model_url"), run_model_url)
-        return new(run_model_url, )
+        OpenAPI.validate_property(GetConfigRsp, Symbol("max_upload_sample_size"), max_upload_sample_size)
+        OpenAPI.validate_property(GetConfigRsp, Symbol("max_upload_sample_file"), max_upload_sample_file)
+        return new(run_model_url, max_upload_sample_size, max_upload_sample_file, )
     end
 end # type GetConfigRsp
 
-const _property_types_GetConfigRsp = Dict{Symbol,String}(Symbol("run_model_url")=>"String", )
+const _property_types_GetConfigRsp = Dict{Symbol,String}(Symbol("run_model_url")=>"String", Symbol("max_upload_sample_size")=>"Int64", Symbol("max_upload_sample_file")=>"Int64", )
 OpenAPI.property_type(::Type{ GetConfigRsp }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_GetConfigRsp[name]))}
 
 function check_required(o::GetConfigRsp)
     o.run_model_url === nothing && (return false)
+    o.max_upload_sample_size === nothing && (return false)
+    o.max_upload_sample_file === nothing && (return false)
     true
 end
 
 function OpenAPI.validate_property(::Type{ GetConfigRsp }, name::Symbol, val)
+
+
 
 end

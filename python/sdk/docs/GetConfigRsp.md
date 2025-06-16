@@ -6,6 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **run_model_url** | **str** |  | 
+**max_upload_sample_size** | **int** |  | 
+**max_upload_sample_file** | **int** |  | 
 
 ## Example
 

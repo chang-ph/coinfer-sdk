@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **xp_meta** | **object** |  | [optional] 
 **meta** | **object** |  | [optional] 
 **name** | **str** |  | [optional] [default to '']
-**data_files** | **List[str]** | File data in base64 format | [optional] 
+**data_files** | **List[str]** | File data in text format | [optional] 
 
 ## Example
 

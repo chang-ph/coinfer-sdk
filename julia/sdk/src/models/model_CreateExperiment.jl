@@ -18,7 +18,7 @@
     - xp_meta::Any
     - meta::Any
     - name::String
-    - data_files::Vector{String} : File data in base64 format
+    - data_files::Vector{String} : File data in text format
 """
 Base.@kwdef mutable struct CreateExperiment <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
@@ -59,7 +59,6 @@ function OpenAPI.validate_property(::Type{ CreateExperiment }, name::Symbol, val
 
 
     if name === Symbol("data_files")
-        OpenAPI.validate_param(name, "CreateExperiment", :maxItems, val, 10)
         OpenAPI.validate_param(name, "CreateExperiment", :minItems, val, 1)
     end
 end

@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **model_id** | **str** |  | [optional] [default to '']
 **xp_meta** | **object** |  | [optional] 
 **meta** | **object** |  | [optional] 
-**data_files** | **List[str]** | File data in base64 format | [optional] 
+**data_files** | **List[str]** | File data in text format | [optional] 
 **objid** | **str** |  | 
 **password** | **str** |  | [optional] [default to '']
 **target_user** | **str** |  | [optional] [default to '']
