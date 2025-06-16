@@ -8,10 +8,10 @@
         payload=nothing,
     )
 
-    - payload::Payload2
+    - payload::Payload1
 """
 Base.@kwdef mutable struct UpdateObject <: OpenAPI.APIModel
-    payload = nothing # spec type: Union{ Nothing, Payload2 }
+    payload = nothing # spec type: Union{ Nothing, Payload1 }
 
     function UpdateObject(payload, )
         OpenAPI.validate_property(UpdateObject, Symbol("payload"), payload)
@@ -19,7 +19,7 @@ Base.@kwdef mutable struct UpdateObject <: OpenAPI.APIModel
     end
 end # type UpdateObject
 
-const _property_types_UpdateObject = Dict{Symbol,String}(Symbol("payload")=>"Payload2", )
+const _property_types_UpdateObject = Dict{Symbol,String}(Symbol("payload")=>"Payload1", )
 OpenAPI.property_type(::Type{ UpdateObject }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_UpdateObject[name]))}
 
 function check_required(o::UpdateObject)

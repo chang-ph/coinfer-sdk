@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**payload** | [**Payload2**](Payload2.md) |  | 
+**payload** | [**Payload1**](Payload1.md) |  | 
 
 ## Example
 

@@ -8,23 +8,25 @@
     Payload(; value=nothing)
 """
 mutable struct Payload <: OpenAPI.OneOfAPIModel
-    value::Any # Union{ ListEvent, ListExperiment, ListModel, ListRelation, ListShare }
+    value::Any # Union{ CreateCallbackReq, CreateEventReq, CreateExperiment, CreateExperimentShare, CreateModel, CreateRelationReq }
     Payload() = new()
     Payload(value) = new(value)
 end # type Payload
 
 function OpenAPI.property_type(::Type{ Payload }, name::Symbol, json::Dict{String,Any})
     discriminator = json["object_type"]
-    if discriminator == "event"
-        return eval(Base.Meta.parse("ListEvent"))
+    if discriminator == "callback"
+        return eval(Base.Meta.parse("CreateCallbackReq"))
+    elseif discriminator == "event"
+        return eval(Base.Meta.parse("CreateEventReq"))
     elseif discriminator == "experiment"
-        return eval(Base.Meta.parse("ListExperiment"))
+        return eval(Base.Meta.parse("CreateExperiment"))
     elseif discriminator == "model"
-        return eval(Base.Meta.parse("ListModel"))
+        return eval(Base.Meta.parse("CreateModel"))
     elseif discriminator == "relation"
-        return eval(Base.Meta.parse("ListRelation"))
+        return eval(Base.Meta.parse("CreateRelationReq"))
     elseif discriminator == "share"
-        return eval(Base.Meta.parse("ListShare"))
+        return eval(Base.Meta.parse("CreateExperimentShare"))
     end
     throw(OpenAPI.ValidationException("Invalid discriminator value: $discriminator for Payload"))
 end

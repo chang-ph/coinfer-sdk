@@ -5,7 +5,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**payload** | [**Payload**](Payload.md) |  | 
+**page_no** | **int** | page number | [optional] [default to 1]
+**page_size** | **int** | page size | [optional] [default to 100]
+**object_type** | **str** |  | 
+**with_share_info** | **bool** | Whether to return the related share info | [optional] [default to False]
+**shared_by_me** | **bool** | Filter objects shared by the current user | [optional] [default to False]
+**shared_with_me** | **bool** | Filter objects shared with the current user | [optional] [default to False]
+**model_ids** | **List[str]** |  | [optional] 
+**status** | **str** |  | [optional] [default to '']
+**run_on** | **str** |  | [optional] [default to '']
+**has_model** | **str** |  | [optional] [default to '']
+**kind** | **str** |  | [optional] 
 
 ## Example
 
