@@ -70,7 +70,6 @@ export * from '../models/SuccRspNoneType';
 export * from '../models/SuccRspUnionExperimentRspViewModelsRspNoneType';
 export * from '../models/SuccRspUserInfoRsp';
 export * from '../models/SuccRspUserLoginRsp';
-export * from '../models/SuccRspViewCloudwatchLogsRsp';
 export * from '../models/UpdateEventReq';
 export * from '../models/UpdateExperiment';
 export * from '../models/UpdateModel';
@@ -78,7 +77,6 @@ export * from '../models/UpdateObject';
 export * from '../models/UserInfoRsp';
 export * from '../models/UserLogin';
 export * from '../models/UserLoginRsp';
-export * from '../models/ViewCloudwatchLogsRsp';
 export * from '../models/ViewExperimentShareRsp';
 export * from '../models/ViewModelShareInfo';
 export * from '../models/ViewModelsRsp';
@@ -157,7 +155,6 @@ import { SuccRspNoneType, SuccRspNoneTypeStatusEnum    } from '../models/SuccRsp
 import { SuccRspUnionExperimentRspViewModelsRspNoneType, SuccRspUnionExperimentRspViewModelsRspNoneTypeStatusEnum    } from '../models/SuccRspUnionExperimentRspViewModelsRspNoneType';
 import { SuccRspUserInfoRsp, SuccRspUserInfoRspStatusEnum    } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp, SuccRspUserLoginRspStatusEnum    } from '../models/SuccRspUserLoginRsp';
-import { SuccRspViewCloudwatchLogsRsp, SuccRspViewCloudwatchLogsRspStatusEnum    } from '../models/SuccRspViewCloudwatchLogsRsp';
 import { UpdateEventReq, UpdateEventReqObjectTypeEnum   , UpdateEventReqEngineEnum    } from '../models/UpdateEventReq';
 import { UpdateExperiment, UpdateExperimentObjectTypeEnum         } from '../models/UpdateExperiment';
 import { UpdateModel     , UpdateModelObjectTypeEnum   } from '../models/UpdateModel';
@@ -165,7 +162,6 @@ import { UpdateObject } from '../models/UpdateObject';
 import { UserInfoRsp } from '../models/UserInfoRsp';
 import { UserLogin } from '../models/UserLogin';
 import { UserLoginRsp } from '../models/UserLoginRsp';
-import { ViewCloudwatchLogsRsp } from '../models/ViewCloudwatchLogsRsp';
 import { ViewExperimentShareRsp, ViewExperimentShareRspObjectTypeEnum    } from '../models/ViewExperimentShareRsp';
 import { ViewModelShareInfo } from '../models/ViewModelShareInfo';
 import { ViewModelsRsp, ViewModelsRspObjectTypeEnum         } from '../models/ViewModelsRsp';
@@ -242,7 +238,6 @@ let enumsMap: Set<string> = new Set<string>([
     "SuccRspUnionExperimentRspViewModelsRspNoneTypeStatusEnum",
     "SuccRspUserInfoRspStatusEnum",
     "SuccRspUserLoginRspStatusEnum",
-    "SuccRspViewCloudwatchLogsRspStatusEnum",
     "UpdateEventReqObjectTypeEnum",
     "UpdateEventReqEngineEnum",
     "UpdateExperimentObjectTypeEnum",
@@ -324,7 +319,6 @@ let typeMap: {[index: string]: any} = {
     "SuccRspUnionExperimentRspViewModelsRspNoneType": SuccRspUnionExperimentRspViewModelsRspNoneType,
     "SuccRspUserInfoRsp": SuccRspUserInfoRsp,
     "SuccRspUserLoginRsp": SuccRspUserLoginRsp,
-    "SuccRspViewCloudwatchLogsRsp": SuccRspViewCloudwatchLogsRsp,
     "UpdateEventReq": UpdateEventReq,
     "UpdateExperiment": UpdateExperiment,
     "UpdateModel": UpdateModel,
@@ -332,7 +326,6 @@ let typeMap: {[index: string]: any} = {
     "UserInfoRsp": UserInfoRsp,
     "UserLogin": UserLogin,
     "UserLoginRsp": UserLoginRsp,
-    "ViewCloudwatchLogsRsp": ViewCloudwatchLogsRsp,
     "ViewExperimentShareRsp": ViewExperimentShareRsp,
     "ViewModelShareInfo": ViewModelShareInfo,
     "ViewModelsRsp": ViewModelsRsp,

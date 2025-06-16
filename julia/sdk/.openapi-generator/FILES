@@ -26,7 +26,6 @@ docs/Data2.md
 docs/DataTyping.md
 docs/DeleteObject.md
 docs/ErrRsp.md
-docs/ExperimentApi.md
 docs/ExperimentCloudwatchLogRsp.md
 docs/ExperimentRsp.md
 docs/ExperimentSampleDataRsp.md
@@ -47,7 +46,6 @@ docs/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCa
 docs/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspObjectsInner.md
 docs/MarkNotificationReadReq.md
 docs/MetaModel.md
-docs/ModelApi.md
 docs/ModelContent.md
 docs/ModelMeta.md
 docs/ModelMetaInRsp.md
@@ -78,7 +76,6 @@ docs/SuccRspNoneType.md
 docs/SuccRspUnionExperimentRspViewModelsRspNoneType.md
 docs/SuccRspUserInfoRsp.md
 docs/SuccRspUserLoginRsp.md
-docs/SuccRspViewCloudwatchLogsRsp.md
 docs/SystemApi.md
 docs/UpdateEventReq.md
 docs/UpdateExperiment.md
@@ -87,7 +84,6 @@ docs/UpdateObject.md
 docs/UserInfoRsp.md
 docs/UserLogin.md
 docs/UserLoginRsp.md
-docs/ViewCloudwatchLogsRsp.md
 docs/ViewExperimentShareRsp.md
 docs/ViewModelShareInfo.md
 docs/ViewModelsRsp.md
@@ -95,8 +91,6 @@ docs/ViewObject.md
 docs/ViewObjectTmp.md
 src/APIClient.jl
 src/apis/api_AuthorizationApi.jl
-src/apis/api_ExperimentApi.jl
-src/apis/api_ModelApi.jl
 src/apis/api_NotificationApi.jl
 src/apis/api_ObjectApi.jl
 src/apis/api_ShareApi.jl
@@ -174,7 +168,6 @@ src/models/model_SuccRspNoneType.jl
 src/models/model_SuccRspUnionExperimentRspViewModelsRspNoneType.jl
 src/models/model_SuccRspUserInfoRsp.jl
 src/models/model_SuccRspUserLoginRsp.jl
-src/models/model_SuccRspViewCloudwatchLogsRsp.jl
 src/models/model_UpdateEventReq.jl
 src/models/model_UpdateExperiment.jl
 src/models/model_UpdateModel.jl
@@ -182,7 +175,6 @@ src/models/model_UpdateObject.jl
 src/models/model_UserInfoRsp.jl
 src/models/model_UserLogin.jl
 src/models/model_UserLoginRsp.jl
-src/models/model_ViewCloudwatchLogsRsp.jl
 src/models/model_ViewExperimentShareRsp.jl
 src/models/model_ViewModelShareInfo.jl
 src/models/model_ViewModelsRsp.jl

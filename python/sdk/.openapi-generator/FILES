@@ -30,7 +30,6 @@ docs/Data2.md
 docs/DataTyping.md
 docs/DeleteObject.md
 docs/ErrRsp.md
-docs/ExperimentApi.md
 docs/ExperimentCloudwatchLogRsp.md
 docs/ExperimentRsp.md
 docs/ExperimentSampleDataRsp.md
@@ -51,7 +50,6 @@ docs/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCa
 docs/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspObjectsInner.md
 docs/MarkNotificationReadReq.md
 docs/MetaModel.md
-docs/ModelApi.md
 docs/ModelContent.md
 docs/ModelMeta.md
 docs/ModelMetaInRsp.md
@@ -82,7 +80,6 @@ docs/SuccRspNoneType.md
 docs/SuccRspUnionExperimentRspViewModelsRspNoneType.md
 docs/SuccRspUserInfoRsp.md
 docs/SuccRspUserLoginRsp.md
-docs/SuccRspViewCloudwatchLogsRsp.md
 docs/SystemApi.md
 docs/UpdateEventReq.md
 docs/UpdateExperiment.md
@@ -91,7 +88,6 @@ docs/UpdateObject.md
 docs/UserInfoRsp.md
 docs/UserLogin.md
 docs/UserLoginRsp.md
-docs/ViewCloudwatchLogsRsp.md
 docs/ViewExperimentShareRsp.md
 docs/ViewModelShareInfo.md
 docs/ViewModelsRsp.md
@@ -101,8 +97,6 @@ git_push.sh
 openapi_client/__init__.py
 openapi_client/api/__init__.py
 openapi_client/api/authorization_api.py
-openapi_client/api/experiment_api.py
-openapi_client/api/model_api.py
 openapi_client/api/notification_api.py
 openapi_client/api/object_api.py
 openapi_client/api/share_api.py
@@ -184,7 +178,6 @@ openapi_client/models/succ_rsp_none_type.py
 openapi_client/models/succ_rsp_union_experiment_rsp_view_models_rsp_none_type.py
 openapi_client/models/succ_rsp_user_info_rsp.py
 openapi_client/models/succ_rsp_user_login_rsp.py
-openapi_client/models/succ_rsp_view_cloudwatch_logs_rsp.py
 openapi_client/models/update_event_req.py
 openapi_client/models/update_experiment.py
 openapi_client/models/update_model.py
@@ -192,7 +185,6 @@ openapi_client/models/update_object.py
 openapi_client/models/user_info_rsp.py
 openapi_client/models/user_login.py
 openapi_client/models/user_login_rsp.py
-openapi_client/models/view_cloudwatch_logs_rsp.py
 openapi_client/models/view_experiment_share_rsp.py
 openapi_client/models/view_model_share_info.py
 openapi_client/models/view_models_rsp.py
@@ -232,7 +224,6 @@ test/test_data2.py
 test/test_data_typing.py
 test/test_delete_object.py
 test/test_err_rsp.py
-test/test_experiment_api.py
 test/test_experiment_cloudwatch_log_rsp.py
 test/test_experiment_rsp.py
 test/test_experiment_sample_data_rsp.py
@@ -253,7 +244,6 @@ test/test_listing_rsp_data_union_list_experiment_rsp_list_models_rsp_item_create
 test/test_listing_rsp_data_union_list_experiment_rsp_list_models_rsp_item_create_event_rsp_create_callback_rsp_create_relation_rsp_objects_inner.py
 test/test_mark_notification_read_req.py
 test/test_meta_model.py
-test/test_model_api.py
 test/test_model_content.py
 test/test_model_meta.py
 test/test_model_meta_in_rsp.py
@@ -284,7 +274,6 @@ test/test_succ_rsp_none_type.py
 test/test_succ_rsp_union_experiment_rsp_view_models_rsp_none_type.py
 test/test_succ_rsp_user_info_rsp.py
 test/test_succ_rsp_user_login_rsp.py
-test/test_succ_rsp_view_cloudwatch_logs_rsp.py
 test/test_system_api.py
 test/test_update_event_req.py
 test/test_update_experiment.py
@@ -293,7 +282,6 @@ test/test_update_object.py
 test/test_user_info_rsp.py
 test/test_user_login.py
 test/test_user_login_rsp.py
-test/test_view_cloudwatch_logs_rsp.py
 test/test_view_experiment_share_rsp.py
 test/test_view_model_share_info.py
 test/test_view_models_rsp.py

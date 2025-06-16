@@ -73,7 +73,6 @@ import { SuccRspNoneType } from '../models/SuccRspNoneType';
 import { SuccRspUnionExperimentRspViewModelsRspNoneType } from '../models/SuccRspUnionExperimentRspViewModelsRspNoneType';
 import { SuccRspUserInfoRsp } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp } from '../models/SuccRspUserLoginRsp';
-import { SuccRspViewCloudwatchLogsRsp } from '../models/SuccRspViewCloudwatchLogsRsp';
 import { UpdateEventReq } from '../models/UpdateEventReq';
 import { UpdateExperiment } from '../models/UpdateExperiment';
 import { UpdateModel } from '../models/UpdateModel';
@@ -81,7 +80,6 @@ import { UpdateObject } from '../models/UpdateObject';
 import { UserInfoRsp } from '../models/UserInfoRsp';
 import { UserLogin } from '../models/UserLogin';
 import { UserLoginRsp } from '../models/UserLoginRsp';
-import { ViewCloudwatchLogsRsp } from '../models/ViewCloudwatchLogsRsp';
 import { ViewExperimentShareRsp } from '../models/ViewExperimentShareRsp';
 import { ViewModelShareInfo } from '../models/ViewModelShareInfo';
 import { ViewModelsRsp } from '../models/ViewModelsRsp';
@@ -290,144 +288,6 @@ export class PromiseAuthorizationApi {
      */
     public userLogout(_options?: Configuration): Promise<SuccRspNoneType> {
         const result = this.api.userLogout(_options);
-        return result.toPromise();
-    }
-
-
-}
-
-
-
-import { ObservableExperimentApi } from './ObservableAPI';
-
-import { ExperimentApiRequestFactory, ExperimentApiResponseProcessor} from "../apis/ExperimentApi";
-export class PromiseExperimentApi {
-    private api: ObservableExperimentApi
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: ExperimentApiRequestFactory,
-        responseProcessor?: ExperimentApiResponseProcessor
-    ) {
-        this.api = new ObservableExperimentApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * DEPRECATED: Use /sys/colab instead.  Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
-     * [DEPRECATED] Get a link of the notebook in Colab
-     * @param expid
-     */
-    public experimentNotebookColabWithHttpInfo(expid: string, _options?: Configuration): Promise<HttpInfo<SuccRspAny>> {
-        const result = this.api.experimentNotebookColabWithHttpInfo(expid, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * DEPRECATED: Use /sys/colab instead.  Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
-     * [DEPRECATED] Get a link of the notebook in Colab
-     * @param expid
-     */
-    public experimentNotebookColab(expid: string, _options?: Configuration): Promise<SuccRspAny> {
-        const result = this.api.experimentNotebookColab(expid, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * DEPRECATED: Use `/api/object/[experiment_id]?object_type=experiment.cloudwatch` instead.  As logs may contain sensetive info, this api can only be used by admin
-     * [DEPRECATED] Get Cloudwatch logs
-     * @param objid
-     */
-    public viewXpCloudwatchLogsWithHttpInfo(objid: string, _options?: Configuration): Promise<HttpInfo<SuccRspViewCloudwatchLogsRsp>> {
-        const result = this.api.viewXpCloudwatchLogsWithHttpInfo(objid, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * DEPRECATED: Use `/api/object/[experiment_id]?object_type=experiment.cloudwatch` instead.  As logs may contain sensetive info, this api can only be used by admin
-     * [DEPRECATED] Get Cloudwatch logs
-     * @param objid
-     */
-    public viewXpCloudwatchLogs(objid: string, _options?: Configuration): Promise<SuccRspViewCloudwatchLogsRsp> {
-        const result = this.api.viewXpCloudwatchLogs(objid, _options);
-        return result.toPromise();
-    }
-
-
-}
-
-
-
-import { ObservableModelApi } from './ObservableAPI';
-
-import { ModelApiRequestFactory, ModelApiResponseProcessor} from "../apis/ModelApi";
-export class PromiseModelApi {
-    private api: ObservableModelApi
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: ModelApiRequestFactory,
-        responseProcessor?: ModelApiResponseProcessor
-    ) {
-        this.api = new ObservableModelApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * DEPRECATED: Use `/sys/config` instead.  This API is used to get the configuration about how to run a model. Currently the configuration includes the URL of the proxy lambda function which is used to run the model.
-     * [DEPRECATED] Get configuration about how to run a model.
-     */
-    public getConfigWithHttpInfo(_options?: Configuration): Promise<HttpInfo<SuccRspGetConfigRsp>> {
-        const result = this.api.getConfigWithHttpInfo(_options);
-        return result.toPromise();
-    }
-
-    /**
-     * DEPRECATED: Use `/sys/config` instead.  This API is used to get the configuration about how to run a model. Currently the configuration includes the URL of the proxy lambda function which is used to run the model.
-     * [DEPRECATED] Get configuration about how to run a model.
-     */
-    public getConfig(_options?: Configuration): Promise<SuccRspGetConfigRsp> {
-        const result = this.api.getConfig(_options);
-        return result.toPromise();
-    }
-
-    /**
-     * DEPRECATED: Use `/sys/github/branch` instead.  List branches of the specified repository.
-     * [DEPRECATED] List branches.
-     * @param repo
-     */
-    public listBranchWithHttpInfo(repo: string, _options?: Configuration): Promise<HttpInfo<SuccRspListBranchRsp>> {
-        const result = this.api.listBranchWithHttpInfo(repo, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * DEPRECATED: Use `/sys/github/branch` instead.  List branches of the specified repository.
-     * [DEPRECATED] List branches.
-     * @param repo
-     */
-    public listBranch(repo: string, _options?: Configuration): Promise<SuccRspListBranchRsp> {
-        const result = this.api.listBranch(repo, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * DEPRECATED: Use `/sys/github/repository` instead.  List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can\'t uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
-     * [DEPRECATED] List repositories and gists.
-     * @param [pageNo] page number
-     * @param [pageSize] page size
-     */
-    public listRepositoryWithHttpInfo(pageNo?: number, pageSize?: number, _options?: Configuration): Promise<HttpInfo<SuccRspListRepositoryRsp>> {
-        const result = this.api.listRepositoryWithHttpInfo(pageNo, pageSize, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * DEPRECATED: Use `/sys/github/repository` instead.  List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can\'t uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
-     * [DEPRECATED] List repositories and gists.
-     * @param [pageNo] page number
-     * @param [pageSize] page size
-     */
-    public listRepository(pageNo?: number, pageSize?: number, _options?: Configuration): Promise<SuccRspListRepositoryRsp> {
-        const result = this.api.listRepository(pageNo, pageSize, _options);
         return result.toPromise();
     }
 

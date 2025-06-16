@@ -2,16 +2,12 @@
 .gitignore
 .openapi-generator-ignore
 AuthorizationApi.md
-ExperimentApi.md
-ModelApi.md
 NotificationApi.md
 ObjectApi.md
 README.md
 ShareApi.md
 SystemApi.md
 apis/AuthorizationApi.ts
-apis/ExperimentApi.ts
-apis/ModelApi.ts
 apis/NotificationApi.ts
 apis/ObjectApi.ts
 apis/ShareApi.ts
@@ -98,7 +94,6 @@ models/SuccRspNoneType.ts
 models/SuccRspUnionExperimentRspViewModelsRspNoneType.ts
 models/SuccRspUserInfoRsp.ts
 models/SuccRspUserLoginRsp.ts
-models/SuccRspViewCloudwatchLogsRsp.ts
 models/UpdateEventReq.ts
 models/UpdateExperiment.ts
 models/UpdateModel.ts
@@ -106,7 +101,6 @@ models/UpdateObject.ts
 models/UserInfoRsp.ts
 models/UserLogin.ts
 models/UserLoginRsp.ts
-models/ViewCloudwatchLogsRsp.ts
 models/ViewExperimentShareRsp.ts
 models/ViewModelShareInfo.ts
 models/ViewModelsRsp.ts
