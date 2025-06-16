@@ -24,7 +24,7 @@ using DocStringExtensions
 ### msg_collector
 interval = parse(Int, get(ENV, "COINFER_DATA_SENDING_INTERVAL", "1000"))
 const default_endpoints = get(ENV, "COINFER_SERVER_ENDPOINT", "https://api.coinfer.ai")
-println("default_endpoints", default_endpoints)
+println("default_endpoints:", default_endpoints)
 mutable struct MsgCollector
     name::String
     datas
