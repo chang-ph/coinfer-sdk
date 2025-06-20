@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **xp_meta** | **object** |  | [optional] 
 **meta** | **object** |  | [optional] 
 **name** | **str** |  | [optional] [default to '']
+**data_file_type** | **str** |  | [optional] [default to 'csv']
 **data_files** | **List[str]** | File data in text format | [optional] 
 
 ## Example

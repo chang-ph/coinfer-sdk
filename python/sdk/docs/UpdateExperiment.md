@@ -12,6 +12,10 @@ Name | Type | Description | Notes
 **version** | **str** |  | [optional] 
 **description** | **str** |  | [optional] 
 **status** | **str** |  | [optional] 
+**n_chains** | **int** |  | [optional] 
+**n_variables** | **int** |  | [optional] 
+**n_samples** | **int** |  | [optional] 
+**sample_update_time** | **datetime** |  | [optional] 
 
 ## Example
 

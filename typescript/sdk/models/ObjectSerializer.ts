@@ -91,7 +91,7 @@ import { CreateCallbackReq, CreateCallbackReqObjectTypeEnum  , CreateCallbackReq
 import { CreateCallbackRsp, CreateCallbackRspObjectTypeEnum        } from '../models/CreateCallbackRsp';
 import { CreateEventReq, CreateEventReqObjectTypeEnum    } from '../models/CreateEventReq';
 import { CreateEventRsp, CreateEventRspObjectTypeEnum      } from '../models/CreateEventRsp';
-import { CreateExperiment, CreateExperimentObjectTypeEnum        } from '../models/CreateExperiment';
+import { CreateExperiment, CreateExperimentObjectTypeEnum      , CreateExperimentDataFileTypeEnum    } from '../models/CreateExperiment';
 import { CreateExperimentShare, CreateExperimentShareObjectTypeEnum      } from '../models/CreateExperimentShare';
 import { CreateExperimentShareRsp, CreateExperimentShareRspObjectTypeEnum            } from '../models/CreateExperimentShareRsp';
 import { CreateModel, CreateModelObjectTypeEnum    , CreateModelTypeEnum            } from '../models/CreateModel';
@@ -156,7 +156,7 @@ import { SuccRspUnionExperimentRspViewModelsRspNoneType, SuccRspUnionExperimentR
 import { SuccRspUserInfoRsp, SuccRspUserInfoRspStatusEnum    } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp, SuccRspUserLoginRspStatusEnum    } from '../models/SuccRspUserLoginRsp';
 import { UpdateEventReq, UpdateEventReqObjectTypeEnum   , UpdateEventReqEngineEnum    } from '../models/UpdateEventReq';
-import { UpdateExperiment, UpdateExperimentObjectTypeEnum         } from '../models/UpdateExperiment';
+import { UpdateExperiment, UpdateExperimentObjectTypeEnum             } from '../models/UpdateExperiment';
 import { UpdateModel     , UpdateModelObjectTypeEnum   } from '../models/UpdateModel';
 import { UpdateObject } from '../models/UpdateObject';
 import { UserInfoRsp } from '../models/UserInfoRsp';
@@ -189,6 +189,7 @@ let enumsMap: Set<string> = new Set<string>([
     "CreateEventReqObjectTypeEnum",
     "CreateEventRspObjectTypeEnum",
     "CreateExperimentObjectTypeEnum",
+    "CreateExperimentDataFileTypeEnum",
     "CreateExperimentShareObjectTypeEnum",
     "CreateExperimentShareRspObjectTypeEnum",
     "CreateModelObjectTypeEnum",
@@ -219,6 +220,7 @@ let enumsMap: Set<string> = new Set<string>([
     "PayloadObjectTypeEnum",
     "PayloadTypeEnum",
     "PayloadLangEnum",
+    "PayloadDataFileTypeEnum",
     "Payload1ObjectTypeEnum",
     "Payload1EngineEnum",
     "SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectTypeStatusEnum",
