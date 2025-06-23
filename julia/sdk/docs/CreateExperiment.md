@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **xp_meta** | **Any** |  | [optional] [default to nothing]
 **meta** | **Any** |  | [optional] [default to nothing]
 **name** | **String** |  | [optional] [default to ""]
-**data_file_type** | **String** |  | [optional] [default to "csv"]
+**data_file_type** | **String** |  | [optional] [default to "turing csv"]
 **data_files** | **Vector{String}** | File data in text format | [optional] [default to nothing]
 
 
