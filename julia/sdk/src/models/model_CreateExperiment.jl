@@ -10,7 +10,7 @@
         xp_meta=nothing,
         meta=nothing,
         name="",
-        data_file_type="turing csv",
+        data_file_type=nothing,
         data_files=nothing,
     )
 
@@ -28,7 +28,7 @@ Base.@kwdef mutable struct CreateExperiment <: OpenAPI.APIModel
     xp_meta::Union{Nothing, Any} = nothing
     meta::Union{Nothing, Any} = nothing
     name::Union{Nothing, String} = ""
-    data_file_type::Union{Nothing, String} = "turing csv"
+    data_file_type::Union{Nothing, String} = nothing
     data_files::Union{Nothing, Vector{String}} = nothing
 
     function CreateExperiment(object_type, model_id, xp_meta, meta, name, data_file_type, data_files, )
