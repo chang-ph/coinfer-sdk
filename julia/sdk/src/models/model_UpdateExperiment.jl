@@ -8,22 +8,16 @@
         object_type=nothing,
         action=nothing,
         meta=nothing,
-        name=nothing,
-        version=nothing,
-        description=nothing,
         status=nothing,
-        n_chains=nothing,
-        n_variables=nothing,
-        n_samples=nothing,
+        n_chains=0,
+        n_variables=0,
+        n_samples=0,
         sample_update_time=nothing,
     )
 
     - object_type::String
     - action::String
     - meta::Dict{String, Any}
-    - name::String
-    - version::String
-    - description::String
     - status::String
     - n_chains::Int64
     - n_variables::Int64
@@ -34,32 +28,26 @@ Base.@kwdef mutable struct UpdateExperiment <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
     action::Union{Nothing, String} = nothing
     meta::Union{Nothing, Dict{String, Any}} = nothing
-    name::Union{Nothing, String} = nothing
-    version::Union{Nothing, String} = nothing
-    description::Union{Nothing, String} = nothing
     status::Union{Nothing, String} = nothing
-    n_chains::Union{Nothing, Int64} = nothing
-    n_variables::Union{Nothing, Int64} = nothing
-    n_samples::Union{Nothing, Int64} = nothing
+    n_chains::Union{Nothing, Int64} = 0
+    n_variables::Union{Nothing, Int64} = 0
+    n_samples::Union{Nothing, Int64} = 0
     sample_update_time::Union{Nothing, ZonedDateTime} = nothing
 
-    function UpdateExperiment(object_type, action, meta, name, version, description, status, n_chains, n_variables, n_samples, sample_update_time, )
+    function UpdateExperiment(object_type, action, meta, status, n_chains, n_variables, n_samples, sample_update_time, )
         OpenAPI.validate_property(UpdateExperiment, Symbol("object_type"), object_type)
         OpenAPI.validate_property(UpdateExperiment, Symbol("action"), action)
         OpenAPI.validate_property(UpdateExperiment, Symbol("meta"), meta)
-        OpenAPI.validate_property(UpdateExperiment, Symbol("name"), name)
-        OpenAPI.validate_property(UpdateExperiment, Symbol("version"), version)
-        OpenAPI.validate_property(UpdateExperiment, Symbol("description"), description)
         OpenAPI.validate_property(UpdateExperiment, Symbol("status"), status)
         OpenAPI.validate_property(UpdateExperiment, Symbol("n_chains"), n_chains)
         OpenAPI.validate_property(UpdateExperiment, Symbol("n_variables"), n_variables)
         OpenAPI.validate_property(UpdateExperiment, Symbol("n_samples"), n_samples)
         OpenAPI.validate_property(UpdateExperiment, Symbol("sample_update_time"), sample_update_time)
-        return new(object_type, action, meta, name, version, description, status, n_chains, n_variables, n_samples, sample_update_time, )
+        return new(object_type, action, meta, status, n_chains, n_variables, n_samples, sample_update_time, )
     end
 end # type UpdateExperiment
 
-const _property_types_UpdateExperiment = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("action")=>"String", Symbol("meta")=>"Dict{String, Any}", Symbol("name")=>"String", Symbol("version")=>"String", Symbol("description")=>"String", Symbol("status")=>"String", Symbol("n_chains")=>"Int64", Symbol("n_variables")=>"Int64", Symbol("n_samples")=>"Int64", Symbol("sample_update_time")=>"ZonedDateTime", )
+const _property_types_UpdateExperiment = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("action")=>"String", Symbol("meta")=>"Dict{String, Any}", Symbol("status")=>"String", Symbol("n_chains")=>"Int64", Symbol("n_variables")=>"Int64", Symbol("n_samples")=>"Int64", Symbol("sample_update_time")=>"ZonedDateTime", )
 OpenAPI.property_type(::Type{ UpdateExperiment }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_UpdateExperiment[name]))}
 
 function check_required(o::UpdateExperiment)
@@ -76,18 +64,6 @@ function OpenAPI.validate_property(::Type{ UpdateExperiment }, name::Symbol, val
 
 
 
-    if name === Symbol("name")
-        OpenAPI.validate_param(name, "UpdateExperiment", :maxLength, val, 600)
-    end
-
-    if name === Symbol("version")
-        OpenAPI.validate_param(name, "UpdateExperiment", :maxLength, val, 32)
-    end
-
-
-    if name === Symbol("status")
-        OpenAPI.validate_param(name, "UpdateExperiment", :maxLength, val, 64)
-    end
 
 
 

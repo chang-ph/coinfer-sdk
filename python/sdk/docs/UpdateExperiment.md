@@ -8,13 +8,10 @@ Name | Type | Description | Notes
 **object_type** | **str** |  | 
 **action** | **str** |  | [optional] 
 **meta** | **Dict[str, object]** |  | [optional] 
-**name** | **str** |  | [optional] 
-**version** | **str** |  | [optional] 
-**description** | **str** |  | [optional] 
 **status** | **str** |  | [optional] 
-**n_chains** | **int** |  | [optional] 
-**n_variables** | **int** |  | [optional] 
-**n_samples** | **int** |  | [optional] 
+**n_chains** | **int** |  | [optional] [default to 0]
+**n_variables** | **int** |  | [optional] [default to 0]
+**n_samples** | **int** |  | [optional] [default to 0]
 **sample_update_time** | **datetime** |  | [optional] 
 
 ## Example

@@ -156,7 +156,7 @@ import { SuccRspUnionExperimentRspViewModelsRspNoneType, SuccRspUnionExperimentR
 import { SuccRspUserInfoRsp, SuccRspUserInfoRspStatusEnum    } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp, SuccRspUserLoginRspStatusEnum    } from '../models/SuccRspUserLoginRsp';
 import { UpdateEventReq, UpdateEventReqObjectTypeEnum   , UpdateEventReqEngineEnum    } from '../models/UpdateEventReq';
-import { UpdateExperiment, UpdateExperimentObjectTypeEnum             } from '../models/UpdateExperiment';
+import { UpdateExperiment, UpdateExperimentObjectTypeEnum          } from '../models/UpdateExperiment';
 import { UpdateModel     , UpdateModelObjectTypeEnum   } from '../models/UpdateModel';
 import { UpdateObject } from '../models/UpdateObject';
 import { UserInfoRsp } from '../models/UserInfoRsp';

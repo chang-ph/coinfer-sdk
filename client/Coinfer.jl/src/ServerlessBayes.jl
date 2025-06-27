@@ -539,9 +539,10 @@ function inner_sample(args...; kwargs...)
             # we don't use the internal message now
             # cd = COINFERCallback(Dict[], tb_callback)
             cb = tb_callback
-            if !(:chain_name in keys(kwargs))
+            chain_name = get(kwargs, :callback, "")
+            if !startswith(chain_name, "chain#")
                 kwargs = Dict{Symbol,Any}(kwargs)
-                kwargs[:chain_name] = "chain#" * string(UUIDs.uuid4().value; base=62)
+                kwargs[:chain_name] = "chain#" * chain_name
             end
             chn = Turing.sample(args...; callback=cb, kwargs...)
         end
