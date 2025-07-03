@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | [optional] [default to '']
 **data_file_type** | **str** |  | [optional] 
 **data_files** | **List[str]** | File data in text format | [optional] 
+**data_uris** | **List[str]** | File data URI | [optional] 
 
 ## Example
 

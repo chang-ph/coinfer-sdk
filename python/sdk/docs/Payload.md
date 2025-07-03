@@ -23,6 +23,7 @@ Name | Type | Description | Notes
 **meta** | **object** |  | [optional] 
 **data_file_type** | **str** |  | [optional] 
 **data_files** | **List[str]** | File data in text format | [optional] 
+**data_uris** | **List[str]** | File data URI | [optional] 
 **objid** | **str** |  | 
 **password** | **str** |  | [optional] [default to '']
 **target_user** | **str** |  | [optional] [default to '']

@@ -91,7 +91,7 @@ import { CreateCallbackReq, CreateCallbackReqObjectTypeEnum  , CreateCallbackReq
 import { CreateCallbackRsp, CreateCallbackRspObjectTypeEnum        } from '../models/CreateCallbackRsp';
 import { CreateEventReq, CreateEventReqObjectTypeEnum    } from '../models/CreateEventReq';
 import { CreateEventRsp, CreateEventRspObjectTypeEnum      } from '../models/CreateEventRsp';
-import { CreateExperiment, CreateExperimentObjectTypeEnum      , CreateExperimentDataFileTypeEnum    } from '../models/CreateExperiment';
+import { CreateExperiment, CreateExperimentObjectTypeEnum      , CreateExperimentDataFileTypeEnum     } from '../models/CreateExperiment';
 import { CreateExperimentShare, CreateExperimentShareObjectTypeEnum      } from '../models/CreateExperimentShare';
 import { CreateExperimentShareRsp, CreateExperimentShareRspObjectTypeEnum            } from '../models/CreateExperimentShareRsp';
 import { CreateModel, CreateModelObjectTypeEnum    , CreateModelTypeEnum            } from '../models/CreateModel';

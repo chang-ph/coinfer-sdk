@@ -12,6 +12,7 @@
         name="",
         data_file_type=nothing,
         data_files=nothing,
+        data_uris=nothing,
     )
 
     - object_type::String
@@ -21,6 +22,7 @@
     - name::String
     - data_file_type::String
     - data_files::Vector{String} : File data in text format
+    - data_uris::Vector{String} : File data URI
 """
 Base.@kwdef mutable struct CreateExperiment <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
@@ -30,8 +32,9 @@ Base.@kwdef mutable struct CreateExperiment <: OpenAPI.APIModel
     name::Union{Nothing, String} = ""
     data_file_type::Union{Nothing, String} = nothing
     data_files::Union{Nothing, Vector{String}} = nothing
+    data_uris::Union{Nothing, Vector{String}} = nothing
 
-    function CreateExperiment(object_type, model_id, xp_meta, meta, name, data_file_type, data_files, )
+    function CreateExperiment(object_type, model_id, xp_meta, meta, name, data_file_type, data_files, data_uris, )
         OpenAPI.validate_property(CreateExperiment, Symbol("object_type"), object_type)
         OpenAPI.validate_property(CreateExperiment, Symbol("model_id"), model_id)
         OpenAPI.validate_property(CreateExperiment, Symbol("xp_meta"), xp_meta)
@@ -39,11 +42,12 @@ Base.@kwdef mutable struct CreateExperiment <: OpenAPI.APIModel
         OpenAPI.validate_property(CreateExperiment, Symbol("name"), name)
         OpenAPI.validate_property(CreateExperiment, Symbol("data_file_type"), data_file_type)
         OpenAPI.validate_property(CreateExperiment, Symbol("data_files"), data_files)
-        return new(object_type, model_id, xp_meta, meta, name, data_file_type, data_files, )
+        OpenAPI.validate_property(CreateExperiment, Symbol("data_uris"), data_uris)
+        return new(object_type, model_id, xp_meta, meta, name, data_file_type, data_files, data_uris, )
     end
 end # type CreateExperiment
 
-const _property_types_CreateExperiment = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("model_id")=>"String", Symbol("xp_meta")=>"Any", Symbol("meta")=>"Any", Symbol("name")=>"String", Symbol("data_file_type")=>"String", Symbol("data_files")=>"Vector{String}", )
+const _property_types_CreateExperiment = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("model_id")=>"String", Symbol("xp_meta")=>"Any", Symbol("meta")=>"Any", Symbol("name")=>"String", Symbol("data_file_type")=>"String", Symbol("data_files")=>"Vector{String}", Symbol("data_uris")=>"Vector{String}", )
 OpenAPI.property_type(::Type{ CreateExperiment }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_CreateExperiment[name]))}
 
 function check_required(o::CreateExperiment)
@@ -67,7 +71,5 @@ function OpenAPI.validate_property(::Type{ CreateExperiment }, name::Symbol, val
     end
 
 
-    if name === Symbol("data_files")
-        OpenAPI.validate_param(name, "CreateExperiment", :minItems, val, 1)
-    end
+
 end

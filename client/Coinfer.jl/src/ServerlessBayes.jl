@@ -23,8 +23,10 @@ using DocStringExtensions
 
 ### msg_collector
 interval = parse(Int, get(ENV, "COINFER_DATA_SENDING_INTERVAL", "1000"))
-const default_endpoints = get(ENV, "COINFER_SERVER_ENDPOINT", "https://api.coinfer.ai")
-println("default_endpoints:", default_endpoints)
+function default_endpoints()
+    return get(ENV, "COINFER_SERVER_ENDPOINT", "https://api.coinfer.ai")
+end
+
 mutable struct MsgCollector
     name::String
     datas
@@ -128,11 +130,11 @@ $(TYPEDFIELDS)
     manifest_file::String = "Manifest.toml"
 
     "Endpoints configuration"
-    endpoint::String = default_endpoints
+    endpoint::String = default_endpoints()
 end
 
 function create_model(
-    FUNCION_TYPE, project_dir; endpoint=default_endpoints, entrance_file="main.jl"
+        FUNCION_TYPE, project_dir; endpoint=default_endpoints(), entrance_file="main.jl"
 )
     return FUNCION_TYPE(;
         project_dir=project_dir,
@@ -182,7 +184,7 @@ $(TYPEDFIELDS)
     manifest_file::String = "Manifest.toml"
 
     "Endpoints configuration"
-    endpoint::String = default_endpoints
+    endpoint::String = default_endpoints()
 end
 
 @with_kw struct CloudFunctionCarriage
@@ -223,7 +225,7 @@ $(TYPEDFIELDS)
     manifest_file::String = "Manifest.toml"
 
     "Endpoints configuration"
-    endpoint::String = default_endpoints
+    endpoint::String = default_endpoints()
 end
 
 @with_kw struct AnonymousCloudFunctionCarriage
@@ -256,7 +258,7 @@ function project_file(path)
     return joinpath(project_root, path)
 end
 
-function endpoint(name, path; endpoints=default_endpoints)
+function endpoint(name, path; endpoints=default_endpoints())
     return rstrip(endpoints, '/') * "/" * name * "/" * lstrip(path, '/')
 end
 
@@ -413,7 +415,7 @@ function get_experiment_status(xid, endpoint)
     return JSON.parse(String(rsp.body))["data"]["status"]
 end
 
-function wait_experiment(xid, endpoint=default_endpoints)
+function wait_experiment(xid, endpoint=default_endpoints())
     println("Wait experiment to finish")
     while true
         status = get_experiment_status(xid, endpoint)
@@ -509,7 +511,6 @@ function initialize_batch_id()
 end
 
 function inner_sample(args...; kwargs...)
-    println(default_endpoints)
     initialize_batch_id()
     url = endpoint("api", "/object/" * ENV["EXPERIMENT_ID"])
     exp_id = get_experiment_id()

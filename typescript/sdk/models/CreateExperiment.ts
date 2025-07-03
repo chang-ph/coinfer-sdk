@@ -11,6 +11,10 @@ export class CreateExperiment {
     * File data in text format
     */
     'dataFiles'?: Array<string>;
+    /**
+    * File data URI
+    */
+    'dataUris'?: Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -56,6 +60,12 @@ export class CreateExperiment {
         {
             "name": "dataFiles",
             "baseName": "data_files",
+            "type": "Array<string>",
+            "format": ""
+        },
+        {
+            "name": "dataUris",
+            "baseName": "data_uris",
             "type": "Array<string>",
             "format": ""
         }    ];
