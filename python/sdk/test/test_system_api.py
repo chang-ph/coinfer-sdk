@@ -46,6 +46,20 @@ class TestSystemApi(unittest.TestCase):
         """
         pass
 
+    def test_gist_files(self) -> None:
+        """Test case for gist_files
+
+        Gist Files
+        """
+        pass
+
+    def test_repo_files(self) -> None:
+        """Test case for repo_files
+
+        Repo Files
+        """
+        pass
+
     def test_repository(self) -> None:
         """Test case for repository
 

@@ -5,6 +5,7 @@ import { Auth0ConfigRsp } from '../models/Auth0ConfigRsp';
 import { Auth0LoginRsp } from '../models/Auth0LoginRsp';
 import { CloudFunctionKind } from '../models/CloudFunctionKind';
 import { CloudFunctionLang } from '../models/CloudFunctionLang';
+import { Code2TokenRsp } from '../models/Code2TokenRsp';
 import { CreateCallbackReq } from '../models/CreateCallbackReq';
 import { CreateCallbackRsp } from '../models/CreateCallbackRsp';
 import { CreateEventReq } from '../models/CreateEventReq';
@@ -29,6 +30,8 @@ import { ErrRsp } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
 import { ExperimentRsp } from '../models/ExperimentRsp';
 import { ExperimentSampleDataRsp } from '../models/ExperimentSampleDataRsp';
+import { Folder } from '../models/Folder';
+import { FolderChildrenInner } from '../models/FolderChildrenInner';
 import { GetConfigRsp } from '../models/GetConfigRsp';
 import { GetExperimentRunInfoRsp } from '../models/GetExperimentRunInfoRsp';
 import { GetExperimentShareRsp } from '../models/GetExperimentShareRsp';
@@ -37,9 +40,11 @@ import { GetTokensRsp } from '../models/GetTokensRsp';
 import { GistRsp } from '../models/GistRsp';
 import { ListBranchRsp } from '../models/ListBranchRsp';
 import { ListExperimentRsp } from '../models/ListExperimentRsp';
+import { ListGistFilesRsp } from '../models/ListGistFilesRsp';
 import { ListGitHubRepository } from '../models/ListGitHubRepository';
 import { ListModelsRspItem } from '../models/ListModelsRspItem';
 import { ListObjectTmp } from '../models/ListObjectTmp';
+import { ListRepoFilesRsp } from '../models/ListRepoFilesRsp';
 import { ListRepositoryRsp } from '../models/ListRepositoryRsp';
 import { ListingRspDataNotificationDict } from '../models/ListingRspDataNotificationDict';
 import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
@@ -47,6 +52,7 @@ import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCrea
 import { MarkNotificationReadReq } from '../models/MarkNotificationReadReq';
 import { MetaModel } from '../models/MetaModel';
 import { ModelContent } from '../models/ModelContent';
+import { ModelFile } from '../models/ModelFile';
 import { ModelMeta } from '../models/ModelMeta';
 import { ModelMetaInRsp } from '../models/ModelMetaInRsp';
 import { ModelTreeNode } from '../models/ModelTreeNode';
@@ -61,11 +67,14 @@ import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspEx
 import { SuccRspAny } from '../models/SuccRspAny';
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
+import { SuccRspCode2TokenRsp } from '../models/SuccRspCode2TokenRsp';
 import { SuccRspGetConfigRsp } from '../models/SuccRspGetConfigRsp';
 import { SuccRspGetExperimentShareRsp } from '../models/SuccRspGetExperimentShareRsp';
 import { SuccRspGetTokensRsp } from '../models/SuccRspGetTokensRsp';
 import { SuccRspListBranchRsp } from '../models/SuccRspListBranchRsp';
 import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
+import { SuccRspListGistFilesRsp } from '../models/SuccRspListGistFilesRsp';
+import { SuccRspListRepoFilesRsp } from '../models/SuccRspListRepoFilesRsp';
 import { SuccRspListRepositoryRsp } from '../models/SuccRspListRepositoryRsp';
 import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingRspDataNotificationDict';
 import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
@@ -342,6 +351,67 @@ export class ObjectAuthorizationApi {
      */
     public userLogout(param: AuthorizationApiUserLogoutRequest = {}, options?: Configuration): Promise<SuccRspNoneType> {
         return this.api.userLogout( options).toPromise();
+    }
+
+}
+
+import { ObservableDefaultApi } from "./ObservableAPI";
+import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
+
+export interface DefaultApiAccessTokenRequest {
+}
+
+export interface DefaultApiCode2tokenRequest {
+    /**
+     * 
+     * Defaults to: undefined
+     * @type string
+     * @memberof DefaultApicode2token
+     */
+    code: string
+}
+
+export class ObjectDefaultApi {
+    private api: ObservableDefaultApi
+
+    public constructor(configuration: Configuration, requestFactory?: DefaultApiRequestFactory, responseProcessor?: DefaultApiResponseProcessor) {
+        this.api = new ObservableDefaultApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Get access token.
+     * Access Token
+     * @param param the request object
+     */
+    public accessTokenWithHttpInfo(param: DefaultApiAccessTokenRequest = {}, options?: Configuration): Promise<HttpInfo<SuccRspCode2TokenRsp>> {
+        return this.api.accessTokenWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * Get access token.
+     * Access Token
+     * @param param the request object
+     */
+    public accessToken(param: DefaultApiAccessTokenRequest = {}, options?: Configuration): Promise<SuccRspCode2TokenRsp> {
+        return this.api.accessToken( options).toPromise();
+    }
+
+    /**
+     * Exchange code for access token.
+     * Code2Token
+     * @param param the request object
+     */
+    public code2tokenWithHttpInfo(param: DefaultApiCode2tokenRequest, options?: Configuration): Promise<HttpInfo<SuccRspCode2TokenRsp>> {
+        return this.api.code2tokenWithHttpInfo(param.code,  options).toPromise();
+    }
+
+    /**
+     * Exchange code for access token.
+     * Code2Token
+     * @param param the request object
+     */
+    public code2token(param: DefaultApiCode2tokenRequest, options?: Configuration): Promise<SuccRspCode2TokenRsp> {
+        return this.api.code2token(param.code,  options).toPromise();
     }
 
 }
@@ -762,6 +832,33 @@ export interface SystemApiColabRequest {
 export interface SystemApiConfigRequest {
 }
 
+export interface SystemApiGistFilesRequest {
+    /**
+     * 
+     * Defaults to: undefined
+     * @type string
+     * @memberof SystemApigistFiles
+     */
+    gistId: string
+}
+
+export interface SystemApiRepoFilesRequest {
+    /**
+     * 
+     * Defaults to: undefined
+     * @type string
+     * @memberof SystemApirepoFiles
+     */
+    repo: string
+    /**
+     * 
+     * Defaults to: undefined
+     * @type string
+     * @memberof SystemApirepoFiles
+     */
+    ref: string
+}
+
 export interface SystemApiRepositoryRequest {
     /**
      * page number
@@ -839,6 +936,42 @@ export class ObjectSystemApi {
      */
     public config(param: SystemApiConfigRequest = {}, options?: Configuration): Promise<SuccRspGetConfigRsp> {
         return this.api.config( options).toPromise();
+    }
+
+    /**
+     * List files of gist.
+     * Gist Files
+     * @param param the request object
+     */
+    public gistFilesWithHttpInfo(param: SystemApiGistFilesRequest, options?: Configuration): Promise<HttpInfo<SuccRspListGistFilesRsp>> {
+        return this.api.gistFilesWithHttpInfo(param.gistId,  options).toPromise();
+    }
+
+    /**
+     * List files of gist.
+     * Gist Files
+     * @param param the request object
+     */
+    public gistFiles(param: SystemApiGistFilesRequest, options?: Configuration): Promise<SuccRspListGistFilesRsp> {
+        return this.api.gistFiles(param.gistId,  options).toPromise();
+    }
+
+    /**
+     * List files of repository.
+     * Repo Files
+     * @param param the request object
+     */
+    public repoFilesWithHttpInfo(param: SystemApiRepoFilesRequest, options?: Configuration): Promise<HttpInfo<SuccRspListRepoFilesRsp>> {
+        return this.api.repoFilesWithHttpInfo(param.repo, param.ref,  options).toPromise();
+    }
+
+    /**
+     * List files of repository.
+     * Repo Files
+     * @param param the request object
+     */
+    public repoFiles(param: SystemApiRepoFilesRequest, options?: Configuration): Promise<SuccRspListRepoFilesRsp> {
+        return this.api.repoFiles(param.repo, param.ref,  options).toPromise();
     }
 
     /**

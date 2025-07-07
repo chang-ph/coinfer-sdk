@@ -6,6 +6,7 @@ import { Auth0ConfigRsp } from '../models/Auth0ConfigRsp';
 import { Auth0LoginRsp } from '../models/Auth0LoginRsp';
 import { CloudFunctionKind } from '../models/CloudFunctionKind';
 import { CloudFunctionLang } from '../models/CloudFunctionLang';
+import { Code2TokenRsp } from '../models/Code2TokenRsp';
 import { CreateCallbackReq } from '../models/CreateCallbackReq';
 import { CreateCallbackRsp } from '../models/CreateCallbackRsp';
 import { CreateEventReq } from '../models/CreateEventReq';
@@ -30,6 +31,8 @@ import { ErrRsp } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
 import { ExperimentRsp } from '../models/ExperimentRsp';
 import { ExperimentSampleDataRsp } from '../models/ExperimentSampleDataRsp';
+import { Folder } from '../models/Folder';
+import { FolderChildrenInner } from '../models/FolderChildrenInner';
 import { GetConfigRsp } from '../models/GetConfigRsp';
 import { GetExperimentRunInfoRsp } from '../models/GetExperimentRunInfoRsp';
 import { GetExperimentShareRsp } from '../models/GetExperimentShareRsp';
@@ -38,9 +41,11 @@ import { GetTokensRsp } from '../models/GetTokensRsp';
 import { GistRsp } from '../models/GistRsp';
 import { ListBranchRsp } from '../models/ListBranchRsp';
 import { ListExperimentRsp } from '../models/ListExperimentRsp';
+import { ListGistFilesRsp } from '../models/ListGistFilesRsp';
 import { ListGitHubRepository } from '../models/ListGitHubRepository';
 import { ListModelsRspItem } from '../models/ListModelsRspItem';
 import { ListObjectTmp } from '../models/ListObjectTmp';
+import { ListRepoFilesRsp } from '../models/ListRepoFilesRsp';
 import { ListRepositoryRsp } from '../models/ListRepositoryRsp';
 import { ListingRspDataNotificationDict } from '../models/ListingRspDataNotificationDict';
 import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
@@ -48,6 +53,7 @@ import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCrea
 import { MarkNotificationReadReq } from '../models/MarkNotificationReadReq';
 import { MetaModel } from '../models/MetaModel';
 import { ModelContent } from '../models/ModelContent';
+import { ModelFile } from '../models/ModelFile';
 import { ModelMeta } from '../models/ModelMeta';
 import { ModelMetaInRsp } from '../models/ModelMetaInRsp';
 import { ModelTreeNode } from '../models/ModelTreeNode';
@@ -62,11 +68,14 @@ import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspEx
 import { SuccRspAny } from '../models/SuccRspAny';
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
+import { SuccRspCode2TokenRsp } from '../models/SuccRspCode2TokenRsp';
 import { SuccRspGetConfigRsp } from '../models/SuccRspGetConfigRsp';
 import { SuccRspGetExperimentShareRsp } from '../models/SuccRspGetExperimentShareRsp';
 import { SuccRspGetTokensRsp } from '../models/SuccRspGetTokensRsp';
 import { SuccRspListBranchRsp } from '../models/SuccRspListBranchRsp';
 import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
+import { SuccRspListGistFilesRsp } from '../models/SuccRspListGistFilesRsp';
+import { SuccRspListRepoFilesRsp } from '../models/SuccRspListRepoFilesRsp';
 import { SuccRspListRepositoryRsp } from '../models/SuccRspListRepositoryRsp';
 import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingRspDataNotificationDict';
 import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
@@ -423,6 +432,88 @@ export class ObservableAuthorizationApi {
      */
     public userLogout(_options?: Configuration): Observable<SuccRspNoneType> {
         return this.userLogoutWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<SuccRspNoneType>) => apiResponse.data));
+    }
+
+}
+
+import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
+export class ObservableDefaultApi {
+    private requestFactory: DefaultApiRequestFactory;
+    private responseProcessor: DefaultApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: DefaultApiRequestFactory,
+        responseProcessor?: DefaultApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new DefaultApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new DefaultApiResponseProcessor();
+    }
+
+    /**
+     * Get access token.
+     * Access Token
+     */
+    public accessTokenWithHttpInfo(_options?: Configuration): Observable<HttpInfo<SuccRspCode2TokenRsp>> {
+        const requestContextPromise = this.requestFactory.accessToken(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.accessTokenWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Get access token.
+     * Access Token
+     */
+    public accessToken(_options?: Configuration): Observable<SuccRspCode2TokenRsp> {
+        return this.accessTokenWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<SuccRspCode2TokenRsp>) => apiResponse.data));
+    }
+
+    /**
+     * Exchange code for access token.
+     * Code2Token
+     * @param code
+     */
+    public code2tokenWithHttpInfo(code: string, _options?: Configuration): Observable<HttpInfo<SuccRspCode2TokenRsp>> {
+        const requestContextPromise = this.requestFactory.code2token(code, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.code2tokenWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Exchange code for access token.
+     * Code2Token
+     * @param code
+     */
+    public code2token(code: string, _options?: Configuration): Observable<SuccRspCode2TokenRsp> {
+        return this.code2tokenWithHttpInfo(code, _options).pipe(map((apiResponse: HttpInfo<SuccRspCode2TokenRsp>) => apiResponse.data));
     }
 
 }
@@ -892,6 +983,74 @@ export class ObservableSystemApi {
      */
     public config(_options?: Configuration): Observable<SuccRspGetConfigRsp> {
         return this.configWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<SuccRspGetConfigRsp>) => apiResponse.data));
+    }
+
+    /**
+     * List files of gist.
+     * Gist Files
+     * @param gistId
+     */
+    public gistFilesWithHttpInfo(gistId: string, _options?: Configuration): Observable<HttpInfo<SuccRspListGistFilesRsp>> {
+        const requestContextPromise = this.requestFactory.gistFiles(gistId, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.gistFilesWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * List files of gist.
+     * Gist Files
+     * @param gistId
+     */
+    public gistFiles(gistId: string, _options?: Configuration): Observable<SuccRspListGistFilesRsp> {
+        return this.gistFilesWithHttpInfo(gistId, _options).pipe(map((apiResponse: HttpInfo<SuccRspListGistFilesRsp>) => apiResponse.data));
+    }
+
+    /**
+     * List files of repository.
+     * Repo Files
+     * @param repo
+     * @param ref
+     */
+    public repoFilesWithHttpInfo(repo: string, ref: string, _options?: Configuration): Observable<HttpInfo<SuccRspListRepoFilesRsp>> {
+        const requestContextPromise = this.requestFactory.repoFiles(repo, ref, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.repoFilesWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * List files of repository.
+     * Repo Files
+     * @param repo
+     * @param ref
+     */
+    public repoFiles(repo: string, ref: string, _options?: Configuration): Observable<SuccRspListRepoFilesRsp> {
+        return this.repoFilesWithHttpInfo(repo, ref, _options).pipe(map((apiResponse: HttpInfo<SuccRspListRepoFilesRsp>) => apiResponse.data));
     }
 
     /**

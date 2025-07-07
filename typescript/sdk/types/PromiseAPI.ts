@@ -5,6 +5,7 @@ import { Auth0ConfigRsp } from '../models/Auth0ConfigRsp';
 import { Auth0LoginRsp } from '../models/Auth0LoginRsp';
 import { CloudFunctionKind } from '../models/CloudFunctionKind';
 import { CloudFunctionLang } from '../models/CloudFunctionLang';
+import { Code2TokenRsp } from '../models/Code2TokenRsp';
 import { CreateCallbackReq } from '../models/CreateCallbackReq';
 import { CreateCallbackRsp } from '../models/CreateCallbackRsp';
 import { CreateEventReq } from '../models/CreateEventReq';
@@ -29,6 +30,8 @@ import { ErrRsp } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
 import { ExperimentRsp } from '../models/ExperimentRsp';
 import { ExperimentSampleDataRsp } from '../models/ExperimentSampleDataRsp';
+import { Folder } from '../models/Folder';
+import { FolderChildrenInner } from '../models/FolderChildrenInner';
 import { GetConfigRsp } from '../models/GetConfigRsp';
 import { GetExperimentRunInfoRsp } from '../models/GetExperimentRunInfoRsp';
 import { GetExperimentShareRsp } from '../models/GetExperimentShareRsp';
@@ -37,9 +40,11 @@ import { GetTokensRsp } from '../models/GetTokensRsp';
 import { GistRsp } from '../models/GistRsp';
 import { ListBranchRsp } from '../models/ListBranchRsp';
 import { ListExperimentRsp } from '../models/ListExperimentRsp';
+import { ListGistFilesRsp } from '../models/ListGistFilesRsp';
 import { ListGitHubRepository } from '../models/ListGitHubRepository';
 import { ListModelsRspItem } from '../models/ListModelsRspItem';
 import { ListObjectTmp } from '../models/ListObjectTmp';
+import { ListRepoFilesRsp } from '../models/ListRepoFilesRsp';
 import { ListRepositoryRsp } from '../models/ListRepositoryRsp';
 import { ListingRspDataNotificationDict } from '../models/ListingRspDataNotificationDict';
 import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
@@ -47,6 +52,7 @@ import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCrea
 import { MarkNotificationReadReq } from '../models/MarkNotificationReadReq';
 import { MetaModel } from '../models/MetaModel';
 import { ModelContent } from '../models/ModelContent';
+import { ModelFile } from '../models/ModelFile';
 import { ModelMeta } from '../models/ModelMeta';
 import { ModelMetaInRsp } from '../models/ModelMetaInRsp';
 import { ModelTreeNode } from '../models/ModelTreeNode';
@@ -61,11 +67,14 @@ import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspEx
 import { SuccRspAny } from '../models/SuccRspAny';
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
+import { SuccRspCode2TokenRsp } from '../models/SuccRspCode2TokenRsp';
 import { SuccRspGetConfigRsp } from '../models/SuccRspGetConfigRsp';
 import { SuccRspGetExperimentShareRsp } from '../models/SuccRspGetExperimentShareRsp';
 import { SuccRspGetTokensRsp } from '../models/SuccRspGetTokensRsp';
 import { SuccRspListBranchRsp } from '../models/SuccRspListBranchRsp';
 import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
+import { SuccRspListGistFilesRsp } from '../models/SuccRspListGistFilesRsp';
+import { SuccRspListRepoFilesRsp } from '../models/SuccRspListRepoFilesRsp';
 import { SuccRspListRepositoryRsp } from '../models/SuccRspListRepositoryRsp';
 import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingRspDataNotificationDict';
 import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
@@ -288,6 +297,63 @@ export class PromiseAuthorizationApi {
      */
     public userLogout(_options?: Configuration): Promise<SuccRspNoneType> {
         const result = this.api.userLogout(_options);
+        return result.toPromise();
+    }
+
+
+}
+
+
+
+import { ObservableDefaultApi } from './ObservableAPI';
+
+import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
+export class PromiseDefaultApi {
+    private api: ObservableDefaultApi
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: DefaultApiRequestFactory,
+        responseProcessor?: DefaultApiResponseProcessor
+    ) {
+        this.api = new ObservableDefaultApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Get access token.
+     * Access Token
+     */
+    public accessTokenWithHttpInfo(_options?: Configuration): Promise<HttpInfo<SuccRspCode2TokenRsp>> {
+        const result = this.api.accessTokenWithHttpInfo(_options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get access token.
+     * Access Token
+     */
+    public accessToken(_options?: Configuration): Promise<SuccRspCode2TokenRsp> {
+        const result = this.api.accessToken(_options);
+        return result.toPromise();
+    }
+
+    /**
+     * Exchange code for access token.
+     * Code2Token
+     * @param code
+     */
+    public code2tokenWithHttpInfo(code: string, _options?: Configuration): Promise<HttpInfo<SuccRspCode2TokenRsp>> {
+        const result = this.api.code2tokenWithHttpInfo(code, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * Exchange code for access token.
+     * Code2Token
+     * @param code
+     */
+    public code2token(code: string, _options?: Configuration): Promise<SuccRspCode2TokenRsp> {
+        const result = this.api.code2token(code, _options);
         return result.toPromise();
     }
 
@@ -618,6 +684,48 @@ export class PromiseSystemApi {
      */
     public config(_options?: Configuration): Promise<SuccRspGetConfigRsp> {
         const result = this.api.config(_options);
+        return result.toPromise();
+    }
+
+    /**
+     * List files of gist.
+     * Gist Files
+     * @param gistId
+     */
+    public gistFilesWithHttpInfo(gistId: string, _options?: Configuration): Promise<HttpInfo<SuccRspListGistFilesRsp>> {
+        const result = this.api.gistFilesWithHttpInfo(gistId, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * List files of gist.
+     * Gist Files
+     * @param gistId
+     */
+    public gistFiles(gistId: string, _options?: Configuration): Promise<SuccRspListGistFilesRsp> {
+        const result = this.api.gistFiles(gistId, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * List files of repository.
+     * Repo Files
+     * @param repo
+     * @param ref
+     */
+    public repoFilesWithHttpInfo(repo: string, ref: string, _options?: Configuration): Promise<HttpInfo<SuccRspListRepoFilesRsp>> {
+        const result = this.api.repoFilesWithHttpInfo(repo, ref, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * List files of repository.
+     * Repo Files
+     * @param repo
+     * @param ref
+     */
+    public repoFiles(repo: string, ref: string, _options?: Configuration): Promise<SuccRspListRepoFilesRsp> {
+        const result = this.api.repoFiles(repo, ref, _options);
         return result.toPromise();
     }
 

@@ -12,6 +12,8 @@ import { ErrRsp } from '../models/ErrRsp';
 import { SuccRspAny } from '../models/SuccRspAny';
 import { SuccRspGetConfigRsp } from '../models/SuccRspGetConfigRsp';
 import { SuccRspListBranchRsp } from '../models/SuccRspListBranchRsp';
+import { SuccRspListGistFilesRsp } from '../models/SuccRspListGistFilesRsp';
+import { SuccRspListRepoFilesRsp } from '../models/SuccRspListRepoFilesRsp';
 import { SuccRspListRepositoryRsp } from '../models/SuccRspListRepositoryRsp';
 
 /**
@@ -107,6 +109,104 @@ export class SystemApiRequestFactory extends BaseAPIRequestFactory {
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+
+        let authMethod: SecurityAuthentication | undefined;
+        // Apply auth methods
+        authMethod = _config.authMethods["GlobalAuth"]
+        if (authMethod?.applySecurityAuthentication) {
+            await authMethod?.applySecurityAuthentication(requestContext);
+        }
+        
+        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
+        if (defaultAuth?.applySecurityAuthentication) {
+            await defaultAuth?.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
+     * Gist Files
+     *
+     * List files of gist.
+     * @param gistId 
+     */
+    public async gistFiles(gistId: string, _options?: Configuration): Promise<RequestContext> {
+        let _config = _options || this.configuration;
+
+        // verify required parameter 'gistId' is not null or undefined
+        if (gistId === null || gistId === undefined) {
+            throw new RequiredError("SystemApi", "gistFiles", "gistId");
+        }
+
+
+        // Path Params
+        const localVarPath = '/sys/github/gist-files';
+
+        // Make Request Context
+        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+        if (gistId !== undefined) {
+            requestContext.setQueryParam("gist_id", ObjectSerializer.serialize(gistId, "string", ""));
+        }
+
+
+        let authMethod: SecurityAuthentication | undefined;
+        // Apply auth methods
+        authMethod = _config.authMethods["GlobalAuth"]
+        if (authMethod?.applySecurityAuthentication) {
+            await authMethod?.applySecurityAuthentication(requestContext);
+        }
+        
+        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
+        if (defaultAuth?.applySecurityAuthentication) {
+            await defaultAuth?.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
+     * Repo Files
+     *
+     * List files of repository.
+     * @param repo 
+     * @param ref 
+     */
+    public async repoFiles(repo: string, ref: string, _options?: Configuration): Promise<RequestContext> {
+        let _config = _options || this.configuration;
+
+        // verify required parameter 'repo' is not null or undefined
+        if (repo === null || repo === undefined) {
+            throw new RequiredError("SystemApi", "repoFiles", "repo");
+        }
+
+
+        // verify required parameter 'ref' is not null or undefined
+        if (ref === null || ref === undefined) {
+            throw new RequiredError("SystemApi", "repoFiles", "ref");
+        }
+
+
+        // Path Params
+        const localVarPath = '/sys/github/repo-files';
+
+        // Make Request Context
+        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+        if (repo !== undefined) {
+            requestContext.setQueryParam("repo", ObjectSerializer.serialize(repo, "string", ""));
+        }
+
+        // Query Params
+        if (ref !== undefined) {
+            requestContext.setQueryParam("ref", ObjectSerializer.serialize(ref, "string", ""));
+        }
 
 
         let authMethod: SecurityAuthentication | undefined;
@@ -268,6 +368,78 @@ export class SystemApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "SuccRspGetConfigRsp", ""
             ) as SuccRspGetConfigRsp;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
+        }
+
+        throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to gistFiles
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async gistFilesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspListGistFilesRsp >> {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: SuccRspListGistFilesRsp = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "SuccRspListGistFilesRsp", ""
+            ) as SuccRspListGistFilesRsp;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
+        }
+        if (isCodeInRange("400", response.httpStatusCode)) {
+            const body: ErrRsp = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ErrRsp", ""
+            ) as ErrRsp;
+            throw new ApiException<ErrRsp>(response.httpStatusCode, "Bad Request", body, response.headers);
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: SuccRspListGistFilesRsp = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "SuccRspListGistFilesRsp", ""
+            ) as SuccRspListGistFilesRsp;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
+        }
+
+        throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to repoFiles
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async repoFilesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspListRepoFilesRsp >> {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: SuccRspListRepoFilesRsp = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "SuccRspListRepoFilesRsp", ""
+            ) as SuccRspListRepoFilesRsp;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
+        }
+        if (isCodeInRange("400", response.httpStatusCode)) {
+            const body: ErrRsp = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ErrRsp", ""
+            ) as ErrRsp;
+            throw new ApiException<ErrRsp>(response.httpStatusCode, "Bad Request", body, response.headers);
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: SuccRspListRepoFilesRsp = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "SuccRspListRepoFilesRsp", ""
+            ) as SuccRspListRepoFilesRsp;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 

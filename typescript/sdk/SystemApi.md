@@ -7,6 +7,8 @@ Method | HTTP request | Description
 [**branch**](SystemApi.md#branch) | **GET** /sys/github/branch | List branches.
 [**colab**](SystemApi.md#colab) | **GET** /sys/colab | Get a link of the notebook in Colab
 [**config**](SystemApi.md#config) | **GET** /sys/config | Get configuration about how to run a model.
+[**gistFiles**](SystemApi.md#gistFiles) | **GET** /sys/github/gist-files | Gist Files
+[**repoFiles**](SystemApi.md#repoFiles) | **GET** /sys/github/repo-files | Repo Files
 [**repository**](SystemApi.md#repository) | **GET** /sys/github/repository | List repositories and gists.
 
 
@@ -138,6 +140,117 @@ This endpoint does not need any parameter.
 ### Return type
 
 **SuccRspGetConfigRsp**
+
+### Authorization
+
+[GlobalAuth](README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **gistFiles**
+> SuccRspListGistFilesRsp gistFiles()
+
+List files of gist.
+
+### Example
+
+
+```typescript
+import { createConfiguration, SystemApi } from 'coinfer-ts';
+import type { SystemApiGistFilesRequest } from 'coinfer-ts';
+
+const configuration = createConfiguration();
+const apiInstance = new SystemApi(configuration);
+
+const request: SystemApiGistFilesRequest = {
+  
+  gistId: "gist_id_example",
+};
+
+const data = await apiInstance.gistFiles(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **gistId** | [**string**] |  | defaults to undefined
+
+
+### Return type
+
+**SuccRspListGistFilesRsp**
+
+### Authorization
+
+[GlobalAuth](README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **repoFiles**
+> SuccRspListRepoFilesRsp repoFiles()
+
+List files of repository.
+
+### Example
+
+
+```typescript
+import { createConfiguration, SystemApi } from 'coinfer-ts';
+import type { SystemApiRepoFilesRequest } from 'coinfer-ts';
+
+const configuration = createConfiguration();
+const apiInstance = new SystemApi(configuration);
+
+const request: SystemApiRepoFilesRequest = {
+  
+  repo: "repo_example",
+  
+  ref: "ref_example",
+};
+
+const data = await apiInstance.repoFiles(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **repo** | [**string**] |  | defaults to undefined
+ **ref** | [**string**] |  | defaults to undefined
+
+
+### Return type
+
+**SuccRspListRepoFilesRsp**
 
 ### Authorization
 

@@ -7,6 +7,8 @@ Method | HTTP request | Description
 [**branch**](SystemApi.md#branch) | **GET** /sys/github/branch | List branches.
 [**colab**](SystemApi.md#colab) | **GET** /sys/colab | Get a link of the notebook in Colab
 [**config**](SystemApi.md#config) | **GET** /sys/config | Get configuration about how to run a model.
+[**gist_files**](SystemApi.md#gist_files) | **GET** /sys/github/gist-files | Gist Files
+[**repo_files**](SystemApi.md#repo_files) | **GET** /sys/github/repo-files | Repo Files
 [**repository**](SystemApi.md#repository) | **GET** /sys/github/repository | List repositories and gists.
 
 
@@ -80,6 +82,67 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**SuccRspGetConfigRsp**](SuccRspGetConfigRsp.md)
+
+### Authorization
+
+[GlobalAuth](../README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+# **gist_files**
+> gist_files(_api::SystemApi, gist_id::String; _mediaType=nothing) -> SuccRspListGistFilesRsp, OpenAPI.Clients.ApiResponse <br/>
+> gist_files(_api::SystemApi, response_stream::Channel, gist_id::String; _mediaType=nothing) -> Channel{ SuccRspListGistFilesRsp }, OpenAPI.Clients.ApiResponse
+
+Gist Files
+
+List files of gist.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **SystemApi** | API context | 
+**gist_id** | **String** |  |
+
+### Return type
+
+[**SuccRspListGistFilesRsp**](SuccRspListGistFilesRsp.md)
+
+### Authorization
+
+[GlobalAuth](../README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+# **repo_files**
+> repo_files(_api::SystemApi, repo::String, ref::String; _mediaType=nothing) -> SuccRspListRepoFilesRsp, OpenAPI.Clients.ApiResponse <br/>
+> repo_files(_api::SystemApi, response_stream::Channel, repo::String, ref::String; _mediaType=nothing) -> Channel{ SuccRspListRepoFilesRsp }, OpenAPI.Clients.ApiResponse
+
+Repo Files
+
+List files of repository.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **SystemApi** | API context | 
+**repo** | **String** |  |
+**ref** | **String** |  |
+
+### Return type
+
+[**SuccRspListRepoFilesRsp**](SuccRspListRepoFilesRsp.md)
 
 ### Authorization
 

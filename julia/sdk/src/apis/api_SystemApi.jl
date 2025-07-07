@@ -102,6 +102,72 @@ function config(_api::SystemApi, response_stream::Channel; _mediaType=nothing)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
+const _returntypes_gist_files_SystemApi = Dict{Regex,Type}(
+    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspListGistFilesRsp,
+    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
+)
+
+function _oacinternal_gist_files(_api::SystemApi, gist_id::String; _mediaType=nothing)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_gist_files_SystemApi, "/sys/github/gist-files", ["GlobalAuth", ])
+    OpenAPI.Clients.set_param(_ctx.query, "gist_id", gist_id; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
+    return _ctx
+end
+
+@doc raw"""Gist Files
+
+List files of gist.
+
+Params:
+- gist_id::String (required)
+
+Return: SuccRspListGistFilesRsp, OpenAPI.Clients.ApiResponse
+"""
+function gist_files(_api::SystemApi, gist_id::String; _mediaType=nothing)
+    _ctx = _oacinternal_gist_files(_api, gist_id; _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx)
+end
+
+function gist_files(_api::SystemApi, response_stream::Channel, gist_id::String; _mediaType=nothing)
+    _ctx = _oacinternal_gist_files(_api, gist_id; _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx, response_stream)
+end
+
+const _returntypes_repo_files_SystemApi = Dict{Regex,Type}(
+    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspListRepoFilesRsp,
+    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
+)
+
+function _oacinternal_repo_files(_api::SystemApi, repo::String, ref::String; _mediaType=nothing)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_repo_files_SystemApi, "/sys/github/repo-files", ["GlobalAuth", ])
+    OpenAPI.Clients.set_param(_ctx.query, "repo", repo; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "ref", ref; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
+    return _ctx
+end
+
+@doc raw"""Repo Files
+
+List files of repository.
+
+Params:
+- repo::String (required)
+- ref::String (required)
+
+Return: SuccRspListRepoFilesRsp, OpenAPI.Clients.ApiResponse
+"""
+function repo_files(_api::SystemApi, repo::String, ref::String; _mediaType=nothing)
+    _ctx = _oacinternal_repo_files(_api, repo, ref; _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx)
+end
+
+function repo_files(_api::SystemApi, response_stream::Channel, repo::String, ref::String; _mediaType=nothing)
+    _ctx = _oacinternal_repo_files(_api, repo, ref; _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx, response_stream)
+end
+
 const _returntypes_repository_SystemApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspListRepositoryRsp,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
@@ -141,4 +207,6 @@ end
 export branch
 export colab
 export config
+export gist_files
+export repo_files
 export repository
