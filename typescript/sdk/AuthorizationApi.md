@@ -4,8 +4,10 @@ All URIs are relative to *https://api.coinfer.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**accessToken**](AuthorizationApi.md#accessToken) | **GET** /base/access_token | Access Token
 [**auth0Config**](AuthorizationApi.md#auth0Config) | **GET** /base/auth0-config | Get Auth0 login configuration
 [**auth0Login**](AuthorizationApi.md#auth0Login) | **POST** /base/auth0-login | Login with Auth0.
+[**code2token**](AuthorizationApi.md#code2token) | **POST** /base/code2token | Code2Token
 [**createToken**](AuthorizationApi.md#createToken) | **POST** /base/user/tokens | Create a new authorization token.
 [**deleteToken**](AuthorizationApi.md#deleteToken) | **DELETE** /base/user/token/{token_id} | Delete a token by its ID.
 [**getTokens**](AuthorizationApi.md#getTokens) | **GET** /base/user/tokens | List all of current user\&#39;s tokens.
@@ -15,6 +17,53 @@ Method | HTTP request | Description
 [**userLogin**](AuthorizationApi.md#userLogin) | **POST** /base/login | Login with password.
 [**userLogout**](AuthorizationApi.md#userLogout) | **POST** /base/logout | Logout the system.
 
+
+# **accessToken**
+> SuccRspCode2TokenRsp accessToken()
+
+Get access token.
+
+### Example
+
+
+```typescript
+import { createConfiguration, AuthorizationApi } from 'coinfer-ts';
+
+const configuration = createConfiguration();
+const apiInstance = new AuthorizationApi(configuration);
+
+const request = {};
+
+const data = await apiInstance.accessToken(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+
+### Return type
+
+**SuccRspCode2TokenRsp**
+
+### Authorization
+
+[GlobalAuth](README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **auth0Config**
 > SuccRspAuth0ConfigRsp auth0Config()
@@ -105,6 +154,60 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **code2token**
+> SuccRspCode2TokenRsp code2token()
+
+Exchange code for access token.
+
+### Example
+
+
+```typescript
+import { createConfiguration, AuthorizationApi } from 'coinfer-ts';
+import type { AuthorizationApiCode2tokenRequest } from 'coinfer-ts';
+
+const configuration = createConfiguration();
+const apiInstance = new AuthorizationApi(configuration);
+
+const request: AuthorizationApiCode2tokenRequest = {
+  
+  code: "code_example",
+};
+
+const data = await apiInstance.code2token(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **code** | [**string**] |  | defaults to undefined
+
+
+### Return type
+
+**SuccRspCode2TokenRsp**
+
+### Authorization
+
+[GlobalAuth](README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 

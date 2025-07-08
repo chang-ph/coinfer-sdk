@@ -25,7 +25,6 @@ docs/Data.md
 docs/Data1.md
 docs/Data2.md
 docs/DataTyping.md
-docs/DefaultApi.md
 docs/DeleteObject.md
 docs/ErrRsp.md
 docs/ExperimentCloudwatchLogRsp.md
@@ -101,7 +100,6 @@ docs/ViewObject.md
 docs/ViewObjectTmp.md
 src/APIClient.jl
 src/apis/api_AuthorizationApi.jl
-src/apis/api_DefaultApi.jl
 src/apis/api_NotificationApi.jl
 src/apis/api_ObjectApi.jl
 src/apis/api_ShareApi.jl

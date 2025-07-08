@@ -29,7 +29,6 @@ docs/Data.md
 docs/Data1.md
 docs/Data2.md
 docs/DataTyping.md
-docs/DefaultApi.md
 docs/DeleteObject.md
 docs/ErrRsp.md
 docs/ExperimentCloudwatchLogRsp.md
@@ -107,7 +106,6 @@ git_push.sh
 openapi_client/__init__.py
 openapi_client/api/__init__.py
 openapi_client/api/authorization_api.py
-openapi_client/api/default_api.py
 openapi_client/api/notification_api.py
 openapi_client/api/object_api.py
 openapi_client/api/share_api.py
@@ -243,7 +241,6 @@ test/test_data.py
 test/test_data1.py
 test/test_data2.py
 test/test_data_typing.py
-test/test_default_api.py
 test/test_delete_object.py
 test/test_err_rsp.py
 test/test_experiment_cloudwatch_log_rsp.py

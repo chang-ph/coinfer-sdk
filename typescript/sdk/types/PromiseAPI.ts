@@ -109,6 +109,24 @@ export class PromiseAuthorizationApi {
     }
 
     /**
+     * Get access token.
+     * Access Token
+     */
+    public accessTokenWithHttpInfo(_options?: Configuration): Promise<HttpInfo<SuccRspCode2TokenRsp>> {
+        const result = this.api.accessTokenWithHttpInfo(_options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get access token.
+     * Access Token
+     */
+    public accessToken(_options?: Configuration): Promise<SuccRspCode2TokenRsp> {
+        const result = this.api.accessToken(_options);
+        return result.toPromise();
+    }
+
+    /**
      * Returns the configurations need by the frontend to implement Auth0 login. By using an API to provide this information, we avoid hardcoding them in the frontend code.  This API doen\'t need authorization as it is usually called before login.
      * Get Auth0 login configuration
      */
@@ -141,6 +159,26 @@ export class PromiseAuthorizationApi {
      */
     public auth0Login(_options?: Configuration): Promise<SuccRspAuth0LoginRsp> {
         const result = this.api.auth0Login(_options);
+        return result.toPromise();
+    }
+
+    /**
+     * Exchange code for access token.
+     * Code2Token
+     * @param code
+     */
+    public code2tokenWithHttpInfo(code: string, _options?: Configuration): Promise<HttpInfo<SuccRspCode2TokenRsp>> {
+        const result = this.api.code2tokenWithHttpInfo(code, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * Exchange code for access token.
+     * Code2Token
+     * @param code
+     */
+    public code2token(code: string, _options?: Configuration): Promise<SuccRspCode2TokenRsp> {
+        const result = this.api.code2token(code, _options);
         return result.toPromise();
     }
 
@@ -297,63 +335,6 @@ export class PromiseAuthorizationApi {
      */
     public userLogout(_options?: Configuration): Promise<SuccRspNoneType> {
         const result = this.api.userLogout(_options);
-        return result.toPromise();
-    }
-
-
-}
-
-
-
-import { ObservableDefaultApi } from './ObservableAPI';
-
-import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
-export class PromiseDefaultApi {
-    private api: ObservableDefaultApi
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: DefaultApiRequestFactory,
-        responseProcessor?: DefaultApiResponseProcessor
-    ) {
-        this.api = new ObservableDefaultApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * Get access token.
-     * Access Token
-     */
-    public accessTokenWithHttpInfo(_options?: Configuration): Promise<HttpInfo<SuccRspCode2TokenRsp>> {
-        const result = this.api.accessTokenWithHttpInfo(_options);
-        return result.toPromise();
-    }
-
-    /**
-     * Get access token.
-     * Access Token
-     */
-    public accessToken(_options?: Configuration): Promise<SuccRspCode2TokenRsp> {
-        const result = this.api.accessToken(_options);
-        return result.toPromise();
-    }
-
-    /**
-     * Exchange code for access token.
-     * Code2Token
-     * @param code
-     */
-    public code2tokenWithHttpInfo(code: string, _options?: Configuration): Promise<HttpInfo<SuccRspCode2TokenRsp>> {
-        const result = this.api.code2tokenWithHttpInfo(code, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * Exchange code for access token.
-     * Code2Token
-     * @param code
-     */
-    public code2token(code: string, _options?: Configuration): Promise<SuccRspCode2TokenRsp> {
-        const result = this.api.code2token(code, _options);
         return result.toPromise();
     }
 

@@ -113,6 +113,37 @@ export class ObservableAuthorizationApi {
     }
 
     /**
+     * Get access token.
+     * Access Token
+     */
+    public accessTokenWithHttpInfo(_options?: Configuration): Observable<HttpInfo<SuccRspCode2TokenRsp>> {
+        const requestContextPromise = this.requestFactory.accessToken(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.accessTokenWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Get access token.
+     * Access Token
+     */
+    public accessToken(_options?: Configuration): Observable<SuccRspCode2TokenRsp> {
+        return this.accessTokenWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<SuccRspCode2TokenRsp>) => apiResponse.data));
+    }
+
+    /**
      * Returns the configurations need by the frontend to implement Auth0 login. By using an API to provide this information, we avoid hardcoding them in the frontend code.  This API doen\'t need authorization as it is usually called before login.
      * Get Auth0 login configuration
      */
@@ -172,6 +203,39 @@ export class ObservableAuthorizationApi {
      */
     public auth0Login(_options?: Configuration): Observable<SuccRspAuth0LoginRsp> {
         return this.auth0LoginWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<SuccRspAuth0LoginRsp>) => apiResponse.data));
+    }
+
+    /**
+     * Exchange code for access token.
+     * Code2Token
+     * @param code
+     */
+    public code2tokenWithHttpInfo(code: string, _options?: Configuration): Observable<HttpInfo<SuccRspCode2TokenRsp>> {
+        const requestContextPromise = this.requestFactory.code2token(code, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.code2tokenWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Exchange code for access token.
+     * Code2Token
+     * @param code
+     */
+    public code2token(code: string, _options?: Configuration): Observable<SuccRspCode2TokenRsp> {
+        return this.code2tokenWithHttpInfo(code, _options).pipe(map((apiResponse: HttpInfo<SuccRspCode2TokenRsp>) => apiResponse.data));
     }
 
     /**
@@ -432,88 +496,6 @@ export class ObservableAuthorizationApi {
      */
     public userLogout(_options?: Configuration): Observable<SuccRspNoneType> {
         return this.userLogoutWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<SuccRspNoneType>) => apiResponse.data));
-    }
-
-}
-
-import { DefaultApiRequestFactory, DefaultApiResponseProcessor} from "../apis/DefaultApi";
-export class ObservableDefaultApi {
-    private requestFactory: DefaultApiRequestFactory;
-    private responseProcessor: DefaultApiResponseProcessor;
-    private configuration: Configuration;
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: DefaultApiRequestFactory,
-        responseProcessor?: DefaultApiResponseProcessor
-    ) {
-        this.configuration = configuration;
-        this.requestFactory = requestFactory || new DefaultApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new DefaultApiResponseProcessor();
-    }
-
-    /**
-     * Get access token.
-     * Access Token
-     */
-    public accessTokenWithHttpInfo(_options?: Configuration): Observable<HttpInfo<SuccRspCode2TokenRsp>> {
-        const requestContextPromise = this.requestFactory.accessToken(_options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.accessTokenWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * Get access token.
-     * Access Token
-     */
-    public accessToken(_options?: Configuration): Observable<SuccRspCode2TokenRsp> {
-        return this.accessTokenWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<SuccRspCode2TokenRsp>) => apiResponse.data));
-    }
-
-    /**
-     * Exchange code for access token.
-     * Code2Token
-     * @param code
-     */
-    public code2tokenWithHttpInfo(code: string, _options?: Configuration): Observable<HttpInfo<SuccRspCode2TokenRsp>> {
-        const requestContextPromise = this.requestFactory.code2token(code, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.code2tokenWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * Exchange code for access token.
-     * Code2Token
-     * @param code
-     */
-    public code2token(code: string, _options?: Configuration): Observable<SuccRspCode2TokenRsp> {
-        return this.code2tokenWithHttpInfo(code, _options).pipe(map((apiResponse: HttpInfo<SuccRspCode2TokenRsp>) => apiResponse.data));
     }
 
 }

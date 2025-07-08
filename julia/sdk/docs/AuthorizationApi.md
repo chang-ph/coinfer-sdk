@@ -4,8 +4,10 @@ All URIs are relative to *https://api.coinfer.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**access_token**](AuthorizationApi.md#access_token) | **GET** /base/access_token | Access Token
 [**auth0_config**](AuthorizationApi.md#auth0_config) | **GET** /base/auth0-config | Get Auth0 login configuration
 [**auth0_login**](AuthorizationApi.md#auth0_login) | **POST** /base/auth0-login | Login with Auth0.
+[**code2token**](AuthorizationApi.md#code2token) | **POST** /base/code2token | Code2Token
 [**create_token**](AuthorizationApi.md#create_token) | **POST** /base/user/tokens | Create a new authorization token.
 [**delete_token**](AuthorizationApi.md#delete_token) | **DELETE** /base/user/token/{token_id} | Delete a token by its ID.
 [**get_tokens**](AuthorizationApi.md#get_tokens) | **GET** /base/user/tokens | List all of current user&#39;s tokens.
@@ -15,6 +17,32 @@ Method | HTTP request | Description
 [**user_login**](AuthorizationApi.md#user_login) | **POST** /base/login | Login with password.
 [**user_logout**](AuthorizationApi.md#user_logout) | **POST** /base/logout | Logout the system.
 
+
+# **access_token**
+> access_token(_api::AuthorizationApi; _mediaType=nothing) -> SuccRspCode2TokenRsp, OpenAPI.Clients.ApiResponse <br/>
+> access_token(_api::AuthorizationApi, response_stream::Channel; _mediaType=nothing) -> Channel{ SuccRspCode2TokenRsp }, OpenAPI.Clients.ApiResponse
+
+Access Token
+
+Get access token.
+
+### Required Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**SuccRspCode2TokenRsp**](SuccRspCode2TokenRsp.md)
+
+### Authorization
+
+[GlobalAuth](../README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **auth0_config**
 > auth0_config(_api::AuthorizationApi; _mediaType=nothing) -> SuccRspAuth0ConfigRsp, OpenAPI.Clients.ApiResponse <br/>
@@ -64,6 +92,36 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+# **code2token**
+> code2token(_api::AuthorizationApi, code::String; _mediaType=nothing) -> SuccRspCode2TokenRsp, OpenAPI.Clients.ApiResponse <br/>
+> code2token(_api::AuthorizationApi, response_stream::Channel, code::String; _mediaType=nothing) -> Channel{ SuccRspCode2TokenRsp }, OpenAPI.Clients.ApiResponse
+
+Code2Token
+
+Exchange code for access token.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **AuthorizationApi** | API context | 
+**code** | **String** |  |
+
+### Return type
+
+[**SuccRspCode2TokenRsp**](SuccRspCode2TokenRsp.md)
+
+### Authorization
+
+[GlobalAuth](../README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)

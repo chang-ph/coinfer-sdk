@@ -1,7 +1,7 @@
 import { HttpFile } from '../http/http';
 
 export class Code2TokenRsp {
-    'accessToken': string;
+    'accessToken': string | null;
 
     static readonly discriminator: string | undefined = undefined;
 

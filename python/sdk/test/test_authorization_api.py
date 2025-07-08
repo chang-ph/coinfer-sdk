@@ -25,6 +25,13 @@ class TestAuthorizationApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
+    def test_access_token(self) -> None:
+        """Test case for access_token
+
+        Access Token
+        """
+        pass
+
     def test_auth0_config(self) -> None:
         """Test case for auth0_config
 
@@ -36,6 +43,13 @@ class TestAuthorizationApi(unittest.TestCase):
         """Test case for auth0_login
 
         Login with Auth0.
+        """
+        pass
+
+    def test_code2token(self) -> None:
+        """Test case for code2token
+
+        Code2Token
         """
         pass
 

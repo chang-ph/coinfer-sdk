@@ -17,7 +17,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -25,7 +25,7 @@ class Code2TokenRsp(BaseModel):
     """
     Code2TokenRsp
     """ # noqa: E501
-    access_token: StrictStr
+    access_token: Optional[StrictStr]
     __properties: ClassVar[List[str]] = ["access_token"]
 
     model_config = ConfigDict(
@@ -67,6 +67,11 @@ class Code2TokenRsp(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if access_token (nullable) is None
+        # and model_fields_set contains the field
+        if self.access_token is None and "access_token" in self.model_fields_set:
+            _dict['access_token'] = None
+
         return _dict
 
     @classmethod

@@ -11,6 +11,36 @@ This can be used to construct the `OpenAPI.Clients.Client` instance.
 """
 basepath(::Type{ AuthorizationApi }) = "https://api.coinfer.ai"
 
+const _returntypes_access_token_AuthorizationApi = Dict{Regex,Type}(
+    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspCode2TokenRsp,
+    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
+)
+
+function _oacinternal_access_token(_api::AuthorizationApi; _mediaType=nothing)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_access_token_AuthorizationApi, "/base/access_token", ["GlobalAuth", ])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
+    return _ctx
+end
+
+@doc raw"""Access Token
+
+Get access token.
+
+Params:
+
+Return: SuccRspCode2TokenRsp, OpenAPI.Clients.ApiResponse
+"""
+function access_token(_api::AuthorizationApi; _mediaType=nothing)
+    _ctx = _oacinternal_access_token(_api; _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx)
+end
+
+function access_token(_api::AuthorizationApi, response_stream::Channel; _mediaType=nothing)
+    _ctx = _oacinternal_access_token(_api; _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx, response_stream)
+end
+
 const _returntypes_auth0_config_AuthorizationApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspAuth0ConfigRsp,
 )
@@ -66,6 +96,38 @@ end
 
 function auth0_login(_api::AuthorizationApi, response_stream::Channel; _mediaType=nothing)
     _ctx = _oacinternal_auth0_login(_api; _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx, response_stream)
+end
+
+const _returntypes_code2token_AuthorizationApi = Dict{Regex,Type}(
+    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspCode2TokenRsp,
+    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
+)
+
+function _oacinternal_code2token(_api::AuthorizationApi, code::String; _mediaType=nothing)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_code2token_AuthorizationApi, "/base/code2token", ["GlobalAuth", ])
+    OpenAPI.Clients.set_param(_ctx.form, "code", code)  # type String
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/x-www-form-urlencoded", ] : [_mediaType])
+    return _ctx
+end
+
+@doc raw"""Code2Token
+
+Exchange code for access token.
+
+Params:
+- code::String (required)
+
+Return: SuccRspCode2TokenRsp, OpenAPI.Clients.ApiResponse
+"""
+function code2token(_api::AuthorizationApi, code::String; _mediaType=nothing)
+    _ctx = _oacinternal_code2token(_api, code; _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx)
+end
+
+function code2token(_api::AuthorizationApi, response_stream::Channel, code::String; _mediaType=nothing)
+    _ctx = _oacinternal_code2token(_api, code; _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -318,8 +380,10 @@ function user_logout(_api::AuthorizationApi, response_stream::Channel; _mediaTyp
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
+export access_token
 export auth0_config
 export auth0_login
+export code2token
 export create_token
 export delete_token
 export get_tokens

@@ -2,14 +2,12 @@
 .gitignore
 .openapi-generator-ignore
 AuthorizationApi.md
-DefaultApi.md
 NotificationApi.md
 ObjectApi.md
 README.md
 ShareApi.md
 SystemApi.md
 apis/AuthorizationApi.ts
-apis/DefaultApi.ts
 apis/NotificationApi.ts
 apis/ObjectApi.ts
 apis/ShareApi.ts
