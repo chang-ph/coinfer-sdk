@@ -1,6 +1,6 @@
 import json
 import logging
-from typing import TypedDict, Required
+from typing import TypedDict, Required, Any
 
 from .logged_requests import requests
 logger = logging.getLogger(__name__)
@@ -21,7 +21,7 @@ class Client:
     session = requests
     run_info: RunInfoData
 
-    def __init__(self, endpoints, coinfer_auth_token):
+    def __init__(self, endpoints: str, coinfer_auth_token: str):
         self.endpoints = endpoints.rstrip("/")
         self.coinfer_auth_token = coinfer_auth_token
         self.run_info = {
@@ -30,17 +30,17 @@ class Client:
             "run_id": "",
         }
 
-    def endpoint(self, name, path):
+    def endpoint(self, name: str, path: str) -> str:
         sep = "/"
         return self.endpoints + sep + name + sep + path.lstrip("/")
 
-    def headers_with_auth(self, **kwargs):
+    def headers_with_auth(self, **kwargs: Any) -> dict[str, Any]:
         headers = {"Authorization": f"bearer {self.coinfer_auth_token}"}
         headers.update(kwargs)
         return headers
 
     @staticmethod
-    def response_data(resp):
+    def response_data(resp) -> dict[str, Any]:
         rdata = resp.json()
         if rdata["status"] != "ok":
             msg = rdata["message"]
@@ -122,3 +122,9 @@ class Client:
             url, headers=headers, json={"payload": {"object_type": "model", "name": name, "content": content}}
         )
         return self.response_data(res)["short_id"]
+
+    def get_access_token(self) -> str:
+        res = self.session.get(
+            self.endpoint("base", "/access_token"), headers=self.headers_with_auth()
+        )
+        return self.response_data(res)["access_token"]

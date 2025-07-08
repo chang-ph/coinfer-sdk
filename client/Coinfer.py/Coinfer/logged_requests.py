@@ -44,6 +44,7 @@ class _DoParamType(TypedDict, total=False):
     headers: dict[str, str]
     json: dict[str, Any]
     timeout: float | int
+    data: dict[str, Any]
 
 
 class Req:
