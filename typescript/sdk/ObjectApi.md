@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **deleteObject**
-> SuccRspNoneType deleteObject()
+> SuccRspSoftDeletedRsp deleteObject()
 
 Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
 
@@ -83,10 +83,12 @@ const configuration = createConfiguration();
 const apiInstance = new ObjectApi(configuration);
 
 const request: ObjectApiDeleteObjectRequest = {
-  
+    // list of object ids (optional)
   objids: [
     "objids_example",
   ],
+  
+  deletedKey: "",
 };
 
 const data = await apiInstance.deleteObject(request);
@@ -98,12 +100,13 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **objids** | **Array&lt;string&gt;** |  | defaults to undefined
+ **objids** | **Array&lt;string&gt;** | list of object ids | (optional) defaults to undefined
+ **deletedKey** | [**string**] |  | (optional) defaults to ''
 
 
 ### Return type
 
-**SuccRspNoneType**
+**SuccRspSoftDeletedRsp**
 
 ### Authorization
 

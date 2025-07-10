@@ -1,11 +1,7 @@
 import { HttpFile } from '../http/http';
 
-export class DeleteObject {
-    /**
-    * list of object ids
-    */
-    'objids'?: Array<string>;
-    'deletedKey'?: string;
+export class SoftDeletedRsp {
+    'deletedKey': string | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -13,20 +9,14 @@ export class DeleteObject {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "objids",
-            "baseName": "objids",
-            "type": "Array<string>",
-            "format": ""
-        },
-        {
             "name": "deletedKey",
             "baseName": "deleted_key",
             "type": "string",
-            "format": ""
+            "format": "uuid"
         }    ];
 
     static getAttributeTypeMap() {
-        return DeleteObject.attributeTypeMap;
+        return SoftDeletedRsp.attributeTypeMap;
     }
 
     public constructor() {

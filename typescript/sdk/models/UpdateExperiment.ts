@@ -9,6 +9,7 @@ export class UpdateExperiment {
     'nVariables'?: number;
     'nSamples'?: number;
     'sampleUpdateTime'?: Date | null;
+    'name'?: string | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -62,6 +63,12 @@ export class UpdateExperiment {
             "baseName": "sample_update_time",
             "type": "Date",
             "format": "date-time"
+        },
+        {
+            "name": "name",
+            "baseName": "name",
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {

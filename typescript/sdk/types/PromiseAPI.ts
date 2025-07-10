@@ -62,6 +62,7 @@ import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
 import { ShareInfoModel } from '../models/ShareInfoModel';
+import { SoftDeletedRsp } from '../models/SoftDeletedRsp';
 import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAny } from '../models/SuccRspAny';
@@ -79,6 +80,7 @@ import { SuccRspListRepositoryRsp } from '../models/SuccRspListRepositoryRsp';
 import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingRspDataNotificationDict';
 import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
 import { SuccRspNoneType } from '../models/SuccRspNoneType';
+import { SuccRspSoftDeletedRsp } from '../models/SuccRspSoftDeletedRsp';
 import { SuccRspUnionExperimentRspViewModelsRspNoneType } from '../models/SuccRspUnionExperimentRspViewModelsRspNoneType';
 import { SuccRspUserInfoRsp } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp } from '../models/SuccRspUserLoginRsp';
@@ -443,20 +445,22 @@ export class PromiseObjectApi {
     /**
      * Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
      * Delete objects.
-     * @param objids
+     * @param [objids] list of object ids
+     * @param [deletedKey]
      */
-    public deleteObjectWithHttpInfo(objids: Array<string>, _options?: Configuration): Promise<HttpInfo<SuccRspNoneType>> {
-        const result = this.api.deleteObjectWithHttpInfo(objids, _options);
+    public deleteObjectWithHttpInfo(objids?: Array<string>, deletedKey?: string, _options?: Configuration): Promise<HttpInfo<SuccRspSoftDeletedRsp>> {
+        const result = this.api.deleteObjectWithHttpInfo(objids, deletedKey, _options);
         return result.toPromise();
     }
 
     /**
      * Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
      * Delete objects.
-     * @param objids
+     * @param [objids] list of object ids
+     * @param [deletedKey]
      */
-    public deleteObject(objids: Array<string>, _options?: Configuration): Promise<SuccRspNoneType> {
-        const result = this.api.deleteObject(objids, _options);
+    public deleteObject(objids?: Array<string>, deletedKey?: string, _options?: Configuration): Promise<SuccRspSoftDeletedRsp> {
+        const result = this.api.deleteObject(objids, deletedKey, _options);
         return result.toPromise();
     }
 

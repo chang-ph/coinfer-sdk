@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **n_variables** | **int** |  | [optional] [default to 0]
 **n_samples** | **int** |  | [optional] [default to 0]
 **sample_update_time** | **datetime** |  | [optional] 
+**name** | **str** |  | [optional] 
 
 ## Example
 

@@ -41,7 +41,8 @@ class TestUpdateExperiment(unittest.TestCase):
                 n_chains = 56,
                 n_variables = 56,
                 n_samples = 56,
-                sample_update_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                sample_update_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                name = ''
             )
         else:
             return UpdateExperiment(

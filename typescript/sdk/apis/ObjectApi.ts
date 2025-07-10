@@ -13,7 +13,7 @@ import { ErrRsp } from '../models/ErrRsp';
 import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
-import { SuccRspNoneType } from '../models/SuccRspNoneType';
+import { SuccRspSoftDeletedRsp } from '../models/SuccRspSoftDeletedRsp';
 import { SuccRspUnionExperimentRspViewModelsRspNoneType } from '../models/SuccRspUnionExperimentRspViewModelsRspNoneType';
 import { UpdateObject } from '../models/UpdateObject';
 
@@ -75,15 +75,12 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
      * Delete objects.
      *
      * Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
-     * @param objids 
+     * @param objids list of object ids
+     * @param deletedKey 
      */
-    public async deleteObject(objids: Array<string>, _options?: Configuration): Promise<RequestContext> {
+    public async deleteObject(objids?: Array<string>, deletedKey?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'objids' is not null or undefined
-        if (objids === null || objids === undefined) {
-            throw new RequiredError("ObjectApi", "deleteObject", "objids");
-        }
 
 
         // Path Params
@@ -99,6 +96,11 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
             for (const serializedParam of serializedParams) {
                 requestContext.appendQueryParam("objids", serializedParam);
             }
+        }
+
+        // Query Params
+        if (deletedKey !== undefined) {
+            requestContext.setQueryParam("deleted_key", ObjectSerializer.serialize(deletedKey, "string", ""));
         }
 
 
@@ -433,13 +435,13 @@ export class ObjectApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteObject
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspNoneType >> {
+     public async deleteObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspSoftDeletedRsp >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: SuccRspNoneType = ObjectSerializer.deserialize(
+            const body: SuccRspSoftDeletedRsp = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspNoneType", ""
-            ) as SuccRspNoneType;
+                "SuccRspSoftDeletedRsp", ""
+            ) as SuccRspSoftDeletedRsp;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -452,10 +454,10 @@ export class ObjectApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: SuccRspNoneType = ObjectSerializer.deserialize(
+            const body: SuccRspSoftDeletedRsp = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspNoneType", ""
-            ) as SuccRspNoneType;
+                "SuccRspSoftDeletedRsp", ""
+            ) as SuccRspSoftDeletedRsp;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 

@@ -13,6 +13,7 @@
         n_variables=0,
         n_samples=0,
         sample_update_time=nothing,
+        name=nothing,
     )
 
     - object_type::String
@@ -23,6 +24,7 @@
     - n_variables::Int64
     - n_samples::Int64
     - sample_update_time::ZonedDateTime
+    - name::String
 """
 Base.@kwdef mutable struct UpdateExperiment <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
@@ -33,8 +35,9 @@ Base.@kwdef mutable struct UpdateExperiment <: OpenAPI.APIModel
     n_variables::Union{Nothing, Int64} = 0
     n_samples::Union{Nothing, Int64} = 0
     sample_update_time::Union{Nothing, ZonedDateTime} = nothing
+    name::Union{Nothing, String} = nothing
 
-    function UpdateExperiment(object_type, action, meta, status, n_chains, n_variables, n_samples, sample_update_time, )
+    function UpdateExperiment(object_type, action, meta, status, n_chains, n_variables, n_samples, sample_update_time, name, )
         OpenAPI.validate_property(UpdateExperiment, Symbol("object_type"), object_type)
         OpenAPI.validate_property(UpdateExperiment, Symbol("action"), action)
         OpenAPI.validate_property(UpdateExperiment, Symbol("meta"), meta)
@@ -43,11 +46,12 @@ Base.@kwdef mutable struct UpdateExperiment <: OpenAPI.APIModel
         OpenAPI.validate_property(UpdateExperiment, Symbol("n_variables"), n_variables)
         OpenAPI.validate_property(UpdateExperiment, Symbol("n_samples"), n_samples)
         OpenAPI.validate_property(UpdateExperiment, Symbol("sample_update_time"), sample_update_time)
-        return new(object_type, action, meta, status, n_chains, n_variables, n_samples, sample_update_time, )
+        OpenAPI.validate_property(UpdateExperiment, Symbol("name"), name)
+        return new(object_type, action, meta, status, n_chains, n_variables, n_samples, sample_update_time, name, )
     end
 end # type UpdateExperiment
 
-const _property_types_UpdateExperiment = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("action")=>"String", Symbol("meta")=>"Dict{String, Any}", Symbol("status")=>"String", Symbol("n_chains")=>"Int64", Symbol("n_variables")=>"Int64", Symbol("n_samples")=>"Int64", Symbol("sample_update_time")=>"ZonedDateTime", )
+const _property_types_UpdateExperiment = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("action")=>"String", Symbol("meta")=>"Dict{String, Any}", Symbol("status")=>"String", Symbol("n_chains")=>"Int64", Symbol("n_variables")=>"Int64", Symbol("n_samples")=>"Int64", Symbol("sample_update_time")=>"ZonedDateTime", Symbol("name")=>"String", )
 OpenAPI.property_type(::Type{ UpdateExperiment }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_UpdateExperiment[name]))}
 
 function check_required(o::UpdateExperiment)
@@ -71,4 +75,5 @@ function OpenAPI.validate_property(::Type{ UpdateExperiment }, name::Symbol, val
     if name === Symbol("sample_update_time")
         OpenAPI.validate_param(name, "UpdateExperiment", :format, val, "date-time")
     end
+
 end

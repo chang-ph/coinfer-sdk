@@ -62,6 +62,7 @@ import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
 import { ShareInfoModel } from '../models/ShareInfoModel';
+import { SoftDeletedRsp } from '../models/SoftDeletedRsp';
 import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAny } from '../models/SuccRspAny';
@@ -79,6 +80,7 @@ import { SuccRspListRepositoryRsp } from '../models/SuccRspListRepositoryRsp';
 import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingRspDataNotificationDict';
 import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
 import { SuccRspNoneType } from '../models/SuccRspNoneType';
+import { SuccRspSoftDeletedRsp } from '../models/SuccRspSoftDeletedRsp';
 import { SuccRspUnionExperimentRspViewModelsRspNoneType } from '../models/SuccRspUnionExperimentRspViewModelsRspNoneType';
 import { SuccRspUserInfoRsp } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp } from '../models/SuccRspUserLoginRsp';
@@ -500,12 +502,19 @@ export interface ObjectApiCreateObjectRequest {
 
 export interface ObjectApiDeleteObjectRequest {
     /**
-     * 
+     * list of object ids
      * Defaults to: undefined
      * @type Array&lt;string&gt;
      * @memberof ObjectApideleteObject
      */
-    objids: Array<string>
+    objids?: Array<string>
+    /**
+     * 
+     * Defaults to: &#39;&#39;
+     * @type string
+     * @memberof ObjectApideleteObject
+     */
+    deletedKey?: string
 }
 
 export interface ObjectApiListObjectRequest {
@@ -694,8 +703,8 @@ export class ObjectObjectApi {
      * Delete objects.
      * @param param the request object
      */
-    public deleteObjectWithHttpInfo(param: ObjectApiDeleteObjectRequest, options?: Configuration): Promise<HttpInfo<SuccRspNoneType>> {
-        return this.api.deleteObjectWithHttpInfo(param.objids,  options).toPromise();
+    public deleteObjectWithHttpInfo(param: ObjectApiDeleteObjectRequest = {}, options?: Configuration): Promise<HttpInfo<SuccRspSoftDeletedRsp>> {
+        return this.api.deleteObjectWithHttpInfo(param.objids, param.deletedKey,  options).toPromise();
     }
 
     /**
@@ -703,8 +712,8 @@ export class ObjectObjectApi {
      * Delete objects.
      * @param param the request object
      */
-    public deleteObject(param: ObjectApiDeleteObjectRequest, options?: Configuration): Promise<SuccRspNoneType> {
-        return this.api.deleteObject(param.objids,  options).toPromise();
+    public deleteObject(param: ObjectApiDeleteObjectRequest = {}, options?: Configuration): Promise<SuccRspSoftDeletedRsp> {
+        return this.api.deleteObject(param.objids, param.deletedKey,  options).toPromise();
     }
 
     /**

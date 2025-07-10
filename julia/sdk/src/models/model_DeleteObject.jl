@@ -6,27 +6,31 @@
 
     DeleteObject(;
         objids=nothing,
+        deleted_key="",
     )
 
-    - objids::Vector{String}
+    - objids::Vector{String} : list of object ids
+    - deleted_key::String
 """
 Base.@kwdef mutable struct DeleteObject <: OpenAPI.APIModel
     objids::Union{Nothing, Vector{String}} = nothing
+    deleted_key::Union{Nothing, String} = ""
 
-    function DeleteObject(objids, )
+    function DeleteObject(objids, deleted_key, )
         OpenAPI.validate_property(DeleteObject, Symbol("objids"), objids)
-        return new(objids, )
+        OpenAPI.validate_property(DeleteObject, Symbol("deleted_key"), deleted_key)
+        return new(objids, deleted_key, )
     end
 end # type DeleteObject
 
-const _property_types_DeleteObject = Dict{Symbol,String}(Symbol("objids")=>"Vector{String}", )
+const _property_types_DeleteObject = Dict{Symbol,String}(Symbol("objids")=>"Vector{String}", Symbol("deleted_key")=>"String", )
 OpenAPI.property_type(::Type{ DeleteObject }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_DeleteObject[name]))}
 
 function check_required(o::DeleteObject)
-    o.objids === nothing && (return false)
     true
 end
 
 function OpenAPI.validate_property(::Type{ DeleteObject }, name::Symbol, val)
+
 
 end

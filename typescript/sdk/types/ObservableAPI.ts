@@ -63,6 +63,7 @@ import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
 import { ShareInfoModel } from '../models/ShareInfoModel';
+import { SoftDeletedRsp } from '../models/SoftDeletedRsp';
 import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAny } from '../models/SuccRspAny';
@@ -80,6 +81,7 @@ import { SuccRspListRepositoryRsp } from '../models/SuccRspListRepositoryRsp';
 import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingRspDataNotificationDict';
 import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
 import { SuccRspNoneType } from '../models/SuccRspNoneType';
+import { SuccRspSoftDeletedRsp } from '../models/SuccRspSoftDeletedRsp';
 import { SuccRspUnionExperimentRspViewModelsRspNoneType } from '../models/SuccRspUnionExperimentRspViewModelsRspNoneType';
 import { SuccRspUserInfoRsp } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp } from '../models/SuccRspUserLoginRsp';
@@ -640,10 +642,11 @@ export class ObservableObjectApi {
     /**
      * Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
      * Delete objects.
-     * @param objids
+     * @param [objids] list of object ids
+     * @param [deletedKey]
      */
-    public deleteObjectWithHttpInfo(objids: Array<string>, _options?: Configuration): Observable<HttpInfo<SuccRspNoneType>> {
-        const requestContextPromise = this.requestFactory.deleteObject(objids, _options);
+    public deleteObjectWithHttpInfo(objids?: Array<string>, deletedKey?: string, _options?: Configuration): Observable<HttpInfo<SuccRspSoftDeletedRsp>> {
+        const requestContextPromise = this.requestFactory.deleteObject(objids, deletedKey, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -664,10 +667,11 @@ export class ObservableObjectApi {
     /**
      * Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
      * Delete objects.
-     * @param objids
+     * @param [objids] list of object ids
+     * @param [deletedKey]
      */
-    public deleteObject(objids: Array<string>, _options?: Configuration): Observable<SuccRspNoneType> {
-        return this.deleteObjectWithHttpInfo(objids, _options).pipe(map((apiResponse: HttpInfo<SuccRspNoneType>) => apiResponse.data));
+    public deleteObject(objids?: Array<string>, deletedKey?: string, _options?: Configuration): Observable<SuccRspSoftDeletedRsp> {
+        return this.deleteObjectWithHttpInfo(objids, deletedKey, _options).pipe(map((apiResponse: HttpInfo<SuccRspSoftDeletedRsp>) => apiResponse.data));
     }
 
     /**

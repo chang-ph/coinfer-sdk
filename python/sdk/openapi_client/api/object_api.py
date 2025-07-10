@@ -22,7 +22,7 @@ from openapi_client.models.create_object_req import CreateObjectReq
 from openapi_client.models.succ_rsp_annotated_union_experiment_rsp_list_models_rsp_item_create_experiment_share_rsp_create_event_rsp_create_callback_rsp_create_relation_rsp_field_info_annotation_none_type_required_true_discriminator_object_type import SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType
 from openapi_client.models.succ_rsp_annotated_union_experiment_rsp_view_models_rsp_view_experiment_share_rsp_experiment_sample_data_rsp_experiment_cloudwatch_log_rsp_get_experiment_run_info_rsp_field_info_annotation_none_type_required_true_discriminator_object_type import SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType
 from openapi_client.models.succ_rsp_listing_rsp_data_union_list_experiment_rsp_list_models_rsp_item_create_event_rsp_create_callback_rsp_create_relation_rsp import SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp
-from openapi_client.models.succ_rsp_none_type import SuccRspNoneType
+from openapi_client.models.succ_rsp_soft_deleted_rsp import SuccRspSoftDeletedRsp
 from openapi_client.models.succ_rsp_union_experiment_rsp_view_models_rsp_none_type import SuccRspUnionExperimentRspViewModelsRspNoneType
 from openapi_client.models.update_object import UpdateObject
 
@@ -324,7 +324,8 @@ class ObjectApi:
     @validate_call
     def delete_object(
         self,
-        objids: List[StrictStr],
+        objids: Annotated[Optional[List[StrictStr]], Field(description="list of object ids")] = None,
+        deleted_key: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -337,13 +338,15 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> SuccRspNoneType:
+    ) -> SuccRspSoftDeletedRsp:
         """Delete objects.
 
         Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
 
-        :param objids: (required)
+        :param objids: list of object ids
         :type objids: List[str]
+        :param deleted_key:
+        :type deleted_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -368,6 +371,7 @@ class ObjectApi:
 
         _param = self._delete_object_serialize(
             objids=objids,
+            deleted_key=deleted_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -375,7 +379,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SuccRspNoneType",
+            '200': "SuccRspSoftDeletedRsp",
             '400': "ErrRsp",
         }
         response_data = self.api_client.call_api(
@@ -392,7 +396,8 @@ class ObjectApi:
     @validate_call
     def delete_object_with_http_info(
         self,
-        objids: List[StrictStr],
+        objids: Annotated[Optional[List[StrictStr]], Field(description="list of object ids")] = None,
+        deleted_key: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -405,13 +410,15 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[SuccRspNoneType]:
+    ) -> ApiResponse[SuccRspSoftDeletedRsp]:
         """Delete objects.
 
         Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
 
-        :param objids: (required)
+        :param objids: list of object ids
         :type objids: List[str]
+        :param deleted_key:
+        :type deleted_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -436,6 +443,7 @@ class ObjectApi:
 
         _param = self._delete_object_serialize(
             objids=objids,
+            deleted_key=deleted_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -443,7 +451,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SuccRspNoneType",
+            '200': "SuccRspSoftDeletedRsp",
             '400': "ErrRsp",
         }
         response_data = self.api_client.call_api(
@@ -460,7 +468,8 @@ class ObjectApi:
     @validate_call
     def delete_object_without_preload_content(
         self,
-        objids: List[StrictStr],
+        objids: Annotated[Optional[List[StrictStr]], Field(description="list of object ids")] = None,
+        deleted_key: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -478,8 +487,10 @@ class ObjectApi:
 
         Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
 
-        :param objids: (required)
+        :param objids: list of object ids
         :type objids: List[str]
+        :param deleted_key:
+        :type deleted_key: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -504,6 +515,7 @@ class ObjectApi:
 
         _param = self._delete_object_serialize(
             objids=objids,
+            deleted_key=deleted_key,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -511,7 +523,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SuccRspNoneType",
+            '200': "SuccRspSoftDeletedRsp",
             '400': "ErrRsp",
         }
         response_data = self.api_client.call_api(
@@ -524,6 +536,7 @@ class ObjectApi:
     def _delete_object_serialize(
         self,
         objids,
+        deleted_key,
         _request_auth,
         _content_type,
         _headers,
@@ -550,6 +563,10 @@ class ObjectApi:
         if objids is not None:
             
             _query_params.append(('objids', objids))
+            
+        if deleted_key is not None:
+            
+            _query_params.append(('deleted_key', deleted_key))
             
         # process the header parameters
         # process the form parameters

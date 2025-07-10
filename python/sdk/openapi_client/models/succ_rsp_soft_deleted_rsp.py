@@ -16,18 +16,26 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List
+from openapi_client.models.soft_deleted_rsp import SoftDeletedRsp
 from typing import Optional, Set
 from typing_extensions import Self
 
-class DeleteObject(BaseModel):
+class SuccRspSoftDeletedRsp(BaseModel):
     """
-    DeleteObject
+    SuccRspSoftDeletedRsp
     """ # noqa: E501
-    objids: Optional[List[StrictStr]] = Field(default=None, description="list of object ids")
-    deleted_key: Optional[StrictStr] = ''
-    __properties: ClassVar[List[str]] = ["objids", "deleted_key"]
+    status: StrictStr
+    data: SoftDeletedRsp
+    __properties: ClassVar[List[str]] = ["status", "data"]
+
+    @field_validator('status')
+    def status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['ok']):
+            raise ValueError("must be one of enum values ('ok')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -47,7 +55,7 @@ class DeleteObject(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DeleteObject from a JSON string"""
+        """Create an instance of SuccRspSoftDeletedRsp from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -68,11 +76,14 @@ class DeleteObject(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of data
+        if self.data:
+            _dict['data'] = self.data.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DeleteObject from a dict"""
+        """Create an instance of SuccRspSoftDeletedRsp from a dict"""
         if obj is None:
             return None
 
@@ -80,8 +91,8 @@ class DeleteObject(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "objids": obj.get("objids"),
-            "deleted_key": obj.get("deleted_key") if obj.get("deleted_key") is not None else ''
+            "status": obj.get("status"),
+            "data": SoftDeletedRsp.from_dict(obj["data"]) if obj.get("data") is not None else None
         })
         return _obj
 

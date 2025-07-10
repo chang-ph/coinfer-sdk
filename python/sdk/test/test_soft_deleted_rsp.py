@@ -13,10 +13,10 @@
 
 import unittest
 
-from openapi_client.models.delete_object import DeleteObject
+from openapi_client.models.soft_deleted_rsp import SoftDeletedRsp
 
-class TestDeleteObject(unittest.TestCase):
-    """DeleteObject unit test stubs"""
+class TestSoftDeletedRsp(unittest.TestCase):
+    """SoftDeletedRsp unit test stubs"""
 
     def setUp(self):
         pass
@@ -24,28 +24,26 @@ class TestDeleteObject(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> DeleteObject:
-        """Test DeleteObject
+    def make_instance(self, include_optional) -> SoftDeletedRsp:
+        """Test SoftDeletedRsp
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `DeleteObject`
+        # uncomment below to create an instance of `SoftDeletedRsp`
         """
-        model = DeleteObject()
+        model = SoftDeletedRsp()
         if include_optional:
-            return DeleteObject(
-                objids = [
-                    ''
-                    ],
+            return SoftDeletedRsp(
                 deleted_key = ''
             )
         else:
-            return DeleteObject(
+            return SoftDeletedRsp(
+                deleted_key = '',
         )
         """
 
-    def testDeleteObject(self):
-        """Test DeleteObject"""
+    def testSoftDeletedRsp(self):
+        """Test SoftDeletedRsp"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

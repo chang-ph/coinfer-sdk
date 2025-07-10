@@ -34,7 +34,8 @@ class UpdateExperiment(BaseModel):
     n_variables: Optional[StrictInt] = 0
     n_samples: Optional[StrictInt] = 0
     sample_update_time: Optional[datetime] = None
-    __properties: ClassVar[List[str]] = ["object_type", "action", "meta", "status", "n_chains", "n_variables", "n_samples", "sample_update_time"]
+    name: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["object_type", "action", "meta", "status", "n_chains", "n_variables", "n_samples", "sample_update_time", "name"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -97,6 +98,11 @@ class UpdateExperiment(BaseModel):
         if self.sample_update_time is None and "sample_update_time" in self.model_fields_set:
             _dict['sample_update_time'] = None
 
+        # set to None if name (nullable) is None
+        # and model_fields_set contains the field
+        if self.name is None and "name" in self.model_fields_set:
+            _dict['name'] = None
+
         return _dict
 
     @classmethod
@@ -116,7 +122,8 @@ class UpdateExperiment(BaseModel):
             "n_chains": obj.get("n_chains") if obj.get("n_chains") is not None else 0,
             "n_variables": obj.get("n_variables") if obj.get("n_variables") is not None else 0,
             "n_samples": obj.get("n_samples") if obj.get("n_samples") is not None else 0,
-            "sample_update_time": obj.get("sample_update_time")
+            "sample_update_time": obj.get("sample_update_time"),
+            "name": obj.get("name")
         })
         return _obj
 

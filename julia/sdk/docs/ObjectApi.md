@@ -42,8 +42,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **delete_object**
-> delete_object(_api::ObjectApi, objids::Vector{String}; _mediaType=nothing) -> SuccRspNoneType, OpenAPI.Clients.ApiResponse <br/>
-> delete_object(_api::ObjectApi, response_stream::Channel, objids::Vector{String}; _mediaType=nothing) -> Channel{ SuccRspNoneType }, OpenAPI.Clients.ApiResponse
+> delete_object(_api::ObjectApi; objids=nothing, deleted_key=nothing, _mediaType=nothing) -> SuccRspSoftDeletedRsp, OpenAPI.Clients.ApiResponse <br/>
+> delete_object(_api::ObjectApi, response_stream::Channel; objids=nothing, deleted_key=nothing, _mediaType=nothing) -> Channel{ SuccRspSoftDeletedRsp }, OpenAPI.Clients.ApiResponse
 
 Delete objects.
 
@@ -54,11 +54,17 @@ Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?obj
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_api** | **ObjectApi** | API context | 
-**objids** | [**Vector{String}**](String.md) |  |
+
+### Optional Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **objids** | [**Vector{String}**](String.md) | list of object ids | [default to nothing]
+ **deleted_key** | **String** |  | [default to &quot;&quot;]
 
 ### Return type
 
-[**SuccRspNoneType**](SuccRspNoneType.md)
+[**SuccRspSoftDeletedRsp**](SuccRspSoftDeletedRsp.md)
 
 ### Authorization
 

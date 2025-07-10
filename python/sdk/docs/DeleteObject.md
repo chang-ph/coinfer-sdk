@@ -5,7 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**objids** | **List[str]** |  | 
+**objids** | **List[str]** | list of object ids | [optional] 
+**deleted_key** | **str** |  | [optional] [default to '']
 
 ## Example
 

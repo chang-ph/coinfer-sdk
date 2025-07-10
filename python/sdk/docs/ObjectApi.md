@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_object**
-> SuccRspNoneType delete_object(objids)
+> SuccRspSoftDeletedRsp delete_object(objids=objids, deleted_key=deleted_key)
 
 Delete objects.
 
@@ -104,7 +104,7 @@ Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?obj
 
 ```python
 import openapi_client
-from openapi_client.models.succ_rsp_none_type import SuccRspNoneType
+from openapi_client.models.succ_rsp_soft_deleted_rsp import SuccRspSoftDeletedRsp
 from openapi_client.rest import ApiException
 from pprint import pprint
 
@@ -128,11 +128,12 @@ configuration = openapi_client.Configuration(
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.ObjectApi(api_client)
-    objids = ['objids_example'] # List[str] | 
+    objids = ['objids_example'] # List[str] | list of object ids (optional)
+    deleted_key = '' # str |  (optional) (default to '')
 
     try:
         # Delete objects.
-        api_response = api_instance.delete_object(objids)
+        api_response = api_instance.delete_object(objids=objids, deleted_key=deleted_key)
         print("The response of ObjectApi->delete_object:\n")
         pprint(api_response)
     except Exception as e:
@@ -146,11 +147,12 @@ with openapi_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **objids** | [**List[str]**](str.md)|  | 
+ **objids** | [**List[str]**](str.md)| list of object ids | [optional] 
+ **deleted_key** | **str**|  | [optional] [default to &#39;&#39;]
 
 ### Return type
 
-[**SuccRspNoneType**](SuccRspNoneType.md)
+[**SuccRspSoftDeletedRsp**](SuccRspSoftDeletedRsp.md)
 
 ### Authorization
 
