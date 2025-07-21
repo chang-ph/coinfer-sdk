@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **max_upload_sample_size** | **int** |  | 
 **max_upload_sample_file** | **int** |  | 
 **upload_file_types** | **str** |  | 
+**google_client_id** | **str** |  | 
+**google_app_id** | **str** |  | 
 
 ## Example
 

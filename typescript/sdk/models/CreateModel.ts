@@ -14,9 +14,13 @@ export class CreateModel {
     */
     'branch'?: string;
     /**
-    * repo or gist
+    * The type of input code. It can be:  * repo: the code is stored in a github repository and specified by param `repo` and `branch`. * gist: the code is stored in a github gist and specified by param `repo` and `branch`. * local: the code is provided directly in `content` field as Unified Model Format. * codelambda: the code is provided directly in `code` field as str. The backend will generate a lambda instance for it.
     */
     'type'?: CreateModelTypeEnum;
+    /**
+    * Plain code. Type must be codelambda
+    */
+    'code'?: string;
     /**
     * [deprecated] model name
     */
@@ -63,6 +67,12 @@ export class CreateModel {
             "name": "type",
             "baseName": "type",
             "type": "CreateModelTypeEnum",
+            "format": ""
+        },
+        {
+            "name": "code",
+            "baseName": "code",
+            "type": "string",
             "format": ""
         },
         {
@@ -134,6 +144,7 @@ export enum CreateModelObjectTypeEnum {
 export enum CreateModelTypeEnum {
     Repo = 'repo',
     Gist = 'gist',
-    Local = 'local'
+    Local = 'local',
+    Codelambda = 'codelambda'
 }
 

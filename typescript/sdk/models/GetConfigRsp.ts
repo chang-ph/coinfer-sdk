@@ -5,6 +5,8 @@ export class GetConfigRsp {
     'maxUploadSampleSize': number;
     'maxUploadSampleFile': number;
     'uploadFileTypes': string;
+    'googleClientId': string;
+    'googleAppId': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -32,6 +34,18 @@ export class GetConfigRsp {
         {
             "name": "uploadFileTypes",
             "baseName": "upload_file_types",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "googleClientId",
+            "baseName": "google_client_id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "googleAppId",
+            "baseName": "google_app_id",
             "type": "string",
             "format": ""
         }    ];

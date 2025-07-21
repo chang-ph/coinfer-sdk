@@ -9,29 +9,37 @@
         max_upload_sample_size=nothing,
         max_upload_sample_file=nothing,
         upload_file_types=nothing,
+        google_client_id=nothing,
+        google_app_id=nothing,
     )
 
     - run_model_url::String
     - max_upload_sample_size::Int64
     - max_upload_sample_file::Int64
     - upload_file_types::String
+    - google_client_id::String
+    - google_app_id::String
 """
 Base.@kwdef mutable struct GetConfigRsp <: OpenAPI.APIModel
     run_model_url::Union{Nothing, String} = nothing
     max_upload_sample_size::Union{Nothing, Int64} = nothing
     max_upload_sample_file::Union{Nothing, Int64} = nothing
     upload_file_types::Union{Nothing, String} = nothing
+    google_client_id::Union{Nothing, String} = nothing
+    google_app_id::Union{Nothing, String} = nothing
 
-    function GetConfigRsp(run_model_url, max_upload_sample_size, max_upload_sample_file, upload_file_types, )
+    function GetConfigRsp(run_model_url, max_upload_sample_size, max_upload_sample_file, upload_file_types, google_client_id, google_app_id, )
         OpenAPI.validate_property(GetConfigRsp, Symbol("run_model_url"), run_model_url)
         OpenAPI.validate_property(GetConfigRsp, Symbol("max_upload_sample_size"), max_upload_sample_size)
         OpenAPI.validate_property(GetConfigRsp, Symbol("max_upload_sample_file"), max_upload_sample_file)
         OpenAPI.validate_property(GetConfigRsp, Symbol("upload_file_types"), upload_file_types)
-        return new(run_model_url, max_upload_sample_size, max_upload_sample_file, upload_file_types, )
+        OpenAPI.validate_property(GetConfigRsp, Symbol("google_client_id"), google_client_id)
+        OpenAPI.validate_property(GetConfigRsp, Symbol("google_app_id"), google_app_id)
+        return new(run_model_url, max_upload_sample_size, max_upload_sample_file, upload_file_types, google_client_id, google_app_id, )
     end
 end # type GetConfigRsp
 
-const _property_types_GetConfigRsp = Dict{Symbol,String}(Symbol("run_model_url")=>"String", Symbol("max_upload_sample_size")=>"Int64", Symbol("max_upload_sample_file")=>"Int64", Symbol("upload_file_types")=>"String", )
+const _property_types_GetConfigRsp = Dict{Symbol,String}(Symbol("run_model_url")=>"String", Symbol("max_upload_sample_size")=>"Int64", Symbol("max_upload_sample_file")=>"Int64", Symbol("upload_file_types")=>"String", Symbol("google_client_id")=>"String", Symbol("google_app_id")=>"String", )
 OpenAPI.property_type(::Type{ GetConfigRsp }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_GetConfigRsp[name]))}
 
 function check_required(o::GetConfigRsp)
@@ -39,10 +47,14 @@ function check_required(o::GetConfigRsp)
     o.max_upload_sample_size === nothing && (return false)
     o.max_upload_sample_file === nothing && (return false)
     o.upload_file_types === nothing && (return false)
+    o.google_client_id === nothing && (return false)
+    o.google_app_id === nothing && (return false)
     true
 end
 
 function OpenAPI.validate_property(::Type{ GetConfigRsp }, name::Symbol, val)
+
+
 
 
 

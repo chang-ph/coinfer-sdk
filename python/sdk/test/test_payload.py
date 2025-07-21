@@ -38,6 +38,7 @@ class TestPayload(unittest.TestCase):
                 repo = '',
                 branch = '',
                 type = 'local',
+                code = '',
                 model_name = '',
                 env = '',
                 name = '',
@@ -71,17 +72,16 @@ class TestPayload(unittest.TestCase):
                 objid = '',
                 password = '',
                 target_user = '',
-                code = '',
                 object1_id = '',
                 object2_id = ''
             )
         else:
             return Payload(
                 object_type = 'relation',
+                code = '',
                 name = '',
                 lang = 'julia',
                 objid = '',
-                code = '',
                 object1_id = '',
                 object2_id = '',
         )

@@ -29,7 +29,9 @@ class GetConfigRsp(BaseModel):
     max_upload_sample_size: StrictInt
     max_upload_sample_file: StrictInt
     upload_file_types: StrictStr
-    __properties: ClassVar[List[str]] = ["run_model_url", "max_upload_sample_size", "max_upload_sample_file", "upload_file_types"]
+    google_client_id: StrictStr
+    google_app_id: StrictStr
+    __properties: ClassVar[List[str]] = ["run_model_url", "max_upload_sample_size", "max_upload_sample_file", "upload_file_types", "google_client_id", "google_app_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,7 +87,9 @@ class GetConfigRsp(BaseModel):
             "run_model_url": obj.get("run_model_url"),
             "max_upload_sample_size": obj.get("max_upload_sample_size"),
             "max_upload_sample_file": obj.get("max_upload_sample_file"),
-            "upload_file_types": obj.get("upload_file_types")
+            "upload_file_types": obj.get("upload_file_types"),
+            "google_client_id": obj.get("google_client_id"),
+            "google_app_id": obj.get("google_app_id")
         })
         return _obj
 

@@ -8,7 +8,8 @@ Name | Type | Description | Notes
 **object_type** | **str** |  | 
 **repo** | **str** | repo in the form of repo_owner/repo_name or gist id in case of importing from gist | [optional] [default to '']
 **branch** | **str** | branch name or gist description in case of importing from gist | [optional] [default to '']
-**type** | **str** | repo or gist | [optional] [default to 'local']
+**type** | **str** | The type of input code. It can be:  * repo: the code is stored in a github repository and specified by param &#x60;repo&#x60; and &#x60;branch&#x60;. * gist: the code is stored in a github gist and specified by param &#x60;repo&#x60; and &#x60;branch&#x60;. * local: the code is provided directly in &#x60;content&#x60; field as Unified Model Format. * codelambda: the code is provided directly in &#x60;code&#x60; field as str. The backend will generate a lambda instance for it. | [optional] [default to 'local']
+**code** | **str** | code location specification. Can be: 1. GitHub gist: gist:&lt;gist-id&gt;:&lt;entrance-file&gt; 2. GitHub repo: repo:&lt;repo-owner&gt;/&lt;repo-name&gt;:&lt;entrance-file&gt; | 
 **model_name** | **str** | [deprecated] model name | [optional] [default to '']
 **env** | **str** |  | [optional] 
 **name** | **str** |  | 
@@ -27,7 +28,6 @@ Name | Type | Description | Notes
 **objid** | **str** |  | 
 **password** | **str** |  | [optional] [default to '']
 **target_user** | **str** |  | [optional] [default to '']
-**code** | **str** | code location specification. Can be: 1. GitHub gist: gist:&lt;gist-id&gt;:&lt;entrance-file&gt; 2. GitHub repo: repo:&lt;repo-owner&gt;/&lt;repo-name&gt;:&lt;entrance-file&gt; | 
 **object1_id** | **str** |  | 
 **object2_id** | **str** |  | 
 

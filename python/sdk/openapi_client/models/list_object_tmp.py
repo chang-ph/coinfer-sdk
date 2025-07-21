@@ -82,8 +82,8 @@ class ListObjectTmp(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['model', 'script']):
-            raise ValueError("must be one of enum values ('model', 'script')")
+        if value not in set(['model', 'script', 'lambda_script']):
+            raise ValueError("must be one of enum values ('model', 'script', 'lambda_script')")
         return value
 
     model_config = ConfigDict(

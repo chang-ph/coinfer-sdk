@@ -39,7 +39,9 @@ class TestSuccRspGetConfigRsp(unittest.TestCase):
                     run_model_url = '', 
                     max_upload_sample_size = 56, 
                     max_upload_sample_file = 56, 
-                    upload_file_types = '', )
+                    upload_file_types = '', 
+                    google_client_id = '', 
+                    google_app_id = '', )
             )
         else:
             return SuccRspGetConfigRsp(
@@ -48,7 +50,9 @@ class TestSuccRspGetConfigRsp(unittest.TestCase):
                     run_model_url = '', 
                     max_upload_sample_size = 56, 
                     max_upload_sample_file = 56, 
-                    upload_file_types = '', ),
+                    upload_file_types = '', 
+                    google_client_id = '', 
+                    google_app_id = '', ),
         )
         """
 
