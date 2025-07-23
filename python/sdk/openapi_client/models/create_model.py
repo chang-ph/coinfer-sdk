@@ -41,7 +41,8 @@ class CreateModel(BaseModel):
     single_instance: Optional[StrictBool] = Field(default=True, description="Only allow one instance to run as cloud function at a time.")
     lang: Optional[CloudFunctionLang] = None
     entrance_file: Optional[StrictStr] = ''
-    __properties: ClassVar[List[str]] = ["object_type", "repo", "branch", "type", "model_name", "env", "name", "content", "is_demo", "kind", "single_instance", "lang", "entrance_file"]
+    lambda_image: Optional[StrictBool] = Field(default=False, description="Whether to build lambda image for this CloudFunction")
+    __properties: ClassVar[List[str]] = ["object_type", "repo", "branch", "type", "model_name", "env", "name", "content", "is_demo", "kind", "single_instance", "lang", "entrance_file", "lambda_image"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -136,7 +137,8 @@ class CreateModel(BaseModel):
             "kind": obj.get("kind"),
             "single_instance": obj.get("single_instance") if obj.get("single_instance") is not None else True,
             "lang": obj.get("lang"),
-            "entrance_file": obj.get("entrance_file") if obj.get("entrance_file") is not None else ''
+            "entrance_file": obj.get("entrance_file") if obj.get("entrance_file") is not None else '',
+            "lambda_image": obj.get("lambda_image") if obj.get("lambda_image") is not None else False
         })
         return _obj
 

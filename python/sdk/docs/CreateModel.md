@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **single_instance** | **bool** | Only allow one instance to run as cloud function at a time. | [optional] [default to True]
 **lang** | [**CloudFunctionLang**](CloudFunctionLang.md) |  | [optional] 
 **entrance_file** | **str** |  | [optional] [default to '']
+**lambda_image** | **bool** | Whether to build lambda image for this CloudFunction | [optional] [default to False]
 
 ## Example
 

@@ -58,6 +58,7 @@ class TestPayload(unittest.TestCase):
                 single_instance = True,
                 lang = 'julia',
                 entrance_file = '',
+                lambda_image = True,
                 model_id = '',
                 xp_meta = None,
                 meta = None,

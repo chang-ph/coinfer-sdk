@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **single_instance** | **Bool** | Only allow one instance to run as cloud function at a time. | [optional] [default to true]
 **lang** | [***CloudFunctionLang**](CloudFunctionLang.md) |  | [optional] [default to nothing]
 **entrance_file** | **String** |  | [optional] [default to ""]
+**lambda_image** | **Bool** | Whether to build lambda image for this CloudFunction | [optional] [default to false]
 
 
 [[Back to Model list]](../README.md#models) [[Back to API list]](../README.md#api-endpoints) [[Back to README]](../README.md)

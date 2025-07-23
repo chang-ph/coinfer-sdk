@@ -18,6 +18,7 @@
         single_instance=true,
         lang=nothing,
         entrance_file="",
+        lambda_image=false,
     )
 
     - object_type::String
@@ -33,6 +34,7 @@
     - single_instance::Bool : Only allow one instance to run as cloud function at a time.
     - lang::CloudFunctionLang
     - entrance_file::String
+    - lambda_image::Bool : Whether to build lambda image for this CloudFunction
 """
 Base.@kwdef mutable struct CreateModel <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
@@ -48,8 +50,9 @@ Base.@kwdef mutable struct CreateModel <: OpenAPI.APIModel
     single_instance::Union{Nothing, Bool} = true
     lang = nothing # spec type: Union{ Nothing, CloudFunctionLang }
     entrance_file::Union{Nothing, String} = ""
+    lambda_image::Union{Nothing, Bool} = false
 
-    function CreateModel(object_type, repo, branch, type, model_name, env, name, content, is_demo, kind, single_instance, lang, entrance_file, )
+    function CreateModel(object_type, repo, branch, type, model_name, env, name, content, is_demo, kind, single_instance, lang, entrance_file, lambda_image, )
         OpenAPI.validate_property(CreateModel, Symbol("object_type"), object_type)
         OpenAPI.validate_property(CreateModel, Symbol("repo"), repo)
         OpenAPI.validate_property(CreateModel, Symbol("branch"), branch)
@@ -63,11 +66,12 @@ Base.@kwdef mutable struct CreateModel <: OpenAPI.APIModel
         OpenAPI.validate_property(CreateModel, Symbol("single_instance"), single_instance)
         OpenAPI.validate_property(CreateModel, Symbol("lang"), lang)
         OpenAPI.validate_property(CreateModel, Symbol("entrance_file"), entrance_file)
-        return new(object_type, repo, branch, type, model_name, env, name, content, is_demo, kind, single_instance, lang, entrance_file, )
+        OpenAPI.validate_property(CreateModel, Symbol("lambda_image"), lambda_image)
+        return new(object_type, repo, branch, type, model_name, env, name, content, is_demo, kind, single_instance, lang, entrance_file, lambda_image, )
     end
 end # type CreateModel
 
-const _property_types_CreateModel = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("repo")=>"String", Symbol("branch")=>"String", Symbol("type")=>"String", Symbol("model_name")=>"String", Symbol("env")=>"String", Symbol("name")=>"String", Symbol("content")=>"ModelContent", Symbol("is_demo")=>"Bool", Symbol("kind")=>"CloudFunctionKind", Symbol("single_instance")=>"Bool", Symbol("lang")=>"CloudFunctionLang", Symbol("entrance_file")=>"String", )
+const _property_types_CreateModel = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("repo")=>"String", Symbol("branch")=>"String", Symbol("type")=>"String", Symbol("model_name")=>"String", Symbol("env")=>"String", Symbol("name")=>"String", Symbol("content")=>"ModelContent", Symbol("is_demo")=>"Bool", Symbol("kind")=>"CloudFunctionKind", Symbol("single_instance")=>"Bool", Symbol("lang")=>"CloudFunctionLang", Symbol("entrance_file")=>"String", Symbol("lambda_image")=>"Bool", )
 OpenAPI.property_type(::Type{ CreateModel }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_CreateModel[name]))}
 
 function check_required(o::CreateModel)
@@ -87,6 +91,7 @@ function OpenAPI.validate_property(::Type{ CreateModel }, name::Symbol, val)
     if name === Symbol("type")
         OpenAPI.validate_param(name, "CreateModel", :enum, val, ["repo", "gist", "local"])
     end
+
 
 
 

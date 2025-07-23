@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **single_instance** | **bool** | Only allow one instance of this callback to run at a time. | [optional] [default to True]
 **lang** | **str** |  | 
 **entrance_file** | **str** |  | [optional] [default to '']
+**lambda_image** | **bool** | Whether to build lambda image for this CloudFunction | [optional] [default to False]
 **model_id** | **str** |  | [optional] [default to '']
 **xp_meta** | **object** |  | [optional] 
 **meta** | **object** |  | [optional] 

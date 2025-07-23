@@ -59,7 +59,8 @@ class TestCreateModel(unittest.TestCase):
                 kind = 'model',
                 single_instance = True,
                 lang = 'python',
-                entrance_file = ''
+                entrance_file = '',
+                lambda_image = True
             )
         else:
             return CreateModel(

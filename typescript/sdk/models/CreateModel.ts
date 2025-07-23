@@ -35,6 +35,10 @@ export class CreateModel {
     'singleInstance'?: boolean;
     'lang'?: CloudFunctionLang;
     'entranceFile'?: string;
+    /**
+    * Whether to build lambda image for this CloudFunction
+    */
+    'lambdaImage'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -117,6 +121,12 @@ export class CreateModel {
             "name": "entranceFile",
             "baseName": "entrance_file",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "lambdaImage",
+            "baseName": "lambda_image",
+            "type": "boolean",
             "format": ""
         }    ];
 
