@@ -45,6 +45,7 @@ models/Data.ts
 models/Data1.ts
 models/Data2.ts
 models/DataTyping.ts
+models/DeleteLinkedAccountReq.ts
 models/DeleteObject.ts
 models/ErrRsp.ts
 models/ExperimentCloudwatchLogRsp.ts
@@ -58,10 +59,12 @@ models/GetExperimentShareRsp.ts
 models/GetNotificationReq.ts
 models/GetTokensRsp.ts
 models/GistRsp.ts
+models/LinkedAccountSchema.ts
 models/ListBranchRsp.ts
 models/ListExperimentRsp.ts
 models/ListGistFilesRsp.ts
 models/ListGitHubRepository.ts
+models/ListLinkedAccountRsp.ts
 models/ListModelsRspItem.ts
 models/ListObjectTmp.ts
 models/ListRepoFilesRsp.ts
@@ -96,6 +99,7 @@ models/SuccRspGetTokensRsp.ts
 models/SuccRspListBranchRsp.ts
 models/SuccRspListGetTokensRsp.ts
 models/SuccRspListGistFilesRsp.ts
+models/SuccRspListLinkedAccountRsp.ts
 models/SuccRspListRepoFilesRsp.ts
 models/SuccRspListRepositoryRsp.ts
 models/SuccRspListingRspDataNotificationDict.ts

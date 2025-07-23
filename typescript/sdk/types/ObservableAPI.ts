@@ -26,6 +26,7 @@ import { Data } from '../models/Data';
 import { Data1 } from '../models/Data1';
 import { Data2 } from '../models/Data2';
 import { DataTyping } from '../models/DataTyping';
+import { DeleteLinkedAccountReq } from '../models/DeleteLinkedAccountReq';
 import { DeleteObject } from '../models/DeleteObject';
 import { ErrRsp } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
@@ -39,10 +40,12 @@ import { GetExperimentShareRsp } from '../models/GetExperimentShareRsp';
 import { GetNotificationReq } from '../models/GetNotificationReq';
 import { GetTokensRsp } from '../models/GetTokensRsp';
 import { GistRsp } from '../models/GistRsp';
+import { LinkedAccountSchema } from '../models/LinkedAccountSchema';
 import { ListBranchRsp } from '../models/ListBranchRsp';
 import { ListExperimentRsp } from '../models/ListExperimentRsp';
 import { ListGistFilesRsp } from '../models/ListGistFilesRsp';
 import { ListGitHubRepository } from '../models/ListGitHubRepository';
+import { ListLinkedAccountRsp } from '../models/ListLinkedAccountRsp';
 import { ListModelsRspItem } from '../models/ListModelsRspItem';
 import { ListObjectTmp } from '../models/ListObjectTmp';
 import { ListRepoFilesRsp } from '../models/ListRepoFilesRsp';
@@ -76,6 +79,7 @@ import { SuccRspGetTokensRsp } from '../models/SuccRspGetTokensRsp';
 import { SuccRspListBranchRsp } from '../models/SuccRspListBranchRsp';
 import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
 import { SuccRspListGistFilesRsp } from '../models/SuccRspListGistFilesRsp';
+import { SuccRspListLinkedAccountRsp } from '../models/SuccRspListLinkedAccountRsp';
 import { SuccRspListRepoFilesRsp } from '../models/SuccRspListRepoFilesRsp';
 import { SuccRspListRepositoryRsp } from '../models/SuccRspListRepositoryRsp';
 import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingRspDataNotificationDict';
@@ -274,6 +278,41 @@ export class ObservableAuthorizationApi {
     }
 
     /**
+     * Delete a linked account.
+     * Delete Linked Account
+     * @param [deletedKey]
+     * @param [accounts] account list. List item in format &#x60;&lt;account_type&gt;:&lt;account&gt;&#x60;
+     */
+    public deleteLinkedAccountWithHttpInfo(deletedKey?: string, accounts?: Array<string>, _options?: Configuration): Observable<HttpInfo<SuccRspSoftDeletedRsp>> {
+        const requestContextPromise = this.requestFactory.deleteLinkedAccount(deletedKey, accounts, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deleteLinkedAccountWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Delete a linked account.
+     * Delete Linked Account
+     * @param [deletedKey]
+     * @param [accounts] account list. List item in format &#x60;&lt;account_type&gt;:&lt;account&gt;&#x60;
+     */
+    public deleteLinkedAccount(deletedKey?: string, accounts?: Array<string>, _options?: Configuration): Observable<SuccRspSoftDeletedRsp> {
+        return this.deleteLinkedAccountWithHttpInfo(deletedKey, accounts, _options).pipe(map((apiResponse: HttpInfo<SuccRspSoftDeletedRsp>) => apiResponse.data));
+    }
+
+    /**
      * Delete(invalidate) a token.
      * Delete a token by its ID.
      * @param tokenId
@@ -335,6 +374,37 @@ export class ObservableAuthorizationApi {
      */
     public getTokens(_options?: Configuration): Observable<SuccRspListGetTokensRsp> {
         return this.getTokensWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<SuccRspListGetTokensRsp>) => apiResponse.data));
+    }
+
+    /**
+     * Get list of linked account.
+     * List Linked Account
+     */
+    public listLinkedAccountWithHttpInfo(_options?: Configuration): Observable<HttpInfo<SuccRspListLinkedAccountRsp>> {
+        const requestContextPromise = this.requestFactory.listLinkedAccount(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.listLinkedAccountWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Get list of linked account.
+     * List Linked Account
+     */
+    public listLinkedAccount(_options?: Configuration): Observable<SuccRspListLinkedAccountRsp> {
+        return this.listLinkedAccountWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<SuccRspListLinkedAccountRsp>) => apiResponse.data));
     }
 
     /**

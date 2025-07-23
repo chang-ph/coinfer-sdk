@@ -16,9 +16,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
 from openapi_client.models.model_content import ModelContent
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,13 +26,14 @@ class UpdateModel(BaseModel):
     """
     UpdateModel
     """ # noqa: E501
-    content: Optional[ModelContent] = None
-    name: Optional[Annotated[str, Field(strict=True, max_length=600)]] = None
-    version: Optional[Annotated[str, Field(strict=True, max_length=32)]] = None
-    description: Optional[StrictStr] = None
-    status: Optional[Annotated[str, Field(strict=True, max_length=64)]] = None
     object_type: StrictStr
-    __properties: ClassVar[List[str]] = ["content", "name", "version", "description", "status", "object_type"]
+    content: Optional[ModelContent] = None
+    name: Optional[StrictStr] = None
+    version: Optional[StrictStr] = None
+    description: Optional[StrictStr] = None
+    status: Optional[StrictStr] = None
+    lambda_image: Optional[StrictBool] = None
+    __properties: ClassVar[List[str]] = ["object_type", "content", "name", "version", "description", "status", "lambda_image"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -109,6 +109,11 @@ class UpdateModel(BaseModel):
         if self.status is None and "status" in self.model_fields_set:
             _dict['status'] = None
 
+        # set to None if lambda_image (nullable) is None
+        # and model_fields_set contains the field
+        if self.lambda_image is None and "lambda_image" in self.model_fields_set:
+            _dict['lambda_image'] = None
+
         return _dict
 
     @classmethod
@@ -121,12 +126,13 @@ class UpdateModel(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "object_type": obj.get("object_type"),
             "content": ModelContent.from_dict(obj["content"]) if obj.get("content") is not None else None,
             "name": obj.get("name"),
             "version": obj.get("version"),
             "description": obj.get("description"),
             "status": obj.get("status"),
-            "object_type": obj.get("object_type")
+            "lambda_image": obj.get("lambda_image")
         })
         return _obj
 

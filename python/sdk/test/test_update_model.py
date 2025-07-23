@@ -34,6 +34,7 @@ class TestUpdateModel(unittest.TestCase):
         model = UpdateModel()
         if include_optional:
             return UpdateModel(
+                object_type = 'model',
                 content = openapi_client.models.model_content.ModelContent(
                     meta = null, 
                     tree = [
@@ -52,7 +53,7 @@ class TestUpdateModel(unittest.TestCase):
                 version = '',
                 description = '',
                 status = '',
-                object_type = 'model'
+                lambda_image = True
             )
         else:
             return UpdateModel(

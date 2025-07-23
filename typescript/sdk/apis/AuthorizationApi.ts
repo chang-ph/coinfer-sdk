@@ -17,7 +17,9 @@ import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
 import { SuccRspCode2TokenRsp } from '../models/SuccRspCode2TokenRsp';
 import { SuccRspGetTokensRsp } from '../models/SuccRspGetTokensRsp';
 import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
+import { SuccRspListLinkedAccountRsp } from '../models/SuccRspListLinkedAccountRsp';
 import { SuccRspNoneType } from '../models/SuccRspNoneType';
+import { SuccRspSoftDeletedRsp } from '../models/SuccRspSoftDeletedRsp';
 import { SuccRspUserInfoRsp } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp } from '../models/SuccRspUserLoginRsp';
 import { UserLogin } from '../models/UserLogin';
@@ -216,6 +218,54 @@ export class AuthorizationApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
+     * Delete Linked Account
+     *
+     * Delete a linked account.
+     * @param deletedKey 
+     * @param accounts account list. List item in format &#x60;&lt;account_type&gt;:&lt;account&gt;&#x60;
+     */
+    public async deleteLinkedAccount(deletedKey?: string, accounts?: Array<string>, _options?: Configuration): Promise<RequestContext> {
+        let _config = _options || this.configuration;
+
+
+
+        // Path Params
+        const localVarPath = '/base/linked-account';
+
+        // Make Request Context
+        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+        if (deletedKey !== undefined) {
+            requestContext.setQueryParam("deleted_key", ObjectSerializer.serialize(deletedKey, "string", ""));
+        }
+
+        // Query Params
+        if (accounts !== undefined) {
+            const serializedParams = ObjectSerializer.serialize(accounts, "Array<string>", "");
+            for (const serializedParam of serializedParams) {
+                requestContext.appendQueryParam("accounts", serializedParam);
+            }
+        }
+
+
+        let authMethod: SecurityAuthentication | undefined;
+        // Apply auth methods
+        authMethod = _config.authMethods["GlobalAuth"]
+        if (authMethod?.applySecurityAuthentication) {
+            await authMethod?.applySecurityAuthentication(requestContext);
+        }
+        
+        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
+        if (defaultAuth?.applySecurityAuthentication) {
+            await defaultAuth?.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
      * Delete a token by its ID.
      *
      * Delete(invalidate) a token.
@@ -264,6 +314,37 @@ export class AuthorizationApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/base/user/tokens';
+
+        // Make Request Context
+        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+
+        let authMethod: SecurityAuthentication | undefined;
+        // Apply auth methods
+        authMethod = _config.authMethods["GlobalAuth"]
+        if (authMethod?.applySecurityAuthentication) {
+            await authMethod?.applySecurityAuthentication(requestContext);
+        }
+        
+        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
+        if (defaultAuth?.applySecurityAuthentication) {
+            await defaultAuth?.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
+     * List Linked Account
+     *
+     * Get list of linked account.
+     */
+    public async listLinkedAccount(_options?: Configuration): Promise<RequestContext> {
+        let _config = _options || this.configuration;
+
+        // Path Params
+        const localVarPath = '/base/linked-account';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -670,6 +751,42 @@ export class AuthorizationApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to deleteLinkedAccount
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async deleteLinkedAccountWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspSoftDeletedRsp >> {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: SuccRspSoftDeletedRsp = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "SuccRspSoftDeletedRsp", ""
+            ) as SuccRspSoftDeletedRsp;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
+        }
+        if (isCodeInRange("400", response.httpStatusCode)) {
+            const body: ErrRsp = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ErrRsp", ""
+            ) as ErrRsp;
+            throw new ApiException<ErrRsp>(response.httpStatusCode, "Bad Request", body, response.headers);
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: SuccRspSoftDeletedRsp = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "SuccRspSoftDeletedRsp", ""
+            ) as SuccRspSoftDeletedRsp;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
+        }
+
+        throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to deleteToken
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -732,6 +849,42 @@ export class AuthorizationApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "SuccRspListGetTokensRsp", ""
             ) as SuccRspListGetTokensRsp;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
+        }
+
+        throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to listLinkedAccount
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async listLinkedAccountWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspListLinkedAccountRsp >> {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: SuccRspListLinkedAccountRsp = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "SuccRspListLinkedAccountRsp", ""
+            ) as SuccRspListLinkedAccountRsp;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
+        }
+        if (isCodeInRange("400", response.httpStatusCode)) {
+            const body: ErrRsp = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ErrRsp", ""
+            ) as ErrRsp;
+            throw new ApiException<ErrRsp>(response.httpStatusCode, "Bad Request", body, response.headers);
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: SuccRspListLinkedAccountRsp = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "SuccRspListLinkedAccountRsp", ""
+            ) as SuccRspListLinkedAccountRsp;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 

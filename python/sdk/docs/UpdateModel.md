@@ -5,12 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**object_type** | **str** |  | 
 **content** | [**ModelContent**](ModelContent.md) |  | [optional] 
 **name** | **str** |  | [optional] 
 **version** | **str** |  | [optional] 
 **description** | **str** |  | [optional] 
 **status** | **str** |  | [optional] 
-**object_type** | **str** |  | 
+**lambda_image** | **bool** |  | [optional] 
 
 ## Example
 

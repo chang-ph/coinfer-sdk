@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **version** | **str** |  | [optional] 
 **description** | **str** |  | [optional] 
 **status** | **str** |  | [optional] 
+**lambda_image** | **bool** |  | [optional] 
 **action** | **str** |  | [optional] 
 **meta** | **Dict[str, object]** |  | [optional] 
 **n_chains** | **int** |  | [optional] [default to 0]

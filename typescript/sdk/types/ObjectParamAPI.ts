@@ -25,6 +25,7 @@ import { Data } from '../models/Data';
 import { Data1 } from '../models/Data1';
 import { Data2 } from '../models/Data2';
 import { DataTyping } from '../models/DataTyping';
+import { DeleteLinkedAccountReq } from '../models/DeleteLinkedAccountReq';
 import { DeleteObject } from '../models/DeleteObject';
 import { ErrRsp } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
@@ -38,10 +39,12 @@ import { GetExperimentShareRsp } from '../models/GetExperimentShareRsp';
 import { GetNotificationReq } from '../models/GetNotificationReq';
 import { GetTokensRsp } from '../models/GetTokensRsp';
 import { GistRsp } from '../models/GistRsp';
+import { LinkedAccountSchema } from '../models/LinkedAccountSchema';
 import { ListBranchRsp } from '../models/ListBranchRsp';
 import { ListExperimentRsp } from '../models/ListExperimentRsp';
 import { ListGistFilesRsp } from '../models/ListGistFilesRsp';
 import { ListGitHubRepository } from '../models/ListGitHubRepository';
+import { ListLinkedAccountRsp } from '../models/ListLinkedAccountRsp';
 import { ListModelsRspItem } from '../models/ListModelsRspItem';
 import { ListObjectTmp } from '../models/ListObjectTmp';
 import { ListRepoFilesRsp } from '../models/ListRepoFilesRsp';
@@ -75,6 +78,7 @@ import { SuccRspGetTokensRsp } from '../models/SuccRspGetTokensRsp';
 import { SuccRspListBranchRsp } from '../models/SuccRspListBranchRsp';
 import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
 import { SuccRspListGistFilesRsp } from '../models/SuccRspListGistFilesRsp';
+import { SuccRspListLinkedAccountRsp } from '../models/SuccRspListLinkedAccountRsp';
 import { SuccRspListRepoFilesRsp } from '../models/SuccRspListRepoFilesRsp';
 import { SuccRspListRepositoryRsp } from '../models/SuccRspListRepositoryRsp';
 import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingRspDataNotificationDict';
@@ -128,6 +132,23 @@ export interface AuthorizationApiCreateTokenRequest {
     createToken?: CreateToken
 }
 
+export interface AuthorizationApiDeleteLinkedAccountRequest {
+    /**
+     * 
+     * Defaults to: &#39;&#39;
+     * @type string
+     * @memberof AuthorizationApideleteLinkedAccount
+     */
+    deletedKey?: string
+    /**
+     * account list. List item in format &#x60;&lt;account_type&gt;:&lt;account&gt;&#x60;
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof AuthorizationApideleteLinkedAccount
+     */
+    accounts?: Array<string>
+}
+
 export interface AuthorizationApiDeleteTokenRequest {
     /**
      * 
@@ -139,6 +160,9 @@ export interface AuthorizationApiDeleteTokenRequest {
 }
 
 export interface AuthorizationApiGetTokensRequest {
+}
+
+export interface AuthorizationApiListLinkedAccountRequest {
 }
 
 export interface AuthorizationApiModifyCurrentUserRequest {
@@ -279,6 +303,24 @@ export class ObjectAuthorizationApi {
     }
 
     /**
+     * Delete a linked account.
+     * Delete Linked Account
+     * @param param the request object
+     */
+    public deleteLinkedAccountWithHttpInfo(param: AuthorizationApiDeleteLinkedAccountRequest = {}, options?: Configuration): Promise<HttpInfo<SuccRspSoftDeletedRsp>> {
+        return this.api.deleteLinkedAccountWithHttpInfo(param.deletedKey, param.accounts,  options).toPromise();
+    }
+
+    /**
+     * Delete a linked account.
+     * Delete Linked Account
+     * @param param the request object
+     */
+    public deleteLinkedAccount(param: AuthorizationApiDeleteLinkedAccountRequest = {}, options?: Configuration): Promise<SuccRspSoftDeletedRsp> {
+        return this.api.deleteLinkedAccount(param.deletedKey, param.accounts,  options).toPromise();
+    }
+
+    /**
      * Delete(invalidate) a token.
      * Delete a token by its ID.
      * @param param the request object
@@ -312,6 +354,24 @@ export class ObjectAuthorizationApi {
      */
     public getTokens(param: AuthorizationApiGetTokensRequest = {}, options?: Configuration): Promise<SuccRspListGetTokensRsp> {
         return this.api.getTokens( options).toPromise();
+    }
+
+    /**
+     * Get list of linked account.
+     * List Linked Account
+     * @param param the request object
+     */
+    public listLinkedAccountWithHttpInfo(param: AuthorizationApiListLinkedAccountRequest = {}, options?: Configuration): Promise<HttpInfo<SuccRspListLinkedAccountRsp>> {
+        return this.api.listLinkedAccountWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * Get list of linked account.
+     * List Linked Account
+     * @param param the request object
+     */
+    public listLinkedAccount(param: AuthorizationApiListLinkedAccountRequest = {}, options?: Configuration): Promise<SuccRspListLinkedAccountRsp> {
+        return this.api.listLinkedAccount( options).toPromise();
     }
 
     /**

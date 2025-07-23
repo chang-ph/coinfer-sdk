@@ -27,7 +27,6 @@ class CloudFunctionKind(str, Enum):
     """
     MODEL = 'model'
     SCRIPT = 'script'
-    LAMBDA_SCRIPT = 'lambda_script'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

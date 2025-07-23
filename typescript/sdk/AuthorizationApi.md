@@ -9,8 +9,10 @@ Method | HTTP request | Description
 [**auth0Login**](AuthorizationApi.md#auth0Login) | **POST** /base/auth0-login | Login with Auth0.
 [**code2token**](AuthorizationApi.md#code2token) | **POST** /base/code2token | Code2Token
 [**createToken**](AuthorizationApi.md#createToken) | **POST** /base/user/tokens | Create a new authorization token.
+[**deleteLinkedAccount**](AuthorizationApi.md#deleteLinkedAccount) | **DELETE** /base/linked-account | Delete Linked Account
 [**deleteToken**](AuthorizationApi.md#deleteToken) | **DELETE** /base/user/token/{token_id} | Delete a token by its ID.
 [**getTokens**](AuthorizationApi.md#getTokens) | **GET** /base/user/tokens | List all of current user\&#39;s tokens.
+[**listLinkedAccount**](AuthorizationApi.md#listLinkedAccount) | **GET** /base/linked-account | List Linked Account
 [**modifyCurrentUser**](AuthorizationApi.md#modifyCurrentUser) | **PUT** /base/user | Update information of current user.
 [**modifyToken**](AuthorizationApi.md#modifyToken) | **PUT** /base/user/token/{token_id} | Update a token by its ID.
 [**userInfo**](AuthorizationApi.md#userInfo) | **GET** /base/user | Get information of current user.
@@ -269,6 +271,65 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
+# **deleteLinkedAccount**
+> SuccRspSoftDeletedRsp deleteLinkedAccount()
+
+Delete a linked account.
+
+### Example
+
+
+```typescript
+import { createConfiguration, AuthorizationApi } from 'coinfer-ts';
+import type { AuthorizationApiDeleteLinkedAccountRequest } from 'coinfer-ts';
+
+const configuration = createConfiguration();
+const apiInstance = new AuthorizationApi(configuration);
+
+const request: AuthorizationApiDeleteLinkedAccountRequest = {
+  
+  deletedKey: "",
+    // account list. List item in format `<account_type>:<account>` (optional)
+  accounts: [
+    "accounts_example",
+  ],
+};
+
+const data = await apiInstance.deleteLinkedAccount(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deletedKey** | [**string**] |  | (optional) defaults to ''
+ **accounts** | **Array&lt;string&gt;** | account list. List item in format &#x60;&lt;account_type&gt;:&lt;account&gt;&#x60; | (optional) defaults to undefined
+
+
+### Return type
+
+**SuccRspSoftDeletedRsp**
+
+### Authorization
+
+[GlobalAuth](README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 # **deleteToken**
 > SuccRspNoneType deleteToken()
 
@@ -351,6 +412,53 @@ This endpoint does not need any parameter.
 ### Return type
 
 **SuccRspListGetTokensRsp**
+
+### Authorization
+
+[GlobalAuth](README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **listLinkedAccount**
+> SuccRspListLinkedAccountRsp listLinkedAccount()
+
+Get list of linked account.
+
+### Example
+
+
+```typescript
+import { createConfiguration, AuthorizationApi } from 'coinfer-ts';
+
+const configuration = createConfiguration();
+const apiInstance = new AuthorizationApi(configuration);
+
+const request = {};
+
+const data = await apiInstance.listLinkedAccount(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+
+### Return type
+
+**SuccRspListLinkedAccountRsp**
 
 ### Authorization
 

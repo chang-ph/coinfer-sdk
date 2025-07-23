@@ -25,6 +25,7 @@ docs/Data.md
 docs/Data1.md
 docs/Data2.md
 docs/DataTyping.md
+docs/DeleteLinkedAccountReq.md
 docs/DeleteObject.md
 docs/ErrRsp.md
 docs/ExperimentCloudwatchLogRsp.md
@@ -39,10 +40,12 @@ docs/GetExperimentShareRsp.md
 docs/GetNotificationReq.md
 docs/GetTokensRsp.md
 docs/GistRsp.md
+docs/LinkedAccountSchema.md
 docs/ListBranchRsp.md
 docs/ListExperimentRsp.md
 docs/ListGistFilesRsp.md
 docs/ListGitHubRepository.md
+docs/ListLinkedAccountRsp.md
 docs/ListModelsRspItem.md
 docs/ListObjectTmp.md
 docs/ListRepoFilesRsp.md
@@ -78,6 +81,7 @@ docs/SuccRspGetTokensRsp.md
 docs/SuccRspListBranchRsp.md
 docs/SuccRspListGetTokensRsp.md
 docs/SuccRspListGistFilesRsp.md
+docs/SuccRspListLinkedAccountRsp.md
 docs/SuccRspListRepoFilesRsp.md
 docs/SuccRspListRepositoryRsp.md
 docs/SuccRspListingRspDataNotificationDict.md
@@ -131,6 +135,7 @@ src/models/model_Data.jl
 src/models/model_Data1.jl
 src/models/model_Data2.jl
 src/models/model_DataTyping.jl
+src/models/model_DeleteLinkedAccountReq.jl
 src/models/model_DeleteObject.jl
 src/models/model_ErrRsp.jl
 src/models/model_ExperimentCloudwatchLogRsp.jl
@@ -145,10 +150,12 @@ src/models/model_GetExperimentShareRsp.jl
 src/models/model_GetNotificationReq.jl
 src/models/model_GetTokensRsp.jl
 src/models/model_GistRsp.jl
+src/models/model_LinkedAccountSchema.jl
 src/models/model_ListBranchRsp.jl
 src/models/model_ListExperimentRsp.jl
 src/models/model_ListGistFilesRsp.jl
 src/models/model_ListGitHubRepository.jl
+src/models/model_ListLinkedAccountRsp.jl
 src/models/model_ListModelsRspItem.jl
 src/models/model_ListObjectTmp.jl
 src/models/model_ListRepoFilesRsp.jl
@@ -181,6 +188,7 @@ src/models/model_SuccRspGetTokensRsp.jl
 src/models/model_SuccRspListBranchRsp.jl
 src/models/model_SuccRspListGetTokensRsp.jl
 src/models/model_SuccRspListGistFilesRsp.jl
+src/models/model_SuccRspListLinkedAccountRsp.jl
 src/models/model_SuccRspListRepoFilesRsp.jl
 src/models/model_SuccRspListRepositoryRsp.jl
 src/models/model_SuccRspListingRspDataNotificationDict.jl

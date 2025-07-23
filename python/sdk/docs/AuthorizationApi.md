@@ -9,8 +9,10 @@ Method | HTTP request | Description
 [**auth0_login**](AuthorizationApi.md#auth0_login) | **POST** /base/auth0-login | Login with Auth0.
 [**code2token**](AuthorizationApi.md#code2token) | **POST** /base/code2token | Code2Token
 [**create_token**](AuthorizationApi.md#create_token) | **POST** /base/user/tokens | Create a new authorization token.
+[**delete_linked_account**](AuthorizationApi.md#delete_linked_account) | **DELETE** /base/linked-account | Delete Linked Account
 [**delete_token**](AuthorizationApi.md#delete_token) | **DELETE** /base/user/token/{token_id} | Delete a token by its ID.
 [**get_tokens**](AuthorizationApi.md#get_tokens) | **GET** /base/user/tokens | List all of current user&#39;s tokens.
+[**list_linked_account**](AuthorizationApi.md#list_linked_account) | **GET** /base/linked-account | List Linked Account
 [**modify_current_user**](AuthorizationApi.md#modify_current_user) | **PUT** /base/user | Update information of current user.
 [**modify_token**](AuthorizationApi.md#modify_token) | **PUT** /base/user/token/{token_id} | Update a token by its ID.
 [**user_info**](AuthorizationApi.md#user_info) | **GET** /base/user | Get information of current user.
@@ -380,6 +382,87 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **delete_linked_account**
+> SuccRspSoftDeletedRsp delete_linked_account(deleted_key=deleted_key, accounts=accounts)
+
+Delete Linked Account
+
+Delete a linked account.
+
+### Example
+
+* Bearer Authentication (GlobalAuth):
+
+```python
+import openapi_client
+from openapi_client.models.succ_rsp_soft_deleted_rsp import SuccRspSoftDeletedRsp
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.coinfer.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "https://api.coinfer.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: GlobalAuth
+configuration = openapi_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = openapi_client.AuthorizationApi(api_client)
+    deleted_key = '' # str |  (optional) (default to '')
+    accounts = ['accounts_example'] # List[str] | account list. List item in format `<account_type>:<account>` (optional)
+
+    try:
+        # Delete Linked Account
+        api_response = api_instance.delete_linked_account(deleted_key=deleted_key, accounts=accounts)
+        print("The response of AuthorizationApi->delete_linked_account:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AuthorizationApi->delete_linked_account: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deleted_key** | **str**|  | [optional] [default to &#39;&#39;]
+ **accounts** | [**List[str]**](str.md)| account list. List item in format &#x60;&lt;account_type&gt;:&lt;account&gt;&#x60; | [optional] 
+
+### Return type
+
+[**SuccRspSoftDeletedRsp**](SuccRspSoftDeletedRsp.md)
+
+### Authorization
+
+[GlobalAuth](../README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **delete_token**
 > SuccRspNoneType delete_token(token_id)
 
@@ -515,6 +598,81 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**SuccRspListGetTokensRsp**](SuccRspListGetTokensRsp.md)
+
+### Authorization
+
+[GlobalAuth](../README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_linked_account**
+> SuccRspListLinkedAccountRsp list_linked_account()
+
+List Linked Account
+
+Get list of linked account.
+
+### Example
+
+* Bearer Authentication (GlobalAuth):
+
+```python
+import openapi_client
+from openapi_client.models.succ_rsp_list_linked_account_rsp import SuccRspListLinkedAccountRsp
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.coinfer.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "https://api.coinfer.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: GlobalAuth
+configuration = openapi_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = openapi_client.AuthorizationApi(api_client)
+
+    try:
+        # List Linked Account
+        api_response = api_instance.list_linked_account()
+        print("The response of AuthorizationApi->list_linked_account:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling AuthorizationApi->list_linked_account: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**SuccRspListLinkedAccountRsp**](SuccRspListLinkedAccountRsp.md)
 
 ### Authorization
 

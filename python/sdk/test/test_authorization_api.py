@@ -60,6 +60,13 @@ class TestAuthorizationApi(unittest.TestCase):
         """
         pass
 
+    def test_delete_linked_account(self) -> None:
+        """Test case for delete_linked_account
+
+        Delete Linked Account
+        """
+        pass
+
     def test_delete_token(self) -> None:
         """Test case for delete_token
 
@@ -71,6 +78,13 @@ class TestAuthorizationApi(unittest.TestCase):
         """Test case for get_tokens
 
         List all of current user's tokens.
+        """
+        pass
+
+    def test_list_linked_account(self) -> None:
+        """Test case for list_linked_account
+
+        List Linked Account
         """
         pass
 

@@ -60,6 +60,7 @@ class TestPayload1(unittest.TestCase):
                 version = '',
                 description = '',
                 status = '',
+                lambda_image = True,
                 action = '',
                 meta = { },
                 n_chains = 56,

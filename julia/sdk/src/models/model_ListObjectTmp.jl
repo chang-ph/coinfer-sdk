@@ -99,7 +99,7 @@ function OpenAPI.validate_property(::Type{ ListObjectTmp }, name::Symbol, val)
 
 
     if name === Symbol("kind")
-        OpenAPI.validate_param(name, "ListObjectTmp", :enum, val, ["model", "script", "lambda_script"])
+        OpenAPI.validate_param(name, "ListObjectTmp", :enum, val, ["model", "script"])
     end
 
 end

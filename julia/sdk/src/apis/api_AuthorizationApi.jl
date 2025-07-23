@@ -162,6 +162,40 @@ function create_token(_api::AuthorizationApi, response_stream::Channel; create_t
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
+const _returntypes_delete_linked_account_AuthorizationApi = Dict{Regex,Type}(
+    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspSoftDeletedRsp,
+    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
+)
+
+function _oacinternal_delete_linked_account(_api::AuthorizationApi; deleted_key=nothing, accounts=nothing, _mediaType=nothing)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "DELETE", _returntypes_delete_linked_account_AuthorizationApi, "/base/linked-account", ["GlobalAuth", ])
+    OpenAPI.Clients.set_param(_ctx.query, "deleted_key", deleted_key; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "accounts", accounts; style="form", is_explode=true)  # type Vector{String}
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
+    return _ctx
+end
+
+@doc raw"""Delete Linked Account
+
+Delete a linked account.
+
+Params:
+- deleted_key::String
+- accounts::Vector{String}
+
+Return: SuccRspSoftDeletedRsp, OpenAPI.Clients.ApiResponse
+"""
+function delete_linked_account(_api::AuthorizationApi; deleted_key=nothing, accounts=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_delete_linked_account(_api; deleted_key=deleted_key, accounts=accounts, _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx)
+end
+
+function delete_linked_account(_api::AuthorizationApi, response_stream::Channel; deleted_key=nothing, accounts=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_delete_linked_account(_api; deleted_key=deleted_key, accounts=accounts, _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx, response_stream)
+end
+
 const _returntypes_delete_token_AuthorizationApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspNoneType,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
@@ -221,6 +255,36 @@ end
 
 function get_tokens(_api::AuthorizationApi, response_stream::Channel; _mediaType=nothing)
     _ctx = _oacinternal_get_tokens(_api; _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx, response_stream)
+end
+
+const _returntypes_list_linked_account_AuthorizationApi = Dict{Regex,Type}(
+    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspListLinkedAccountRsp,
+    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
+)
+
+function _oacinternal_list_linked_account(_api::AuthorizationApi; _mediaType=nothing)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_list_linked_account_AuthorizationApi, "/base/linked-account", ["GlobalAuth", ])
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
+    return _ctx
+end
+
+@doc raw"""List Linked Account
+
+Get list of linked account.
+
+Params:
+
+Return: SuccRspListLinkedAccountRsp, OpenAPI.Clients.ApiResponse
+"""
+function list_linked_account(_api::AuthorizationApi; _mediaType=nothing)
+    _ctx = _oacinternal_list_linked_account(_api; _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx)
+end
+
+function list_linked_account(_api::AuthorizationApi, response_stream::Channel; _mediaType=nothing)
+    _ctx = _oacinternal_list_linked_account(_api; _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -385,8 +449,10 @@ export auth0_config
 export auth0_login
 export code2token
 export create_token
+export delete_linked_account
 export delete_token
 export get_tokens
+export list_linked_account
 export modify_current_user
 export modify_token
 export user_info

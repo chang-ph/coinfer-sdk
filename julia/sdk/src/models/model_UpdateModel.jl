@@ -5,41 +5,45 @@
 @doc raw"""UpdateModel
 
     UpdateModel(;
+        object_type=nothing,
         content=nothing,
         name=nothing,
         version=nothing,
         description=nothing,
         status=nothing,
-        object_type=nothing,
+        lambda_image=nothing,
     )
 
+    - object_type::String
     - content::ModelContent
     - name::String
     - version::String
     - description::String
     - status::String
-    - object_type::String
+    - lambda_image::Bool
 """
 Base.@kwdef mutable struct UpdateModel <: OpenAPI.APIModel
+    object_type::Union{Nothing, String} = nothing
     content = nothing # spec type: Union{ Nothing, ModelContent }
     name::Union{Nothing, String} = nothing
     version::Union{Nothing, String} = nothing
     description::Union{Nothing, String} = nothing
     status::Union{Nothing, String} = nothing
-    object_type::Union{Nothing, String} = nothing
+    lambda_image::Union{Nothing, Bool} = nothing
 
-    function UpdateModel(content, name, version, description, status, object_type, )
+    function UpdateModel(object_type, content, name, version, description, status, lambda_image, )
+        OpenAPI.validate_property(UpdateModel, Symbol("object_type"), object_type)
         OpenAPI.validate_property(UpdateModel, Symbol("content"), content)
         OpenAPI.validate_property(UpdateModel, Symbol("name"), name)
         OpenAPI.validate_property(UpdateModel, Symbol("version"), version)
         OpenAPI.validate_property(UpdateModel, Symbol("description"), description)
         OpenAPI.validate_property(UpdateModel, Symbol("status"), status)
-        OpenAPI.validate_property(UpdateModel, Symbol("object_type"), object_type)
-        return new(content, name, version, description, status, object_type, )
+        OpenAPI.validate_property(UpdateModel, Symbol("lambda_image"), lambda_image)
+        return new(object_type, content, name, version, description, status, lambda_image, )
     end
 end # type UpdateModel
 
-const _property_types_UpdateModel = Dict{Symbol,String}(Symbol("content")=>"ModelContent", Symbol("name")=>"String", Symbol("version")=>"String", Symbol("description")=>"String", Symbol("status")=>"String", Symbol("object_type")=>"String", )
+const _property_types_UpdateModel = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("content")=>"ModelContent", Symbol("name")=>"String", Symbol("version")=>"String", Symbol("description")=>"String", Symbol("status")=>"String", Symbol("lambda_image")=>"Bool", )
 OpenAPI.property_type(::Type{ UpdateModel }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_UpdateModel[name]))}
 
 function check_required(o::UpdateModel)
@@ -49,22 +53,14 @@ end
 
 function OpenAPI.validate_property(::Type{ UpdateModel }, name::Symbol, val)
 
-
-    if name === Symbol("name")
-        OpenAPI.validate_param(name, "UpdateModel", :maxLength, val, 600)
-    end
-
-    if name === Symbol("version")
-        OpenAPI.validate_param(name, "UpdateModel", :maxLength, val, 32)
-    end
-
-
-    if name === Symbol("status")
-        OpenAPI.validate_param(name, "UpdateModel", :maxLength, val, 64)
-    end
-
     if name === Symbol("object_type")
         OpenAPI.validate_param(name, "UpdateModel", :enum, val, ["model"])
     end
+
+
+
+
+
+
 
 end

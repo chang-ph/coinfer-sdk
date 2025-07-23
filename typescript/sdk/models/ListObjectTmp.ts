@@ -137,7 +137,6 @@ export enum ListObjectTmpHasModelEnum {
 }
 export enum ListObjectTmpKindEnum {
     Model = 'model',
-    Script = 'script',
-    LambdaScript = 'lambda_script'
+    Script = 'script'
 }
 

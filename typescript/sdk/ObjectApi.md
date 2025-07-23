@@ -187,7 +187,7 @@ Name | Type | Description  | Notes
  **status** | [**&#39;NEW&#39; | &#39;RUN&#39; | &#39;FIN&#39; | &#39;ERR&#39; | &#39;&#39;**]**Array<&#39;NEW&#39; &#124; &#39;RUN&#39; &#124; &#39;FIN&#39; &#124; &#39;ERR&#39; &#124; &#39;&#39;>** |  | (optional) defaults to ''
  **runOn** | [**&#39;Lambda&#39; | &#39;Fargate&#39; | &#39;Local&#39; | &#39;&#39;**]**Array<&#39;Lambda&#39; &#124; &#39;Fargate&#39; &#124; &#39;Local&#39; &#124; &#39;&#39;>** |  | (optional) defaults to ''
  **hasModel** | [**&#39;true&#39; | &#39;false&#39; | &#39;&#39;**]**Array<&#39;true&#39; &#124; &#39;false&#39; &#124; &#39;&#39;>** |  | (optional) defaults to ''
- **kind** | **Array<&#39;model&#39; &#124; &#39;script&#39; &#124; &#39;lambda_script&#39;>** | Filter by kind | (optional) defaults to undefined
+ **kind** | **Array<&#39;model&#39; &#124; &#39;script&#39;>** | Filter by kind | (optional) defaults to undefined
 
 
 ### Return type

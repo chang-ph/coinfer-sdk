@@ -38,7 +38,6 @@ class TestCreateModel(unittest.TestCase):
                 repo = '',
                 branch = '',
                 type = 'local',
-                code = '',
                 model_name = '',
                 env = '',
                 name = '',

@@ -2,18 +2,25 @@ import { ModelContent } from '../models/ModelContent';
 import { HttpFile } from '../http/http';
 
 export class UpdateModel {
+    'objectType': UpdateModelObjectTypeEnum;
     'content'?: ModelContent | null;
     'name'?: string | null;
     'version'?: string | null;
     'description'?: string | null;
     'status'?: string | null;
-    'objectType': UpdateModelObjectTypeEnum;
+    'lambdaImage'?: boolean | null;
 
     static readonly discriminator: string | undefined = undefined;
 
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "objectType",
+            "baseName": "object_type",
+            "type": "UpdateModelObjectTypeEnum",
+            "format": ""
+        },
         {
             "name": "content",
             "baseName": "content",
@@ -45,9 +52,9 @@ export class UpdateModel {
             "format": ""
         },
         {
-            "name": "objectType",
-            "baseName": "object_type",
-            "type": "UpdateModelObjectTypeEnum",
+            "name": "lambdaImage",
+            "baseName": "lambda_image",
+            "type": "boolean",
             "format": ""
         }    ];
 

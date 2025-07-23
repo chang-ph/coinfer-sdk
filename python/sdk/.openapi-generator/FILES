@@ -29,6 +29,7 @@ docs/Data.md
 docs/Data1.md
 docs/Data2.md
 docs/DataTyping.md
+docs/DeleteLinkedAccountReq.md
 docs/DeleteObject.md
 docs/ErrRsp.md
 docs/ExperimentCloudwatchLogRsp.md
@@ -43,10 +44,12 @@ docs/GetExperimentShareRsp.md
 docs/GetNotificationReq.md
 docs/GetTokensRsp.md
 docs/GistRsp.md
+docs/LinkedAccountSchema.md
 docs/ListBranchRsp.md
 docs/ListExperimentRsp.md
 docs/ListGistFilesRsp.md
 docs/ListGitHubRepository.md
+docs/ListLinkedAccountRsp.md
 docs/ListModelsRspItem.md
 docs/ListObjectTmp.md
 docs/ListRepoFilesRsp.md
@@ -82,6 +85,7 @@ docs/SuccRspGetTokensRsp.md
 docs/SuccRspListBranchRsp.md
 docs/SuccRspListGetTokensRsp.md
 docs/SuccRspListGistFilesRsp.md
+docs/SuccRspListLinkedAccountRsp.md
 docs/SuccRspListRepoFilesRsp.md
 docs/SuccRspListRepositoryRsp.md
 docs/SuccRspListingRspDataNotificationDict.md
@@ -141,6 +145,7 @@ openapi_client/models/data.py
 openapi_client/models/data1.py
 openapi_client/models/data2.py
 openapi_client/models/data_typing.py
+openapi_client/models/delete_linked_account_req.py
 openapi_client/models/delete_object.py
 openapi_client/models/err_rsp.py
 openapi_client/models/experiment_cloudwatch_log_rsp.py
@@ -155,10 +160,12 @@ openapi_client/models/get_experiment_share_rsp.py
 openapi_client/models/get_notification_req.py
 openapi_client/models/get_tokens_rsp.py
 openapi_client/models/gist_rsp.py
+openapi_client/models/linked_account_schema.py
 openapi_client/models/list_branch_rsp.py
 openapi_client/models/list_experiment_rsp.py
 openapi_client/models/list_gist_files_rsp.py
 openapi_client/models/list_git_hub_repository.py
+openapi_client/models/list_linked_account_rsp.py
 openapi_client/models/list_models_rsp_item.py
 openapi_client/models/list_object_tmp.py
 openapi_client/models/list_repo_files_rsp.py
@@ -191,6 +198,7 @@ openapi_client/models/succ_rsp_get_tokens_rsp.py
 openapi_client/models/succ_rsp_list_branch_rsp.py
 openapi_client/models/succ_rsp_list_get_tokens_rsp.py
 openapi_client/models/succ_rsp_list_gist_files_rsp.py
+openapi_client/models/succ_rsp_list_linked_account_rsp.py
 openapi_client/models/succ_rsp_list_repo_files_rsp.py
 openapi_client/models/succ_rsp_list_repository_rsp.py
 openapi_client/models/succ_rsp_listing_rsp_data_notification_dict.py
@@ -245,6 +253,7 @@ test/test_data.py
 test/test_data1.py
 test/test_data2.py
 test/test_data_typing.py
+test/test_delete_linked_account_req.py
 test/test_delete_object.py
 test/test_err_rsp.py
 test/test_experiment_cloudwatch_log_rsp.py
@@ -259,10 +268,12 @@ test/test_get_experiment_share_rsp.py
 test/test_get_notification_req.py
 test/test_get_tokens_rsp.py
 test/test_gist_rsp.py
+test/test_linked_account_schema.py
 test/test_list_branch_rsp.py
 test/test_list_experiment_rsp.py
 test/test_list_gist_files_rsp.py
 test/test_list_git_hub_repository.py
+test/test_list_linked_account_rsp.py
 test/test_list_models_rsp_item.py
 test/test_list_object_tmp.py
 test/test_list_repo_files_rsp.py
@@ -298,6 +309,7 @@ test/test_succ_rsp_get_tokens_rsp.py
 test/test_succ_rsp_list_branch_rsp.py
 test/test_succ_rsp_list_get_tokens_rsp.py
 test/test_succ_rsp_list_gist_files_rsp.py
+test/test_succ_rsp_list_linked_account_rsp.py
 test/test_succ_rsp_list_repo_files_rsp.py
 test/test_succ_rsp_list_repository_rsp.py
 test/test_succ_rsp_listing_rsp_data_notification_dict.py

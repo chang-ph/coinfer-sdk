@@ -31,8 +31,7 @@ class CreateModel(BaseModel):
     object_type: StrictStr
     repo: Optional[StrictStr] = Field(default='', description="repo in the form of repo_owner/repo_name or gist id in case of importing from gist")
     branch: Optional[StrictStr] = Field(default='', description="branch name or gist description in case of importing from gist")
-    type: Optional[StrictStr] = Field(default='local', description="The type of input code. It can be:  * repo: the code is stored in a github repository and specified by param `repo` and `branch`. * gist: the code is stored in a github gist and specified by param `repo` and `branch`. * local: the code is provided directly in `content` field as Unified Model Format. * codelambda: the code is provided directly in `code` field as str. The backend will generate a lambda instance for it.")
-    code: Optional[StrictStr] = Field(default='', description="Plain code. Type must be codelambda")
+    type: Optional[StrictStr] = Field(default='local', description="The type of input code. It can be:  * repo: the code is stored in a github repository and specified by param `repo` and `branch`. * gist: the code is stored in a github gist and specified by param `repo` and `branch`. * local: the code is provided directly in `content` field as Unified Model Format.")
     model_name: Optional[StrictStr] = Field(default='', description="[deprecated] model name")
     env: Optional[StrictStr] = None
     name: Optional[StrictStr] = Field(default='', description="model name")
@@ -42,7 +41,7 @@ class CreateModel(BaseModel):
     single_instance: Optional[StrictBool] = Field(default=True, description="Only allow one instance to run as cloud function at a time.")
     lang: Optional[CloudFunctionLang] = None
     entrance_file: Optional[StrictStr] = ''
-    __properties: ClassVar[List[str]] = ["object_type", "repo", "branch", "type", "code", "model_name", "env", "name", "content", "is_demo", "kind", "single_instance", "lang", "entrance_file"]
+    __properties: ClassVar[List[str]] = ["object_type", "repo", "branch", "type", "model_name", "env", "name", "content", "is_demo", "kind", "single_instance", "lang", "entrance_file"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -57,8 +56,8 @@ class CreateModel(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['repo', 'gist', 'local', 'codelambda']):
-            raise ValueError("must be one of enum values ('repo', 'gist', 'local', 'codelambda')")
+        if value not in set(['repo', 'gist', 'local']):
+            raise ValueError("must be one of enum values ('repo', 'gist', 'local')")
         return value
 
     model_config = ConfigDict(
@@ -129,7 +128,6 @@ class CreateModel(BaseModel):
             "repo": obj.get("repo") if obj.get("repo") is not None else '',
             "branch": obj.get("branch") if obj.get("branch") is not None else '',
             "type": obj.get("type") if obj.get("type") is not None else 'local',
-            "code": obj.get("code") if obj.get("code") is not None else '',
             "model_name": obj.get("model_name") if obj.get("model_name") is not None else '',
             "env": obj.get("env"),
             "name": obj.get("name") if obj.get("name") is not None else '',

@@ -25,6 +25,7 @@ import { Data } from '../models/Data';
 import { Data1 } from '../models/Data1';
 import { Data2 } from '../models/Data2';
 import { DataTyping } from '../models/DataTyping';
+import { DeleteLinkedAccountReq } from '../models/DeleteLinkedAccountReq';
 import { DeleteObject } from '../models/DeleteObject';
 import { ErrRsp } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
@@ -38,10 +39,12 @@ import { GetExperimentShareRsp } from '../models/GetExperimentShareRsp';
 import { GetNotificationReq } from '../models/GetNotificationReq';
 import { GetTokensRsp } from '../models/GetTokensRsp';
 import { GistRsp } from '../models/GistRsp';
+import { LinkedAccountSchema } from '../models/LinkedAccountSchema';
 import { ListBranchRsp } from '../models/ListBranchRsp';
 import { ListExperimentRsp } from '../models/ListExperimentRsp';
 import { ListGistFilesRsp } from '../models/ListGistFilesRsp';
 import { ListGitHubRepository } from '../models/ListGitHubRepository';
+import { ListLinkedAccountRsp } from '../models/ListLinkedAccountRsp';
 import { ListModelsRspItem } from '../models/ListModelsRspItem';
 import { ListObjectTmp } from '../models/ListObjectTmp';
 import { ListRepoFilesRsp } from '../models/ListRepoFilesRsp';
@@ -75,6 +78,7 @@ import { SuccRspGetTokensRsp } from '../models/SuccRspGetTokensRsp';
 import { SuccRspListBranchRsp } from '../models/SuccRspListBranchRsp';
 import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
 import { SuccRspListGistFilesRsp } from '../models/SuccRspListGistFilesRsp';
+import { SuccRspListLinkedAccountRsp } from '../models/SuccRspListLinkedAccountRsp';
 import { SuccRspListRepoFilesRsp } from '../models/SuccRspListRepoFilesRsp';
 import { SuccRspListRepositoryRsp } from '../models/SuccRspListRepositoryRsp';
 import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingRspDataNotificationDict';
@@ -205,6 +209,28 @@ export class PromiseAuthorizationApi {
     }
 
     /**
+     * Delete a linked account.
+     * Delete Linked Account
+     * @param [deletedKey]
+     * @param [accounts] account list. List item in format &#x60;&lt;account_type&gt;:&lt;account&gt;&#x60;
+     */
+    public deleteLinkedAccountWithHttpInfo(deletedKey?: string, accounts?: Array<string>, _options?: Configuration): Promise<HttpInfo<SuccRspSoftDeletedRsp>> {
+        const result = this.api.deleteLinkedAccountWithHttpInfo(deletedKey, accounts, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * Delete a linked account.
+     * Delete Linked Account
+     * @param [deletedKey]
+     * @param [accounts] account list. List item in format &#x60;&lt;account_type&gt;:&lt;account&gt;&#x60;
+     */
+    public deleteLinkedAccount(deletedKey?: string, accounts?: Array<string>, _options?: Configuration): Promise<SuccRspSoftDeletedRsp> {
+        const result = this.api.deleteLinkedAccount(deletedKey, accounts, _options);
+        return result.toPromise();
+    }
+
+    /**
      * Delete(invalidate) a token.
      * Delete a token by its ID.
      * @param tokenId
@@ -239,6 +265,24 @@ export class PromiseAuthorizationApi {
      */
     public getTokens(_options?: Configuration): Promise<SuccRspListGetTokensRsp> {
         const result = this.api.getTokens(_options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get list of linked account.
+     * List Linked Account
+     */
+    public listLinkedAccountWithHttpInfo(_options?: Configuration): Promise<HttpInfo<SuccRspListLinkedAccountRsp>> {
+        const result = this.api.listLinkedAccountWithHttpInfo(_options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get list of linked account.
+     * List Linked Account
+     */
+    public listLinkedAccount(_options?: Configuration): Promise<SuccRspListLinkedAccountRsp> {
+        const result = this.api.listLinkedAccount(_options);
         return result.toPromise();
     }
 
