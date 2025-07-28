@@ -79,6 +79,7 @@ export enum ViewObjectObjectTypeEnum {
 }
 export enum ViewObjectFmtEnum {
     Csv = 'csv',
-    Grist = 'grist'
+    Grist = 'grist',
+    Arviz = 'arviz'
 }
 

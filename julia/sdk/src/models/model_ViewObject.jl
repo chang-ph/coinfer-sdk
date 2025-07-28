@@ -60,7 +60,7 @@ function OpenAPI.validate_property(::Type{ ViewObject }, name::Symbol, val)
 
 
     if name === Symbol("fmt")
-        OpenAPI.validate_param(name, "ViewObject", :enum, val, ["csv", "grist"])
+        OpenAPI.validate_param(name, "ViewObject", :enum, val, ["csv", "grist", "arviz"])
     end
 
 

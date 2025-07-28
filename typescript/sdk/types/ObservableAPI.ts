@@ -28,6 +28,7 @@ import { Data2 } from '../models/Data2';
 import { DataTyping } from '../models/DataTyping';
 import { DeleteLinkedAccountReq } from '../models/DeleteLinkedAccountReq';
 import { DeleteObject } from '../models/DeleteObject';
+import { DeleteTokenReq } from '../models/DeleteTokenReq';
 import { ErrRsp } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
 import { ExperimentRsp } from '../models/ExperimentRsp';
@@ -69,7 +70,6 @@ import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SoftDeletedRsp } from '../models/SoftDeletedRsp';
 import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
-import { SuccRspAny } from '../models/SuccRspAny';
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
 import { SuccRspCode2TokenRsp } from '../models/SuccRspCode2TokenRsp';
@@ -278,7 +278,7 @@ export class ObservableAuthorizationApi {
     }
 
     /**
-     * Delete a linked account.
+     * Delete linked accounts.
      * Delete Linked Account
      * @param [deletedKey]
      * @param [accounts] account list. List item in format &#x60;&lt;account_type&gt;:&lt;account&gt;&#x60;
@@ -303,7 +303,7 @@ export class ObservableAuthorizationApi {
     }
 
     /**
-     * Delete a linked account.
+     * Delete linked accounts.
      * Delete Linked Account
      * @param [deletedKey]
      * @param [accounts] account list. List item in format &#x60;&lt;account_type&gt;:&lt;account&gt;&#x60;
@@ -313,12 +313,13 @@ export class ObservableAuthorizationApi {
     }
 
     /**
-     * Delete(invalidate) a token.
-     * Delete a token by its ID.
-     * @param tokenId
+     * Delete(invalidate) tokens by their IDs.
+     * Delete Token
+     * @param [deletedKey]
+     * @param [tokens] list of tokens to be deleted
      */
-    public deleteTokenWithHttpInfo(tokenId: string, _options?: Configuration): Observable<HttpInfo<SuccRspNoneType>> {
-        const requestContextPromise = this.requestFactory.deleteToken(tokenId, _options);
+    public deleteTokenWithHttpInfo(deletedKey?: string, tokens?: Array<string>, _options?: Configuration): Observable<HttpInfo<SuccRspSoftDeletedRsp>> {
+        const requestContextPromise = this.requestFactory.deleteToken(deletedKey, tokens, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -337,12 +338,13 @@ export class ObservableAuthorizationApi {
     }
 
     /**
-     * Delete(invalidate) a token.
-     * Delete a token by its ID.
-     * @param tokenId
+     * Delete(invalidate) tokens by their IDs.
+     * Delete Token
+     * @param [deletedKey]
+     * @param [tokens] list of tokens to be deleted
      */
-    public deleteToken(tokenId: string, _options?: Configuration): Observable<SuccRspNoneType> {
-        return this.deleteTokenWithHttpInfo(tokenId, _options).pipe(map((apiResponse: HttpInfo<SuccRspNoneType>) => apiResponse.data));
+    public deleteToken(deletedKey?: string, tokens?: Array<string>, _options?: Configuration): Observable<SuccRspSoftDeletedRsp> {
+        return this.deleteTokenWithHttpInfo(deletedKey, tokens, _options).pipe(map((apiResponse: HttpInfo<SuccRspSoftDeletedRsp>) => apiResponse.data));
     }
 
     /**
@@ -844,7 +846,7 @@ export class ObservableObjectApi {
      * @param [batchId]
      * @param [runId]
      */
-    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist', cloudwatchLog?: boolean, batchId?: string, runId?: string, _options?: Configuration): Observable<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
+    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', cloudwatchLog?: boolean, batchId?: string, runId?: string, _options?: Configuration): Observable<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
         const requestContextPromise = this.requestFactory.viewObject(objid, objectType, shareId, sampledata, fmt, cloudwatchLog, batchId, runId, _options);
 
         // build promise chain
@@ -875,7 +877,7 @@ export class ObservableObjectApi {
      * @param [batchId]
      * @param [runId]
      */
-    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist', cloudwatchLog?: boolean, batchId?: string, runId?: string, _options?: Configuration): Observable<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
+    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', cloudwatchLog?: boolean, batchId?: string, runId?: string, _options?: Configuration): Observable<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
         return this.viewObjectWithHttpInfo(objid, objectType, shareId, sampledata, fmt, cloudwatchLog, batchId, runId, _options).pipe(map((apiResponse: HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>) => apiResponse.data));
     }
 
@@ -977,37 +979,6 @@ export class ObservableSystemApi {
      */
     public branch(repo: string, _options?: Configuration): Observable<SuccRspListBranchRsp> {
         return this.branchWithHttpInfo(repo, _options).pipe(map((apiResponse: HttpInfo<SuccRspListBranchRsp>) => apiResponse.data));
-    }
-
-    /**
-     * Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
-     * Get a link of the notebook in Colab
-     */
-    public colabWithHttpInfo(_options?: Configuration): Observable<HttpInfo<SuccRspAny>> {
-        const requestContextPromise = this.requestFactory.colab(_options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.colabWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
-     * Get a link of the notebook in Colab
-     */
-    public colab(_options?: Configuration): Observable<SuccRspAny> {
-        return this.colabWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<SuccRspAny>) => apiResponse.data));
     }
 
     /**

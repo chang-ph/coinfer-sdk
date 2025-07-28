@@ -70,7 +70,7 @@ class TestAuthorizationApi(unittest.TestCase):
     def test_delete_token(self) -> None:
         """Test case for delete_token
 
-        Delete a token by its ID.
+        Delete Token
         """
         pass
 

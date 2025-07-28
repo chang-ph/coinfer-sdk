@@ -5,7 +5,6 @@ All URIs are relative to *https://api.coinfer.ai*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**branch**](SystemApi.md#branch) | **GET** /sys/github/branch | List branches.
-[**colab**](SystemApi.md#colab) | **GET** /sys/colab | Get a link of the notebook in Colab
 [**config**](SystemApi.md#config) | **GET** /sys/config | Get configuration about how to run a model.
 [**gistFiles**](SystemApi.md#gistFiles) | **GET** /sys/github/gist-files | Gist Files
 [**repoFiles**](SystemApi.md#repoFiles) | **GET** /sys/github/repo-files | Repo Files
@@ -63,52 +62,6 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
-
-[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
-
-# **colab**
-> SuccRspAny colab()
-
-Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
-
-### Example
-
-
-```typescript
-import { createConfiguration, SystemApi } from 'coinfer-ts';
-
-const configuration = createConfiguration();
-const apiInstance = new SystemApi(configuration);
-
-const request = {};
-
-const data = await apiInstance.colab(request);
-console.log('API called successfully. Returned data:', data);
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-
-### Return type
-
-**SuccRspAny**
-
-### Authorization
-
-[GlobalAuth](README.md#GlobalAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 

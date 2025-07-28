@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**code2token**](AuthorizationApi.md#code2token) | **POST** /base/code2token | Code2Token
 [**create_token**](AuthorizationApi.md#create_token) | **POST** /base/user/tokens | Create a new authorization token.
 [**delete_linked_account**](AuthorizationApi.md#delete_linked_account) | **DELETE** /base/linked-account | Delete Linked Account
-[**delete_token**](AuthorizationApi.md#delete_token) | **DELETE** /base/user/token/{token_id} | Delete a token by its ID.
+[**delete_token**](AuthorizationApi.md#delete_token) | **DELETE** /base/user/tokens | Delete Token
 [**get_tokens**](AuthorizationApi.md#get_tokens) | **GET** /base/user/tokens | List all of current user&#39;s tokens.
 [**list_linked_account**](AuthorizationApi.md#list_linked_account) | **GET** /base/linked-account | List Linked Account
 [**modify_current_user**](AuthorizationApi.md#modify_current_user) | **PUT** /base/user | Update information of current user.
@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 
 Delete Linked Account
 
-Delete a linked account.
+Delete linked accounts.
 
 ### Required Parameters
 
@@ -200,23 +200,29 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **delete_token**
-> delete_token(_api::AuthorizationApi, token_id::String; _mediaType=nothing) -> SuccRspNoneType, OpenAPI.Clients.ApiResponse <br/>
-> delete_token(_api::AuthorizationApi, response_stream::Channel, token_id::String; _mediaType=nothing) -> Channel{ SuccRspNoneType }, OpenAPI.Clients.ApiResponse
+> delete_token(_api::AuthorizationApi; deleted_key=nothing, tokens=nothing, _mediaType=nothing) -> SuccRspSoftDeletedRsp, OpenAPI.Clients.ApiResponse <br/>
+> delete_token(_api::AuthorizationApi, response_stream::Channel; deleted_key=nothing, tokens=nothing, _mediaType=nothing) -> Channel{ SuccRspSoftDeletedRsp }, OpenAPI.Clients.ApiResponse
 
-Delete a token by its ID.
+Delete Token
 
-Delete(invalidate) a token.
+Delete(invalidate) tokens by their IDs.
 
 ### Required Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_api** | **AuthorizationApi** | API context | 
-**token_id** | **String** |  |
+
+### Optional Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **deleted_key** | **String** |  | [default to &quot;&quot;]
+ **tokens** | [**Vector{String}**](String.md) | list of tokens to be deleted | [default to nothing]
 
 ### Return type
 
-[**SuccRspNoneType**](SuccRspNoneType.md)
+[**SuccRspSoftDeletedRsp**](SuccRspSoftDeletedRsp.md)
 
 ### Authorization
 

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**code2token**](AuthorizationApi.md#code2token) | **POST** /base/code2token | Code2Token
 [**createToken**](AuthorizationApi.md#createToken) | **POST** /base/user/tokens | Create a new authorization token.
 [**deleteLinkedAccount**](AuthorizationApi.md#deleteLinkedAccount) | **DELETE** /base/linked-account | Delete Linked Account
-[**deleteToken**](AuthorizationApi.md#deleteToken) | **DELETE** /base/user/token/{token_id} | Delete a token by its ID.
+[**deleteToken**](AuthorizationApi.md#deleteToken) | **DELETE** /base/user/tokens | Delete Token
 [**getTokens**](AuthorizationApi.md#getTokens) | **GET** /base/user/tokens | List all of current user\&#39;s tokens.
 [**listLinkedAccount**](AuthorizationApi.md#listLinkedAccount) | **GET** /base/linked-account | List Linked Account
 [**modifyCurrentUser**](AuthorizationApi.md#modifyCurrentUser) | **PUT** /base/user | Update information of current user.
@@ -274,7 +274,7 @@ Name | Type | Description  | Notes
 # **deleteLinkedAccount**
 > SuccRspSoftDeletedRsp deleteLinkedAccount()
 
-Delete a linked account.
+Delete linked accounts.
 
 ### Example
 
@@ -331,9 +331,9 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **deleteToken**
-> SuccRspNoneType deleteToken()
+> SuccRspSoftDeletedRsp deleteToken()
 
-Delete(invalidate) a token.
+Delete(invalidate) tokens by their IDs.
 
 ### Example
 
@@ -347,7 +347,11 @@ const apiInstance = new AuthorizationApi(configuration);
 
 const request: AuthorizationApiDeleteTokenRequest = {
   
-  tokenId: "token_id_example",
+  deletedKey: "",
+    // list of tokens to be deleted (optional)
+  tokens: [
+    "tokens_example",
+  ],
 };
 
 const data = await apiInstance.deleteToken(request);
@@ -359,12 +363,13 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **tokenId** | [**string**] |  | defaults to undefined
+ **deletedKey** | [**string**] |  | (optional) defaults to ''
+ **tokens** | **Array&lt;string&gt;** | list of tokens to be deleted | (optional) defaults to undefined
 
 
 ### Return type
 
-**SuccRspNoneType**
+**SuccRspSoftDeletedRsp**
 
 ### Authorization
 

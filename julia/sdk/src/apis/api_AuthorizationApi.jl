@@ -178,7 +178,7 @@ end
 
 @doc raw"""Delete Linked Account
 
-Delete a linked account.
+Delete linked accounts.
 
 Params:
 - deleted_key::String
@@ -197,34 +197,36 @@ function delete_linked_account(_api::AuthorizationApi, response_stream::Channel;
 end
 
 const _returntypes_delete_token_AuthorizationApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspNoneType,
+    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspSoftDeletedRsp,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
-function _oacinternal_delete_token(_api::AuthorizationApi, token_id::String; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "DELETE", _returntypes_delete_token_AuthorizationApi, "/base/user/token/{token_id}", ["GlobalAuth", ])
-    OpenAPI.Clients.set_param(_ctx.path, "token_id", token_id)  # type String
+function _oacinternal_delete_token(_api::AuthorizationApi; deleted_key=nothing, tokens=nothing, _mediaType=nothing)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "DELETE", _returntypes_delete_token_AuthorizationApi, "/base/user/tokens", ["GlobalAuth", ])
+    OpenAPI.Clients.set_param(_ctx.query, "deleted_key", deleted_key; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "tokens", tokens; style="form", is_explode=true)  # type Vector{String}
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
 end
 
-@doc raw"""Delete a token by its ID.
+@doc raw"""Delete Token
 
-Delete(invalidate) a token.
+Delete(invalidate) tokens by their IDs.
 
 Params:
-- token_id::String (required)
+- deleted_key::String
+- tokens::Vector{String}
 
-Return: SuccRspNoneType, OpenAPI.Clients.ApiResponse
+Return: SuccRspSoftDeletedRsp, OpenAPI.Clients.ApiResponse
 """
-function delete_token(_api::AuthorizationApi, token_id::String; _mediaType=nothing)
-    _ctx = _oacinternal_delete_token(_api, token_id; _mediaType=_mediaType)
+function delete_token(_api::AuthorizationApi; deleted_key=nothing, tokens=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_delete_token(_api; deleted_key=deleted_key, tokens=tokens, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function delete_token(_api::AuthorizationApi, response_stream::Channel, token_id::String; _mediaType=nothing)
-    _ctx = _oacinternal_delete_token(_api, token_id; _mediaType=_mediaType)
+function delete_token(_api::AuthorizationApi, response_stream::Channel; deleted_key=nothing, tokens=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_delete_token(_api; deleted_key=deleted_key, tokens=tokens, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 

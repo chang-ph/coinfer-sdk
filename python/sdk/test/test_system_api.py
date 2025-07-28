@@ -32,13 +32,6 @@ class TestSystemApi(unittest.TestCase):
         """
         pass
 
-    def test_colab(self) -> None:
-        """Test case for colab
-
-        Get a link of the notebook in Colab
-        """
-        pass
-
     def test_config(self) -> None:
         """Test case for config
 

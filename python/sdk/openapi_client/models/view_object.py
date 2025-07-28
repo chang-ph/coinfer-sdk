@@ -50,8 +50,8 @@ class ViewObject(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['csv', 'grist']):
-            raise ValueError("must be one of enum values ('csv', 'grist')")
+        if value not in set(['csv', 'grist', 'arviz']):
+            raise ValueError("must be one of enum values ('csv', 'grist', 'arviz')")
         return value
 
     model_config = ConfigDict(

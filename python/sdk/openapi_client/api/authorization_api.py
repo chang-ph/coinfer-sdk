@@ -1364,7 +1364,7 @@ class AuthorizationApi:
     ) -> SuccRspSoftDeletedRsp:
         """Delete Linked Account
 
-        Delete a linked account.
+        Delete linked accounts.
 
         :param deleted_key:
         :type deleted_key: str
@@ -1436,7 +1436,7 @@ class AuthorizationApi:
     ) -> ApiResponse[SuccRspSoftDeletedRsp]:
         """Delete Linked Account
 
-        Delete a linked account.
+        Delete linked accounts.
 
         :param deleted_key:
         :type deleted_key: str
@@ -1508,7 +1508,7 @@ class AuthorizationApi:
     ) -> RESTResponseType:
         """Delete Linked Account
 
-        Delete a linked account.
+        Delete linked accounts.
 
         :param deleted_key:
         :type deleted_key: str
@@ -1631,7 +1631,8 @@ class AuthorizationApi:
     @validate_call
     def delete_token(
         self,
-        token_id: StrictStr,
+        deleted_key: Optional[StrictStr] = None,
+        tokens: Annotated[Optional[List[StrictStr]], Field(description="list of tokens to be deleted")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1644,13 +1645,15 @@ class AuthorizationApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> SuccRspNoneType:
-        """Delete a token by its ID.
+    ) -> SuccRspSoftDeletedRsp:
+        """Delete Token
 
-        Delete(invalidate) a token.
+        Delete(invalidate) tokens by their IDs.
 
-        :param token_id: (required)
-        :type token_id: str
+        :param deleted_key:
+        :type deleted_key: str
+        :param tokens: list of tokens to be deleted
+        :type tokens: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1674,7 +1677,8 @@ class AuthorizationApi:
         """ # noqa: E501
 
         _param = self._delete_token_serialize(
-            token_id=token_id,
+            deleted_key=deleted_key,
+            tokens=tokens,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1682,7 +1686,7 @@ class AuthorizationApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SuccRspNoneType",
+            '200': "SuccRspSoftDeletedRsp",
             '400': "ErrRsp",
         }
         response_data = self.api_client.call_api(
@@ -1699,7 +1703,8 @@ class AuthorizationApi:
     @validate_call
     def delete_token_with_http_info(
         self,
-        token_id: StrictStr,
+        deleted_key: Optional[StrictStr] = None,
+        tokens: Annotated[Optional[List[StrictStr]], Field(description="list of tokens to be deleted")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1712,13 +1717,15 @@ class AuthorizationApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[SuccRspNoneType]:
-        """Delete a token by its ID.
+    ) -> ApiResponse[SuccRspSoftDeletedRsp]:
+        """Delete Token
 
-        Delete(invalidate) a token.
+        Delete(invalidate) tokens by their IDs.
 
-        :param token_id: (required)
-        :type token_id: str
+        :param deleted_key:
+        :type deleted_key: str
+        :param tokens: list of tokens to be deleted
+        :type tokens: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1742,7 +1749,8 @@ class AuthorizationApi:
         """ # noqa: E501
 
         _param = self._delete_token_serialize(
-            token_id=token_id,
+            deleted_key=deleted_key,
+            tokens=tokens,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1750,7 +1758,7 @@ class AuthorizationApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SuccRspNoneType",
+            '200': "SuccRspSoftDeletedRsp",
             '400': "ErrRsp",
         }
         response_data = self.api_client.call_api(
@@ -1767,7 +1775,8 @@ class AuthorizationApi:
     @validate_call
     def delete_token_without_preload_content(
         self,
-        token_id: StrictStr,
+        deleted_key: Optional[StrictStr] = None,
+        tokens: Annotated[Optional[List[StrictStr]], Field(description="list of tokens to be deleted")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1781,12 +1790,14 @@ class AuthorizationApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Delete a token by its ID.
+        """Delete Token
 
-        Delete(invalidate) a token.
+        Delete(invalidate) tokens by their IDs.
 
-        :param token_id: (required)
-        :type token_id: str
+        :param deleted_key:
+        :type deleted_key: str
+        :param tokens: list of tokens to be deleted
+        :type tokens: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1810,7 +1821,8 @@ class AuthorizationApi:
         """ # noqa: E501
 
         _param = self._delete_token_serialize(
-            token_id=token_id,
+            deleted_key=deleted_key,
+            tokens=tokens,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1818,7 +1830,7 @@ class AuthorizationApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SuccRspNoneType",
+            '200': "SuccRspSoftDeletedRsp",
             '400': "ErrRsp",
         }
         response_data = self.api_client.call_api(
@@ -1830,7 +1842,8 @@ class AuthorizationApi:
 
     def _delete_token_serialize(
         self,
-        token_id,
+        deleted_key,
+        tokens,
         _request_auth,
         _content_type,
         _headers,
@@ -1840,6 +1853,7 @@ class AuthorizationApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'tokens': 'multi',
         }
 
         _path_params: Dict[str, str] = {}
@@ -1852,9 +1866,15 @@ class AuthorizationApi:
         _body_params: Optional[bytes] = None
 
         # process the path parameters
-        if token_id is not None:
-            _path_params['token_id'] = token_id
         # process the query parameters
+        if deleted_key is not None:
+            
+            _query_params.append(('deleted_key', deleted_key))
+            
+        if tokens is not None:
+            
+            _query_params.append(('tokens', tokens))
+            
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -1876,7 +1896,7 @@ class AuthorizationApi:
 
         return self.api_client.param_serialize(
             method='DELETE',
-            resource_path='/base/user/token/{token_id}',
+            resource_path='/base/user/tokens',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

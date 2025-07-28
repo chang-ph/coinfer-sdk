@@ -308,7 +308,7 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
      * @param batchId 
      * @param runId 
      */
-    public async viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist', cloudwatchLog?: boolean, batchId?: string, runId?: string, _options?: Configuration): Promise<RequestContext> {
+    public async viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', cloudwatchLog?: boolean, batchId?: string, runId?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'objid' is not null or undefined
@@ -349,7 +349,7 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
 
         // Query Params
         if (fmt !== undefined) {
-            requestContext.setQueryParam("fmt", ObjectSerializer.serialize(fmt, "'csv' | 'grist'", ""));
+            requestContext.setQueryParam("fmt", ObjectSerializer.serialize(fmt, "'csv' | 'grist' | 'arviz'", ""));
         }
 
         // Query Params

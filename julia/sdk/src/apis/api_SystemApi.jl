@@ -43,35 +43,6 @@ function branch(_api::SystemApi, response_stream::Channel, repo::String; _mediaT
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
-const _returntypes_colab_SystemApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspAny,
-)
-
-function _oacinternal_colab(_api::SystemApi; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_colab_SystemApi, "/sys/colab", ["GlobalAuth", ])
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""Get a link of the notebook in Colab
-
-Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
-
-Params:
-
-Return: SuccRspAny, OpenAPI.Clients.ApiResponse
-"""
-function colab(_api::SystemApi; _mediaType=nothing)
-    _ctx = _oacinternal_colab(_api; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function colab(_api::SystemApi, response_stream::Channel; _mediaType=nothing)
-    _ctx = _oacinternal_colab(_api; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
 const _returntypes_config_SystemApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspGetConfigRsp,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
@@ -205,7 +176,6 @@ function repository(_api::SystemApi, response_stream::Channel; page_no=nothing, 
 end
 
 export branch
-export colab
 export config
 export gist_files
 export repo_files

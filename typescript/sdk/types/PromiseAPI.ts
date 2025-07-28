@@ -27,6 +27,7 @@ import { Data2 } from '../models/Data2';
 import { DataTyping } from '../models/DataTyping';
 import { DeleteLinkedAccountReq } from '../models/DeleteLinkedAccountReq';
 import { DeleteObject } from '../models/DeleteObject';
+import { DeleteTokenReq } from '../models/DeleteTokenReq';
 import { ErrRsp } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
 import { ExperimentRsp } from '../models/ExperimentRsp';
@@ -68,7 +69,6 @@ import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SoftDeletedRsp } from '../models/SoftDeletedRsp';
 import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
-import { SuccRspAny } from '../models/SuccRspAny';
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
 import { SuccRspCode2TokenRsp } from '../models/SuccRspCode2TokenRsp';
@@ -209,7 +209,7 @@ export class PromiseAuthorizationApi {
     }
 
     /**
-     * Delete a linked account.
+     * Delete linked accounts.
      * Delete Linked Account
      * @param [deletedKey]
      * @param [accounts] account list. List item in format &#x60;&lt;account_type&gt;:&lt;account&gt;&#x60;
@@ -220,7 +220,7 @@ export class PromiseAuthorizationApi {
     }
 
     /**
-     * Delete a linked account.
+     * Delete linked accounts.
      * Delete Linked Account
      * @param [deletedKey]
      * @param [accounts] account list. List item in format &#x60;&lt;account_type&gt;:&lt;account&gt;&#x60;
@@ -231,22 +231,24 @@ export class PromiseAuthorizationApi {
     }
 
     /**
-     * Delete(invalidate) a token.
-     * Delete a token by its ID.
-     * @param tokenId
+     * Delete(invalidate) tokens by their IDs.
+     * Delete Token
+     * @param [deletedKey]
+     * @param [tokens] list of tokens to be deleted
      */
-    public deleteTokenWithHttpInfo(tokenId: string, _options?: Configuration): Promise<HttpInfo<SuccRspNoneType>> {
-        const result = this.api.deleteTokenWithHttpInfo(tokenId, _options);
+    public deleteTokenWithHttpInfo(deletedKey?: string, tokens?: Array<string>, _options?: Configuration): Promise<HttpInfo<SuccRspSoftDeletedRsp>> {
+        const result = this.api.deleteTokenWithHttpInfo(deletedKey, tokens, _options);
         return result.toPromise();
     }
 
     /**
-     * Delete(invalidate) a token.
-     * Delete a token by its ID.
-     * @param tokenId
+     * Delete(invalidate) tokens by their IDs.
+     * Delete Token
+     * @param [deletedKey]
+     * @param [tokens] list of tokens to be deleted
      */
-    public deleteToken(tokenId: string, _options?: Configuration): Promise<SuccRspNoneType> {
-        const result = this.api.deleteToken(tokenId, _options);
+    public deleteToken(deletedKey?: string, tokens?: Array<string>, _options?: Configuration): Promise<SuccRspSoftDeletedRsp> {
+        const result = this.api.deleteToken(deletedKey, tokens, _options);
         return result.toPromise();
     }
 
@@ -582,7 +584,7 @@ export class PromiseObjectApi {
      * @param [batchId]
      * @param [runId]
      */
-    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist', cloudwatchLog?: boolean, batchId?: string, runId?: string, _options?: Configuration): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
+    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', cloudwatchLog?: boolean, batchId?: string, runId?: string, _options?: Configuration): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
         const result = this.api.viewObjectWithHttpInfo(objid, objectType, shareId, sampledata, fmt, cloudwatchLog, batchId, runId, _options);
         return result.toPromise();
     }
@@ -599,7 +601,7 @@ export class PromiseObjectApi {
      * @param [batchId]
      * @param [runId]
      */
-    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist', cloudwatchLog?: boolean, batchId?: string, runId?: string, _options?: Configuration): Promise<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
+    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', cloudwatchLog?: boolean, batchId?: string, runId?: string, _options?: Configuration): Promise<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
         const result = this.api.viewObject(objid, objectType, shareId, sampledata, fmt, cloudwatchLog, batchId, runId, _options);
         return result.toPromise();
     }
@@ -677,24 +679,6 @@ export class PromiseSystemApi {
      */
     public branch(repo: string, _options?: Configuration): Promise<SuccRspListBranchRsp> {
         const result = this.api.branch(repo, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
-     * Get a link of the notebook in Colab
-     */
-    public colabWithHttpInfo(_options?: Configuration): Promise<HttpInfo<SuccRspAny>> {
-        const result = this.api.colabWithHttpInfo(_options);
-        return result.toPromise();
-    }
-
-    /**
-     * Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
-     * Get a link of the notebook in Colab
-     */
-    public colab(_options?: Configuration): Promise<SuccRspAny> {
-        const result = this.api.colab(_options);
         return result.toPromise();
     }
 

@@ -220,7 +220,7 @@ export class AuthorizationApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Delete Linked Account
      *
-     * Delete a linked account.
+     * Delete linked accounts.
      * @param deletedKey 
      * @param accounts account list. List item in format &#x60;&lt;account_type&gt;:&lt;account&gt;&#x60;
      */
@@ -266,27 +266,36 @@ export class AuthorizationApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * Delete a token by its ID.
+     * Delete Token
      *
-     * Delete(invalidate) a token.
-     * @param tokenId 
+     * Delete(invalidate) tokens by their IDs.
+     * @param deletedKey 
+     * @param tokens list of tokens to be deleted
      */
-    public async deleteToken(tokenId: string, _options?: Configuration): Promise<RequestContext> {
+    public async deleteToken(deletedKey?: string, tokens?: Array<string>, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'tokenId' is not null or undefined
-        if (tokenId === null || tokenId === undefined) {
-            throw new RequiredError("AuthorizationApi", "deleteToken", "tokenId");
-        }
 
 
         // Path Params
-        const localVarPath = '/base/user/token/{token_id}'
-            .replace('{' + 'token_id' + '}', encodeURIComponent(String(tokenId)));
+        const localVarPath = '/base/user/tokens';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+        if (deletedKey !== undefined) {
+            requestContext.setQueryParam("deleted_key", ObjectSerializer.serialize(deletedKey, "string", ""));
+        }
+
+        // Query Params
+        if (tokens !== undefined) {
+            const serializedParams = ObjectSerializer.serialize(tokens, "Array<string>", "");
+            for (const serializedParam of serializedParams) {
+                requestContext.appendQueryParam("tokens", serializedParam);
+            }
+        }
 
 
         let authMethod: SecurityAuthentication | undefined;
@@ -790,13 +799,13 @@ export class AuthorizationApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteToken
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteTokenWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspNoneType >> {
+     public async deleteTokenWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspSoftDeletedRsp >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: SuccRspNoneType = ObjectSerializer.deserialize(
+            const body: SuccRspSoftDeletedRsp = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspNoneType", ""
-            ) as SuccRspNoneType;
+                "SuccRspSoftDeletedRsp", ""
+            ) as SuccRspSoftDeletedRsp;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -809,10 +818,10 @@ export class AuthorizationApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: SuccRspNoneType = ObjectSerializer.deserialize(
+            const body: SuccRspSoftDeletedRsp = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspNoneType", ""
-            ) as SuccRspNoneType;
+                "SuccRspSoftDeletedRsp", ""
+            ) as SuccRspSoftDeletedRsp;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 

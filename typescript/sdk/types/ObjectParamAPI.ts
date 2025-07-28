@@ -27,6 +27,7 @@ import { Data2 } from '../models/Data2';
 import { DataTyping } from '../models/DataTyping';
 import { DeleteLinkedAccountReq } from '../models/DeleteLinkedAccountReq';
 import { DeleteObject } from '../models/DeleteObject';
+import { DeleteTokenReq } from '../models/DeleteTokenReq';
 import { ErrRsp } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
 import { ExperimentRsp } from '../models/ExperimentRsp';
@@ -68,7 +69,6 @@ import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SoftDeletedRsp } from '../models/SoftDeletedRsp';
 import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
-import { SuccRspAny } from '../models/SuccRspAny';
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
 import { SuccRspCode2TokenRsp } from '../models/SuccRspCode2TokenRsp';
@@ -152,11 +152,18 @@ export interface AuthorizationApiDeleteLinkedAccountRequest {
 export interface AuthorizationApiDeleteTokenRequest {
     /**
      * 
-     * Defaults to: undefined
+     * Defaults to: &#39;&#39;
      * @type string
      * @memberof AuthorizationApideleteToken
      */
-    tokenId: string
+    deletedKey?: string
+    /**
+     * list of tokens to be deleted
+     * Defaults to: undefined
+     * @type Array&lt;string&gt;
+     * @memberof AuthorizationApideleteToken
+     */
+    tokens?: Array<string>
 }
 
 export interface AuthorizationApiGetTokensRequest {
@@ -303,7 +310,7 @@ export class ObjectAuthorizationApi {
     }
 
     /**
-     * Delete a linked account.
+     * Delete linked accounts.
      * Delete Linked Account
      * @param param the request object
      */
@@ -312,7 +319,7 @@ export class ObjectAuthorizationApi {
     }
 
     /**
-     * Delete a linked account.
+     * Delete linked accounts.
      * Delete Linked Account
      * @param param the request object
      */
@@ -321,21 +328,21 @@ export class ObjectAuthorizationApi {
     }
 
     /**
-     * Delete(invalidate) a token.
-     * Delete a token by its ID.
+     * Delete(invalidate) tokens by their IDs.
+     * Delete Token
      * @param param the request object
      */
-    public deleteTokenWithHttpInfo(param: AuthorizationApiDeleteTokenRequest, options?: Configuration): Promise<HttpInfo<SuccRspNoneType>> {
-        return this.api.deleteTokenWithHttpInfo(param.tokenId,  options).toPromise();
+    public deleteTokenWithHttpInfo(param: AuthorizationApiDeleteTokenRequest = {}, options?: Configuration): Promise<HttpInfo<SuccRspSoftDeletedRsp>> {
+        return this.api.deleteTokenWithHttpInfo(param.deletedKey, param.tokens,  options).toPromise();
     }
 
     /**
-     * Delete(invalidate) a token.
-     * Delete a token by its ID.
+     * Delete(invalidate) tokens by their IDs.
+     * Delete Token
      * @param param the request object
      */
-    public deleteToken(param: AuthorizationApiDeleteTokenRequest, options?: Configuration): Promise<SuccRspNoneType> {
-        return this.api.deleteToken(param.tokenId,  options).toPromise();
+    public deleteToken(param: AuthorizationApiDeleteTokenRequest = {}, options?: Configuration): Promise<SuccRspSoftDeletedRsp> {
+        return this.api.deleteToken(param.deletedKey, param.tokens,  options).toPromise();
     }
 
     /**
@@ -706,10 +713,10 @@ export interface ObjectApiViewObjectRequest {
     /**
      * 
      * Defaults to: &#39;csv&#39;
-     * @type &#39;csv&#39; | &#39;grist&#39;
+     * @type &#39;csv&#39; | &#39;grist&#39; | &#39;arviz&#39;
      * @memberof ObjectApiviewObject
      */
-    fmt?: 'csv' | 'grist'
+    fmt?: 'csv' | 'grist' | 'arviz'
     /**
      * 
      * Defaults to: false
@@ -883,9 +890,6 @@ export interface SystemApiBranchRequest {
     repo: string
 }
 
-export interface SystemApiColabRequest {
-}
-
 export interface SystemApiConfigRequest {
 }
 
@@ -957,24 +961,6 @@ export class ObjectSystemApi {
      */
     public branch(param: SystemApiBranchRequest, options?: Configuration): Promise<SuccRspListBranchRsp> {
         return this.api.branch(param.repo,  options).toPromise();
-    }
-
-    /**
-     * Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
-     * Get a link of the notebook in Colab
-     * @param param the request object
-     */
-    public colabWithHttpInfo(param: SystemApiColabRequest = {}, options?: Configuration): Promise<HttpInfo<SuccRspAny>> {
-        return this.api.colabWithHttpInfo( options).toPromise();
-    }
-
-    /**
-     * Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
-     * Get a link of the notebook in Colab
-     * @param param the request object
-     */
-    public colab(param: SystemApiColabRequest = {}, options?: Configuration): Promise<SuccRspAny> {
-        return this.api.colab( options).toPromise();
     }
 
     /**

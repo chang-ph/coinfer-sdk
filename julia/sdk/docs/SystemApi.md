@@ -5,7 +5,6 @@ All URIs are relative to *https://api.coinfer.ai*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**branch**](SystemApi.md#branch) | **GET** /sys/github/branch | List branches.
-[**colab**](SystemApi.md#colab) | **GET** /sys/colab | Get a link of the notebook in Colab
 [**config**](SystemApi.md#config) | **GET** /sys/config | Get configuration about how to run a model.
 [**gist_files**](SystemApi.md#gist_files) | **GET** /sys/github/gist-files | Gist Files
 [**repo_files**](SystemApi.md#repo_files) | **GET** /sys/github/repo-files | Repo Files
@@ -30,32 +29,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SuccRspListBranchRsp**](SuccRspListBranchRsp.md)
-
-### Authorization
-
-[GlobalAuth](../README.md#GlobalAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
-
-# **colab**
-> colab(_api::SystemApi; _mediaType=nothing) -> SuccRspAny, OpenAPI.Clients.ApiResponse <br/>
-> colab(_api::SystemApi, response_stream::Channel; _mediaType=nothing) -> Channel{ SuccRspAny }, OpenAPI.Clients.ApiResponse
-
-Get a link of the notebook in Colab
-
-Create notebook which can be used to load and visualize the experiment result. Save it to Github and returns a link which can be used to open this notebook in Google Colab
-
-### Required Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**SuccRspAny**](SuccRspAny.md)
 
 ### Authorization
 
