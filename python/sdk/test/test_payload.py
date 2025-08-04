@@ -35,8 +35,6 @@ class TestPayload(unittest.TestCase):
         if include_optional:
             return Payload(
                 object_type = 'relation',
-                repo = '',
-                branch = '',
                 type = 'local',
                 model_name = '',
                 env = '',
@@ -59,6 +57,7 @@ class TestPayload(unittest.TestCase):
                 lang = 'julia',
                 entrance_file = '',
                 lambda_image = True,
+                source_url = '',
                 model_id = '',
                 xp_meta = None,
                 meta = None,

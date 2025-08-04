@@ -61,15 +61,15 @@ class TestPayload1(unittest.TestCase):
                 description = '',
                 status = '',
                 lambda_image = True,
+                params = '',
+                engine = 'lambda',
+                lock_key = '',
                 action = '',
                 meta = { },
                 n_chains = 56,
                 n_variables = 56,
                 n_samples = 56,
                 sample_update_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                params = '',
-                engine = 'lambda',
-                lock_key = '',
                 datas = [
                     { }
                     ],

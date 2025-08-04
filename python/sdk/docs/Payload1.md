@@ -17,15 +17,15 @@ Name | Type | Description | Notes
 **description** | **str** |  | [optional] 
 **status** | **str** |  | [optional] 
 **lambda_image** | **bool** |  | [optional] 
+**params** | **str** |  | [optional] [default to '']
+**engine** | **str** |  | [optional] [default to 'lambda']
+**lock_key** | **str** |  | [optional] [default to '']
 **action** | **str** |  | [optional] 
 **meta** | **Dict[str, object]** |  | [optional] 
 **n_chains** | **int** |  | [optional] [default to 0]
 **n_variables** | **int** |  | [optional] [default to 0]
 **n_samples** | **int** |  | [optional] [default to 0]
 **sample_update_time** | **datetime** |  | [optional] 
-**params** | **str** |  | [optional] [default to '']
-**engine** | **str** |  | [optional] [default to 'lambda']
-**lock_key** | **str** |  | [optional] [default to '']
 **datas** | **List[Dict[str, object]]** | list of messages | 
 **logs** | [**List[DataTyping]**](DataTyping.md) |  | 
 

@@ -6,8 +6,6 @@
 
     CreateModel(;
         object_type=nothing,
-        repo="",
-        branch="",
         type="local",
         model_name="",
         env=nothing,
@@ -19,12 +17,11 @@
         lang=nothing,
         entrance_file="",
         lambda_image=false,
+        source_url="",
     )
 
     - object_type::String
-    - repo::String : repo in the form of repo_owner/repo_name or gist id in case of importing from gist
-    - branch::String : branch name or gist description in case of importing from gist
-    - type::String : The type of input code. It can be:  * repo: the code is stored in a github repository and specified by param &#x60;repo&#x60; and &#x60;branch&#x60;. * gist: the code is stored in a github gist and specified by param &#x60;repo&#x60; and &#x60;branch&#x60;. * local: the code is provided directly in &#x60;content&#x60; field as Unified Model Format.
+    - type::String : The type of input code. It can be:  * local: the code is provided directly in &#x60;content&#x60; field as Unified Model Format. * url: the code is provided by a URL and specified by param &#x60;source_url&#x60;.
     - model_name::String : [deprecated] model name
     - env::String
     - name::String : model name
@@ -35,11 +32,10 @@
     - lang::CloudFunctionLang
     - entrance_file::String
     - lambda_image::Bool : Whether to build lambda image for this CloudFunction
+    - source_url::String : Source URL from where to import the model
 """
 Base.@kwdef mutable struct CreateModel <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
-    repo::Union{Nothing, String} = ""
-    branch::Union{Nothing, String} = ""
     type::Union{Nothing, String} = "local"
     model_name::Union{Nothing, String} = ""
     env::Union{Nothing, String} = nothing
@@ -51,11 +47,10 @@ Base.@kwdef mutable struct CreateModel <: OpenAPI.APIModel
     lang = nothing # spec type: Union{ Nothing, CloudFunctionLang }
     entrance_file::Union{Nothing, String} = ""
     lambda_image::Union{Nothing, Bool} = false
+    source_url::Union{Nothing, String} = ""
 
-    function CreateModel(object_type, repo, branch, type, model_name, env, name, content, is_demo, kind, single_instance, lang, entrance_file, lambda_image, )
+    function CreateModel(object_type, type, model_name, env, name, content, is_demo, kind, single_instance, lang, entrance_file, lambda_image, source_url, )
         OpenAPI.validate_property(CreateModel, Symbol("object_type"), object_type)
-        OpenAPI.validate_property(CreateModel, Symbol("repo"), repo)
-        OpenAPI.validate_property(CreateModel, Symbol("branch"), branch)
         OpenAPI.validate_property(CreateModel, Symbol("type"), type)
         OpenAPI.validate_property(CreateModel, Symbol("model_name"), model_name)
         OpenAPI.validate_property(CreateModel, Symbol("env"), env)
@@ -67,11 +62,12 @@ Base.@kwdef mutable struct CreateModel <: OpenAPI.APIModel
         OpenAPI.validate_property(CreateModel, Symbol("lang"), lang)
         OpenAPI.validate_property(CreateModel, Symbol("entrance_file"), entrance_file)
         OpenAPI.validate_property(CreateModel, Symbol("lambda_image"), lambda_image)
-        return new(object_type, repo, branch, type, model_name, env, name, content, is_demo, kind, single_instance, lang, entrance_file, lambda_image, )
+        OpenAPI.validate_property(CreateModel, Symbol("source_url"), source_url)
+        return new(object_type, type, model_name, env, name, content, is_demo, kind, single_instance, lang, entrance_file, lambda_image, source_url, )
     end
 end # type CreateModel
 
-const _property_types_CreateModel = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("repo")=>"String", Symbol("branch")=>"String", Symbol("type")=>"String", Symbol("model_name")=>"String", Symbol("env")=>"String", Symbol("name")=>"String", Symbol("content")=>"ModelContent", Symbol("is_demo")=>"Bool", Symbol("kind")=>"CloudFunctionKind", Symbol("single_instance")=>"Bool", Symbol("lang")=>"CloudFunctionLang", Symbol("entrance_file")=>"String", Symbol("lambda_image")=>"Bool", )
+const _property_types_CreateModel = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("type")=>"String", Symbol("model_name")=>"String", Symbol("env")=>"String", Symbol("name")=>"String", Symbol("content")=>"ModelContent", Symbol("is_demo")=>"Bool", Symbol("kind")=>"CloudFunctionKind", Symbol("single_instance")=>"Bool", Symbol("lang")=>"CloudFunctionLang", Symbol("entrance_file")=>"String", Symbol("lambda_image")=>"Bool", Symbol("source_url")=>"String", )
 OpenAPI.property_type(::Type{ CreateModel }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_CreateModel[name]))}
 
 function check_required(o::CreateModel)
@@ -86,11 +82,10 @@ function OpenAPI.validate_property(::Type{ CreateModel }, name::Symbol, val)
     end
 
 
-
-
     if name === Symbol("type")
-        OpenAPI.validate_param(name, "CreateModel", :enum, val, ["repo", "gist", "local"])
+        OpenAPI.validate_param(name, "CreateModel", :enum, val, ["local", "url"])
     end
+
 
 
 

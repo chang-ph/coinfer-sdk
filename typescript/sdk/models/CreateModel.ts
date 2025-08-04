@@ -6,15 +6,7 @@ import { HttpFile } from '../http/http';
 export class CreateModel {
     'objectType': CreateModelObjectTypeEnum;
     /**
-    * repo in the form of repo_owner/repo_name or gist id in case of importing from gist
-    */
-    'repo'?: string;
-    /**
-    * branch name or gist description in case of importing from gist
-    */
-    'branch'?: string;
-    /**
-    * The type of input code. It can be:  * repo: the code is stored in a github repository and specified by param `repo` and `branch`. * gist: the code is stored in a github gist and specified by param `repo` and `branch`. * local: the code is provided directly in `content` field as Unified Model Format.
+    * The type of input code. It can be:  * local: the code is provided directly in `content` field as Unified Model Format. * url: the code is provided by a URL and specified by param `source_url`.
     */
     'type'?: CreateModelTypeEnum;
     /**
@@ -39,6 +31,10 @@ export class CreateModel {
     * Whether to build lambda image for this CloudFunction
     */
     'lambdaImage'?: boolean;
+    /**
+    * Source URL from where to import the model
+    */
+    'sourceUrl'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -49,18 +45,6 @@ export class CreateModel {
             "name": "objectType",
             "baseName": "object_type",
             "type": "CreateModelObjectTypeEnum",
-            "format": ""
-        },
-        {
-            "name": "repo",
-            "baseName": "repo",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "branch",
-            "baseName": "branch",
-            "type": "string",
             "format": ""
         },
         {
@@ -128,6 +112,12 @@ export class CreateModel {
             "baseName": "lambda_image",
             "type": "boolean",
             "format": ""
+        },
+        {
+            "name": "sourceUrl",
+            "baseName": "source_url",
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
@@ -142,8 +132,7 @@ export enum CreateModelObjectTypeEnum {
     Model = 'model'
 }
 export enum CreateModelTypeEnum {
-    Repo = 'repo',
-    Gist = 'gist',
-    Local = 'local'
+    Local = 'local',
+    Url = 'url'
 }
 

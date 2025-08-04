@@ -25,13 +25,6 @@ class TestSystemApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_branch(self) -> None:
-        """Test case for branch
-
-        List branches.
-        """
-        pass
-
     def test_config(self) -> None:
         """Test case for config
 
@@ -39,24 +32,10 @@ class TestSystemApi(unittest.TestCase):
         """
         pass
 
-    def test_gist_files(self) -> None:
-        """Test case for gist_files
-
-        Gist Files
-        """
-        pass
-
-    def test_repo_files(self) -> None:
-        """Test case for repo_files
-
-        Repo Files
-        """
-        pass
-
     def test_repository(self) -> None:
         """Test case for repository
 
-        List repositories and gists.
+        List demo models.
         """
         pass
 

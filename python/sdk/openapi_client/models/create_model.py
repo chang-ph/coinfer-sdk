@@ -29,9 +29,7 @@ class CreateModel(BaseModel):
     CreateModel
     """ # noqa: E501
     object_type: StrictStr
-    repo: Optional[StrictStr] = Field(default='', description="repo in the form of repo_owner/repo_name or gist id in case of importing from gist")
-    branch: Optional[StrictStr] = Field(default='', description="branch name or gist description in case of importing from gist")
-    type: Optional[StrictStr] = Field(default='local', description="The type of input code. It can be:  * repo: the code is stored in a github repository and specified by param `repo` and `branch`. * gist: the code is stored in a github gist and specified by param `repo` and `branch`. * local: the code is provided directly in `content` field as Unified Model Format.")
+    type: Optional[StrictStr] = Field(default='local', description="The type of input code. It can be:  * local: the code is provided directly in `content` field as Unified Model Format. * url: the code is provided by a URL and specified by param `source_url`.")
     model_name: Optional[StrictStr] = Field(default='', description="[deprecated] model name")
     env: Optional[StrictStr] = None
     name: Optional[StrictStr] = Field(default='', description="model name")
@@ -42,7 +40,8 @@ class CreateModel(BaseModel):
     lang: Optional[CloudFunctionLang] = None
     entrance_file: Optional[StrictStr] = ''
     lambda_image: Optional[StrictBool] = Field(default=False, description="Whether to build lambda image for this CloudFunction")
-    __properties: ClassVar[List[str]] = ["object_type", "repo", "branch", "type", "model_name", "env", "name", "content", "is_demo", "kind", "single_instance", "lang", "entrance_file", "lambda_image"]
+    source_url: Optional[StrictStr] = Field(default='', description="Source URL from where to import the model")
+    __properties: ClassVar[List[str]] = ["object_type", "type", "model_name", "env", "name", "content", "is_demo", "kind", "single_instance", "lang", "entrance_file", "lambda_image", "source_url"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -57,8 +56,8 @@ class CreateModel(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['repo', 'gist', 'local']):
-            raise ValueError("must be one of enum values ('repo', 'gist', 'local')")
+        if value not in set(['local', 'url']):
+            raise ValueError("must be one of enum values ('local', 'url')")
         return value
 
     model_config = ConfigDict(
@@ -126,8 +125,6 @@ class CreateModel(BaseModel):
 
         _obj = cls.model_validate({
             "object_type": obj.get("object_type"),
-            "repo": obj.get("repo") if obj.get("repo") is not None else '',
-            "branch": obj.get("branch") if obj.get("branch") is not None else '',
             "type": obj.get("type") if obj.get("type") is not None else 'local',
             "model_name": obj.get("model_name") if obj.get("model_name") is not None else '',
             "env": obj.get("env"),
@@ -138,7 +135,8 @@ class CreateModel(BaseModel):
             "single_instance": obj.get("single_instance") if obj.get("single_instance") is not None else True,
             "lang": obj.get("lang"),
             "entrance_file": obj.get("entrance_file") if obj.get("entrance_file") is not None else '',
-            "lambda_image": obj.get("lambda_image") if obj.get("lambda_image") is not None else False
+            "lambda_image": obj.get("lambda_image") if obj.get("lambda_image") is not None else False,
+            "source_url": obj.get("source_url") if obj.get("source_url") is not None else ''
         })
         return _obj
 

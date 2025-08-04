@@ -35,8 +35,6 @@ class TestCreateModel(unittest.TestCase):
         if include_optional:
             return CreateModel(
                 object_type = 'model',
-                repo = '',
-                branch = '',
                 type = 'local',
                 model_name = '',
                 env = '',
@@ -60,7 +58,8 @@ class TestCreateModel(unittest.TestCase):
                 single_instance = True,
                 lang = 'python',
                 entrance_file = '',
-                lambda_image = True
+                lambda_image = True,
+                source_url = ''
             )
         else:
             return CreateModel(

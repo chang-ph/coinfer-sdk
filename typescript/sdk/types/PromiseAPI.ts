@@ -28,35 +28,28 @@ import { DataTyping } from '../models/DataTyping';
 import { DeleteLinkedAccountReq } from '../models/DeleteLinkedAccountReq';
 import { DeleteObject } from '../models/DeleteObject';
 import { DeleteTokenReq } from '../models/DeleteTokenReq';
+import { DemoListItem } from '../models/DemoListItem';
+import { DemoListRsp } from '../models/DemoListRsp';
 import { ErrRsp } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
 import { ExperimentRsp } from '../models/ExperimentRsp';
 import { ExperimentSampleDataRsp } from '../models/ExperimentSampleDataRsp';
-import { Folder } from '../models/Folder';
-import { FolderChildrenInner } from '../models/FolderChildrenInner';
 import { GetConfigRsp } from '../models/GetConfigRsp';
 import { GetExperimentRunInfoRsp } from '../models/GetExperimentRunInfoRsp';
 import { GetExperimentShareRsp } from '../models/GetExperimentShareRsp';
 import { GetNotificationReq } from '../models/GetNotificationReq';
 import { GetTokensRsp } from '../models/GetTokensRsp';
-import { GistRsp } from '../models/GistRsp';
 import { LinkedAccountSchema } from '../models/LinkedAccountSchema';
-import { ListBranchRsp } from '../models/ListBranchRsp';
 import { ListExperimentRsp } from '../models/ListExperimentRsp';
-import { ListGistFilesRsp } from '../models/ListGistFilesRsp';
-import { ListGitHubRepository } from '../models/ListGitHubRepository';
 import { ListLinkedAccountRsp } from '../models/ListLinkedAccountRsp';
 import { ListModelsRspItem } from '../models/ListModelsRspItem';
 import { ListObjectTmp } from '../models/ListObjectTmp';
-import { ListRepoFilesRsp } from '../models/ListRepoFilesRsp';
-import { ListRepositoryRsp } from '../models/ListRepositoryRsp';
 import { ListingRspDataNotificationDict } from '../models/ListingRspDataNotificationDict';
 import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
 import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspObjectsInner } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspObjectsInner';
 import { MarkNotificationReadReq } from '../models/MarkNotificationReadReq';
 import { MetaModel } from '../models/MetaModel';
 import { ModelContent } from '../models/ModelContent';
-import { ModelFile } from '../models/ModelFile';
 import { ModelMeta } from '../models/ModelMeta';
 import { ModelMetaInRsp } from '../models/ModelMetaInRsp';
 import { ModelTreeNode } from '../models/ModelTreeNode';
@@ -65,6 +58,7 @@ import { ModifyToken } from '../models/ModifyToken';
 import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
+import { RunCloudFunctionScript } from '../models/RunCloudFunctionScript';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SoftDeletedRsp } from '../models/SoftDeletedRsp';
 import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
@@ -72,15 +66,12 @@ import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspEx
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
 import { SuccRspCode2TokenRsp } from '../models/SuccRspCode2TokenRsp';
+import { SuccRspDemoListRsp } from '../models/SuccRspDemoListRsp';
 import { SuccRspGetConfigRsp } from '../models/SuccRspGetConfigRsp';
 import { SuccRspGetExperimentShareRsp } from '../models/SuccRspGetExperimentShareRsp';
 import { SuccRspGetTokensRsp } from '../models/SuccRspGetTokensRsp';
-import { SuccRspListBranchRsp } from '../models/SuccRspListBranchRsp';
 import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
-import { SuccRspListGistFilesRsp } from '../models/SuccRspListGistFilesRsp';
 import { SuccRspListLinkedAccountRsp } from '../models/SuccRspListLinkedAccountRsp';
-import { SuccRspListRepoFilesRsp } from '../models/SuccRspListRepoFilesRsp';
-import { SuccRspListRepositoryRsp } from '../models/SuccRspListRepositoryRsp';
 import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingRspDataNotificationDict';
 import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
 import { SuccRspNoneType } from '../models/SuccRspNoneType';
@@ -663,26 +654,6 @@ export class PromiseSystemApi {
     }
 
     /**
-     * List branches of the specified repository.
-     * List branches.
-     * @param repo
-     */
-    public branchWithHttpInfo(repo: string, _options?: Configuration): Promise<HttpInfo<SuccRspListBranchRsp>> {
-        const result = this.api.branchWithHttpInfo(repo, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * List branches of the specified repository.
-     * List branches.
-     * @param repo
-     */
-    public branch(repo: string, _options?: Configuration): Promise<SuccRspListBranchRsp> {
-        const result = this.api.branch(repo, _options);
-        return result.toPromise();
-    }
-
-    /**
      * This API is used to get the configuration about how to run a model. Currently the configuration includes the URL of the proxy lambda function which is used to run the model.
      * Get configuration about how to run a model.
      */
@@ -701,66 +672,18 @@ export class PromiseSystemApi {
     }
 
     /**
-     * List files of gist.
-     * Gist Files
-     * @param gistId
+     * List demo models.
      */
-    public gistFilesWithHttpInfo(gistId: string, _options?: Configuration): Promise<HttpInfo<SuccRspListGistFilesRsp>> {
-        const result = this.api.gistFilesWithHttpInfo(gistId, _options);
+    public repositoryWithHttpInfo(_options?: Configuration): Promise<HttpInfo<SuccRspDemoListRsp>> {
+        const result = this.api.repositoryWithHttpInfo(_options);
         return result.toPromise();
     }
 
     /**
-     * List files of gist.
-     * Gist Files
-     * @param gistId
+     * List demo models.
      */
-    public gistFiles(gistId: string, _options?: Configuration): Promise<SuccRspListGistFilesRsp> {
-        const result = this.api.gistFiles(gistId, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * List files of repository.
-     * Repo Files
-     * @param repo
-     * @param ref
-     */
-    public repoFilesWithHttpInfo(repo: string, ref: string, _options?: Configuration): Promise<HttpInfo<SuccRspListRepoFilesRsp>> {
-        const result = this.api.repoFilesWithHttpInfo(repo, ref, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * List files of repository.
-     * Repo Files
-     * @param repo
-     * @param ref
-     */
-    public repoFiles(repo: string, ref: string, _options?: Configuration): Promise<SuccRspListRepoFilesRsp> {
-        const result = this.api.repoFiles(repo, ref, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can\'t uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
-     * List repositories and gists.
-     * @param [pageNo] page number
-     * @param [pageSize] page size
-     */
-    public repositoryWithHttpInfo(pageNo?: number, pageSize?: number, _options?: Configuration): Promise<HttpInfo<SuccRspListRepositoryRsp>> {
-        const result = this.api.repositoryWithHttpInfo(pageNo, pageSize, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * List repositories and gists of the current (GitHub) user.  Of course this API can only be used when the user is login using the GitHub account.  The return value contains two parts: 1. List of repositories names. 2. List of gists. As the description field can\'t uniquely identify a gist, the id field is also returned. In practice, the description field should be showed to user for them to select the gist, the ID field should be used to specify a gist.
-     * List repositories and gists.
-     * @param [pageNo] page number
-     * @param [pageSize] page size
-     */
-    public repository(pageNo?: number, pageSize?: number, _options?: Configuration): Promise<SuccRspListRepositoryRsp> {
-        const result = this.api.repository(pageNo, pageSize, _options);
+    public repository(_options?: Configuration): Promise<SuccRspDemoListRsp> {
+        const result = this.api.repository(_options);
         return result.toPromise();
     }
 
