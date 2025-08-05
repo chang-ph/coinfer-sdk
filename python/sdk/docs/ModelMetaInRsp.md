@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **github** | **str** |  | [optional] 
 **commit_id** | **str** |  | [optional] 
+**origin_url** | **str** |  | [optional] 
+**fixed_version_url** | **str** |  | [optional] 
 
 ## Example
 

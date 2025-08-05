@@ -40,7 +40,9 @@ class TestListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCre
                 status = '',
                 meta = openapi_client.models._model_meta_in_rsp._ModelMetaInRsp(
                     github = '', 
-                    commit_id = '', ),
+                    commit_id = '', 
+                    origin_url = '', 
+                    fixed_version_url = '', ),
                 n_chains = 56,
                 n_variables = 56,
                 n_samples = 56,
@@ -73,7 +75,9 @@ class TestListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCre
                 status = '',
                 meta = openapi_client.models._model_meta_in_rsp._ModelMetaInRsp(
                     github = '', 
-                    commit_id = '', ),
+                    commit_id = '', 
+                    origin_url = '', 
+                    fixed_version_url = '', ),
                 n_chains = 56,
                 n_variables = 56,
                 n_samples = 56,

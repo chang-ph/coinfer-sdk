@@ -7,23 +7,31 @@
     ModelMetaInRsp(;
         github=nothing,
         commit_id=nothing,
+        origin_url=nothing,
+        fixed_version_url=nothing,
     )
 
     - github::String
     - commit_id::String
+    - origin_url::String
+    - fixed_version_url::String
 """
 Base.@kwdef mutable struct ModelMetaInRsp <: OpenAPI.APIModel
     github::Union{Nothing, String} = nothing
     commit_id::Union{Nothing, String} = nothing
+    origin_url::Union{Nothing, String} = nothing
+    fixed_version_url::Union{Nothing, String} = nothing
 
-    function ModelMetaInRsp(github, commit_id, )
+    function ModelMetaInRsp(github, commit_id, origin_url, fixed_version_url, )
         OpenAPI.validate_property(ModelMetaInRsp, Symbol("github"), github)
         OpenAPI.validate_property(ModelMetaInRsp, Symbol("commit_id"), commit_id)
-        return new(github, commit_id, )
+        OpenAPI.validate_property(ModelMetaInRsp, Symbol("origin_url"), origin_url)
+        OpenAPI.validate_property(ModelMetaInRsp, Symbol("fixed_version_url"), fixed_version_url)
+        return new(github, commit_id, origin_url, fixed_version_url, )
     end
 end # type ModelMetaInRsp
 
-const _property_types_ModelMetaInRsp = Dict{Symbol,String}(Symbol("github")=>"String", Symbol("commit_id")=>"String", )
+const _property_types_ModelMetaInRsp = Dict{Symbol,String}(Symbol("github")=>"String", Symbol("commit_id")=>"String", Symbol("origin_url")=>"String", Symbol("fixed_version_url")=>"String", )
 OpenAPI.property_type(::Type{ ModelMetaInRsp }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_ModelMetaInRsp[name]))}
 
 function check_required(o::ModelMetaInRsp)
@@ -31,6 +39,8 @@ function check_required(o::ModelMetaInRsp)
 end
 
 function OpenAPI.validate_property(::Type{ ModelMetaInRsp }, name::Symbol, val)
+
+
 
 
 end

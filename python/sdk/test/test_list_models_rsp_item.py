@@ -49,7 +49,9 @@ class TestListModelsRspItem(unittest.TestCase):
                 content = None,
                 meta = openapi_client.models._model_meta_in_rsp._ModelMetaInRsp(
                     github = '', 
-                    commit_id = '', )
+                    commit_id = '', 
+                    origin_url = '', 
+                    fixed_version_url = '', )
             )
         else:
             return ListModelsRspItem(
@@ -60,7 +62,9 @@ class TestListModelsRspItem(unittest.TestCase):
                 env = '',
                 meta = openapi_client.models._model_meta_in_rsp._ModelMetaInRsp(
                     github = '', 
-                    commit_id = '', ),
+                    commit_id = '', 
+                    origin_url = '', 
+                    fixed_version_url = '', ),
         )
         """
 

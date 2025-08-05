@@ -35,7 +35,9 @@ class TestModelMetaInRsp(unittest.TestCase):
         if include_optional:
             return ModelMetaInRsp(
                 github = '',
-                commit_id = ''
+                commit_id = '',
+                origin_url = '',
+                fixed_version_url = ''
             )
         else:
             return ModelMetaInRsp(

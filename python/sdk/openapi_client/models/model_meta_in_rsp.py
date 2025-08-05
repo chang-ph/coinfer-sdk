@@ -27,7 +27,9 @@ class ModelMetaInRsp(BaseModel):
     """ # noqa: E501
     github: Optional[StrictStr] = None
     commit_id: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["github", "commit_id"]
+    origin_url: Optional[StrictStr] = None
+    fixed_version_url: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["github", "commit_id", "origin_url", "fixed_version_url"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,6 +80,16 @@ class ModelMetaInRsp(BaseModel):
         if self.commit_id is None and "commit_id" in self.model_fields_set:
             _dict['commit_id'] = None
 
+        # set to None if origin_url (nullable) is None
+        # and model_fields_set contains the field
+        if self.origin_url is None and "origin_url" in self.model_fields_set:
+            _dict['origin_url'] = None
+
+        # set to None if fixed_version_url (nullable) is None
+        # and model_fields_set contains the field
+        if self.fixed_version_url is None and "fixed_version_url" in self.model_fields_set:
+            _dict['fixed_version_url'] = None
+
         return _dict
 
     @classmethod
@@ -91,7 +103,9 @@ class ModelMetaInRsp(BaseModel):
 
         _obj = cls.model_validate({
             "github": obj.get("github"),
-            "commit_id": obj.get("commit_id")
+            "commit_id": obj.get("commit_id"),
+            "origin_url": obj.get("origin_url"),
+            "fixed_version_url": obj.get("fixed_version_url")
         })
         return _obj
 
