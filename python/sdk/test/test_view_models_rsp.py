@@ -38,13 +38,17 @@ class TestViewModelsRsp(unittest.TestCase):
                 id = 56,
                 short_id = '',
                 name = '',
-                env = '',
-                share_info = [
-                    openapi_client.models.view_model_share_info.ViewModelShareInfo(
-                        id = 56, 
-                        public = True, )
+                content = None,
+                meta = openapi_client.models._model_meta_in_rsp._ModelMetaInRsp(
+                    github = '', 
+                    commit_id = '', 
+                    origin_url = '', 
+                    fixed_version_url = '', ),
+                tags = [
+                    ''
                     ],
-                content = None
+                lambda_image_url = '',
+                lambda_image_name = ''
             )
         else:
             return ViewModelsRsp(
@@ -52,7 +56,14 @@ class TestViewModelsRsp(unittest.TestCase):
                 id = 56,
                 short_id = '',
                 name = '',
-                env = '',
+                meta = openapi_client.models._model_meta_in_rsp._ModelMetaInRsp(
+                    github = '', 
+                    commit_id = '', 
+                    origin_url = '', 
+                    fixed_version_url = '', ),
+                tags = [
+                    ''
+                    ],
         )
         """
 

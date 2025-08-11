@@ -5,7 +5,7 @@ All URIs are relative to *https://api.coinfer.ai*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**config**](SystemApi.md#config) | **GET** /sys/config | Get configuration about how to run a model.
-[**repository**](SystemApi.md#repository) | **GET** /sys/demo | List demo models.
+[**repository**](SystemApi.md#repository) | **GET** /sys/gallery | List gallery data.
 
 
 # **config**

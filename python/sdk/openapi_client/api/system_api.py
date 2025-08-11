@@ -301,7 +301,7 @@ class SystemApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> SuccRspDemoListRsp:
-        """List demo models.
+        """List gallery data.
 
 
         :param _request_timeout: timeout setting for this request. If one
@@ -364,7 +364,7 @@ class SystemApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[SuccRspDemoListRsp]:
-        """List demo models.
+        """List gallery data.
 
 
         :param _request_timeout: timeout setting for this request. If one
@@ -427,7 +427,7 @@ class SystemApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """List demo models.
+        """List gallery data.
 
 
         :param _request_timeout: timeout setting for this request. If one
@@ -515,7 +515,7 @@ class SystemApi:
 
         return self.api_client.param_serialize(
             method='GET',
-            resource_path='/sys/demo',
+            resource_path='/sys/gallery',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

@@ -36,7 +36,6 @@ class TestCreateModel(unittest.TestCase):
             return CreateModel(
                 object_type = 'model',
                 type = 'local',
-                model_name = '',
                 env = '',
                 name = '',
                 content = openapi_client.models.model_content.ModelContent(
@@ -54,7 +53,7 @@ class TestCreateModel(unittest.TestCase):
                                 ], )
                         ], ),
                 is_demo = True,
-                kind = 'model',
+                tag = 'model',
                 single_instance = True,
                 lang = 'python',
                 entrance_file = '',

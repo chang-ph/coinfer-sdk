@@ -49,14 +49,14 @@ export class SystemApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * List demo models.
+     * List gallery data.
      *
      */
     public async repository(_options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // Path Params
-        const localVarPath = '/sys/demo';
+        const localVarPath = '/sys/gallery';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);

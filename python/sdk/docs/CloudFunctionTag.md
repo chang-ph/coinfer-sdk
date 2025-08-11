@@ -1,8 +1,14 @@
-# CloudFunctionKind
+# CloudFunctionTag
 
-Categories (types) of cloud functions, e.g., MODEL or CODE. These categories are also used as tags elsewhere in the system.
+All possible tags for cloudfunctions  Including: CloudFunctionManagedTag and CloudFunctionKind
 
 ## Enum
+
+* `INTERNAL` (value: `'internal'`)
+
+* `BUILTIN` (value: `'builtin'`)
+
+* `RESERVED` (value: `'reserved'`)
 
 * `MODEL` (value: `'model'`)
 

@@ -16,7 +16,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from openapi_client.models.demo_list_item import DemoListItem
 from typing import Optional, Set
@@ -26,8 +26,9 @@ class DemoListRsp(BaseModel):
     """
     DemoListRsp
     """ # noqa: E501
-    rethinking_models: List[DemoListItem]
-    __properties: ClassVar[List[str]] = ["rethinking_models"]
+    models: Dict[str, List[DemoListItem]]
+    mcmc: Dict[str, List[DemoListItem]] = Field(alias="MCMC")
+    __properties: ClassVar[List[str]] = ["models", "MCMC"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -68,13 +69,24 @@ class DemoListRsp(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in rethinking_models (list)
-        _items = []
-        if self.rethinking_models:
-            for _item_rethinking_models in self.rethinking_models:
-                if _item_rethinking_models:
-                    _items.append(_item_rethinking_models.to_dict())
-            _dict['rethinking_models'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each value in models (dict of array)
+        _field_dict_of_array = {}
+        if self.models:
+            for _key_models in self.models:
+                if self.models[_key_models] is not None:
+                    _field_dict_of_array[_key_models] = [
+                        _item.to_dict() for _item in self.models[_key_models]
+                    ]
+            _dict['models'] = _field_dict_of_array
+        # override the default output from pydantic by calling `to_dict()` of each value in mcmc (dict of array)
+        _field_dict_of_array = {}
+        if self.mcmc:
+            for _key_mcmc in self.mcmc:
+                if self.mcmc[_key_mcmc] is not None:
+                    _field_dict_of_array[_key_mcmc] = [
+                        _item.to_dict() for _item in self.mcmc[_key_mcmc]
+                    ]
+            _dict['MCMC'] = _field_dict_of_array
         return _dict
 
     @classmethod
@@ -87,7 +99,22 @@ class DemoListRsp(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "rethinking_models": [DemoListItem.from_dict(_item) for _item in obj["rethinking_models"]] if obj.get("rethinking_models") is not None else None
+            "models": dict(
+                (_k,
+                        [DemoListItem.from_dict(_item) for _item in _v]
+                        if _v is not None
+                        else None
+                )
+                for _k, _v in obj.get("models", {}).items()
+            ),
+            "MCMC": dict(
+                (_k,
+                        [DemoListItem.from_dict(_item) for _item in _v]
+                        if _v is not None
+                        else None
+                )
+                for _k, _v in obj.get("MCMC", {}).items()
+            )
         })
         return _obj
 

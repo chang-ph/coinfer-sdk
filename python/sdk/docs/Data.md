@@ -21,8 +21,10 @@ Name | Type | Description | Notes
 **share_info** | [**List[ShareInfoModel]**](ShareInfoModel.md) |  | [optional] 
 **model_name** | **str** |  | 
 **id** | **int** |  | 
-**env** | **str** |  | 
 **content** | **object** |  | [optional] 
+**tags** | **List[str]** |  | 
+**lambda_image_url** | **str** |  | [optional] 
+**lambda_image_name** | **str** |  | [optional] 
 **user_id** | **int** |  | 
 **experiment_id** | **str** |  | 
 **experiment_name** | **str** |  | 

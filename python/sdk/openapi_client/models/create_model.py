@@ -30,18 +30,17 @@ class CreateModel(BaseModel):
     """ # noqa: E501
     object_type: StrictStr
     type: Optional[StrictStr] = Field(default='local', description="The type of input code. It can be:  * local: the code is provided directly in `content` field as Unified Model Format. * url: the code is provided by a URL and specified by param `source_url`.")
-    model_name: Optional[StrictStr] = Field(default='', description="[deprecated] model name")
     env: Optional[StrictStr] = None
     name: Optional[StrictStr] = Field(default='', description="model name")
     content: Optional[ModelContent] = None
     is_demo: Optional[StrictBool] = False
-    kind: Optional[CloudFunctionKind] = None
+    tag: Optional[CloudFunctionKind] = None
     single_instance: Optional[StrictBool] = Field(default=True, description="Only allow one instance to run as cloud function at a time.")
     lang: Optional[CloudFunctionLang] = None
     entrance_file: Optional[StrictStr] = ''
     lambda_image: Optional[StrictBool] = Field(default=False, description="Whether to build lambda image for this CloudFunction")
     source_url: Optional[StrictStr] = Field(default='', description="Source URL from where to import the model")
-    __properties: ClassVar[List[str]] = ["object_type", "type", "model_name", "env", "name", "content", "is_demo", "kind", "single_instance", "lang", "entrance_file", "lambda_image", "source_url"]
+    __properties: ClassVar[List[str]] = ["object_type", "type", "env", "name", "content", "is_demo", "tag", "single_instance", "lang", "entrance_file", "lambda_image", "source_url"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -126,12 +125,11 @@ class CreateModel(BaseModel):
         _obj = cls.model_validate({
             "object_type": obj.get("object_type"),
             "type": obj.get("type") if obj.get("type") is not None else 'local',
-            "model_name": obj.get("model_name") if obj.get("model_name") is not None else '',
             "env": obj.get("env"),
             "name": obj.get("name") if obj.get("name") is not None else '',
             "content": ModelContent.from_dict(obj["content"]) if obj.get("content") is not None else None,
             "is_demo": obj.get("is_demo") if obj.get("is_demo") is not None else False,
-            "kind": obj.get("kind"),
+            "tag": obj.get("tag"),
             "single_instance": obj.get("single_instance") if obj.get("single_instance") is not None else True,
             "lang": obj.get("lang"),
             "entrance_file": obj.get("entrance_file") if obj.get("entrance_file") is not None else '',

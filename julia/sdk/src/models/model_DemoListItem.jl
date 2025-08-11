@@ -10,11 +10,11 @@
     )
 
     - name::String
-    - url::String
+    - url::Vector{String}
 """
 Base.@kwdef mutable struct DemoListItem <: OpenAPI.APIModel
     name::Union{Nothing, String} = nothing
-    url::Union{Nothing, String} = nothing
+    url::Union{Nothing, Vector{String}} = nothing
 
     function DemoListItem(name, url, )
         OpenAPI.validate_property(DemoListItem, Symbol("name"), name)
@@ -23,7 +23,7 @@ Base.@kwdef mutable struct DemoListItem <: OpenAPI.APIModel
     end
 end # type DemoListItem
 
-const _property_types_DemoListItem = Dict{Symbol,String}(Symbol("name")=>"String", Symbol("url")=>"String", )
+const _property_types_DemoListItem = Dict{Symbol,String}(Symbol("name")=>"String", Symbol("url")=>"Vector{String}", )
 OpenAPI.property_type(::Type{ DemoListItem }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_DemoListItem[name]))}
 
 function check_required(o::DemoListItem)

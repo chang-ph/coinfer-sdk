@@ -15,7 +15,7 @@
         status="",
         run_on="",
         has_model="",
-        kind=nothing,
+        tags=nothing,
     )
 
     - page_no::Int64 : page number
@@ -28,7 +28,7 @@
     - status::String
     - run_on::String
     - has_model::String
-    - kind::String
+    - tags::Vector{String} : Filter by tags
 """
 Base.@kwdef mutable struct ListObjectTmp <: OpenAPI.APIModel
     page_no::Union{Nothing, Int64} = 1
@@ -41,9 +41,9 @@ Base.@kwdef mutable struct ListObjectTmp <: OpenAPI.APIModel
     status::Union{Nothing, String} = ""
     run_on::Union{Nothing, String} = ""
     has_model::Union{Nothing, String} = ""
-    kind::Union{Nothing, String} = nothing
+    tags::Union{Nothing, Vector{String}} = nothing
 
-    function ListObjectTmp(page_no, page_size, object_type, with_share_info, shared_by_me, shared_with_me, model_ids, status, run_on, has_model, kind, )
+    function ListObjectTmp(page_no, page_size, object_type, with_share_info, shared_by_me, shared_with_me, model_ids, status, run_on, has_model, tags, )
         OpenAPI.validate_property(ListObjectTmp, Symbol("page_no"), page_no)
         OpenAPI.validate_property(ListObjectTmp, Symbol("page_size"), page_size)
         OpenAPI.validate_property(ListObjectTmp, Symbol("object_type"), object_type)
@@ -54,12 +54,12 @@ Base.@kwdef mutable struct ListObjectTmp <: OpenAPI.APIModel
         OpenAPI.validate_property(ListObjectTmp, Symbol("status"), status)
         OpenAPI.validate_property(ListObjectTmp, Symbol("run_on"), run_on)
         OpenAPI.validate_property(ListObjectTmp, Symbol("has_model"), has_model)
-        OpenAPI.validate_property(ListObjectTmp, Symbol("kind"), kind)
-        return new(page_no, page_size, object_type, with_share_info, shared_by_me, shared_with_me, model_ids, status, run_on, has_model, kind, )
+        OpenAPI.validate_property(ListObjectTmp, Symbol("tags"), tags)
+        return new(page_no, page_size, object_type, with_share_info, shared_by_me, shared_with_me, model_ids, status, run_on, has_model, tags, )
     end
 end # type ListObjectTmp
 
-const _property_types_ListObjectTmp = Dict{Symbol,String}(Symbol("page_no")=>"Int64", Symbol("page_size")=>"Int64", Symbol("object_type")=>"String", Symbol("with_share_info")=>"Bool", Symbol("shared_by_me")=>"Bool", Symbol("shared_with_me")=>"Bool", Symbol("model_ids")=>"Vector{String}", Symbol("status")=>"String", Symbol("run_on")=>"String", Symbol("has_model")=>"String", Symbol("kind")=>"String", )
+const _property_types_ListObjectTmp = Dict{Symbol,String}(Symbol("page_no")=>"Int64", Symbol("page_size")=>"Int64", Symbol("object_type")=>"String", Symbol("with_share_info")=>"Bool", Symbol("shared_by_me")=>"Bool", Symbol("shared_with_me")=>"Bool", Symbol("model_ids")=>"Vector{String}", Symbol("status")=>"String", Symbol("run_on")=>"String", Symbol("has_model")=>"String", Symbol("tags")=>"Vector{String}", )
 OpenAPI.property_type(::Type{ ListObjectTmp }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_ListObjectTmp[name]))}
 
 function check_required(o::ListObjectTmp)
@@ -98,8 +98,8 @@ function OpenAPI.validate_property(::Type{ ListObjectTmp }, name::Symbol, val)
     end
 
 
-    if name === Symbol("kind")
-        OpenAPI.validate_param(name, "ListObjectTmp", :enum, val, ["model", "script"])
+    if name === Symbol("tags")
+        OpenAPI.validate_param(name, "ListObjectTmp", :enum, val, ["internal", "builtin", "reserved", "model", "code"])
     end
 
 end

@@ -5,6 +5,7 @@ import { Auth0ConfigRsp } from '../models/Auth0ConfigRsp';
 import { Auth0LoginRsp } from '../models/Auth0LoginRsp';
 import { CloudFunctionKind } from '../models/CloudFunctionKind';
 import { CloudFunctionLang } from '../models/CloudFunctionLang';
+import { CloudFunctionTag } from '../models/CloudFunctionTag';
 import { Code2TokenRsp } from '../models/Code2TokenRsp';
 import { CreateCallbackReq } from '../models/CreateCallbackReq';
 import { CreateCallbackRsp } from '../models/CreateCallbackRsp';
@@ -87,7 +88,6 @@ import { UserInfoRsp } from '../models/UserInfoRsp';
 import { UserLogin } from '../models/UserLogin';
 import { UserLoginRsp } from '../models/UserLoginRsp';
 import { ViewExperimentShareRsp } from '../models/ViewExperimentShareRsp';
-import { ViewModelShareInfo } from '../models/ViewModelShareInfo';
 import { ViewModelsRsp } from '../models/ViewModelsRsp';
 import { ViewObject } from '../models/ViewObject';
 import { ViewObjectTmp } from '../models/ViewObjectTmp';
@@ -648,12 +648,12 @@ export interface ObjectApiListObjectRequest {
      */
     hasModel?: 'true' | 'false' | ''
     /**
-     * Filter by kind
+     * Filter by tags
      * Defaults to: undefined
-     * @type string
+     * @type Array&lt;&#39;internal&#39; | &#39;builtin&#39; | &#39;reserved&#39; | &#39;model&#39; | &#39;code&#39;&gt;
      * @memberof ObjectApilistObject
      */
-    kind?: string
+    tags?: Array<'internal' | 'builtin' | 'reserved' | 'model' | 'code'>
 }
 
 export interface ObjectApiUpdateObjectRequest {
@@ -780,7 +780,7 @@ export class ObjectObjectApi {
      * @param param the request object
      */
     public listObjectWithHttpInfo(param: ObjectApiListObjectRequest, options?: Configuration): Promise<HttpInfo<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp>> {
-        return this.api.listObjectWithHttpInfo(param.objectType, param.pageNo, param.pageSize, param.withShareInfo, param.sharedByMe, param.sharedWithMe, param.modelIds, param.status, param.runOn, param.hasModel, param.kind,  options).toPromise();
+        return this.api.listObjectWithHttpInfo(param.objectType, param.pageNo, param.pageSize, param.withShareInfo, param.sharedByMe, param.sharedWithMe, param.modelIds, param.status, param.runOn, param.hasModel, param.tags,  options).toPromise();
     }
 
     /**
@@ -789,7 +789,7 @@ export class ObjectObjectApi {
      * @param param the request object
      */
     public listObject(param: ObjectApiListObjectRequest, options?: Configuration): Promise<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp> {
-        return this.api.listObject(param.objectType, param.pageNo, param.pageSize, param.withShareInfo, param.sharedByMe, param.sharedWithMe, param.modelIds, param.status, param.runOn, param.hasModel, param.kind,  options).toPromise();
+        return this.api.listObject(param.objectType, param.pageNo, param.pageSize, param.withShareInfo, param.sharedByMe, param.sharedWithMe, param.modelIds, param.status, param.runOn, param.hasModel, param.tags,  options).toPromise();
     }
 
     /**
@@ -903,7 +903,7 @@ export class ObjectSystemApi {
     }
 
     /**
-     * List demo models.
+     * List gallery data.
      * @param param the request object
      */
     public repositoryWithHttpInfo(param: SystemApiRepositoryRequest = {}, options?: Configuration): Promise<HttpInfo<SuccRspDemoListRsp>> {
@@ -911,7 +911,7 @@ export class ObjectSystemApi {
     }
 
     /**
-     * List demo models.
+     * List gallery data.
      * @param param the request object
      */
     public repository(param: SystemApiRepositoryRequest = {}, options?: Configuration): Promise<SuccRspDemoListRsp> {

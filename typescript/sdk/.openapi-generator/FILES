@@ -25,6 +25,7 @@ models/Auth0ConfigRsp.ts
 models/Auth0LoginRsp.ts
 models/CloudFunctionKind.ts
 models/CloudFunctionLang.ts
+models/CloudFunctionTag.ts
 models/Code2TokenRsp.ts
 models/CreateCallbackReq.ts
 models/CreateCallbackRsp.ts
@@ -108,7 +109,6 @@ models/UserInfoRsp.ts
 models/UserLogin.ts
 models/UserLoginRsp.ts
 models/ViewExperimentShareRsp.ts
-models/ViewModelShareInfo.ts
 models/ViewModelsRsp.ts
 models/ViewObject.ts
 models/ViewObjectTmp.ts

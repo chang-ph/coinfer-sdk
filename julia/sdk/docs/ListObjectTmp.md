@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **status** | **String** |  | [optional] [default to ""]
 **run_on** | **String** |  | [optional] [default to ""]
 **has_model** | **String** |  | [optional] [default to ""]
-**kind** | **String** |  | [optional] [default to nothing]
+**tags** | **Vector{String}** | Filter by tags | [optional] [default to nothing]
 
 
 [[Back to Model list]](../README.md#models) [[Back to API list]](../README.md#api-endpoints) [[Back to README]](../README.md)

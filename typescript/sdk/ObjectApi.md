@@ -164,8 +164,10 @@ const request: ObjectApiListObjectRequest = {
   runOn: "",
   
   hasModel: "",
-    // Filter by kind (optional)
-  kind: null,
+    // Filter by tags (optional)
+  tags: [
+    "internal",
+  ],
 };
 
 const data = await apiInstance.listObject(request);
@@ -187,7 +189,7 @@ Name | Type | Description  | Notes
  **status** | [**&#39;NEW&#39; | &#39;RUN&#39; | &#39;FIN&#39; | &#39;ERR&#39; | &#39;&#39;**]**Array<&#39;NEW&#39; &#124; &#39;RUN&#39; &#124; &#39;FIN&#39; &#124; &#39;ERR&#39; &#124; &#39;&#39;>** |  | (optional) defaults to ''
  **runOn** | [**&#39;Lambda&#39; | &#39;Fargate&#39; | &#39;Local&#39; | &#39;&#39;**]**Array<&#39;Lambda&#39; &#124; &#39;Fargate&#39; &#124; &#39;Local&#39; &#124; &#39;&#39;>** |  | (optional) defaults to ''
  **hasModel** | [**&#39;true&#39; | &#39;false&#39; | &#39;&#39;**]**Array<&#39;true&#39; &#124; &#39;false&#39; &#124; &#39;&#39;>** |  | (optional) defaults to ''
- **kind** | **Array<&#39;model&#39; &#124; &#39;script&#39;>** | Filter by kind | (optional) defaults to undefined
+ **tags** | **Array<&#39;internal&#39; &#124; &#39;builtin&#39; &#124; &#39;reserved&#39; &#124; &#39;model&#39; &#124; &#39;code&#39;>** | Filter by tags | (optional) defaults to undefined
 
 
 ### Return type

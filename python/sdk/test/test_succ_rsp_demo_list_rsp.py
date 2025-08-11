@@ -36,21 +36,47 @@ class TestSuccRspDemoListRsp(unittest.TestCase):
             return SuccRspDemoListRsp(
                 status = 'ok',
                 data = openapi_client.models.demo_list_rsp.DemoListRsp(
-                    rethinking_models = [
-                        openapi_client.models._demo_list_item._DemoListItem(
-                            name = '', 
-                            url = '', )
-                        ], )
+                    models = {
+                        'key' : [
+                            openapi_client.models._demo_list_item._DemoListItem(
+                                name = '', 
+                                url = [
+                                    ''
+                                    ], )
+                            ]
+                        }, 
+                    mcmc = {
+                        'key' : [
+                            openapi_client.models._demo_list_item._DemoListItem(
+                                name = '', 
+                                url = [
+                                    ''
+                                    ], )
+                            ]
+                        }, )
             )
         else:
             return SuccRspDemoListRsp(
                 status = 'ok',
                 data = openapi_client.models.demo_list_rsp.DemoListRsp(
-                    rethinking_models = [
-                        openapi_client.models._demo_list_item._DemoListItem(
-                            name = '', 
-                            url = '', )
-                        ], ),
+                    models = {
+                        'key' : [
+                            openapi_client.models._demo_list_item._DemoListItem(
+                                name = '', 
+                                url = [
+                                    ''
+                                    ], )
+                            ]
+                        }, 
+                    mcmc = {
+                        'key' : [
+                            openapi_client.models._demo_list_item._DemoListItem(
+                                name = '', 
+                                url = [
+                                    ''
+                                    ], )
+                            ]
+                        }, ),
         )
         """
 

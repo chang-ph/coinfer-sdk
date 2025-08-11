@@ -5,7 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**rethinking_models** | [**List[DemoListItem]**](DemoListItem.md) |  | 
+**models** | **Dict[str, List[DemoListItem]]** |  | 
+**mcmc** | **Dict[str, List[DemoListItem]]** |  | 
 
 ## Example
 

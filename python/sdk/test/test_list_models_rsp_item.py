@@ -38,20 +38,17 @@ class TestListModelsRspItem(unittest.TestCase):
                 id = 56,
                 short_id = '',
                 name = '',
-                env = '',
-                share_info = [
-                    openapi_client.models.share_info_model.ShareInfoModel(
-                        id = 56, 
-                        password = '', 
-                        user_id = '', 
-                        to_user_id = '', )
-                    ],
                 content = None,
                 meta = openapi_client.models._model_meta_in_rsp._ModelMetaInRsp(
                     github = '', 
                     commit_id = '', 
                     origin_url = '', 
-                    fixed_version_url = '', )
+                    fixed_version_url = '', ),
+                tags = [
+                    ''
+                    ],
+                lambda_image_url = '',
+                lambda_image_name = ''
             )
         else:
             return ListModelsRspItem(
@@ -59,12 +56,14 @@ class TestListModelsRspItem(unittest.TestCase):
                 id = 56,
                 short_id = '',
                 name = '',
-                env = '',
                 meta = openapi_client.models._model_meta_in_rsp._ModelMetaInRsp(
                     github = '', 
                     commit_id = '', 
                     origin_url = '', 
                     fixed_version_url = '', ),
+                tags = [
+                    ''
+                    ],
         )
         """
 

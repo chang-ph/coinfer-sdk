@@ -9,10 +9,6 @@ export class CreateModel {
     * The type of input code. It can be:  * local: the code is provided directly in `content` field as Unified Model Format. * url: the code is provided by a URL and specified by param `source_url`.
     */
     'type'?: CreateModelTypeEnum;
-    /**
-    * [deprecated] model name
-    */
-    'modelName'?: string;
     'env'?: string | null;
     /**
     * model name
@@ -20,7 +16,7 @@ export class CreateModel {
     'name'?: string;
     'content'?: ModelContent | null;
     'isDemo'?: boolean;
-    'kind'?: CloudFunctionKind;
+    'tag'?: CloudFunctionKind;
     /**
     * Only allow one instance to run as cloud function at a time.
     */
@@ -54,12 +50,6 @@ export class CreateModel {
             "format": ""
         },
         {
-            "name": "modelName",
-            "baseName": "model_name",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "env",
             "baseName": "env",
             "type": "string",
@@ -84,8 +74,8 @@ export class CreateModel {
             "format": ""
         },
         {
-            "name": "kind",
-            "baseName": "kind",
+            "name": "tag",
+            "baseName": "tag",
             "type": "CloudFunctionKind",
             "format": ""
         },

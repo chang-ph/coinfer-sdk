@@ -530,7 +530,7 @@ conf = openapi_client.Configuration(
         return "Python SDK Debug Report:\n"\
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
-               "Version of the API: 0.0.1754358294+8806ecf\n"\
+               "Version of the API: 0.0.1754909472+32a86cd\n"\
                "SDK Package Version: 1.0.0".\
                format(env=sys.platform, pyversion=sys.version)
 

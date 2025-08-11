@@ -46,7 +46,9 @@ class TestListObjectTmp(unittest.TestCase):
                 status = 'NEW',
                 run_on = 'Lambda',
                 has_model = 'true',
-                kind = 'model'
+                tags = [
+                    'internal'
+                    ]
             )
         else:
             return ListObjectTmp(

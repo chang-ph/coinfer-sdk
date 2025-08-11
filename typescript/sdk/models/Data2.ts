@@ -1,5 +1,6 @@
 import { ExperimentRsp } from '../models/ExperimentRsp';
-import { ViewModelShareInfo } from '../models/ViewModelShareInfo';
+import { ModelMetaInRsp } from '../models/ModelMetaInRsp';
+import { ShareInfoModel } from '../models/ShareInfoModel';
 import { ViewModelsRsp } from '../models/ViewModelsRsp';
 import { HttpFile } from '../http/http';
 
@@ -9,7 +10,7 @@ export class Data2 {
     'name': string;
     'modelId'?: string;
     'status'?: string;
-    'meta'?: any | null;
+    'meta': ModelMetaInRsp;
     'nChains'?: number;
     'nVariables'?: number;
     'nSamples'?: number;
@@ -17,11 +18,13 @@ export class Data2 {
     'runOn'?: string;
     'input'?: string;
     'output'?: string;
-    'shareInfo'?: Array<ViewModelShareInfo>;
+    'shareInfo'?: Array<ShareInfoModel>;
     'modelName': string;
     'id': number;
-    'env': string;
     'content'?: any | null;
+    'tags': Array<string>;
+    'lambdaImageUrl'?: string;
+    'lambdaImageName'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -61,7 +64,7 @@ export class Data2 {
         {
             "name": "meta",
             "baseName": "meta",
-            "type": "any",
+            "type": "ModelMetaInRsp",
             "format": ""
         },
         {
@@ -109,7 +112,7 @@ export class Data2 {
         {
             "name": "shareInfo",
             "baseName": "share_info",
-            "type": "Array<ViewModelShareInfo>",
+            "type": "Array<ShareInfoModel>",
             "format": ""
         },
         {
@@ -125,15 +128,27 @@ export class Data2 {
             "format": ""
         },
         {
-            "name": "env",
-            "baseName": "env",
+            "name": "content",
+            "baseName": "content",
+            "type": "any",
+            "format": ""
+        },
+        {
+            "name": "tags",
+            "baseName": "tags",
+            "type": "Array<string>",
+            "format": ""
+        },
+        {
+            "name": "lambdaImageUrl",
+            "baseName": "lambda_image_url",
             "type": "string",
             "format": ""
         },
         {
-            "name": "content",
-            "baseName": "content",
-            "type": "any",
+            "name": "lambdaImageName",
+            "baseName": "lambda_image_name",
+            "type": "string",
             "format": ""
         }    ];
 

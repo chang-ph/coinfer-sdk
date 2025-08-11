@@ -5,28 +5,34 @@
 @doc raw"""DemoListRsp
 
     DemoListRsp(;
-        rethinking_models=nothing,
+        models=nothing,
+        MCMC=nothing,
     )
 
-    - rethinking_models::Vector{DemoListItem}
+    - models::Dict{String, Vector{DemoListItem}}
+    - MCMC::Dict{String, Vector{DemoListItem}}
 """
 Base.@kwdef mutable struct DemoListRsp <: OpenAPI.APIModel
-    rethinking_models::Union{Nothing, Vector} = nothing # spec type: Union{ Nothing, Vector{DemoListItem} }
+    models::Union{Nothing, Dict{String, Vector{DemoListItem}}} = nothing
+    MCMC::Union{Nothing, Dict{String, Vector{DemoListItem}}} = nothing
 
-    function DemoListRsp(rethinking_models, )
-        OpenAPI.validate_property(DemoListRsp, Symbol("rethinking_models"), rethinking_models)
-        return new(rethinking_models, )
+    function DemoListRsp(models, MCMC, )
+        OpenAPI.validate_property(DemoListRsp, Symbol("models"), models)
+        OpenAPI.validate_property(DemoListRsp, Symbol("MCMC"), MCMC)
+        return new(models, MCMC, )
     end
 end # type DemoListRsp
 
-const _property_types_DemoListRsp = Dict{Symbol,String}(Symbol("rethinking_models")=>"Vector{DemoListItem}", )
+const _property_types_DemoListRsp = Dict{Symbol,String}(Symbol("models")=>"Dict{String, Vector{DemoListItem}}", Symbol("MCMC")=>"Dict{String, Vector{DemoListItem}}", )
 OpenAPI.property_type(::Type{ DemoListRsp }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_DemoListRsp[name]))}
 
 function check_required(o::DemoListRsp)
-    o.rethinking_models === nothing && (return false)
+    o.models === nothing && (return false)
+    o.MCMC === nothing && (return false)
     true
 end
 
 function OpenAPI.validate_property(::Type{ DemoListRsp }, name::Symbol, val)
+
 
 end

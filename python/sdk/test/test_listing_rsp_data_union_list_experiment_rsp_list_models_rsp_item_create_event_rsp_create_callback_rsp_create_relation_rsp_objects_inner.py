@@ -49,17 +49,22 @@ class TestListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCre
                 sample_update_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 run_on = '',
                 share_info = [
-                    openapi_client.models.share_info_model.ShareInfoModel(
+                    openapi_client.models._share_info_model._ShareInfoModel(
                         id = 56, 
                         password = '', 
                         user_id = '', 
+                        short_id = '', 
                         to_user_id = '', )
                     ],
                 model_name = '',
                 object_type = 'relation',
                 id = 56,
-                env = '',
                 content = None,
+                tags = [
+                    ''
+                    ],
+                lambda_image_url = '',
+                lambda_image_name = '',
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 lang = '',
                 code = '',
@@ -86,7 +91,9 @@ class TestListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCre
                 model_name = '',
                 object_type = 'relation',
                 id = 56,
-                env = '',
+                tags = [
+                    ''
+                    ],
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 lang = '',
                 code = '',

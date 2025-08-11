@@ -35,12 +35,16 @@ class TestDemoListItem(unittest.TestCase):
         if include_optional:
             return DemoListItem(
                 name = '',
-                url = ''
+                url = [
+                    ''
+                    ]
             )
         else:
             return DemoListItem(
                 name = '',
-                url = '',
+                url = [
+                    ''
+                    ],
         )
         """
 

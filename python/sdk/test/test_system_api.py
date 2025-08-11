@@ -35,7 +35,7 @@ class TestSystemApi(unittest.TestCase):
     def test_repository(self) -> None:
         """Test case for repository
 
-        List demo models.
+        List gallery data.
         """
         pass
 

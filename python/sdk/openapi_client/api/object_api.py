@@ -16,7 +16,7 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import Any, List, Optional
+from typing import List, Optional
 from typing_extensions import Annotated
 from openapi_client.models.create_object_req import CreateObjectReq
 from openapi_client.models.succ_rsp_annotated_union_experiment_rsp_list_models_rsp_item_create_experiment_share_rsp_create_event_rsp_create_callback_rsp_create_relation_rsp_field_info_annotation_none_type_required_true_discriminator_object_type import SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType
@@ -618,7 +618,7 @@ class ObjectApi:
         status: Optional[StrictStr] = None,
         run_on: Optional[StrictStr] = None,
         has_model: Optional[StrictStr] = None,
-        kind: Annotated[Optional[Any], Field(description="Filter by kind")] = None,
+        tags: Annotated[Optional[List[StrictStr]], Field(description="Filter by tags")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -656,8 +656,8 @@ class ObjectApi:
         :type run_on: str
         :param has_model:
         :type has_model: str
-        :param kind: Filter by kind
-        :type kind: str
+        :param tags: Filter by tags
+        :type tags: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -691,7 +691,7 @@ class ObjectApi:
             status=status,
             run_on=run_on,
             has_model=has_model,
-            kind=kind,
+            tags=tags,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -726,7 +726,7 @@ class ObjectApi:
         status: Optional[StrictStr] = None,
         run_on: Optional[StrictStr] = None,
         has_model: Optional[StrictStr] = None,
-        kind: Annotated[Optional[Any], Field(description="Filter by kind")] = None,
+        tags: Annotated[Optional[List[StrictStr]], Field(description="Filter by tags")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -764,8 +764,8 @@ class ObjectApi:
         :type run_on: str
         :param has_model:
         :type has_model: str
-        :param kind: Filter by kind
-        :type kind: str
+        :param tags: Filter by tags
+        :type tags: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -799,7 +799,7 @@ class ObjectApi:
             status=status,
             run_on=run_on,
             has_model=has_model,
-            kind=kind,
+            tags=tags,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -834,7 +834,7 @@ class ObjectApi:
         status: Optional[StrictStr] = None,
         run_on: Optional[StrictStr] = None,
         has_model: Optional[StrictStr] = None,
-        kind: Annotated[Optional[Any], Field(description="Filter by kind")] = None,
+        tags: Annotated[Optional[List[StrictStr]], Field(description="Filter by tags")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -872,8 +872,8 @@ class ObjectApi:
         :type run_on: str
         :param has_model:
         :type has_model: str
-        :param kind: Filter by kind
-        :type kind: str
+        :param tags: Filter by tags
+        :type tags: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -907,7 +907,7 @@ class ObjectApi:
             status=status,
             run_on=run_on,
             has_model=has_model,
-            kind=kind,
+            tags=tags,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -937,7 +937,7 @@ class ObjectApi:
         status,
         run_on,
         has_model,
-        kind,
+        tags,
         _request_auth,
         _content_type,
         _headers,
@@ -948,6 +948,7 @@ class ObjectApi:
 
         _collection_formats: Dict[str, str] = {
             'model_ids': 'multi',
+            'tags': 'multi',
         }
 
         _path_params: Dict[str, str] = {}
@@ -1001,9 +1002,9 @@ class ObjectApi:
             
             _query_params.append(('has_model', has_model))
             
-        if kind is not None:
+        if tags is not None:
             
-            _query_params.append(('kind', kind))
+            _query_params.append(('tags', tags))
             
         # process the header parameters
         # process the form parameters

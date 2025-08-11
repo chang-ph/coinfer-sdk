@@ -26,7 +26,7 @@ class DemoListItem(BaseModel):
     DemoListItem
     """ # noqa: E501
     name: StrictStr
-    url: StrictStr
+    url: List[StrictStr]
     __properties: ClassVar[List[str]] = ["name", "url"]
 
     model_config = ConfigDict(

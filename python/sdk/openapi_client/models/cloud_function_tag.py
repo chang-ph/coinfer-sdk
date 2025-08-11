@@ -17,20 +17,23 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class CloudFunctionKind(str, Enum):
+class CloudFunctionTag(str, Enum):
     """
-    Categories (types) of cloud functions, e.g., MODEL or CODE. These categories are also used as tags elsewhere in the system.
+    All possible tags for cloudfunctions  Including: CloudFunctionManagedTag and CloudFunctionKind
     """
 
     """
     allowed enum values
     """
+    INTERNAL = 'internal'
+    BUILTIN = 'builtin'
+    RESERVED = 'reserved'
     MODEL = 'model'
     CODE = 'code'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of CloudFunctionKind from a JSON string"""
+        """Create an instance of CloudFunctionTag from a JSON string"""
         return cls(json.loads(json_str))
 
 

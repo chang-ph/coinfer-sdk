@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **status** | **str** |  | [optional] [default to '']
 **run_on** | **str** |  | [optional] [default to '']
 **has_model** | **str** |  | [optional] [default to '']
-**kind** | **str** |  | [optional] 
+**tags** | **List[str]** | Filter by tags | [optional] 
 
 ## Example
 

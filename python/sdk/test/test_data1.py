@@ -39,7 +39,11 @@ class TestData1(unittest.TestCase):
                 name = '',
                 model_id = '',
                 status = '',
-                meta = None,
+                meta = openapi_client.models._model_meta_in_rsp._ModelMetaInRsp(
+                    github = '', 
+                    commit_id = '', 
+                    origin_url = '', 
+                    fixed_version_url = '', ),
                 n_chains = 56,
                 n_variables = 56,
                 n_samples = 56,
@@ -48,14 +52,21 @@ class TestData1(unittest.TestCase):
                 input = '',
                 output = '',
                 share_info = [
-                    openapi_client.models.view_model_share_info.ViewModelShareInfo(
+                    openapi_client.models._share_info_model._ShareInfoModel(
                         id = 56, 
-                        public = True, )
+                        password = '', 
+                        user_id = '', 
+                        short_id = '', 
+                        to_user_id = '', )
                     ],
                 model_name = '',
                 id = 56,
-                env = '',
                 content = None,
+                tags = [
+                    ''
+                    ],
+                lambda_image_url = '',
+                lambda_image_name = '',
                 require_password = True,
                 url = '',
                 progress = '',
@@ -72,9 +83,16 @@ class TestData1(unittest.TestCase):
                 short_id = '',
                 name = '',
                 status = '',
+                meta = openapi_client.models._model_meta_in_rsp._ModelMetaInRsp(
+                    github = '', 
+                    commit_id = '', 
+                    origin_url = '', 
+                    fixed_version_url = '', ),
                 model_name = '',
                 id = 56,
-                env = '',
+                tags = [
+                    ''
+                    ],
                 require_password = True,
                 url = '',
                 progress = '',

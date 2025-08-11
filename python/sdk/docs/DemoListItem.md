@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** |  | 
-**url** | **str** |  | 
+**url** | **List[str]** |  | 
 
 ## Example
 

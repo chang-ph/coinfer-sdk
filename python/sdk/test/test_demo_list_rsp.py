@@ -34,19 +34,45 @@ class TestDemoListRsp(unittest.TestCase):
         model = DemoListRsp()
         if include_optional:
             return DemoListRsp(
-                rethinking_models = [
-                    openapi_client.models._demo_list_item._DemoListItem(
-                        name = '', 
-                        url = '', )
-                    ]
+                models = {
+                    'key' : [
+                        openapi_client.models._demo_list_item._DemoListItem(
+                            name = '', 
+                            url = [
+                                ''
+                                ], )
+                        ]
+                    },
+                mcmc = {
+                    'key' : [
+                        openapi_client.models._demo_list_item._DemoListItem(
+                            name = '', 
+                            url = [
+                                ''
+                                ], )
+                        ]
+                    }
             )
         else:
             return DemoListRsp(
-                rethinking_models = [
-                    openapi_client.models._demo_list_item._DemoListItem(
-                        name = '', 
-                        url = '', )
-                    ],
+                models = {
+                    'key' : [
+                        openapi_client.models._demo_list_item._DemoListItem(
+                            name = '', 
+                            url = [
+                                ''
+                                ], )
+                        ]
+                    },
+                mcmc = {
+                    'key' : [
+                        openapi_client.models._demo_list_item._DemoListItem(
+                            name = '', 
+                            url = [
+                                ''
+                                ], )
+                        ]
+                    },
         )
         """
 

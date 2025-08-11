@@ -2,6 +2,7 @@ export * from '../models/Auth0ConfigRsp';
 export * from '../models/Auth0LoginRsp';
 export * from '../models/CloudFunctionKind';
 export * from '../models/CloudFunctionLang';
+export * from '../models/CloudFunctionTag';
 export * from '../models/Code2TokenRsp';
 export * from '../models/CreateCallbackReq';
 export * from '../models/CreateCallbackRsp';
@@ -84,7 +85,6 @@ export * from '../models/UserInfoRsp';
 export * from '../models/UserLogin';
 export * from '../models/UserLoginRsp';
 export * from '../models/ViewExperimentShareRsp';
-export * from '../models/ViewModelShareInfo';
 export * from '../models/ViewModelsRsp';
 export * from '../models/ViewObject';
 export * from '../models/ViewObjectTmp';
@@ -93,6 +93,7 @@ import { Auth0ConfigRsp } from '../models/Auth0ConfigRsp';
 import { Auth0LoginRsp } from '../models/Auth0LoginRsp';
 import { CloudFunctionKind } from '../models/CloudFunctionKind';
 import { CloudFunctionLang } from '../models/CloudFunctionLang';
+import { CloudFunctionTag } from '../models/CloudFunctionTag';
 import { Code2TokenRsp } from '../models/Code2TokenRsp';
 import { CreateCallbackReq, CreateCallbackReqObjectTypeEnum  , CreateCallbackReqLangEnum     } from '../models/CreateCallbackReq';
 import { CreateCallbackRsp, CreateCallbackRspObjectTypeEnum        } from '../models/CreateCallbackRsp';
@@ -101,7 +102,7 @@ import { CreateEventRsp, CreateEventRspObjectTypeEnum      } from '../models/Cre
 import { CreateExperiment, CreateExperimentObjectTypeEnum      , CreateExperimentDataFileTypeEnum     } from '../models/CreateExperiment';
 import { CreateExperimentShare, CreateExperimentShareObjectTypeEnum      } from '../models/CreateExperimentShare';
 import { CreateExperimentShareRsp, CreateExperimentShareRspObjectTypeEnum            } from '../models/CreateExperimentShareRsp';
-import { CreateModel, CreateModelObjectTypeEnum  , CreateModelTypeEnum              } from '../models/CreateModel';
+import { CreateModel, CreateModelObjectTypeEnum  , CreateModelTypeEnum             } from '../models/CreateModel';
 import { CreateNSampleStatReq, CreateNSampleStatReqObjectTypeEnum        } from '../models/CreateNSampleStatReq';
 import { CreateObjectReq } from '../models/CreateObjectReq';
 import { CreateProtobufMessageReq, CreateProtobufMessageReqObjectTypeEnum      } from '../models/CreateProtobufMessageReq';
@@ -111,7 +112,7 @@ import { CreateTextMessageReq, CreateTextMessageReqObjectTypeEnum      } from '.
 import { CreateToken } from '../models/CreateToken';
 import { DataClass } from '../models/Data';
 import { Data1Class } from '../models/Data1';
-import { Data2, Data2ObjectTypeEnum                    } from '../models/Data2';
+import { Data2, Data2ObjectTypeEnum                      } from '../models/Data2';
 import { DataTyping } from '../models/DataTyping';
 import { DeleteLinkedAccountReq } from '../models/DeleteLinkedAccountReq';
 import { DeleteObject } from '../models/DeleteObject';
@@ -130,11 +131,11 @@ import { GetTokensRsp } from '../models/GetTokensRsp';
 import { LinkedAccountSchema } from '../models/LinkedAccountSchema';
 import { ListExperimentRsp } from '../models/ListExperimentRsp';
 import { ListLinkedAccountRsp } from '../models/ListLinkedAccountRsp';
-import { ListModelsRspItem, ListModelsRspItemObjectTypeEnum          } from '../models/ListModelsRspItem';
-import { ListObjectTmp  , ListObjectTmpObjectTypeEnum      , ListObjectTmpStatusEnum  , ListObjectTmpRunOnEnum  , ListObjectTmpHasModelEnum  , ListObjectTmpKindEnum   } from '../models/ListObjectTmp';
+import { ListModelsRspItem, ListModelsRspItemObjectTypeEnum           } from '../models/ListModelsRspItem';
+import { ListObjectTmp  , ListObjectTmpObjectTypeEnum      , ListObjectTmpStatusEnum  , ListObjectTmpRunOnEnum  , ListObjectTmpHasModelEnum  , ListObjectTmpTagsEnum   } from '../models/ListObjectTmp';
 import { ListingRspDataNotificationDict } from '../models/ListingRspDataNotificationDict';
 import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp';
-import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspObjectsInner            , ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspObjectsInnerObjectTypeEnum             } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspObjectsInner';
+import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspObjectsInner            , ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspObjectsInnerObjectTypeEnum               } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspObjectsInner';
 import { MarkNotificationReadReq , MarkNotificationReadReqStatusEnum   } from '../models/MarkNotificationReadReq';
 import { MetaModel } from '../models/MetaModel';
 import { ModelContent } from '../models/ModelContent';
@@ -175,8 +176,7 @@ import { UserInfoRsp } from '../models/UserInfoRsp';
 import { UserLogin } from '../models/UserLogin';
 import { UserLoginRsp } from '../models/UserLoginRsp';
 import { ViewExperimentShareRsp, ViewExperimentShareRspObjectTypeEnum    } from '../models/ViewExperimentShareRsp';
-import { ViewModelShareInfo } from '../models/ViewModelShareInfo';
-import { ViewModelsRsp, ViewModelsRspObjectTypeEnum         } from '../models/ViewModelsRsp';
+import { ViewModelsRsp, ViewModelsRspObjectTypeEnum           } from '../models/ViewModelsRsp';
 import { ViewObject, ViewObjectObjectTypeEnum    , ViewObjectFmtEnum      } from '../models/ViewObject';
 import { ViewObjectTmp } from '../models/ViewObjectTmp';
 
@@ -195,6 +195,7 @@ let primitives = [
 let enumsMap: Set<string> = new Set<string>([
     "CloudFunctionKind",
     "CloudFunctionLang",
+    "CloudFunctionTag",
     "CreateCallbackReqObjectTypeEnum",
     "CreateCallbackReqLangEnum",
     "CreateCallbackRspObjectTypeEnum",
@@ -225,7 +226,7 @@ let enumsMap: Set<string> = new Set<string>([
     "ListObjectTmpStatusEnum",
     "ListObjectTmpRunOnEnum",
     "ListObjectTmpHasModelEnum",
-    "ListObjectTmpKindEnum",
+    "ListObjectTmpTagsEnum",
     "ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspObjectsInnerObjectTypeEnum",
     "MarkNotificationReadReqStatusEnum",
     "ModelTreeNodeTypeEnum",
@@ -350,7 +351,6 @@ let typeMap: {[index: string]: any} = {
     "UserLogin": UserLogin,
     "UserLoginRsp": UserLoginRsp,
     "ViewExperimentShareRsp": ViewExperimentShareRsp,
-    "ViewModelShareInfo": ViewModelShareInfo,
     "ViewModelsRsp": ViewModelsRsp,
     "ViewObject": ViewObject,
     "ViewObjectTmp": ViewObjectTmp,

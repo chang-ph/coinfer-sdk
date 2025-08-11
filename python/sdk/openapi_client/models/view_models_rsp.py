@@ -18,7 +18,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from openapi_client.models.view_model_share_info import ViewModelShareInfo
+from openapi_client.models.model_meta_in_rsp import ModelMetaInRsp
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,10 +30,12 @@ class ViewModelsRsp(BaseModel):
     id: StrictInt
     short_id: StrictStr
     name: StrictStr
-    env: Optional[StrictStr]
-    share_info: Optional[List[ViewModelShareInfo]] = None
     content: Optional[Any] = None
-    __properties: ClassVar[List[str]] = ["object_type", "id", "short_id", "name", "env", "share_info", "content"]
+    meta: ModelMetaInRsp
+    tags: List[StrictStr]
+    lambda_image_url: Optional[StrictStr] = None
+    lambda_image_name: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["object_type", "id", "short_id", "name", "content", "meta", "tags", "lambda_image_url", "lambda_image_name"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -81,27 +83,23 @@ class ViewModelsRsp(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in share_info (list)
-        _items = []
-        if self.share_info:
-            for _item_share_info in self.share_info:
-                if _item_share_info:
-                    _items.append(_item_share_info.to_dict())
-            _dict['share_info'] = _items
-        # set to None if env (nullable) is None
-        # and model_fields_set contains the field
-        if self.env is None and "env" in self.model_fields_set:
-            _dict['env'] = None
-
-        # set to None if share_info (nullable) is None
-        # and model_fields_set contains the field
-        if self.share_info is None and "share_info" in self.model_fields_set:
-            _dict['share_info'] = None
-
+        # override the default output from pydantic by calling `to_dict()` of meta
+        if self.meta:
+            _dict['meta'] = self.meta.to_dict()
         # set to None if content (nullable) is None
         # and model_fields_set contains the field
         if self.content is None and "content" in self.model_fields_set:
             _dict['content'] = None
+
+        # set to None if lambda_image_url (nullable) is None
+        # and model_fields_set contains the field
+        if self.lambda_image_url is None and "lambda_image_url" in self.model_fields_set:
+            _dict['lambda_image_url'] = None
+
+        # set to None if lambda_image_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.lambda_image_name is None and "lambda_image_name" in self.model_fields_set:
+            _dict['lambda_image_name'] = None
 
         return _dict
 
@@ -119,9 +117,11 @@ class ViewModelsRsp(BaseModel):
             "id": obj.get("id"),
             "short_id": obj.get("short_id"),
             "name": obj.get("name"),
-            "env": obj.get("env"),
-            "share_info": [ViewModelShareInfo.from_dict(_item) for _item in obj["share_info"]] if obj.get("share_info") is not None else None,
-            "content": obj.get("content")
+            "content": obj.get("content"),
+            "meta": ModelMetaInRsp.from_dict(obj["meta"]) if obj.get("meta") is not None else None,
+            "tags": obj.get("tags"),
+            "lambda_image_url": obj.get("lambda_image_url"),
+            "lambda_image_name": obj.get("lambda_image_name")
         })
         return _obj
 

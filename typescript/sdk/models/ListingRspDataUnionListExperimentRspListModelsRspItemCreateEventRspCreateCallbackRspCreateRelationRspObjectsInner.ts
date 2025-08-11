@@ -22,8 +22,10 @@ export class ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRsp
     'modelName': string;
     'objectType': ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspObjectsInnerObjectTypeEnum;
     'id': number;
-    'env': string;
     'content'?: any | null;
+    'tags': Array<string>;
+    'lambdaImageUrl'?: string;
+    'lambdaImageName'?: string;
     'createdAt': Date;
     'lang': string;
     'code': string;
@@ -122,15 +124,27 @@ export class ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRsp
             "format": ""
         },
         {
-            "name": "env",
-            "baseName": "env",
+            "name": "content",
+            "baseName": "content",
+            "type": "any",
+            "format": ""
+        },
+        {
+            "name": "tags",
+            "baseName": "tags",
+            "type": "Array<string>",
+            "format": ""
+        },
+        {
+            "name": "lambdaImageUrl",
+            "baseName": "lambda_image_url",
             "type": "string",
             "format": ""
         },
         {
-            "name": "content",
-            "baseName": "content",
-            "type": "any",
+            "name": "lambdaImageName",
+            "baseName": "lambda_image_name",
+            "type": "string",
             "format": ""
         },
         {

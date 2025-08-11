@@ -19,8 +19,10 @@ Name | Type | Description | Notes
 **model_name** | **str** |  | 
 **object_type** | **str** |  | 
 **id** | **int** |  | 
-**env** | **str** |  | 
 **content** | **object** |  | [optional] 
+**tags** | **List[str]** |  | 
+**lambda_image_url** | **str** |  | [optional] 
+**lambda_image_name** | **str** |  | [optional] 
 **created_at** | **datetime** |  | 
 **lang** | **str** |  | 
 **code** | **str** |  | 

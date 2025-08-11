@@ -26,7 +26,10 @@ export class ListObjectTmp {
     'status'?: ListObjectTmpStatusEnum;
     'runOn'?: ListObjectTmpRunOnEnum;
     'hasModel'?: ListObjectTmpHasModelEnum;
-    'kind'?: ListObjectTmpKindEnum;
+    /**
+    * Filter by tags
+    */
+    'tags'?: Array<ListObjectTmpTagsEnum>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -94,9 +97,9 @@ export class ListObjectTmp {
             "format": ""
         },
         {
-            "name": "kind",
-            "baseName": "kind",
-            "type": "ListObjectTmpKindEnum",
+            "name": "tags",
+            "baseName": "tags",
+            "type": "Array<ListObjectTmpTagsEnum>",
             "format": ""
         }    ];
 
@@ -135,8 +138,11 @@ export enum ListObjectTmpHasModelEnum {
     False = 'false',
     Empty = ''
 }
-export enum ListObjectTmpKindEnum {
+export enum ListObjectTmpTagsEnum {
+    Internal = 'internal',
+    Builtin = 'builtin',
+    Reserved = 'reserved',
     Model = 'model',
-    Script = 'script'
+    Code = 'code'
 }
 

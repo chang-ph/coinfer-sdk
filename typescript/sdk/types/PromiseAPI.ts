@@ -5,6 +5,7 @@ import { Auth0ConfigRsp } from '../models/Auth0ConfigRsp';
 import { Auth0LoginRsp } from '../models/Auth0LoginRsp';
 import { CloudFunctionKind } from '../models/CloudFunctionKind';
 import { CloudFunctionLang } from '../models/CloudFunctionLang';
+import { CloudFunctionTag } from '../models/CloudFunctionTag';
 import { Code2TokenRsp } from '../models/Code2TokenRsp';
 import { CreateCallbackReq } from '../models/CreateCallbackReq';
 import { CreateCallbackRsp } from '../models/CreateCallbackRsp';
@@ -87,7 +88,6 @@ import { UserInfoRsp } from '../models/UserInfoRsp';
 import { UserLogin } from '../models/UserLogin';
 import { UserLoginRsp } from '../models/UserLoginRsp';
 import { ViewExperimentShareRsp } from '../models/ViewExperimentShareRsp';
-import { ViewModelShareInfo } from '../models/ViewModelShareInfo';
 import { ViewModelsRsp } from '../models/ViewModelsRsp';
 import { ViewObject } from '../models/ViewObject';
 import { ViewObjectTmp } from '../models/ViewObjectTmp';
@@ -514,10 +514,10 @@ export class PromiseObjectApi {
      * @param [status]
      * @param [runOn]
      * @param [hasModel]
-     * @param [kind] Filter by kind
+     * @param [tags] Filter by tags
      */
-    public listObjectWithHttpInfo(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', kind?: string, _options?: Configuration): Promise<HttpInfo<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp>> {
-        const result = this.api.listObjectWithHttpInfo(objectType, pageNo, pageSize, withShareInfo, sharedByMe, sharedWithMe, modelIds, status, runOn, hasModel, kind, _options);
+    public listObjectWithHttpInfo(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', tags?: Array<'internal' | 'builtin' | 'reserved' | 'model' | 'code'>, _options?: Configuration): Promise<HttpInfo<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp>> {
+        const result = this.api.listObjectWithHttpInfo(objectType, pageNo, pageSize, withShareInfo, sharedByMe, sharedWithMe, modelIds, status, runOn, hasModel, tags, _options);
         return result.toPromise();
     }
 
@@ -534,10 +534,10 @@ export class PromiseObjectApi {
      * @param [status]
      * @param [runOn]
      * @param [hasModel]
-     * @param [kind] Filter by kind
+     * @param [tags] Filter by tags
      */
-    public listObject(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', kind?: string, _options?: Configuration): Promise<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp> {
-        const result = this.api.listObject(objectType, pageNo, pageSize, withShareInfo, sharedByMe, sharedWithMe, modelIds, status, runOn, hasModel, kind, _options);
+    public listObject(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', tags?: Array<'internal' | 'builtin' | 'reserved' | 'model' | 'code'>, _options?: Configuration): Promise<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp> {
+        const result = this.api.listObject(objectType, pageNo, pageSize, withShareInfo, sharedByMe, sharedWithMe, modelIds, status, runOn, hasModel, tags, _options);
         return result.toPromise();
     }
 
@@ -672,7 +672,7 @@ export class PromiseSystemApi {
     }
 
     /**
-     * List demo models.
+     * List gallery data.
      */
     public repositoryWithHttpInfo(_options?: Configuration): Promise<HttpInfo<SuccRspDemoListRsp>> {
         const result = this.api.repositoryWithHttpInfo(_options);
@@ -680,7 +680,7 @@ export class PromiseSystemApi {
     }
 
     /**
-     * List demo models.
+     * List gallery data.
      */
     public repository(_options?: Configuration): Promise<SuccRspDemoListRsp> {
         const result = this.api.repository(_options);

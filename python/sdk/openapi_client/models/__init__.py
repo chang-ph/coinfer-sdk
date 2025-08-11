@@ -17,6 +17,7 @@ from openapi_client.models.auth0_config_rsp import Auth0ConfigRsp
 from openapi_client.models.auth0_login_rsp import Auth0LoginRsp
 from openapi_client.models.cloud_function_kind import CloudFunctionKind
 from openapi_client.models.cloud_function_lang import CloudFunctionLang
+from openapi_client.models.cloud_function_tag import CloudFunctionTag
 from openapi_client.models.code2_token_rsp import Code2TokenRsp
 from openapi_client.models.create_callback_req import CreateCallbackReq
 from openapi_client.models.create_callback_rsp import CreateCallbackRsp
@@ -99,7 +100,6 @@ from openapi_client.models.user_info_rsp import UserInfoRsp
 from openapi_client.models.user_login import UserLogin
 from openapi_client.models.user_login_rsp import UserLoginRsp
 from openapi_client.models.view_experiment_share_rsp import ViewExperimentShareRsp
-from openapi_client.models.view_model_share_info import ViewModelShareInfo
 from openapi_client.models.view_models_rsp import ViewModelsRsp
 from openapi_client.models.view_object import ViewObject
 from openapi_client.models.view_object_tmp import ViewObjectTmp

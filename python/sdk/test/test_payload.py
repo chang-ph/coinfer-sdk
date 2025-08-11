@@ -36,7 +36,6 @@ class TestPayload(unittest.TestCase):
             return Payload(
                 object_type = 'relation',
                 type = 'local',
-                model_name = '',
                 env = '',
                 name = '',
                 content = openapi_client.models.model_content.ModelContent(
@@ -52,7 +51,7 @@ class TestPayload(unittest.TestCase):
                                 ], )
                         ], ),
                 is_demo = True,
-                kind = 'model',
+                tag = 'model',
                 single_instance = True,
                 lang = 'julia',
                 entrance_file = '',

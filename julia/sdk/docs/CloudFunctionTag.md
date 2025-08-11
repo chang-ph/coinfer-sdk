@@ -1,11 +1,9 @@
-# DemoListRsp
+# CloudFunctionTag
 
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**models** | **Dict{String, Vector{DemoListItem}}** |  | [default to nothing]
-**MCMC** | **Dict{String, Vector{DemoListItem}}** |  | [default to nothing]
 
 
 [[Back to Model list]](../README.md#models) [[Back to API list]](../README.md#api-endpoints) [[Back to README]](../README.md)

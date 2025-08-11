@@ -2,7 +2,7 @@ import { HttpFile } from '../http/http';
 
 export class DemoListItem {
     'name': string;
-    'url': string;
+    'url': Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -18,7 +18,7 @@ export class DemoListItem {
         {
             "name": "url",
             "baseName": "url",
-            "type": "string",
+            "type": "Array<string>",
             "format": ""
         }    ];
 

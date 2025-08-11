@@ -52,16 +52,21 @@ class TestData(unittest.TestCase):
                 input = '',
                 output = '',
                 share_info = [
-                    openapi_client.models.share_info_model.ShareInfoModel(
+                    openapi_client.models._share_info_model._ShareInfoModel(
                         id = 56, 
                         password = '', 
                         user_id = '', 
+                        short_id = '', 
                         to_user_id = '', )
                     ],
                 model_name = '',
                 id = 56,
-                env = '',
                 content = None,
+                tags = [
+                    ''
+                    ],
+                lambda_image_url = '',
+                lambda_image_name = '',
                 user_id = 56,
                 experiment_id = '',
                 experiment_name = '',
@@ -87,7 +92,9 @@ class TestData(unittest.TestCase):
                     fixed_version_url = '', ),
                 model_name = '',
                 id = 56,
-                env = '',
+                tags = [
+                    ''
+                    ],
                 user_id = 56,
                 experiment_id = '',
                 experiment_name = '',

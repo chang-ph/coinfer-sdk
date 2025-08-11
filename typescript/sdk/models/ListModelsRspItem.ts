@@ -1,5 +1,4 @@
 import { ModelMetaInRsp } from '../models/ModelMetaInRsp';
-import { ShareInfoModel } from '../models/ShareInfoModel';
 import { HttpFile } from '../http/http';
 
 export class ListModelsRspItem {
@@ -7,10 +6,11 @@ export class ListModelsRspItem {
     'id': number;
     'shortId': string;
     'name': string;
-    'env': string | null;
-    'shareInfo'?: Array<ShareInfoModel> | null;
     'content'?: any | null;
     'meta': ModelMetaInRsp;
+    'tags': Array<string>;
+    'lambdaImageUrl'?: string | null;
+    'lambdaImageName'?: string | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -42,18 +42,6 @@ export class ListModelsRspItem {
             "format": ""
         },
         {
-            "name": "env",
-            "baseName": "env",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "shareInfo",
-            "baseName": "share_info",
-            "type": "Array<ShareInfoModel>",
-            "format": ""
-        },
-        {
             "name": "content",
             "baseName": "content",
             "type": "any",
@@ -63,6 +51,24 @@ export class ListModelsRspItem {
             "name": "meta",
             "baseName": "meta",
             "type": "ModelMetaInRsp",
+            "format": ""
+        },
+        {
+            "name": "tags",
+            "baseName": "tags",
+            "type": "Array<string>",
+            "format": ""
+        },
+        {
+            "name": "lambdaImageUrl",
+            "baseName": "lambda_image_url",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "lambdaImageName",
+            "baseName": "lambda_image_name",
+            "type": "string",
             "format": ""
         }    ];
 

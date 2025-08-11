@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | 
 **model_id** | **str** |  | [optional] [default to '']
 **status** | **str** |  | [optional] [default to '']
-**meta** | **object** |  | [optional] 
+**meta** | [**ModelMetaInRsp**](ModelMetaInRsp.md) |  | 
 **n_chains** | **int** |  | [optional] [default to 0]
 **n_variables** | **int** |  | [optional] [default to 0]
 **n_samples** | **int** |  | [optional] [default to 0]
@@ -18,11 +18,13 @@ Name | Type | Description | Notes
 **run_on** | **str** |  | [optional] [default to '']
 **input** | **str** |  | [optional] 
 **output** | **str** |  | [optional] 
-**share_info** | [**List[ViewModelShareInfo]**](ViewModelShareInfo.md) |  | [optional] 
+**share_info** | [**List[ShareInfoModel]**](ShareInfoModel.md) |  | [optional] 
 **model_name** | **str** |  | 
 **id** | **int** |  | 
-**env** | **str** |  | 
 **content** | **object** |  | [optional] 
+**tags** | **List[str]** |  | 
+**lambda_image_url** | **str** |  | [optional] 
+**lambda_image_name** | **str** |  | [optional] 
 
 ## Example
 

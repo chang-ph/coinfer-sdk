@@ -9,9 +9,11 @@ Name | Type | Description | Notes
 **id** | **int** |  | 
 **short_id** | **str** |  | 
 **name** | **str** |  | 
-**env** | **str** |  | 
-**share_info** | [**List[ViewModelShareInfo]**](ViewModelShareInfo.md) |  | [optional] 
 **content** | **object** |  | [optional] 
+**meta** | [**ModelMetaInRsp**](ModelMetaInRsp.md) |  | 
+**tags** | **List[str]** |  | 
+**lambda_image_url** | **str** |  | [optional] 
+**lambda_image_name** | **str** |  | [optional] 
 
 ## Example
 

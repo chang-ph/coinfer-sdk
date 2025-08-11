@@ -173,7 +173,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_object**
-> SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp list_object(object_type, page_no=page_no, page_size=page_size, with_share_info=with_share_info, shared_by_me=shared_by_me, shared_with_me=shared_with_me, model_ids=model_ids, status=status, run_on=run_on, has_model=has_model, kind=kind)
+> SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp list_object(object_type, page_no=page_no, page_size=page_size, with_share_info=with_share_info, shared_by_me=shared_by_me, shared_with_me=shared_with_me, model_ids=model_ids, status=status, run_on=run_on, has_model=has_model, tags=tags)
 
 List objects.
 
@@ -219,11 +219,11 @@ with openapi_client.ApiClient(configuration) as api_client:
     status =  # str |  (optional) (default to )
     run_on =  # str |  (optional) (default to )
     has_model =  # str |  (optional) (default to )
-    kind = 'kind_example' # str | Filter by kind (optional)
+    tags = ['tags_example'] # List[str] | Filter by tags (optional)
 
     try:
         # List objects.
-        api_response = api_instance.list_object(object_type, page_no=page_no, page_size=page_size, with_share_info=with_share_info, shared_by_me=shared_by_me, shared_with_me=shared_with_me, model_ids=model_ids, status=status, run_on=run_on, has_model=has_model, kind=kind)
+        api_response = api_instance.list_object(object_type, page_no=page_no, page_size=page_size, with_share_info=with_share_info, shared_by_me=shared_by_me, shared_with_me=shared_with_me, model_ids=model_ids, status=status, run_on=run_on, has_model=has_model, tags=tags)
         print("The response of ObjectApi->list_object:\n")
         pprint(api_response)
     except Exception as e:
@@ -247,7 +247,7 @@ Name | Type | Description  | Notes
  **status** | **str**|  | [optional] [default to ]
  **run_on** | **str**|  | [optional] [default to ]
  **has_model** | **str**|  | [optional] [default to ]
- **kind** | [**str**](.md)| Filter by kind | [optional] 
+ **tags** | [**List[str]**](str.md)| Filter by tags | [optional] 
 
 ### Return type
 

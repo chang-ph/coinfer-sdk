@@ -7,12 +7,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **object_type** | **str** |  | 
 **type** | **str** | The type of input code. It can be:  * local: the code is provided directly in &#x60;content&#x60; field as Unified Model Format. * url: the code is provided by a URL and specified by param &#x60;source_url&#x60;. | [optional] [default to 'local']
-**model_name** | **str** | [deprecated] model name | [optional] [default to '']
 **env** | **str** |  | [optional] 
 **name** | **str** |  | 
 **content** | [**ModelContent**](ModelContent.md) |  | [optional] 
 **is_demo** | **bool** |  | [optional] [default to False]
-**kind** | [**CloudFunctionKind**](CloudFunctionKind.md) |  | [optional] 
+**tag** | [**CloudFunctionKind**](CloudFunctionKind.md) |  | [optional] 
 **single_instance** | **bool** | Only allow one instance of this callback to run at a time. | [optional] [default to True]
 **lang** | **str** |  | 
 **entrance_file** | **str** |  | [optional] [default to '']

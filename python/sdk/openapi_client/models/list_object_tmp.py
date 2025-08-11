@@ -36,8 +36,8 @@ class ListObjectTmp(BaseModel):
     status: Optional[StrictStr] = ''
     run_on: Optional[StrictStr] = ''
     has_model: Optional[StrictStr] = ''
-    kind: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["page_no", "page_size", "object_type", "with_share_info", "shared_by_me", "shared_with_me", "model_ids", "status", "run_on", "has_model", "kind"]
+    tags: Optional[List[StrictStr]] = Field(default=None, description="Filter by tags")
+    __properties: ClassVar[List[str]] = ["page_no", "page_size", "object_type", "with_share_info", "shared_by_me", "shared_with_me", "model_ids", "status", "run_on", "has_model", "tags"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -76,14 +76,15 @@ class ListObjectTmp(BaseModel):
             raise ValueError("must be one of enum values ('true', 'false', '')")
         return value
 
-    @field_validator('kind')
-    def kind_validate_enum(cls, value):
+    @field_validator('tags')
+    def tags_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in set(['model', 'script']):
-            raise ValueError("must be one of enum values ('model', 'script')")
+        for i in value:
+            if i not in set(['internal', 'builtin', 'reserved', 'model', 'code']):
+                raise ValueError("each list item must be one of ('internal', 'builtin', 'reserved', 'model', 'code')")
         return value
 
     model_config = ConfigDict(
@@ -147,7 +148,7 @@ class ListObjectTmp(BaseModel):
             "status": obj.get("status") if obj.get("status") is not None else '',
             "run_on": obj.get("run_on") if obj.get("run_on") is not None else '',
             "has_model": obj.get("has_model") if obj.get("has_model") is not None else '',
-            "kind": obj.get("kind")
+            "tags": obj.get("tags")
         })
         return _obj
 
