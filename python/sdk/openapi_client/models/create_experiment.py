@@ -30,16 +30,27 @@ class CreateExperiment(BaseModel):
     xp_meta: Optional[Any] = None
     meta: Optional[Any] = None
     name: Optional[StrictStr] = ''
+    run_on: Optional[StrictStr] = 'Lambda'
     data_file_type: Optional[StrictStr] = None
     data_files: Optional[List[StrictStr]] = Field(default=None, description="File data in text format")
     data_uris: Optional[List[StrictStr]] = Field(default=None, description="File data URI")
-    __properties: ClassVar[List[str]] = ["object_type", "model_id", "xp_meta", "meta", "name", "data_file_type", "data_files", "data_uris"]
+    __properties: ClassVar[List[str]] = ["object_type", "model_id", "xp_meta", "meta", "name", "run_on", "data_file_type", "data_files", "data_uris"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(['experiment']):
             raise ValueError("must be one of enum values ('experiment')")
+        return value
+
+    @field_validator('run_on')
+    def run_on_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['Lambda', 'Fargate', 'Local']):
+            raise ValueError("must be one of enum values ('Lambda', 'Fargate', 'Local')")
         return value
 
     @field_validator('data_file_type')
@@ -123,6 +134,7 @@ class CreateExperiment(BaseModel):
             "xp_meta": obj.get("xp_meta"),
             "meta": obj.get("meta"),
             "name": obj.get("name") if obj.get("name") is not None else '',
+            "run_on": obj.get("run_on") if obj.get("run_on") is not None else 'Lambda',
             "data_file_type": obj.get("data_file_type"),
             "data_files": obj.get("data_files"),
             "data_uris": obj.get("data_uris")

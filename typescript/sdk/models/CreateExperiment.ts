@@ -6,6 +6,7 @@ export class CreateExperiment {
     'xpMeta'?: any | null;
     'meta'?: any | null;
     'name'?: string;
+    'runOn'?: CreateExperimentRunOnEnum;
     'dataFileType'?: CreateExperimentDataFileTypeEnum | null;
     /**
     * File data in text format
@@ -52,6 +53,12 @@ export class CreateExperiment {
             "format": ""
         },
         {
+            "name": "runOn",
+            "baseName": "run_on",
+            "type": "CreateExperimentRunOnEnum",
+            "format": ""
+        },
+        {
             "name": "dataFileType",
             "baseName": "data_file_type",
             "type": "CreateExperimentDataFileTypeEnum",
@@ -80,6 +87,11 @@ export class CreateExperiment {
 
 export enum CreateExperimentObjectTypeEnum {
     Experiment = 'experiment'
+}
+export enum CreateExperimentRunOnEnum {
+    Lambda = 'Lambda',
+    Fargate = 'Fargate',
+    Local = 'Local'
 }
 export enum CreateExperimentDataFileTypeEnum {
     TuringCsv = 'turing csv',

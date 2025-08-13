@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **model_id** | **str** |  | [optional] [default to '']
 **xp_meta** | **object** |  | [optional] 
 **meta** | **object** |  | [optional] 
+**run_on** | **str** |  | [optional] [default to 'Lambda']
 **data_file_type** | **str** |  | [optional] 
 **data_files** | **List[str]** | File data in text format | [optional] 
 **data_uris** | **List[str]** | File data URI | [optional] 

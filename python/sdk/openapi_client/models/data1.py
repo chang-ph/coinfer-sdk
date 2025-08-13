@@ -17,6 +17,7 @@ import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
 from openapi_client.models.experiment_cloudwatch_log_rsp import ExperimentCloudwatchLogRsp
+from openapi_client.models.experiment_plot_rsp import ExperimentPlotRsp
 from openapi_client.models.experiment_rsp import ExperimentRsp
 from openapi_client.models.experiment_sample_data_rsp import ExperimentSampleDataRsp
 from openapi_client.models.get_experiment_run_info_rsp import GetExperimentRunInfoRsp
@@ -26,7 +27,7 @@ from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-DATA1_ONE_OF_SCHEMAS = ["ExperimentCloudwatchLogRsp", "ExperimentRsp", "ExperimentSampleDataRsp", "GetExperimentRunInfoRsp", "ViewExperimentShareRsp", "ViewModelsRsp"]
+DATA1_ONE_OF_SCHEMAS = ["ExperimentCloudwatchLogRsp", "ExperimentPlotRsp", "ExperimentRsp", "ExperimentSampleDataRsp", "GetExperimentRunInfoRsp", "ViewExperimentShareRsp", "ViewModelsRsp"]
 
 class Data1(BaseModel):
     """
@@ -44,8 +45,10 @@ class Data1(BaseModel):
     oneof_schema_5_validator: Optional[ExperimentCloudwatchLogRsp] = None
     # data type: GetExperimentRunInfoRsp
     oneof_schema_6_validator: Optional[GetExperimentRunInfoRsp] = None
-    actual_instance: Optional[Union[ExperimentCloudwatchLogRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewExperimentShareRsp, ViewModelsRsp]] = None
-    one_of_schemas: Set[str] = { "ExperimentCloudwatchLogRsp", "ExperimentRsp", "ExperimentSampleDataRsp", "GetExperimentRunInfoRsp", "ViewExperimentShareRsp", "ViewModelsRsp" }
+    # data type: ExperimentPlotRsp
+    oneof_schema_7_validator: Optional[ExperimentPlotRsp] = None
+    actual_instance: Optional[Union[ExperimentCloudwatchLogRsp, ExperimentPlotRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewExperimentShareRsp, ViewModelsRsp]] = None
+    one_of_schemas: Set[str] = { "ExperimentCloudwatchLogRsp", "ExperimentPlotRsp", "ExperimentRsp", "ExperimentSampleDataRsp", "GetExperimentRunInfoRsp", "ViewExperimentShareRsp", "ViewModelsRsp" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -101,12 +104,17 @@ class Data1(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `GetExperimentRunInfoRsp`")
         else:
             match += 1
+        # validate data type: ExperimentPlotRsp
+        if not isinstance(v, ExperimentPlotRsp):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `ExperimentPlotRsp`")
+        else:
+            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in Data1 with oneOf schemas: ExperimentCloudwatchLogRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewExperimentShareRsp, ViewModelsRsp. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in Data1 with oneOf schemas: ExperimentCloudwatchLogRsp, ExperimentPlotRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewExperimentShareRsp, ViewModelsRsp. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in Data1 with oneOf schemas: ExperimentCloudwatchLogRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewExperimentShareRsp, ViewModelsRsp. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in Data1 with oneOf schemas: ExperimentCloudwatchLogRsp, ExperimentPlotRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewExperimentShareRsp, ViewModelsRsp. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -157,13 +165,19 @@ class Data1(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into ExperimentPlotRsp
+        try:
+            instance.actual_instance = ExperimentPlotRsp.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into Data1 with oneOf schemas: ExperimentCloudwatchLogRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewExperimentShareRsp, ViewModelsRsp. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into Data1 with oneOf schemas: ExperimentCloudwatchLogRsp, ExperimentPlotRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewExperimentShareRsp, ViewModelsRsp. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Data1 with oneOf schemas: ExperimentCloudwatchLogRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewExperimentShareRsp, ViewModelsRsp. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into Data1 with oneOf schemas: ExperimentCloudwatchLogRsp, ExperimentPlotRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewExperimentShareRsp, ViewModelsRsp. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -177,7 +191,7 @@ class Data1(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], ExperimentCloudwatchLogRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewExperimentShareRsp, ViewModelsRsp]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], ExperimentCloudwatchLogRsp, ExperimentPlotRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewExperimentShareRsp, ViewModelsRsp]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

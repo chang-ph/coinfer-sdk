@@ -60,6 +60,7 @@ class TestPayload(unittest.TestCase):
                 model_id = '',
                 xp_meta = None,
                 meta = None,
+                run_on = 'Lambda',
                 data_file_type = 'turing csv',
                 data_files = [
                     ''

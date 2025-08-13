@@ -1,4 +1,5 @@
 import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
+import { ExperimentPlotRsp } from '../models/ExperimentPlotRsp';
 import { ExperimentRsp } from '../models/ExperimentRsp';
 import { ExperimentSampleDataRsp } from '../models/ExperimentSampleDataRsp';
 import { GetExperimentRunInfoRsp } from '../models/GetExperimentRunInfoRsp';
@@ -11,7 +12,7 @@ import { HttpFile } from '../http/http';
  * Type
  * @export
  */
-export type Data1 = ExperimentCloudwatchLogRsp | ExperimentRsp | ExperimentSampleDataRsp | GetExperimentRunInfoRsp | ViewExperimentShareRsp | ViewModelsRsp;
+export type Data1 = ExperimentCloudwatchLogRsp | ExperimentPlotRsp | ExperimentRsp | ExperimentSampleDataRsp | GetExperimentRunInfoRsp | ViewExperimentShareRsp | ViewModelsRsp;
 
 /**
 * @type Data1Class
@@ -23,12 +24,14 @@ export class Data1Class {
     static readonly mapping: {[index: string]: string} | undefined = {
         "experiment": "ExperimentRsp",
         "experiment.cloudwatch_log": "ExperimentCloudwatchLogRsp",
+        "experiment.plot": "ExperimentPlotRsp",
         "experiment.run_info": "GetExperimentRunInfoRsp",
         "experiment.sampledata": "ExperimentSampleDataRsp",
         "model": "ViewModelsRsp",
         "share": "ViewExperimentShareRsp",
     };
 }
+
 
 
 

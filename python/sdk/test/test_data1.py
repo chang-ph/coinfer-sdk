@@ -34,7 +34,7 @@ class TestData1(unittest.TestCase):
         model = Data1()
         if include_optional:
             return Data1(
-                object_type = 'experiment.run_info',
+                object_type = 'experiment.plot',
                 short_id = '',
                 name = '',
                 model_id = '',
@@ -79,7 +79,7 @@ class TestData1(unittest.TestCase):
             )
         else:
             return Data1(
-                object_type = 'experiment.run_info',
+                object_type = 'experiment.plot',
                 short_id = '',
                 name = '',
                 status = '',

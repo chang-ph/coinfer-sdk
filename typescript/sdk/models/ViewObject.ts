@@ -11,6 +11,10 @@ export class ViewObject {
     'cloudwatchLog'?: boolean;
     'batchId'?: string;
     'runId'?: string;
+    /**
+    * get arviz plot
+    */
+    'plot'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -57,6 +61,12 @@ export class ViewObject {
             "name": "runId",
             "baseName": "run_id",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "plot",
+            "baseName": "plot",
+            "type": "boolean",
             "format": ""
         }    ];
 

@@ -274,7 +274,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **viewObject**
-> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType viewObject()
+> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType viewObject()
 
 View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view model data GET /api/object/X1234567  # view experiment data GET /api/object/S1234566  # view share data ```
 
@@ -305,6 +305,8 @@ const request: ObjectApiViewObjectRequest = {
   batchId: "",
   
   runId: "",
+    // get arviz plot (optional)
+  plot: false,
 };
 
 const data = await apiInstance.viewObject(request);
@@ -324,11 +326,12 @@ Name | Type | Description  | Notes
  **cloudwatchLog** | [**boolean**] |  | (optional) defaults to false
  **batchId** | [**string**] |  | (optional) defaults to ''
  **runId** | [**string**] |  | (optional) defaults to ''
+ **plot** | [**boolean**] | get arviz plot | (optional) defaults to false
 
 
 ### Return type
 
-**SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType**
+**SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType**
 
 ### Authorization
 

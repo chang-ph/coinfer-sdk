@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **xp_meta** | **Any** |  | [optional] [default to nothing]
 **meta** | **Any** |  | [optional] [default to nothing]
 **name** | **String** |  | [optional] [default to ""]
+**run_on** | **String** |  | [optional] [default to "Lambda"]
 **data_file_type** | **String** |  | [optional] [default to nothing]
 **data_files** | **Vector{String}** | File data in text format | [optional] [default to nothing]
 **data_uris** | **Vector{String}** | File data URI | [optional] [default to nothing]

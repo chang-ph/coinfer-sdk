@@ -164,11 +164,11 @@ function update_object(_api::ObjectApi, response_stream::Channel, objid::String,
 end
 
 const _returntypes_view_object_ObjectApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType,
+    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
-function _oacinternal_view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, _mediaType=nothing)
+function _oacinternal_view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, plot=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_view_object_ObjectApi, "/api/object/{objid}", ["GlobalAuth", "SharingAuth", ])
     OpenAPI.Clients.set_param(_ctx.path, "objid", objid)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "object_type", object_type; style="form", is_explode=true)  # type String
@@ -178,6 +178,7 @@ function _oacinternal_view_object(_api::ObjectApi, objid::String; object_type=no
     OpenAPI.Clients.set_param(_ctx.query, "cloudwatch_log", cloudwatch_log; style="form", is_explode=true)  # type Bool
     OpenAPI.Clients.set_param(_ctx.query, "batch_id", batch_id; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "run_id", run_id; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "plot", plot; style="form", is_explode=true)  # type Bool
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -196,16 +197,17 @@ Params:
 - cloudwatch_log::Bool
 - batch_id::String
 - run_id::String
+- plot::Bool
 
-Return: SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, OpenAPI.Clients.ApiResponse
+Return: SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, OpenAPI.Clients.ApiResponse
 """
-function view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, _mediaType=_mediaType)
+function view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, plot=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, plot=plot, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function view_object(_api::ObjectApi, response_stream::Channel, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, _mediaType=_mediaType)
+function view_object(_api::ObjectApi, response_stream::Channel, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, plot=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, plot=plot, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
