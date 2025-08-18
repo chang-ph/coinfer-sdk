@@ -8,6 +8,7 @@ export class ViewObject {
     'shareId'?: string;
     'sampledata'?: boolean;
     'fmt'?: ViewObjectFmtEnum;
+    'nIteration'?: number | null;
     'cloudwatchLog'?: boolean;
     'batchId'?: string;
     'runId'?: string;
@@ -43,6 +44,12 @@ export class ViewObject {
             "name": "fmt",
             "baseName": "fmt",
             "type": "ViewObjectFmtEnum",
+            "format": ""
+        },
+        {
+            "name": "nIteration",
+            "baseName": "n_iteration",
+            "type": "number",
             "format": ""
         },
         {

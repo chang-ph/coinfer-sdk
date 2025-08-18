@@ -572,13 +572,14 @@ export class PromiseObjectApi {
      * @param [shareId]                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
      * @param [sampledata]
      * @param [fmt]
+     * @param [nIteration] Number of iterations to sample
      * @param [cloudwatchLog]
      * @param [batchId]
      * @param [runId]
      * @param [plot] get arviz plot
      */
-    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, _options?: Configuration): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
-        const result = this.api.viewObjectWithHttpInfo(objid, objectType, shareId, sampledata, fmt, cloudwatchLog, batchId, runId, plot, _options);
+    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, _options?: Configuration): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
+        const result = this.api.viewObjectWithHttpInfo(objid, objectType, shareId, sampledata, fmt, nIteration, cloudwatchLog, batchId, runId, plot, _options);
         return result.toPromise();
     }
 
@@ -590,13 +591,14 @@ export class PromiseObjectApi {
      * @param [shareId]                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
      * @param [sampledata]
      * @param [fmt]
+     * @param [nIteration] Number of iterations to sample
      * @param [cloudwatchLog]
      * @param [batchId]
      * @param [runId]
      * @param [plot] get arviz plot
      */
-    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, _options?: Configuration): Promise<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
-        const result = this.api.viewObject(objid, objectType, shareId, sampledata, fmt, cloudwatchLog, batchId, runId, plot, _options);
+    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, _options?: Configuration): Promise<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
+        const result = this.api.viewObject(objid, objectType, shareId, sampledata, fmt, nIteration, cloudwatchLog, batchId, runId, plot, _options);
         return result.toPromise();
     }
 

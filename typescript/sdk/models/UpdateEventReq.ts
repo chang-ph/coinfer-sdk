@@ -4,6 +4,9 @@ export class UpdateEventReq {
     'objectType': UpdateEventReqObjectTypeEnum;
     'params'?: string;
     'engine'?: UpdateEventReqEngineEnum;
+    /**
+    * lock key provided by user. It is combined with the cloudfunction_id to form the real lock key when running cloudfunction triggered by this event.  Sometimes, users may want CloudFunctions to run exclusively, but not just one instance globally. For example, when running a CloudFunction specific to an experiment, users may want only one instance of that CloudFunction to run simultaneously for that experiment. In this case, users can specify the lock_key as the experiment_id.
+    */
     'lockKey'?: string;
 
     static readonly discriminator: string | undefined = undefined;

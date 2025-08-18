@@ -299,6 +299,8 @@ const request: ObjectApiViewObjectRequest = {
   sampledata: false,
   
   fmt: "csv",
+    // Number of iterations to sample (optional)
+  nIteration: 1,
   
   cloudwatchLog: false,
   
@@ -323,6 +325,7 @@ Name | Type | Description  | Notes
  **shareId** | [**string**] |                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot | (optional) defaults to ''
  **sampledata** | [**boolean**] |  | (optional) defaults to false
  **fmt** | [**&#39;csv&#39; | &#39;grist&#39; | &#39;arviz&#39;**]**Array<&#39;csv&#39; &#124; &#39;grist&#39; &#124; &#39;arviz&#39;>** |  | (optional) defaults to 'csv'
+ **nIteration** | [**number**] | Number of iterations to sample | (optional) defaults to undefined
  **cloudwatchLog** | [**boolean**] |  | (optional) defaults to false
  **batchId** | [**string**] |  | (optional) defaults to ''
  **runId** | [**string**] |  | (optional) defaults to ''

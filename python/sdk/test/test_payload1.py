@@ -61,6 +61,9 @@ class TestPayload1(unittest.TestCase):
                 description = '',
                 status = '',
                 lambda_image = True,
+                tags = [
+                    ''
+                    ],
                 params = '',
                 engine = 'lambda',
                 lock_key = '',

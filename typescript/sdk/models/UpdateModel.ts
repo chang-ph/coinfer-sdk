@@ -9,6 +9,7 @@ export class UpdateModel {
     'description'?: string | null;
     'status'?: string | null;
     'lambdaImage'?: boolean | null;
+    'tags'?: Array<string> | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -55,6 +56,12 @@ export class UpdateModel {
             "name": "lambdaImage",
             "baseName": "lambda_image",
             "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "tags",
+            "baseName": "tags",
+            "type": "Array<string>",
             "format": ""
         }    ];
 

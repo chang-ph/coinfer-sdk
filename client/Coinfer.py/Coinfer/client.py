@@ -76,7 +76,7 @@ class Client:
         )
         return self.response_data(res)
 
-    def create_experiment(self, model_id, input_id, xp_meta, name=""):
+    def create_experiment(self, model_id, input_id, xp_meta, name="", run_on=""):
         url = self.endpoint("api", "/object")
         data = {
             "payload": {
@@ -85,6 +85,7 @@ class Client:
                 "input_id": input_id,
                 "xp_meta": xp_meta,
                 "name": name,
+                "run_on": run_on,
             }
         }
         headers = self.headers_with_auth()

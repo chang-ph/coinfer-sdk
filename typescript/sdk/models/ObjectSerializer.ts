@@ -172,14 +172,14 @@ import { SuccRspUserInfoRsp, SuccRspUserInfoRspStatusEnum    } from '../models/S
 import { SuccRspUserLoginRsp, SuccRspUserLoginRspStatusEnum    } from '../models/SuccRspUserLoginRsp';
 import { UpdateEventReq, UpdateEventReqObjectTypeEnum   , UpdateEventReqEngineEnum    } from '../models/UpdateEventReq';
 import { UpdateExperiment, UpdateExperimentObjectTypeEnum           } from '../models/UpdateExperiment';
-import { UpdateModel, UpdateModelObjectTypeEnum         } from '../models/UpdateModel';
+import { UpdateModel, UpdateModelObjectTypeEnum          } from '../models/UpdateModel';
 import { UpdateObject } from '../models/UpdateObject';
 import { UserInfoRsp } from '../models/UserInfoRsp';
 import { UserLogin } from '../models/UserLogin';
 import { UserLoginRsp } from '../models/UserLoginRsp';
 import { ViewExperimentShareRsp, ViewExperimentShareRspObjectTypeEnum    } from '../models/ViewExperimentShareRsp';
 import { ViewModelsRsp, ViewModelsRspObjectTypeEnum           } from '../models/ViewModelsRsp';
-import { ViewObject, ViewObjectObjectTypeEnum    , ViewObjectFmtEnum       } from '../models/ViewObject';
+import { ViewObject, ViewObjectObjectTypeEnum    , ViewObjectFmtEnum        } from '../models/ViewObject';
 import { ViewObjectTmp } from '../models/ViewObjectTmp';
 
 /* tslint:disable:no-unused-variable */

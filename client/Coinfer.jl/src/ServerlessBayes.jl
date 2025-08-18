@@ -134,7 +134,7 @@ $(TYPEDFIELDS)
 end
 
 function create_model(
-        FUNCION_TYPE, project_dir; endpoint=default_endpoints(), entrance_file="main.jl"
+    FUNCION_TYPE, project_dir; endpoint=default_endpoints(), entrance_file="main.jl"
 )
     return FUNCION_TYPE(;
         project_dir=project_dir,
@@ -547,7 +547,7 @@ function inner_sample(args...; kwargs...)
             end
             chn = Turing.sample(args...; callback=cb, kwargs...)
         end
-        update_experiment_runinfo(exp_id, ENV["BATCH_ID"], ENV["RUN_ID"], "FIN")
+        update_experiment_runinfo(exp_id, ENV["BATCH_ID"], ENV["RUN_ID"], "SAMPLE_FIN")
     catch exp
         @error exp
         update_experiment_runinfo(exp_id, ENV["BATCH_ID"], ENV["RUN_ID"], "USER_ERR")

@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **description** | **String** |  | [optional] [default to nothing]
 **status** | **String** |  | [optional] [default to nothing]
 **lambda_image** | **Bool** |  | [optional] [default to nothing]
+**tags** | **Vector{String}** |  | [optional] [default to nothing]
 
 
 [[Back to Model list]](../README.md#models) [[Back to API list]](../README.md#api-endpoints) [[Back to README]](../README.md)

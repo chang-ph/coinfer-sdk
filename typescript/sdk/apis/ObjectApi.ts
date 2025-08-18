@@ -304,18 +304,20 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
      * @param shareId                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
      * @param sampledata 
      * @param fmt 
+     * @param nIteration Number of iterations to sample
      * @param cloudwatchLog 
      * @param batchId 
      * @param runId 
      * @param plot get arviz plot
      */
-    public async viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'objid' is not null or undefined
         if (objid === null || objid === undefined) {
             throw new RequiredError("ObjectApi", "viewObject", "objid");
         }
+
 
 
 
@@ -352,6 +354,11 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fmt !== undefined) {
             requestContext.setQueryParam("fmt", ObjectSerializer.serialize(fmt, "'csv' | 'grist' | 'arviz'", ""));
+        }
+
+        // Query Params
+        if (nIteration !== undefined) {
+            requestContext.setQueryParam("n_iteration", ObjectSerializer.serialize(nIteration, "number", ""));
         }
 
         // Query Params

@@ -9,6 +9,7 @@
         share_id="",
         sampledata=false,
         fmt="csv",
+        n_iteration=nothing,
         cloudwatch_log=false,
         batch_id="",
         run_id="",
@@ -19,6 +20,7 @@
     - share_id::String :                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
     - sampledata::Bool
     - fmt::String
+    - n_iteration::Int64
     - cloudwatch_log::Bool
     - batch_id::String
     - run_id::String
@@ -29,25 +31,27 @@ Base.@kwdef mutable struct ViewObject <: OpenAPI.APIModel
     share_id::Union{Nothing, String} = ""
     sampledata::Union{Nothing, Bool} = false
     fmt::Union{Nothing, String} = "csv"
+    n_iteration::Union{Nothing, Int64} = nothing
     cloudwatch_log::Union{Nothing, Bool} = false
     batch_id::Union{Nothing, String} = ""
     run_id::Union{Nothing, String} = ""
     plot::Union{Nothing, Bool} = false
 
-    function ViewObject(object_type, share_id, sampledata, fmt, cloudwatch_log, batch_id, run_id, plot, )
+    function ViewObject(object_type, share_id, sampledata, fmt, n_iteration, cloudwatch_log, batch_id, run_id, plot, )
         OpenAPI.validate_property(ViewObject, Symbol("object_type"), object_type)
         OpenAPI.validate_property(ViewObject, Symbol("share_id"), share_id)
         OpenAPI.validate_property(ViewObject, Symbol("sampledata"), sampledata)
         OpenAPI.validate_property(ViewObject, Symbol("fmt"), fmt)
+        OpenAPI.validate_property(ViewObject, Symbol("n_iteration"), n_iteration)
         OpenAPI.validate_property(ViewObject, Symbol("cloudwatch_log"), cloudwatch_log)
         OpenAPI.validate_property(ViewObject, Symbol("batch_id"), batch_id)
         OpenAPI.validate_property(ViewObject, Symbol("run_id"), run_id)
         OpenAPI.validate_property(ViewObject, Symbol("plot"), plot)
-        return new(object_type, share_id, sampledata, fmt, cloudwatch_log, batch_id, run_id, plot, )
+        return new(object_type, share_id, sampledata, fmt, n_iteration, cloudwatch_log, batch_id, run_id, plot, )
     end
 end # type ViewObject
 
-const _property_types_ViewObject = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("share_id")=>"String", Symbol("sampledata")=>"Bool", Symbol("fmt")=>"String", Symbol("cloudwatch_log")=>"Bool", Symbol("batch_id")=>"String", Symbol("run_id")=>"String", Symbol("plot")=>"Bool", )
+const _property_types_ViewObject = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("share_id")=>"String", Symbol("sampledata")=>"Bool", Symbol("fmt")=>"String", Symbol("n_iteration")=>"Int64", Symbol("cloudwatch_log")=>"Bool", Symbol("batch_id")=>"String", Symbol("run_id")=>"String", Symbol("plot")=>"Bool", )
 OpenAPI.property_type(::Type{ ViewObject }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_ViewObject[name]))}
 
 function check_required(o::ViewObject)
@@ -66,6 +70,7 @@ function OpenAPI.validate_property(::Type{ ViewObject }, name::Symbol, val)
     if name === Symbol("fmt")
         OpenAPI.validate_param(name, "ViewObject", :enum, val, ["csv", "grist", "arviz"])
     end
+
 
 
 

@@ -710,6 +710,13 @@ export interface ObjectApiViewObjectRequest {
      */
     fmt?: 'csv' | 'grist' | 'arviz'
     /**
+     * Number of iterations to sample
+     * Defaults to: undefined
+     * @type number
+     * @memberof ObjectApiviewObject
+     */
+    nIteration?: number
+    /**
      * 
      * Defaults to: false
      * @type boolean
@@ -824,7 +831,7 @@ export class ObjectObjectApi {
      * @param param the request object
      */
     public viewObjectWithHttpInfo(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
-        return this.api.viewObjectWithHttpInfo(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt, param.cloudwatchLog, param.batchId, param.runId, param.plot,  options).toPromise();
+        return this.api.viewObjectWithHttpInfo(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt, param.nIteration, param.cloudwatchLog, param.batchId, param.runId, param.plot,  options).toPromise();
     }
 
     /**
@@ -833,7 +840,7 @@ export class ObjectObjectApi {
      * @param param the request object
      */
     public viewObject(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
-        return this.api.viewObject(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt, param.cloudwatchLog, param.batchId, param.runId, param.plot,  options).toPromise();
+        return this.api.viewObject(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt, param.nIteration, param.cloudwatchLog, param.batchId, param.runId, param.plot,  options).toPromise();
     }
 
 }

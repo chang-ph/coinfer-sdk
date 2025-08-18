@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **share_id** | **String** |                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot | [optional] [default to ""]
 **sampledata** | **Bool** |  | [optional] [default to false]
 **fmt** | **String** |  | [optional] [default to "csv"]
+**n_iteration** | **Int64** |  | [optional] [default to nothing]
 **cloudwatch_log** | **Bool** |  | [optional] [default to false]
 **batch_id** | **String** |  | [optional] [default to ""]
 **run_id** | **String** |  | [optional] [default to ""]

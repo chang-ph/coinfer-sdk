@@ -39,7 +39,8 @@ class TestGetConfigRsp(unittest.TestCase):
                 max_upload_sample_file = 56,
                 upload_file_types = '',
                 google_client_id = '',
-                google_app_id = ''
+                google_app_id = '',
+                arviz_plotting_endpoint = ''
             )
         else:
             return GetConfigRsp(
@@ -49,6 +50,7 @@ class TestGetConfigRsp(unittest.TestCase):
                 upload_file_types = '',
                 google_client_id = '',
                 google_app_id = '',
+                arviz_plotting_endpoint = '',
         )
         """
 

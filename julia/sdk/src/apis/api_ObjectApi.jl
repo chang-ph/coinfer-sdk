@@ -168,13 +168,14 @@ const _returntypes_view_object_ObjectApi = Dict{Regex,Type}(
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
-function _oacinternal_view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, plot=nothing, _mediaType=nothing)
+function _oacinternal_view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, plot=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_view_object_ObjectApi, "/api/object/{objid}", ["GlobalAuth", "SharingAuth", ])
     OpenAPI.Clients.set_param(_ctx.path, "objid", objid)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "object_type", object_type; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "share_id", share_id; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "sampledata", sampledata; style="form", is_explode=true)  # type Bool
     OpenAPI.Clients.set_param(_ctx.query, "fmt", fmt; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "n_iteration", n_iteration; style="form", is_explode=true)  # type Int64
     OpenAPI.Clients.set_param(_ctx.query, "cloudwatch_log", cloudwatch_log; style="form", is_explode=true)  # type Bool
     OpenAPI.Clients.set_param(_ctx.query, "batch_id", batch_id; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "run_id", run_id; style="form", is_explode=true)  # type String
@@ -194,6 +195,7 @@ Params:
 - share_id::String
 - sampledata::Bool
 - fmt::String
+- n_iteration::Int64
 - cloudwatch_log::Bool
 - batch_id::String
 - run_id::String
@@ -201,13 +203,13 @@ Params:
 
 Return: SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, OpenAPI.Clients.ApiResponse
 """
-function view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, plot=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, plot=plot, _mediaType=_mediaType)
+function view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, plot=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, plot=plot, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function view_object(_api::ObjectApi, response_stream::Channel, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, plot=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, plot=plot, _mediaType=_mediaType)
+function view_object(_api::ObjectApi, response_stream::Channel, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, plot=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, plot=plot, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
