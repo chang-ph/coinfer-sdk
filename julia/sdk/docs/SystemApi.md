@@ -25,7 +25,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[GlobalAuth](../README.md#GlobalAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -49,7 +49,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[GlobalAuth](../README.md#GlobalAuth)
+No authorization required
 
 ### HTTP request headers
 

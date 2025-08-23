@@ -17,7 +17,7 @@ const _returntypes_config_SystemApi = Dict{Regex,Type}(
 )
 
 function _oacinternal_config(_api::SystemApi; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_config_SystemApi, "/sys/config", ["GlobalAuth", ])
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_config_SystemApi, "/sys/config", [])
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -47,7 +47,7 @@ const _returntypes_repository_SystemApi = Dict{Regex,Type}(
 )
 
 function _oacinternal_repository(_api::SystemApi; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_repository_SystemApi, "/sys/gallery", ["GlobalAuth", ])
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_repository_SystemApi, "/sys/gallery", [])
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
