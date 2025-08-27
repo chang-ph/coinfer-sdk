@@ -10,7 +10,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import unittest
 
 from openapi_client.models.data import Data
@@ -34,7 +33,7 @@ class TestData(unittest.TestCase):
         model = Data()
         if include_optional:
             return Data(
-                object_type = 'relation',
+                object_type = 'artifact',
                 short_id = '',
                 name = '',
                 model_id = '',
@@ -78,11 +77,13 @@ class TestData(unittest.TestCase):
                 code = '',
                 token = '',
                 object1_id = '',
-                object2_id = ''
+                object2_id = '',
+                description = '',
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )
         else:
             return Data(
-                object_type = 'relation',
+                object_type = 'artifact',
                 short_id = '',
                 name = '',
                 meta = openapi_client.models._model_meta_in_rsp._ModelMetaInRsp(
@@ -105,6 +106,8 @@ class TestData(unittest.TestCase):
                 token = '',
                 object1_id = '',
                 object2_id = '',
+                description = '',
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
         """
 

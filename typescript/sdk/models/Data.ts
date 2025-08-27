@@ -1,3 +1,4 @@
+import { CreateArtifactRsp } from '../models/CreateArtifactRsp';
 import { CreateCallbackRsp } from '../models/CreateCallbackRsp';
 import { CreateEventRsp } from '../models/CreateEventRsp';
 import { CreateExperimentShareRsp } from '../models/CreateExperimentShareRsp';
@@ -11,7 +12,7 @@ import { HttpFile } from '../http/http';
  * Type
  * @export
  */
-export type Data = CreateCallbackRsp | CreateEventRsp | CreateExperimentShareRsp | CreateRelationRsp | ExperimentRsp | ListModelsRspItem;
+export type Data = CreateArtifactRsp | CreateCallbackRsp | CreateEventRsp | CreateExperimentShareRsp | CreateRelationRsp | ExperimentRsp | ListModelsRspItem;
 
 /**
 * @type DataClass
@@ -21,6 +22,7 @@ export class DataClass {
     static readonly discriminator: string | undefined = "objectType";
 
     static readonly mapping: {[index: string]: string} | undefined = {
+        "artifact": "CreateArtifactRsp",
         "callback": "CreateCallbackRsp",
         "event": "CreateEventRsp",
         "experiment": "ExperimentRsp",
@@ -29,6 +31,7 @@ export class DataClass {
         "share": "CreateExperimentShareRsp",
     };
 }
+
 
 
 

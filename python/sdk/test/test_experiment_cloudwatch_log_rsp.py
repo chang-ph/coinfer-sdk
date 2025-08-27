@@ -10,7 +10,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import unittest
 
 from openapi_client.models.experiment_cloudwatch_log_rsp import ExperimentCloudwatchLogRsp

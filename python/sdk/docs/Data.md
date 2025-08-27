@@ -37,6 +37,8 @@ Name | Type | Description | Notes
 **token** | **str** |  | 
 **object1_id** | **str** |  | 
 **object2_id** | **str** |  | 
+**description** | **str** |  | 
+**updated_at** | **datetime** |  | 
 
 ## Example
 

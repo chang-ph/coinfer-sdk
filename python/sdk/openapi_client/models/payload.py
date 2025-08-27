@@ -10,12 +10,12 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 from __future__ import annotations
 import json
 import pprint
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
 from typing import Any, List, Optional
+from openapi_client.models.create_artifact_req import CreateArtifactReq
 from openapi_client.models.create_callback_req import CreateCallbackReq
 from openapi_client.models.create_event_req import CreateEventReq
 from openapi_client.models.create_experiment import CreateExperiment
@@ -26,7 +26,7 @@ from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-PAYLOAD_ONE_OF_SCHEMAS = ["CreateCallbackReq", "CreateEventReq", "CreateExperiment", "CreateExperimentShare", "CreateModel", "CreateRelationReq"]
+PAYLOAD_ONE_OF_SCHEMAS = ["CreateArtifactReq", "CreateCallbackReq", "CreateEventReq", "CreateExperiment", "CreateExperimentShare", "CreateModel", "CreateRelationReq"]
 
 class Payload(BaseModel):
     """
@@ -44,8 +44,10 @@ class Payload(BaseModel):
     oneof_schema_5_validator: Optional[CreateCallbackReq] = None
     # data type: CreateRelationReq
     oneof_schema_6_validator: Optional[CreateRelationReq] = None
-    actual_instance: Optional[Union[CreateCallbackReq, CreateEventReq, CreateExperiment, CreateExperimentShare, CreateModel, CreateRelationReq]] = None
-    one_of_schemas: Set[str] = { "CreateCallbackReq", "CreateEventReq", "CreateExperiment", "CreateExperimentShare", "CreateModel", "CreateRelationReq" }
+    # data type: CreateArtifactReq
+    oneof_schema_7_validator: Optional[CreateArtifactReq] = None
+    actual_instance: Optional[Union[CreateArtifactReq, CreateCallbackReq, CreateEventReq, CreateExperiment, CreateExperimentShare, CreateModel, CreateRelationReq]] = None
+    one_of_schemas: Set[str] = { "CreateArtifactReq", "CreateCallbackReq", "CreateEventReq", "CreateExperiment", "CreateExperimentShare", "CreateModel", "CreateRelationReq" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -101,12 +103,17 @@ class Payload(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `CreateRelationReq`")
         else:
             match += 1
+        # validate data type: CreateArtifactReq
+        if not isinstance(v, CreateArtifactReq):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `CreateArtifactReq`")
+        else:
+            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in Payload with oneOf schemas: CreateCallbackReq, CreateEventReq, CreateExperiment, CreateExperimentShare, CreateModel, CreateRelationReq. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in Payload with oneOf schemas: CreateArtifactReq, CreateCallbackReq, CreateEventReq, CreateExperiment, CreateExperimentShare, CreateModel, CreateRelationReq. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in Payload with oneOf schemas: CreateCallbackReq, CreateEventReq, CreateExperiment, CreateExperimentShare, CreateModel, CreateRelationReq. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in Payload with oneOf schemas: CreateArtifactReq, CreateCallbackReq, CreateEventReq, CreateExperiment, CreateExperimentShare, CreateModel, CreateRelationReq. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -157,13 +164,19 @@ class Payload(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into CreateArtifactReq
+        try:
+            instance.actual_instance = CreateArtifactReq.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into Payload with oneOf schemas: CreateCallbackReq, CreateEventReq, CreateExperiment, CreateExperimentShare, CreateModel, CreateRelationReq. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into Payload with oneOf schemas: CreateArtifactReq, CreateCallbackReq, CreateEventReq, CreateExperiment, CreateExperimentShare, CreateModel, CreateRelationReq. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Payload with oneOf schemas: CreateCallbackReq, CreateEventReq, CreateExperiment, CreateExperimentShare, CreateModel, CreateRelationReq. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into Payload with oneOf schemas: CreateArtifactReq, CreateCallbackReq, CreateEventReq, CreateExperiment, CreateExperimentShare, CreateModel, CreateRelationReq. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -177,7 +190,7 @@ class Payload(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], CreateCallbackReq, CreateEventReq, CreateExperiment, CreateExperimentShare, CreateModel, CreateRelationReq]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], CreateArtifactReq, CreateCallbackReq, CreateEventReq, CreateExperiment, CreateExperimentShare, CreateModel, CreateRelationReq]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

@@ -75,7 +75,7 @@ function OpenAPI.validate_property(::Type{ ListObjectTmp }, name::Symbol, val)
     end
 
     if name === Symbol("object_type")
-        OpenAPI.validate_param(name, "ListObjectTmp", :enum, val, ["model", "experiment", "share", "event", "callback", "relation", ""])
+        OpenAPI.validate_param(name, "ListObjectTmp", :enum, val, ["model", "experiment", "share", "event", "callback", "relation", "artifact", ""])
     end
 
 

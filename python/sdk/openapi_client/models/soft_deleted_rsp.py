@@ -10,14 +10,14 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -25,7 +25,7 @@ class SoftDeletedRsp(BaseModel):
     """
     SoftDeletedRsp
     """ # noqa: E501
-    deleted_key: Optional[StrictStr]
+    deleted_key: Optional[UUID]
     __properties: ClassVar[List[str]] = ["deleted_key"]
 
     model_config = ConfigDict(

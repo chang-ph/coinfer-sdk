@@ -10,7 +10,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 from __future__ import annotations
 import pprint
 import re  # noqa: F401
@@ -42,8 +41,8 @@ class ListObjectTmp(BaseModel):
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['model', 'experiment', 'share', 'event', 'callback', 'relation', '']):
-            raise ValueError("must be one of enum values ('model', 'experiment', 'share', 'event', 'callback', 'relation', '')")
+        if value not in set(['model', 'experiment', 'share', 'event', 'callback', 'relation', 'artifact', '']):
+            raise ValueError("must be one of enum values ('model', 'experiment', 'share', 'event', 'callback', 'relation', 'artifact', '')")
         return value
 
     @field_validator('status')

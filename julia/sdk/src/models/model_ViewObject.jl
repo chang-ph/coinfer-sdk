@@ -61,7 +61,7 @@ end
 function OpenAPI.validate_property(::Type{ ViewObject }, name::Symbol, val)
 
     if name === Symbol("object_type")
-        OpenAPI.validate_param(name, "ViewObject", :enum, val, ["model", "experiment", "share", "event", "callback", "relation", ""])
+        OpenAPI.validate_param(name, "ViewObject", :enum, val, ["model", "experiment", "share", "event", "callback", "relation", "artifact", ""])
     end
 
 

@@ -10,7 +10,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import unittest
 
 from openapi_client.models.get_experiment_run_info_rsp import GetExperimentRunInfoRsp

@@ -10,7 +10,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import unittest
 
 from openapi_client.models.payload import Payload
@@ -34,10 +33,10 @@ class TestPayload(unittest.TestCase):
         model = Payload()
         if include_optional:
             return Payload(
-                object_type = 'relation',
+                object_type = 'artifact',
                 type = 'local',
                 env = '',
-                name = '',
+                name = '0',
                 content = openapi_client.models.model_content.ModelContent(
                     meta = null, 
                     tree = [
@@ -73,12 +72,16 @@ class TestPayload(unittest.TestCase):
                 target_user = '',
                 code = '',
                 object1_id = '',
-                object2_id = ''
+                object2_id = '',
+                description = '',
+                is_base64 = True,
+                data_file = '',
+                data_uri = ''
             )
         else:
             return Payload(
-                object_type = 'relation',
-                name = '',
+                object_type = 'artifact',
+                name = '0',
                 lang = 'julia',
                 objid = '',
                 code = '',

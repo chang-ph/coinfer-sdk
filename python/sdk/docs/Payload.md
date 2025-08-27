@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **object_type** | **str** |  | 
 **type** | **str** | The type of input code. It can be:  * local: the code is provided directly in &#x60;content&#x60; field as Unified Model Format. * url: the code is provided by a URL and specified by param &#x60;source_url&#x60;. | [optional] [default to 'local']
 **env** | **str** |  | [optional] 
-**name** | **str** |  | 
+**name** | **str** | Artifact name | 
 **content** | [**ModelContent**](ModelContent.md) |  | [optional] 
 **is_demo** | **bool** |  | [optional] [default to False]
 **tag** | [**CloudFunctionKind**](CloudFunctionKind.md) |  | [optional] 
@@ -30,6 +30,10 @@ Name | Type | Description | Notes
 **code** | **str** | code location specification. Can be: 1. GitHub gist: gist:&lt;gist-id&gt;:&lt;entrance-file&gt; 2. GitHub repo: repo:&lt;repo-owner&gt;/&lt;repo-name&gt;:&lt;entrance-file&gt; | 
 **object1_id** | **str** |  | 
 **object2_id** | **str** |  | 
+**description** | **str** | Artifact description | [optional] [default to '']
+**is_base64** | **bool** | Whether the data in &#x60;data_file&#x60; is base64 encoded | [optional] [default to False]
+**data_file** | **str** | File data in text format | [optional] [default to '']
+**data_uri** | **str** | File data URI | [optional] [default to '']
 
 ## Example
 
