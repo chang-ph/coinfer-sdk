@@ -118,7 +118,7 @@ export enum ListObjectTmpObjectTypeEnum {
     Event = 'event',
     Callback = 'callback',
     Relation = 'relation',
-    Artifact = 'artifact',
+    Data = 'data',
     Empty = ''
 }
 export enum ListObjectTmpStatusEnum {

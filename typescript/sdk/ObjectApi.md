@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **createObject**
-> SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType createObject(createObjectReq)
+> SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType createObject(createObjectReq)
 
 Create new object.  ### Example Create model: ``` POST /api/object {     \"payload\": {         \"object_type\": \"model\",         \"name\": \"model name\",         \"type\": \"local\",         \"content\": {             \"meta\": {\"entrance_file\": \"main.jl\"},             \"tree\": [],         }     } } ```  Create model from GitHub repo: ``` POST /api/object {     \"payload\": {         \"object_type\": \"model\",         \"repo\": \"vectorly-ai/simple-model\",         \"branch\": \"main\",         \"type\": \"repo\",     } } ```  Create model from GitHub gist: ``` POST /api/object {     \"payload\": {         \"object_type\": \"model\",         \"repo\": \"<the-gist-id>\",         \"type\": \"gist\",     } } ```  Create experiment: ``` POST /api/object {     \"payload\": {         \"object_type\": \"experiment\",         \"name\": \"experiment name\",         \"model_id\": \"M1234567\",     } } ```  Create share of experiment: ``` POST /api/object {     \"payload\": {         \"object_type\": \"share\",         \"objid\": \"X1234567\",         \"password\": \"the-pass\",     } } ```
 
@@ -47,7 +47,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType**
+**SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType**
 
 ### Authorization
 
@@ -127,7 +127,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **listObject**
-> SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRsp listObject()
+> SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRsp listObject()
 
 ### List Objects  By default, the API returns only objects created by the current user, excluding sharing information for performance optimization.  When `shared_with_me` is enabled, the API returns objects owned by other users but shared with the current user, including their sharing details.  Enabling `shared_by_me` will include sharing information for objects that the current user has shared with others.  Setting `with_share_info` to true combines both scenarios: it returns objects shared by the current user as well as objects shared with the current user, complete with their respective sharing information. This effectively merges the functionality of both `shared_by_me` and `shared_with_me`.  ### Example  List models: ``` GET /api/object?object_type=model GET /api/object?object_type=model&shared_by_me=true GET /api/object?object_type=model&shared_with_me=true GET /api/object?object_type=model&with_share_info=true ```  List experiments: ``` GET /api/object?object_type=experiment GET /api/object?object_type=experiment&shared_by_me=true GET /api/object?object_type=experiment&shared_with_me=true GET /api/object?object_type=experiment&with_share_info=true ```
 
@@ -179,7 +179,7 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **objectType** | [**&#39;model&#39; | &#39;experiment&#39; | &#39;share&#39; | &#39;event&#39; | &#39;callback&#39; | &#39;relation&#39; | &#39;artifact&#39; | &#39;&#39;**]**Array<&#39;model&#39; &#124; &#39;experiment&#39; &#124; &#39;share&#39; &#124; &#39;event&#39; &#124; &#39;callback&#39; &#124; &#39;relation&#39; &#124; &#39;artifact&#39; &#124; &#39;&#39;>** |  | defaults to undefined
+ **objectType** | [**&#39;model&#39; | &#39;experiment&#39; | &#39;share&#39; | &#39;event&#39; | &#39;callback&#39; | &#39;relation&#39; | &#39;data&#39; | &#39;&#39;**]**Array<&#39;model&#39; &#124; &#39;experiment&#39; &#124; &#39;share&#39; &#124; &#39;event&#39; &#124; &#39;callback&#39; &#124; &#39;relation&#39; &#124; &#39;data&#39; &#124; &#39;&#39;>** |  | defaults to undefined
  **pageNo** | [**number**] | page number | (optional) defaults to 1
  **pageSize** | [**number**] | page size | (optional) defaults to 100
  **withShareInfo** | [**boolean**] | Whether to return the related share info | (optional) defaults to false
@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRsp**
+**SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRsp**
 
 ### Authorization
 
@@ -321,7 +321,7 @@ console.log('API called successfully. Returned data:', data);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **objid** | [**string**] |  | defaults to undefined
- **objectType** | [**&#39;model&#39; | &#39;experiment&#39; | &#39;share&#39; | &#39;event&#39; | &#39;callback&#39; | &#39;relation&#39; | &#39;artifact&#39; | &#39;&#39;**]**Array<&#39;model&#39; &#124; &#39;experiment&#39; &#124; &#39;share&#39; &#124; &#39;event&#39; &#124; &#39;callback&#39; &#124; &#39;relation&#39; &#124; &#39;artifact&#39; &#124; &#39;&#39;>** |  | (optional) defaults to ''
+ **objectType** | [**&#39;model&#39; | &#39;experiment&#39; | &#39;share&#39; | &#39;event&#39; | &#39;callback&#39; | &#39;relation&#39; | &#39;data&#39; | &#39;&#39;**]**Array<&#39;model&#39; &#124; &#39;experiment&#39; &#124; &#39;share&#39; &#124; &#39;event&#39; &#124; &#39;callback&#39; &#124; &#39;relation&#39; &#124; &#39;data&#39; &#124; &#39;&#39;>** |  | (optional) defaults to ''
  **shareId** | [**string**] |                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot | (optional) defaults to ''
  **sampledata** | [**boolean**] |  | (optional) defaults to false
  **fmt** | [**&#39;csv&#39; | &#39;grist&#39; | &#39;arviz&#39;**]**Array<&#39;csv&#39; &#124; &#39;grist&#39; &#124; &#39;arviz&#39;>** |  | (optional) defaults to 'csv'

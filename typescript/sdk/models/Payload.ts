@@ -1,5 +1,5 @@
-import { CreateArtifactReq } from '../models/CreateArtifactReq';
 import { CreateCallbackReq } from '../models/CreateCallbackReq';
+import { CreateDataReq } from '../models/CreateDataReq';
 import { CreateEventReq } from '../models/CreateEventReq';
 import { CreateExperiment } from '../models/CreateExperiment';
 import { CreateExperimentShare } from '../models/CreateExperimentShare';
@@ -12,7 +12,7 @@ import { HttpFile } from '../http/http';
  * Type
  * @export
  */
-export type Payload = CreateArtifactReq | CreateCallbackReq | CreateEventReq | CreateExperiment | CreateExperimentShare | CreateModel | CreateRelationReq;
+export type Payload = CreateCallbackReq | CreateDataReq | CreateEventReq | CreateExperiment | CreateExperimentShare | CreateModel | CreateRelationReq;
 
 /**
 * @type PayloadClass
@@ -22,8 +22,8 @@ export class PayloadClass {
     static readonly discriminator: string | undefined = "objectType";
 
     static readonly mapping: {[index: string]: string} | undefined = {
-        "artifact": "CreateArtifactReq",
         "callback": "CreateCallbackReq",
+        "data": "CreateDataReq",
         "event": "CreateEventReq",
         "experiment": "CreateExperiment",
         "model": "CreateModel",

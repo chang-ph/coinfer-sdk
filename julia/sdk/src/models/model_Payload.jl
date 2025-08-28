@@ -8,17 +8,17 @@
     Payload(; value=nothing)
 """
 mutable struct Payload <: OpenAPI.OneOfAPIModel
-    value::Any # Union{ CreateArtifactReq, CreateCallbackReq, CreateEventReq, CreateExperiment, CreateExperimentShare, CreateModel, CreateRelationReq }
+    value::Any # Union{ CreateCallbackReq, CreateDataReq, CreateEventReq, CreateExperiment, CreateExperimentShare, CreateModel, CreateRelationReq }
     Payload() = new()
     Payload(value) = new(value)
 end # type Payload
 
 function OpenAPI.property_type(::Type{ Payload }, name::Symbol, json::Dict{String,Any})
     discriminator = json["object_type"]
-    if discriminator == "artifact"
-        return eval(Base.Meta.parse("CreateArtifactReq"))
-    elseif discriminator == "callback"
+    if discriminator == "callback"
         return eval(Base.Meta.parse("CreateCallbackReq"))
+    elseif discriminator == "data"
+        return eval(Base.Meta.parse("CreateDataReq"))
     elseif discriminator == "event"
         return eval(Base.Meta.parse("CreateEventReq"))
     elseif discriminator == "experiment"

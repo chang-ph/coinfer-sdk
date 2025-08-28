@@ -33,7 +33,7 @@ class TestPayload(unittest.TestCase):
         model = Payload()
         if include_optional:
             return Payload(
-                object_type = 'artifact',
+                object_type = 'data',
                 type = 'local',
                 env = '',
                 name = '0',
@@ -74,13 +74,13 @@ class TestPayload(unittest.TestCase):
                 object1_id = '',
                 object2_id = '',
                 description = '',
-                is_base64 = True,
-                data_file = '',
+                base64_encoded = True,
+                data = '',
                 data_uri = ''
             )
         else:
             return Payload(
-                object_type = 'artifact',
+                object_type = 'data',
                 name = '0',
                 lang = 'julia',
                 objid = '',

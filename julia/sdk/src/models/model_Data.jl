@@ -8,17 +8,17 @@
     Data(; value=nothing)
 """
 mutable struct Data <: OpenAPI.OneOfAPIModel
-    value::Any # Union{ CreateArtifactRsp, CreateCallbackRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, ExperimentRsp, ListModelsRspItem }
+    value::Any # Union{ CreateCallbackRsp, CreateDataRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, ExperimentRsp, ListModelsRspItem }
     Data() = new()
     Data(value) = new(value)
 end # type Data
 
 function OpenAPI.property_type(::Type{ Data }, name::Symbol, json::Dict{String,Any})
     discriminator = json["object_type"]
-    if discriminator == "artifact"
-        return eval(Base.Meta.parse("CreateArtifactRsp"))
-    elseif discriminator == "callback"
+    if discriminator == "callback"
         return eval(Base.Meta.parse("CreateCallbackRsp"))
+    elseif discriminator == "data"
+        return eval(Base.Meta.parse("CreateDataRsp"))
     elseif discriminator == "event"
         return eval(Base.Meta.parse("CreateEventRsp"))
     elseif discriminator == "experiment"

@@ -4,10 +4,10 @@ export * from '../models/CloudFunctionKind';
 export * from '../models/CloudFunctionLang';
 export * from '../models/CloudFunctionTag';
 export * from '../models/Code2TokenRsp';
-export * from '../models/CreateArtifactReq';
-export * from '../models/CreateArtifactRsp';
 export * from '../models/CreateCallbackReq';
 export * from '../models/CreateCallbackRsp';
+export * from '../models/CreateDataReq';
+export * from '../models/CreateDataRsp';
 export * from '../models/CreateEventReq';
 export * from '../models/CreateEventRsp';
 export * from '../models/CreateExperiment';
@@ -46,8 +46,8 @@ export * from '../models/ListLinkedAccountRsp';
 export * from '../models/ListModelsRspItem';
 export * from '../models/ListObjectTmp';
 export * from '../models/ListingRspDataNotificationDict';
-export * from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRsp';
-export * from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRspObjectsInner';
+export * from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRsp';
+export * from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspObjectsInner';
 export * from '../models/MarkNotificationReadReq';
 export * from '../models/MetaModel';
 export * from '../models/ModelContent';
@@ -62,7 +62,7 @@ export * from '../models/Payload1';
 export * from '../models/RunCloudFunctionScript';
 export * from '../models/ShareInfoModel';
 export * from '../models/SoftDeletedRsp';
-export * from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
+export * from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 export * from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 export * from '../models/SuccRspAuth0ConfigRsp';
 export * from '../models/SuccRspAuth0LoginRsp';
@@ -74,7 +74,7 @@ export * from '../models/SuccRspGetTokensRsp';
 export * from '../models/SuccRspListGetTokensRsp';
 export * from '../models/SuccRspListLinkedAccountRsp';
 export * from '../models/SuccRspListingRspDataNotificationDict';
-export * from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRsp';
+export * from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRsp';
 export * from '../models/SuccRspNoneType';
 export * from '../models/SuccRspSoftDeletedRsp';
 export * from '../models/SuccRspUnionExperimentRspViewModelsRspNoneType';
@@ -98,10 +98,10 @@ import { CloudFunctionKind } from '../models/CloudFunctionKind';
 import { CloudFunctionLang } from '../models/CloudFunctionLang';
 import { CloudFunctionTag } from '../models/CloudFunctionTag';
 import { Code2TokenRsp } from '../models/Code2TokenRsp';
-import { CreateArtifactReq, CreateArtifactReqObjectTypeEnum        } from '../models/CreateArtifactReq';
-import { CreateArtifactRsp, CreateArtifactRspObjectTypeEnum        } from '../models/CreateArtifactRsp';
 import { CreateCallbackReq, CreateCallbackReqObjectTypeEnum  , CreateCallbackReqLangEnum     } from '../models/CreateCallbackReq';
 import { CreateCallbackRsp, CreateCallbackRspObjectTypeEnum        } from '../models/CreateCallbackRsp';
+import { CreateDataReq, CreateDataReqObjectTypeEnum        } from '../models/CreateDataReq';
+import { CreateDataRsp, CreateDataRspObjectTypeEnum        } from '../models/CreateDataRsp';
 import { CreateEventReq, CreateEventReqObjectTypeEnum    } from '../models/CreateEventReq';
 import { CreateEventRsp, CreateEventRspObjectTypeEnum      } from '../models/CreateEventRsp';
 import { CreateExperiment, CreateExperimentObjectTypeEnum      , CreateExperimentRunOnEnum  , CreateExperimentDataFileTypeEnum     } from '../models/CreateExperiment';
@@ -140,8 +140,8 @@ import { ListLinkedAccountRsp } from '../models/ListLinkedAccountRsp';
 import { ListModelsRspItem, ListModelsRspItemObjectTypeEnum           } from '../models/ListModelsRspItem';
 import { ListObjectTmp  , ListObjectTmpObjectTypeEnum      , ListObjectTmpStatusEnum  , ListObjectTmpRunOnEnum  , ListObjectTmpHasModelEnum  , ListObjectTmpTagsEnum   } from '../models/ListObjectTmp';
 import { ListingRspDataNotificationDict } from '../models/ListingRspDataNotificationDict';
-import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRsp } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRsp';
-import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRspObjectsInner            , ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRspObjectsInnerObjectTypeEnum                 } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRspObjectsInner';
+import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRsp } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRsp';
+import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspObjectsInner            , ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspObjectsInnerObjectTypeEnum                 } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspObjectsInner';
 import { MarkNotificationReadReq , MarkNotificationReadReqStatusEnum   } from '../models/MarkNotificationReadReq';
 import { MetaModel } from '../models/MetaModel';
 import { ModelContent } from '../models/ModelContent';
@@ -156,7 +156,7 @@ import { Payload1Class } from '../models/Payload1';
 import { RunCloudFunctionScript, RunCloudFunctionScriptObjectTypeEnum   , RunCloudFunctionScriptEngineEnum    } from '../models/RunCloudFunctionScript';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SoftDeletedRsp } from '../models/SoftDeletedRsp';
-import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectTypeStatusEnum    } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
+import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectTypeStatusEnum    } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectTypeStatusEnum    } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAuth0ConfigRsp, SuccRspAuth0ConfigRspStatusEnum    } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp, SuccRspAuth0LoginRspStatusEnum    } from '../models/SuccRspAuth0LoginRsp';
@@ -168,7 +168,7 @@ import { SuccRspGetTokensRsp, SuccRspGetTokensRspStatusEnum    } from '../models
 import { SuccRspListGetTokensRsp, SuccRspListGetTokensRspStatusEnum    } from '../models/SuccRspListGetTokensRsp';
 import { SuccRspListLinkedAccountRsp, SuccRspListLinkedAccountRspStatusEnum    } from '../models/SuccRspListLinkedAccountRsp';
 import { SuccRspListingRspDataNotificationDict, SuccRspListingRspDataNotificationDictStatusEnum    } from '../models/SuccRspListingRspDataNotificationDict';
-import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRsp, SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRspStatusEnum    } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRsp';
+import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRsp, SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspStatusEnum    } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRsp';
 import { SuccRspNoneType, SuccRspNoneTypeStatusEnum    } from '../models/SuccRspNoneType';
 import { SuccRspSoftDeletedRsp, SuccRspSoftDeletedRspStatusEnum    } from '../models/SuccRspSoftDeletedRsp';
 import { SuccRspUnionExperimentRspViewModelsRspNoneType, SuccRspUnionExperimentRspViewModelsRspNoneTypeStatusEnum    } from '../models/SuccRspUnionExperimentRspViewModelsRspNoneType';
@@ -202,11 +202,11 @@ let enumsMap: Set<string> = new Set<string>([
     "CloudFunctionKind",
     "CloudFunctionLang",
     "CloudFunctionTag",
-    "CreateArtifactReqObjectTypeEnum",
-    "CreateArtifactRspObjectTypeEnum",
     "CreateCallbackReqObjectTypeEnum",
     "CreateCallbackReqLangEnum",
     "CreateCallbackRspObjectTypeEnum",
+    "CreateDataReqObjectTypeEnum",
+    "CreateDataRspObjectTypeEnum",
     "CreateEventReqObjectTypeEnum",
     "CreateEventRspObjectTypeEnum",
     "CreateExperimentObjectTypeEnum",
@@ -237,7 +237,7 @@ let enumsMap: Set<string> = new Set<string>([
     "ListObjectTmpRunOnEnum",
     "ListObjectTmpHasModelEnum",
     "ListObjectTmpTagsEnum",
-    "ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRspObjectsInnerObjectTypeEnum",
+    "ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspObjectsInnerObjectTypeEnum",
     "MarkNotificationReadReqStatusEnum",
     "ModelTreeNodeTypeEnum",
     "PayloadObjectTypeEnum",
@@ -249,7 +249,7 @@ let enumsMap: Set<string> = new Set<string>([
     "Payload1EngineEnum",
     "RunCloudFunctionScriptObjectTypeEnum",
     "RunCloudFunctionScriptEngineEnum",
-    "SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectTypeStatusEnum",
+    "SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectTypeStatusEnum",
     "SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectTypeStatusEnum",
     "SuccRspAuth0ConfigRspStatusEnum",
     "SuccRspAuth0LoginRspStatusEnum",
@@ -261,7 +261,7 @@ let enumsMap: Set<string> = new Set<string>([
     "SuccRspListGetTokensRspStatusEnum",
     "SuccRspListLinkedAccountRspStatusEnum",
     "SuccRspListingRspDataNotificationDictStatusEnum",
-    "SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRspStatusEnum",
+    "SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspStatusEnum",
     "SuccRspNoneTypeStatusEnum",
     "SuccRspSoftDeletedRspStatusEnum",
     "SuccRspUnionExperimentRspViewModelsRspNoneTypeStatusEnum",
@@ -281,10 +281,10 @@ let typeMap: {[index: string]: any} = {
     "Auth0ConfigRsp": Auth0ConfigRsp,
     "Auth0LoginRsp": Auth0LoginRsp,
     "Code2TokenRsp": Code2TokenRsp,
-    "CreateArtifactReq": CreateArtifactReq,
-    "CreateArtifactRsp": CreateArtifactRsp,
     "CreateCallbackReq": CreateCallbackReq,
     "CreateCallbackRsp": CreateCallbackRsp,
+    "CreateDataReq": CreateDataReq,
+    "CreateDataRsp": CreateDataRsp,
     "CreateEventReq": CreateEventReq,
     "CreateEventRsp": CreateEventRsp,
     "CreateExperiment": CreateExperiment,
@@ -323,8 +323,8 @@ let typeMap: {[index: string]: any} = {
     "ListModelsRspItem": ListModelsRspItem,
     "ListObjectTmp": ListObjectTmp,
     "ListingRspDataNotificationDict": ListingRspDataNotificationDict,
-    "ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRsp": ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRsp,
-    "ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRspObjectsInner": ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRspObjectsInner,
+    "ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRsp": ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRsp,
+    "ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspObjectsInner": ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspObjectsInner,
     "MarkNotificationReadReq": MarkNotificationReadReq,
     "MetaModel": MetaModel,
     "ModelContent": ModelContent,
@@ -339,7 +339,7 @@ let typeMap: {[index: string]: any} = {
     "RunCloudFunctionScript": RunCloudFunctionScript,
     "ShareInfoModel": ShareInfoModel,
     "SoftDeletedRsp": SoftDeletedRsp,
-    "SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType": SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType,
+    "SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType": SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType,
     "SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType": SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType,
     "SuccRspAuth0ConfigRsp": SuccRspAuth0ConfigRsp,
     "SuccRspAuth0LoginRsp": SuccRspAuth0LoginRsp,
@@ -351,7 +351,7 @@ let typeMap: {[index: string]: any} = {
     "SuccRspListGetTokensRsp": SuccRspListGetTokensRsp,
     "SuccRspListLinkedAccountRsp": SuccRspListLinkedAccountRsp,
     "SuccRspListingRspDataNotificationDict": SuccRspListingRspDataNotificationDict,
-    "SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRsp": SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateArtifactRsp,
+    "SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRsp": SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRsp,
     "SuccRspNoneType": SuccRspNoneType,
     "SuccRspSoftDeletedRsp": SuccRspSoftDeletedRsp,
     "SuccRspUnionExperimentRspViewModelsRspNoneType": SuccRspUnionExperimentRspViewModelsRspNoneType,

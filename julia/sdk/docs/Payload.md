@@ -5,11 +5,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**value** | This is a oneOf model. The value must be exactly one of the following types: CreateArtifactReq, CreateCallbackReq, CreateEventReq, CreateExperiment, CreateExperimentShare, CreateModel, CreateRelationReq |  | [optional] 
+**value** | This is a oneOf model. The value must be exactly one of the following types: CreateCallbackReq, CreateDataReq, CreateEventReq, CreateExperiment, CreateExperimentShare, CreateModel, CreateRelationReq |  | [optional] 
 
 The discriminator field is `object_type` with the following mapping:
- - `artifact`: `CreateArtifactReq`
  - `callback`: `CreateCallbackReq`
+ - `data`: `CreateDataReq`
  - `event`: `CreateEventReq`
  - `experiment`: `CreateExperiment`
  - `model`: `CreateModel`

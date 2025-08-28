@@ -33,7 +33,7 @@ class TestData(unittest.TestCase):
         model = Data()
         if include_optional:
             return Data(
-                object_type = 'artifact',
+                object_type = 'data',
                 short_id = '',
                 name = '',
                 model_id = '',
@@ -83,7 +83,7 @@ class TestData(unittest.TestCase):
             )
         else:
             return Data(
-                object_type = 'artifact',
+                object_type = 'data',
                 short_id = '',
                 name = '',
                 meta = openapi_client.models._model_meta_in_rsp._ModelMetaInRsp(

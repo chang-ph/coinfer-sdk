@@ -92,7 +92,7 @@ export enum ViewObjectObjectTypeEnum {
     Event = 'event',
     Callback = 'callback',
     Relation = 'relation',
-    Artifact = 'artifact',
+    Data = 'data',
     Empty = ''
 }
 export enum ViewObjectFmtEnum {

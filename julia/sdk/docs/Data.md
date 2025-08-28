@@ -5,11 +5,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**value** | This is a oneOf model. The value must be exactly one of the following types: CreateArtifactRsp, CreateCallbackRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, ExperimentRsp, ListModelsRspItem |  | [optional] 
+**value** | This is a oneOf model. The value must be exactly one of the following types: CreateCallbackRsp, CreateDataRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, ExperimentRsp, ListModelsRspItem |  | [optional] 
 
 The discriminator field is `object_type` with the following mapping:
- - `artifact`: `CreateArtifactRsp`
  - `callback`: `CreateCallbackRsp`
+ - `data`: `CreateDataRsp`
  - `event`: `CreateEventRsp`
  - `experiment`: `ExperimentRsp`
  - `model`: `ListModelsRspItem`
