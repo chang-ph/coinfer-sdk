@@ -75,14 +75,19 @@ class TestPayload1(unittest.TestCase):
                 datas = [
                     { }
                     ],
-                logs = [
-                    openapi_client.models.data_typing.DataTyping(
-                        chain_name = '', 
-                        iteration = 56, 
-                        data = [
-                            { }
-                            ], )
-                    ]
+                logs = openapi_client.models.data_typing.DataTyping(
+                    iteration = {
+                        'key' : [
+                            null
+                            ]
+                        }, 
+                    vars = {
+                        'key' : {
+                            'key' : [
+                                null
+                                ]
+                            }
+                        }, )
             )
         else:
             return Payload1(
@@ -99,14 +104,19 @@ class TestPayload1(unittest.TestCase):
                 datas = [
                     { }
                     ],
-                logs = [
-                    openapi_client.models.data_typing.DataTyping(
-                        chain_name = '', 
-                        iteration = 56, 
-                        data = [
-                            { }
-                            ], )
-                    ],
+                logs = openapi_client.models.data_typing.DataTyping(
+                    iteration = {
+                        'key' : [
+                            null
+                            ]
+                        }, 
+                    vars = {
+                        'key' : {
+                            'key' : [
+                                null
+                                ]
+                            }
+                        }, ),
         )
         """
 

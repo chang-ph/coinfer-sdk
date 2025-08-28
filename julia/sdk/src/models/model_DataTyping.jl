@@ -5,39 +5,34 @@
 @doc raw"""DataTyping
 
     DataTyping(;
-        chain_name=nothing,
         iteration=nothing,
-        data=nothing,
+        vars=nothing,
     )
 
-    - chain_name::String
-    - iteration::Int64
-    - data::Vector{Dict{String, Any}}
+    - iteration::Dict{String, Vector{Any}}
+    - vars::Dict{String, Dict{String, Vector{Any}}}
 """
 Base.@kwdef mutable struct DataTyping <: OpenAPI.APIModel
-    chain_name::Union{Nothing, String} = nothing
-    iteration::Union{Nothing, Int64} = nothing
-    data::Union{Nothing, Vector{Dict{String, Any}}} = nothing
+    iteration::Union{Nothing, Dict{String, Vector{Any}}} = nothing
+    vars::Union{Nothing, Dict{String, Dict{String, Vector{Any}}}} = nothing
 
-    function DataTyping(chain_name, iteration, data, )
-        OpenAPI.validate_property(DataTyping, Symbol("chain_name"), chain_name)
+    function DataTyping(iteration, vars, )
         OpenAPI.validate_property(DataTyping, Symbol("iteration"), iteration)
-        OpenAPI.validate_property(DataTyping, Symbol("data"), data)
-        return new(chain_name, iteration, data, )
+        OpenAPI.validate_property(DataTyping, Symbol("vars"), vars)
+        return new(iteration, vars, )
     end
 end # type DataTyping
 
-const _property_types_DataTyping = Dict{Symbol,String}(Symbol("chain_name")=>"String", Symbol("iteration")=>"Int64", Symbol("data")=>"Vector{Dict{String, Any}}", )
+const _property_types_DataTyping = Dict{Symbol,String}(Symbol("iteration")=>"Dict{String, Vector{Any}}", Symbol("vars")=>"Dict{String, Dict{String, Vector{Any}}}", )
 OpenAPI.property_type(::Type{ DataTyping }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_DataTyping[name]))}
 
 function check_required(o::DataTyping)
-    o.chain_name === nothing && (return false)
     o.iteration === nothing && (return false)
+    o.vars === nothing && (return false)
     true
 end
 
 function OpenAPI.validate_property(::Type{ DataTyping }, name::Symbol, val)
-
 
 
 end

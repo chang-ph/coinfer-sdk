@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 **n_samples** | **int** |  | [optional] [default to 0]
 **sample_update_time** | **datetime** |  | [optional] 
 **datas** | **List[Dict[str, object]]** | list of messages | 
-**logs** | [**List[DataTyping]**](DataTyping.md) |  | 
+**logs** | [**DataTyping**](DataTyping.md) |  | 
 
 ## Example
 

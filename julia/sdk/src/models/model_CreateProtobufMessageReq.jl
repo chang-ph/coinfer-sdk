@@ -14,13 +14,13 @@
     - object_type::String
     - batch_id::String
     - run_id::String
-    - logs::Vector{DataTyping}
+    - logs::DataTyping
 """
 Base.@kwdef mutable struct CreateProtobufMessageReq <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
     batch_id::Union{Nothing, String} = nothing
     run_id::Union{Nothing, String} = nothing
-    logs::Union{Nothing, Vector} = nothing # spec type: Union{ Nothing, Vector{DataTyping} }
+    logs = nothing # spec type: Union{ Nothing, DataTyping }
 
     function CreateProtobufMessageReq(object_type, batch_id, run_id, logs, )
         OpenAPI.validate_property(CreateProtobufMessageReq, Symbol("object_type"), object_type)
@@ -31,7 +31,7 @@ Base.@kwdef mutable struct CreateProtobufMessageReq <: OpenAPI.APIModel
     end
 end # type CreateProtobufMessageReq
 
-const _property_types_CreateProtobufMessageReq = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("batch_id")=>"String", Symbol("run_id")=>"String", Symbol("logs")=>"Vector{DataTyping}", )
+const _property_types_CreateProtobufMessageReq = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("batch_id")=>"String", Symbol("run_id")=>"String", Symbol("logs")=>"DataTyping", )
 OpenAPI.property_type(::Type{ CreateProtobufMessageReq }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_CreateProtobufMessageReq[name]))}
 
 function check_required(o::CreateProtobufMessageReq)
