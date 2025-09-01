@@ -36,6 +36,8 @@ export class ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRsp
     'object2Id': string;
     'description': string;
     'updatedAt': Date;
+    'path'?: string;
+    'fmt'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -203,6 +205,18 @@ export class ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRsp
             "baseName": "updated_at",
             "type": "Date",
             "format": "date-time"
+        },
+        {
+            "name": "path",
+            "baseName": "path",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "fmt",
+            "baseName": "fmt",
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {

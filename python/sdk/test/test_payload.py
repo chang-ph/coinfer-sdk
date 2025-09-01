@@ -57,6 +57,7 @@ class TestPayload(unittest.TestCase):
                 lambda_image = True,
                 source_url = '',
                 model_id = '',
+                input_id = '',
                 xp_meta = None,
                 meta = None,
                 run_on = 'Lambda',

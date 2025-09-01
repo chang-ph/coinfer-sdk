@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **object_type** | **str** |  | 
 **batch_id** | **str** |  | 
 **run_id** | **str** |  | 
-**logs** | [**DataTyping**](DataTyping.md) |  | 
+**logs** | [**List[DataTyping]**](DataTyping.md) |  | 
 
 ## Example
 

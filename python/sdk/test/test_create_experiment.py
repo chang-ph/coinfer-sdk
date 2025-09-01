@@ -35,6 +35,7 @@ class TestCreateExperiment(unittest.TestCase):
             return CreateExperiment(
                 object_type = 'experiment',
                 model_id = '',
+                input_id = '',
                 xp_meta = None,
                 meta = None,
                 name = '',

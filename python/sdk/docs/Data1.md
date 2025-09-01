@@ -30,6 +30,11 @@ Name | Type | Description | Notes
 **progress** | **str** |  | 
 **message** | **str** |  | [optional] [default to '']
 **logs** | **List[List[object]]** |  | 
+**description** | **str** |  | 
+**created_at** | **datetime** |  | 
+**updated_at** | **datetime** |  | 
+**path** | **str** |  | [optional] [default to '']
+**fmt** | **str** |  | [optional] [default to 'raw']
 
 ## Example
 

@@ -33,33 +33,16 @@ class TestDataTyping(unittest.TestCase):
         model = DataTyping()
         if include_optional:
             return DataTyping(
-                iteration = {
-                    'key' : [
-                        null
-                        ]
-                    },
-                vars = {
-                    'key' : {
-                        'key' : [
-                            null
-                            ]
-                        }
-                    }
+                chain_name = '',
+                iteration = 56,
+                data = [
+                    { }
+                    ]
             )
         else:
             return DataTyping(
-                iteration = {
-                    'key' : [
-                        null
-                        ]
-                    },
-                vars = {
-                    'key' : {
-                        'key' : [
-                            null
-                            ]
-                        }
-                    },
+                chain_name = '',
+                iteration = 56,
         )
         """
 

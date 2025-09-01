@@ -15,9 +15,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
-from typing import Any, ClassVar, Dict, List
-from typing_extensions import Annotated
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -25,9 +24,10 @@ class DataTyping(BaseModel):
     """
     DataTyping
     """ # noqa: E501
-    iteration: Dict[str, Annotated[List[Any], Field(min_length=2, max_length=2)]]
-    vars: Dict[str, Dict[str, List[Any]]]
-    __properties: ClassVar[List[str]] = ["iteration", "vars"]
+    chain_name: StrictStr
+    iteration: StrictInt
+    data: Optional[List[Dict[str, Any]]] = None
+    __properties: ClassVar[List[str]] = ["chain_name", "iteration", "data"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,8 +80,9 @@ class DataTyping(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "chain_name": obj.get("chain_name"),
             "iteration": obj.get("iteration"),
-            "vars": obj.get("vars")
+            "data": obj.get("data")
         })
         return _obj
 

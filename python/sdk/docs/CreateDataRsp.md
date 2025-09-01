@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **short_id** | **str** |  | 
 **created_at** | **datetime** |  | 
 **updated_at** | **datetime** |  | 
+**path** | **str** |  | [optional] [default to '']
+**fmt** | **str** |  | [optional] [default to 'raw']
 
 ## Example
 

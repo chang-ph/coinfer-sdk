@@ -3,6 +3,7 @@ import { HttpFile } from '../http/http';
 export class CreateExperiment {
     'objectType': CreateExperimentObjectTypeEnum;
     'modelId'?: string;
+    'inputId'?: string;
     'xpMeta'?: any | null;
     'meta'?: any | null;
     'name'?: string;
@@ -31,6 +32,12 @@ export class CreateExperiment {
         {
             "name": "modelId",
             "baseName": "model_id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "inputId",
+            "baseName": "input_id",
             "type": "string",
             "format": ""
         },

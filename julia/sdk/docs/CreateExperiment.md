@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **object_type** | **String** |  | [default to nothing]
 **model_id** | **String** |  | [optional] [default to ""]
+**input_id** | **String** |  | [optional] [default to ""]
 **xp_meta** | **Any** |  | [optional] [default to nothing]
 **meta** | **Any** |  | [optional] [default to nothing]
 **name** | **String** |  | [optional] [default to ""]

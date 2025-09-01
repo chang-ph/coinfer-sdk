@@ -7,6 +7,8 @@ export class CreateDataRsp {
     'shortId': string;
     'createdAt': Date;
     'updatedAt': Date;
+    'path'?: string;
+    'fmt'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -48,6 +50,18 @@ export class CreateDataRsp {
             "baseName": "updated_at",
             "type": "Date",
             "format": "date-time"
+        },
+        {
+            "name": "path",
+            "baseName": "path",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "fmt",
+            "baseName": "fmt",
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {

@@ -1,8 +1,9 @@
 import { HttpFile } from '../http/http';
 
 export class DataTyping {
-    'iteration': { [key: string]: Array<any>; };
-    'vars': { [key: string]: { [key: string]: Array<any>; }; };
+    'chainName': string;
+    'iteration': number;
+    'data'?: Array<{ [key: string]: any; }>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -10,15 +11,21 @@ export class DataTyping {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "iteration",
-            "baseName": "iteration",
-            "type": "{ [key: string]: Array<any>; }",
+            "name": "chainName",
+            "baseName": "chain_name",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "vars",
-            "baseName": "vars",
-            "type": "{ [key: string]: { [key: string]: Array<any>; }; }",
+            "name": "iteration",
+            "baseName": "iteration",
+            "type": "number",
+            "format": ""
+        },
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "Array<{ [key: string]: any; }>",
             "format": ""
         }    ];
 

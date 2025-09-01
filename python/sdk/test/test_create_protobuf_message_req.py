@@ -36,38 +36,28 @@ class TestCreateProtobufMessageReq(unittest.TestCase):
                 object_type = 'experiment.protobuf_message',
                 batch_id = '',
                 run_id = '',
-                logs = openapi_client.models.data_typing.DataTyping(
-                    iteration = {
-                        'key' : [
-                            null
-                            ]
-                        }, 
-                    vars = {
-                        'key' : {
-                            'key' : [
-                                null
-                                ]
-                            }
-                        }, )
+                logs = [
+                    openapi_client.models.data_typing.DataTyping(
+                        chain_name = '', 
+                        iteration = 56, 
+                        data = [
+                            { }
+                            ], )
+                    ]
             )
         else:
             return CreateProtobufMessageReq(
                 object_type = 'experiment.protobuf_message',
                 batch_id = '',
                 run_id = '',
-                logs = openapi_client.models.data_typing.DataTyping(
-                    iteration = {
-                        'key' : [
-                            null
-                            ]
-                        }, 
-                    vars = {
-                        'key' : {
-                            'key' : [
-                                null
-                                ]
-                            }
-                        }, ),
+                logs = [
+                    openapi_client.models.data_typing.DataTyping(
+                        chain_name = '', 
+                        iteration = 56, 
+                        data = [
+                            { }
+                            ], )
+                    ],
         )
         """
 

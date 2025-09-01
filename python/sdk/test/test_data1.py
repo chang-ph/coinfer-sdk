@@ -33,7 +33,7 @@ class TestData1(unittest.TestCase):
         model = Data1()
         if include_optional:
             return Data1(
-                object_type = 'experiment.plot',
+                object_type = 'data',
                 short_id = '',
                 name = '',
                 model_id = '',
@@ -74,11 +74,16 @@ class TestData1(unittest.TestCase):
                     [
                         null
                         ]
-                    ]
+                    ],
+                description = '',
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                path = '',
+                fmt = 'raw'
             )
         else:
             return Data1(
-                object_type = 'experiment.plot',
+                object_type = 'data',
                 short_id = '',
                 name = '',
                 status = '',
@@ -100,6 +105,9 @@ class TestData1(unittest.TestCase):
                         null
                         ]
                     ],
+                description = '',
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
         """
 

@@ -11,6 +11,8 @@
         short_id=nothing,
         created_at=nothing,
         updated_at=nothing,
+        path="",
+        fmt="raw",
     )
 
     - object_type::String
@@ -19,6 +21,8 @@
     - short_id::String
     - created_at::ZonedDateTime
     - updated_at::ZonedDateTime
+    - path::String
+    - fmt::String
 """
 Base.@kwdef mutable struct CreateDataRsp <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
@@ -27,19 +31,23 @@ Base.@kwdef mutable struct CreateDataRsp <: OpenAPI.APIModel
     short_id::Union{Nothing, String} = nothing
     created_at::Union{Nothing, ZonedDateTime} = nothing
     updated_at::Union{Nothing, ZonedDateTime} = nothing
+    path::Union{Nothing, String} = ""
+    fmt::Union{Nothing, String} = "raw"
 
-    function CreateDataRsp(object_type, name, description, short_id, created_at, updated_at, )
+    function CreateDataRsp(object_type, name, description, short_id, created_at, updated_at, path, fmt, )
         OpenAPI.validate_property(CreateDataRsp, Symbol("object_type"), object_type)
         OpenAPI.validate_property(CreateDataRsp, Symbol("name"), name)
         OpenAPI.validate_property(CreateDataRsp, Symbol("description"), description)
         OpenAPI.validate_property(CreateDataRsp, Symbol("short_id"), short_id)
         OpenAPI.validate_property(CreateDataRsp, Symbol("created_at"), created_at)
         OpenAPI.validate_property(CreateDataRsp, Symbol("updated_at"), updated_at)
-        return new(object_type, name, description, short_id, created_at, updated_at, )
+        OpenAPI.validate_property(CreateDataRsp, Symbol("path"), path)
+        OpenAPI.validate_property(CreateDataRsp, Symbol("fmt"), fmt)
+        return new(object_type, name, description, short_id, created_at, updated_at, path, fmt, )
     end
 end # type CreateDataRsp
 
-const _property_types_CreateDataRsp = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("name")=>"String", Symbol("description")=>"String", Symbol("short_id")=>"String", Symbol("created_at")=>"ZonedDateTime", Symbol("updated_at")=>"ZonedDateTime", )
+const _property_types_CreateDataRsp = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("name")=>"String", Symbol("description")=>"String", Symbol("short_id")=>"String", Symbol("created_at")=>"ZonedDateTime", Symbol("updated_at")=>"ZonedDateTime", Symbol("path")=>"String", Symbol("fmt")=>"String", )
 OpenAPI.property_type(::Type{ CreateDataRsp }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_CreateDataRsp[name]))}
 
 function check_required(o::CreateDataRsp)
@@ -69,4 +77,6 @@ function OpenAPI.validate_property(::Type{ CreateDataRsp }, name::Symbol, val)
     if name === Symbol("updated_at")
         OpenAPI.validate_param(name, "CreateDataRsp", :format, val, "date-time")
     end
+
+
 end

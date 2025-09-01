@@ -32,6 +32,8 @@ Name | Type | Description | Notes
 **object2_id** | **str** |  | 
 **description** | **str** |  | 
 **updated_at** | **datetime** |  | 
+**path** | **str** |  | [optional] [default to '']
+**fmt** | **str** |  | [optional] [default to 'raw']
 
 ## Example
 

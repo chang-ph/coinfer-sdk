@@ -5,8 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**iteration** | **Dict[str, List[object]]** |  | 
-**vars** | **Dict[str, Dict[str, List[object]]]** |  | 
+**chain_name** | **str** |  | 
+**iteration** | **int** |  | 
+**data** | **List[Dict[str, object]]** |  | [optional] 
 
 ## Example
 

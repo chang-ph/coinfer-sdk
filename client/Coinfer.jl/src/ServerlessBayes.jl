@@ -98,7 +98,7 @@ function as_withdata(file::String; fmt=nothing)
 end
 
 function as_local(cd::OpaqueData)
-    url = endpoint("mcmc", "/object/$(cd.cloud_id)")
+    url = endpoint("api", "/object/$(cd.cloud_id)")
     headers = headers_with_token()
     resp = @mock HTTP.get(url, headers)
     data = response_data(resp)
