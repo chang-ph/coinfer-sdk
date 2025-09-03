@@ -119,6 +119,7 @@ export enum ListObjectTmpObjectTypeEnum {
     Callback = 'callback',
     Relation = 'relation',
     Data = 'data',
+    Workflow = 'workflow',
     Empty = ''
 }
 export enum ListObjectTmpStatusEnum {

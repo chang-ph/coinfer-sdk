@@ -8,7 +8,7 @@
     Data(; value=nothing)
 """
 mutable struct Data <: OpenAPI.OneOfAPIModel
-    value::Any # Union{ CreateCallbackRsp, CreateDataRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, ExperimentRsp, ListModelsRspItem }
+    value::Any # Union{ CreateCallbackRsp, CreateDataRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, CreateWorkflowRsp, ExperimentRsp, ListModelsRspItem }
     Data() = new()
     Data(value) = new(value)
 end # type Data
@@ -29,6 +29,8 @@ function OpenAPI.property_type(::Type{ Data }, name::Symbol, json::Dict{String,A
         return eval(Base.Meta.parse("CreateRelationRsp"))
     elseif discriminator == "share"
         return eval(Base.Meta.parse("CreateExperimentShareRsp"))
+    elseif discriminator == "workflow"
+        return eval(Base.Meta.parse("CreateWorkflowRsp"))
     end
     throw(OpenAPI.ValidationException("Invalid discriminator value: $discriminator for Data"))
 end

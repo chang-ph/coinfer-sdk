@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **object_type** | **str** |  | 
 **short_id** | **str** |  | 
 **name** | **str** |  | 
-**model_id** | **str** |  | [optional] [default to '']
+**model_id** | **str** |  | 
 **status** | **str** |  | 
 **meta** | [**ModelMetaInRsp**](ModelMetaInRsp.md) |  | 
 **n_chains** | **int** |  | [optional] [default to 0]
@@ -35,6 +35,8 @@ Name | Type | Description | Notes
 **updated_at** | **datetime** |  | 
 **path** | **str** |  | [optional] [default to '']
 **fmt** | **str** |  | [optional] [default to 'raw']
+**data_id** | **str** |  | [optional] 
+**data_name** | **str** |  | [optional] [default to '']
 
 ## Example
 

@@ -20,13 +20,14 @@ from openapi_client.models.create_data_rsp import CreateDataRsp
 from openapi_client.models.create_event_rsp import CreateEventRsp
 from openapi_client.models.create_experiment_share_rsp import CreateExperimentShareRsp
 from openapi_client.models.create_relation_rsp import CreateRelationRsp
+from openapi_client.models.create_workflow_rsp import CreateWorkflowRsp
 from openapi_client.models.experiment_rsp import ExperimentRsp
 from openapi_client.models.list_models_rsp_item import ListModelsRspItem
 from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-DATA_ONE_OF_SCHEMAS = ["CreateCallbackRsp", "CreateDataRsp", "CreateEventRsp", "CreateExperimentShareRsp", "CreateRelationRsp", "ExperimentRsp", "ListModelsRspItem"]
+DATA_ONE_OF_SCHEMAS = ["CreateCallbackRsp", "CreateDataRsp", "CreateEventRsp", "CreateExperimentShareRsp", "CreateRelationRsp", "CreateWorkflowRsp", "ExperimentRsp", "ListModelsRspItem"]
 
 class Data(BaseModel):
     """
@@ -46,8 +47,10 @@ class Data(BaseModel):
     oneof_schema_6_validator: Optional[CreateRelationRsp] = None
     # data type: CreateDataRsp
     oneof_schema_7_validator: Optional[CreateDataRsp] = None
-    actual_instance: Optional[Union[CreateCallbackRsp, CreateDataRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, ExperimentRsp, ListModelsRspItem]] = None
-    one_of_schemas: Set[str] = { "CreateCallbackRsp", "CreateDataRsp", "CreateEventRsp", "CreateExperimentShareRsp", "CreateRelationRsp", "ExperimentRsp", "ListModelsRspItem" }
+    # data type: CreateWorkflowRsp
+    oneof_schema_8_validator: Optional[CreateWorkflowRsp] = None
+    actual_instance: Optional[Union[CreateCallbackRsp, CreateDataRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, CreateWorkflowRsp, ExperimentRsp, ListModelsRspItem]] = None
+    one_of_schemas: Set[str] = { "CreateCallbackRsp", "CreateDataRsp", "CreateEventRsp", "CreateExperimentShareRsp", "CreateRelationRsp", "CreateWorkflowRsp", "ExperimentRsp", "ListModelsRspItem" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -108,12 +111,17 @@ class Data(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `CreateDataRsp`")
         else:
             match += 1
+        # validate data type: CreateWorkflowRsp
+        if not isinstance(v, CreateWorkflowRsp):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `CreateWorkflowRsp`")
+        else:
+            match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in Data with oneOf schemas: CreateCallbackRsp, CreateDataRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, ExperimentRsp, ListModelsRspItem. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in Data with oneOf schemas: CreateCallbackRsp, CreateDataRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, CreateWorkflowRsp, ExperimentRsp, ListModelsRspItem. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in Data with oneOf schemas: CreateCallbackRsp, CreateDataRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, ExperimentRsp, ListModelsRspItem. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in Data with oneOf schemas: CreateCallbackRsp, CreateDataRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, CreateWorkflowRsp, ExperimentRsp, ListModelsRspItem. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -170,13 +178,19 @@ class Data(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into CreateWorkflowRsp
+        try:
+            instance.actual_instance = CreateWorkflowRsp.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into Data with oneOf schemas: CreateCallbackRsp, CreateDataRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, ExperimentRsp, ListModelsRspItem. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into Data with oneOf schemas: CreateCallbackRsp, CreateDataRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, CreateWorkflowRsp, ExperimentRsp, ListModelsRspItem. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Data with oneOf schemas: CreateCallbackRsp, CreateDataRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, ExperimentRsp, ListModelsRspItem. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into Data with oneOf schemas: CreateCallbackRsp, CreateDataRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, CreateWorkflowRsp, ExperimentRsp, ListModelsRspItem. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -190,7 +204,7 @@ class Data(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], CreateCallbackRsp, CreateDataRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, ExperimentRsp, ListModelsRspItem]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], CreateCallbackRsp, CreateDataRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, CreateWorkflowRsp, ExperimentRsp, ListModelsRspItem]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

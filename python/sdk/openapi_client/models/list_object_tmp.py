@@ -41,8 +41,8 @@ class ListObjectTmp(BaseModel):
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['model', 'experiment', 'share', 'event', 'callback', 'relation', 'data', '']):
-            raise ValueError("must be one of enum values ('model', 'experiment', 'share', 'event', 'callback', 'relation', 'data', '')")
+        if value not in set(['model', 'experiment', 'share', 'event', 'callback', 'relation', 'data', 'workflow', '']):
+            raise ValueError("must be one of enum values ('model', 'experiment', 'share', 'event', 'callback', 'relation', 'data', 'workflow', '')")
         return value
 
     @field_validator('status')

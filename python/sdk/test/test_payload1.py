@@ -33,7 +33,7 @@ class TestPayload1(unittest.TestCase):
         model = Payload1()
         if include_optional:
             return Payload1(
-                object_type = 'experiment.protobuf_message',
+                object_type = 'workflow.run',
                 batch_id = '',
                 run_id = '',
                 chain_name = '',
@@ -64,7 +64,7 @@ class TestPayload1(unittest.TestCase):
                     ''
                     ],
                 params = '',
-                engine = 'lambda',
+                engine = 'fargate',
                 lock_key = '',
                 action = '',
                 meta = { },
@@ -75,18 +75,28 @@ class TestPayload1(unittest.TestCase):
                 datas = [
                     { }
                     ],
-                logs = [
-                    openapi_client.models.data_typing.DataTyping(
-                        chain_name = '', 
-                        iteration = 56, 
-                        data = [
-                            { }
-                            ], )
-                    ]
+                logs = openapi_client.models.data_typing.DataTyping(
+                    iteration = {
+                        'key' : [
+                            null
+                            ]
+                        }, 
+                    vars = {
+                        'key' : {
+                            'key' : [
+                                null
+                                ]
+                            }
+                        }, ),
+                experiment_name = '',
+                iteration = 56,
+                parallel = 56,
+                chains = 56,
+                parallel_algorithm = 'Serial'
             )
         else:
             return Payload1(
-                object_type = 'experiment.protobuf_message',
+                object_type = 'workflow.run',
                 batch_id = '',
                 run_id = '',
                 chain_name = '',
@@ -99,14 +109,20 @@ class TestPayload1(unittest.TestCase):
                 datas = [
                     { }
                     ],
-                logs = [
-                    openapi_client.models.data_typing.DataTyping(
-                        chain_name = '', 
-                        iteration = 56, 
-                        data = [
-                            { }
-                            ], )
-                    ],
+                logs = openapi_client.models.data_typing.DataTyping(
+                    iteration = {
+                        'key' : [
+                            null
+                            ]
+                        }, 
+                    vars = {
+                        'key' : {
+                            'key' : [
+                                null
+                                ]
+                            }
+                        }, ),
+                experiment_name = '',
         )
         """
 

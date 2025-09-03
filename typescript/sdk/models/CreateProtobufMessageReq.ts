@@ -5,7 +5,7 @@ export class CreateProtobufMessageReq {
     'objectType': CreateProtobufMessageReqObjectTypeEnum;
     'batchId': string;
     'runId': string;
-    'logs': Array<DataTyping>;
+    'logs': DataTyping;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -33,7 +33,7 @@ export class CreateProtobufMessageReq {
         {
             "name": "logs",
             "baseName": "logs",
-            "type": "Array<DataTyping>",
+            "type": "DataTyping",
             "format": ""
         }    ];
 

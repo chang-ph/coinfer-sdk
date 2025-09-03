@@ -93,6 +93,7 @@ export enum ViewObjectObjectTypeEnum {
     Callback = 'callback',
     Relation = 'relation',
     Data = 'data',
+    Workflow = 'workflow',
     Empty = ''
 }
 export enum ViewObjectFmtEnum {

@@ -3,6 +3,7 @@ import { CreateDataRsp } from '../models/CreateDataRsp';
 import { CreateEventRsp } from '../models/CreateEventRsp';
 import { CreateExperimentShareRsp } from '../models/CreateExperimentShareRsp';
 import { CreateRelationRsp } from '../models/CreateRelationRsp';
+import { CreateWorkflowRsp } from '../models/CreateWorkflowRsp';
 import { ExperimentRsp } from '../models/ExperimentRsp';
 import { ListModelsRspItem } from '../models/ListModelsRspItem';
 import { HttpFile } from '../http/http';
@@ -12,7 +13,7 @@ import { HttpFile } from '../http/http';
  * Type
  * @export
  */
-export type Data = CreateCallbackRsp | CreateDataRsp | CreateEventRsp | CreateExperimentShareRsp | CreateRelationRsp | ExperimentRsp | ListModelsRspItem;
+export type Data = CreateCallbackRsp | CreateDataRsp | CreateEventRsp | CreateExperimentShareRsp | CreateRelationRsp | CreateWorkflowRsp | ExperimentRsp | ListModelsRspItem;
 
 /**
 * @type DataClass
@@ -29,8 +30,10 @@ export class DataClass {
         "model": "ListModelsRspItem",
         "relation": "CreateRelationRsp",
         "share": "CreateExperimentShareRsp",
+        "workflow": "CreateWorkflowRsp",
     };
 }
+
 
 
 

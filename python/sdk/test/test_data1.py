@@ -33,7 +33,7 @@ class TestData1(unittest.TestCase):
         model = Data1()
         if include_optional:
             return Data1(
-                object_type = 'data',
+                object_type = 'workflow',
                 short_id = '',
                 name = '',
                 model_id = '',
@@ -79,13 +79,16 @@ class TestData1(unittest.TestCase):
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 path = '',
-                fmt = 'raw'
+                fmt = 'raw',
+                data_id = '',
+                data_name = ''
             )
         else:
             return Data1(
-                object_type = 'data',
+                object_type = 'workflow',
                 short_id = '',
                 name = '',
+                model_id = '',
                 status = '',
                 meta = openapi_client.models._model_meta_in_rsp._ModelMetaInRsp(
                     github = '', 

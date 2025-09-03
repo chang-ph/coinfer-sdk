@@ -33,7 +33,7 @@ class TestPayload(unittest.TestCase):
         model = Payload()
         if include_optional:
             return Payload(
-                object_type = 'data',
+                object_type = 'workflow',
                 type = 'local',
                 env = '',
                 name = '0',
@@ -56,7 +56,7 @@ class TestPayload(unittest.TestCase):
                 entrance_file = '',
                 lambda_image = True,
                 source_url = '',
-                model_id = '',
+                model_id = '0',
                 input_id = '',
                 xp_meta = None,
                 meta = None,
@@ -77,13 +77,15 @@ class TestPayload(unittest.TestCase):
                 description = '',
                 base64_encoded = True,
                 data = '',
-                data_uri = ''
+                data_uri = '',
+                data_id = ''
             )
         else:
             return Payload(
-                object_type = 'data',
+                object_type = 'workflow',
                 name = '0',
                 lang = 'julia',
+                model_id = '0',
                 objid = '',
                 code = '',
                 object1_id = '',

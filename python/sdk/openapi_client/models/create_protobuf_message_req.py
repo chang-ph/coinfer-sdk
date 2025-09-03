@@ -28,7 +28,7 @@ class CreateProtobufMessageReq(BaseModel):
     object_type: StrictStr
     batch_id: StrictStr
     run_id: StrictStr
-    logs: List[DataTyping]
+    logs: DataTyping
     __properties: ClassVar[List[str]] = ["object_type", "batch_id", "run_id", "logs"]
 
     @field_validator('object_type')
@@ -77,13 +77,9 @@ class CreateProtobufMessageReq(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in logs (list)
-        _items = []
+        # override the default output from pydantic by calling `to_dict()` of logs
         if self.logs:
-            for _item_logs in self.logs:
-                if _item_logs:
-                    _items.append(_item_logs.to_dict())
-            _dict['logs'] = _items
+            _dict['logs'] = self.logs.to_dict()
         return _dict
 
     @classmethod
@@ -99,7 +95,7 @@ class CreateProtobufMessageReq(BaseModel):
             "object_type": obj.get("object_type"),
             "batch_id": obj.get("batch_id"),
             "run_id": obj.get("run_id"),
-            "logs": [DataTyping.from_dict(_item) for _item in obj["logs"]] if obj.get("logs") is not None else None
+            "logs": DataTyping.from_dict(obj["logs"]) if obj.get("logs") is not None else None
         })
         return _obj
 

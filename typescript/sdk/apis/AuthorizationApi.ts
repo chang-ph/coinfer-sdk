@@ -63,7 +63,7 @@ export class AuthorizationApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Get Auth0 login configuration
      *
-     * Returns the configurations need by the frontend to implement Auth0 login. By using an API to provide this information, we avoid hardcoding them in the frontend code.  This API doen\'t need authorization as it is usually called before login.
+     * Returns the configurations need by the frontend to implement Auth0 login. By using an API to provide this information, we avoid hardcoding them in the frontend code.  This API doesn\'t need authorization as it is usually called before login.
      */
     public async auth0Config(_options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;

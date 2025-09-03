@@ -1,4 +1,5 @@
 import { CreateDataRsp } from '../models/CreateDataRsp';
+import { CreateWorkflowRsp } from '../models/CreateWorkflowRsp';
 import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
 import { ExperimentPlotRsp } from '../models/ExperimentPlotRsp';
 import { ExperimentRsp } from '../models/ExperimentRsp';
@@ -13,7 +14,7 @@ import { HttpFile } from '../http/http';
  * Type
  * @export
  */
-export type Data1 = CreateDataRsp | ExperimentCloudwatchLogRsp | ExperimentPlotRsp | ExperimentRsp | ExperimentSampleDataRsp | GetExperimentRunInfoRsp | ViewExperimentShareRsp | ViewModelsRsp;
+export type Data1 = CreateDataRsp | CreateWorkflowRsp | ExperimentCloudwatchLogRsp | ExperimentPlotRsp | ExperimentRsp | ExperimentSampleDataRsp | GetExperimentRunInfoRsp | ViewExperimentShareRsp | ViewModelsRsp;
 
 /**
 * @type Data1Class
@@ -31,8 +32,10 @@ export class Data1Class {
         "experiment.sampledata": "ExperimentSampleDataRsp",
         "model": "ViewModelsRsp",
         "share": "ViewExperimentShareRsp",
+        "workflow": "CreateWorkflowRsp",
     };
 }
+
 
 
 

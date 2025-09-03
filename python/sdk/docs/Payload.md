@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **object_type** | **str** |  | 
 **type** | **str** | The type of input code. It can be:  * local: the code is provided directly in &#x60;content&#x60; field as Unified Model Format. * url: the code is provided by a URL and specified by param &#x60;source_url&#x60;. | [optional] [default to 'local']
 **env** | **str** |  | [optional] 
-**name** | **str** | Data name | 
+**name** | **str** | workflow name | 
 **content** | [**ModelContent**](ModelContent.md) |  | [optional] 
 **is_demo** | **bool** |  | [optional] [default to False]
 **tag** | [**CloudFunctionKind**](CloudFunctionKind.md) |  | [optional] 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **entrance_file** | **str** |  | [optional] [default to '']
 **lambda_image** | **bool** | Whether to build lambda image for this CloudFunction | [optional] [default to False]
 **source_url** | **str** | Source URL from where to import the model | [optional] [default to '']
-**model_id** | **str** |  | [optional] [default to '']
+**model_id** | **str** | model ID | 
 **input_id** | **str** |  | [optional] [default to '']
 **xp_meta** | **object** |  | [optional] 
 **meta** | **object** |  | [optional] 
@@ -35,6 +35,7 @@ Name | Type | Description | Notes
 **base64_encoded** | **bool** | Whether the data in &#x60;data_file&#x60; is base64 encoded | [optional] [default to False]
 **data** | **str** | File data in text format | [optional] [default to '']
 **data_uri** | **str** | File data URI | [optional] [default to '']
+**data_id** | **str** | data ID | [optional] [default to '']
 
 ## Example
 

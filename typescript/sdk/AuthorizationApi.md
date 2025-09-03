@@ -70,7 +70,7 @@ This endpoint does not need any parameter.
 # **auth0Config**
 > SuccRspAuth0ConfigRsp auth0Config()
 
-Returns the configurations need by the frontend to implement Auth0 login. By using an API to provide this information, we avoid hardcoding them in the frontend code.  This API doen\'t need authorization as it is usually called before login.
+Returns the configurations need by the frontend to implement Auth0 login. By using an API to provide this information, we avoid hardcoding them in the frontend code.  This API doesn\'t need authorization as it is usually called before login.
 
 ### Example
 

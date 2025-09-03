@@ -5,6 +5,7 @@ import { CreateExperiment } from '../models/CreateExperiment';
 import { CreateExperimentShare } from '../models/CreateExperimentShare';
 import { CreateModel } from '../models/CreateModel';
 import { CreateRelationReq } from '../models/CreateRelationReq';
+import { CreateWorkflowReq } from '../models/CreateWorkflowReq';
 import { HttpFile } from '../http/http';
 
 /**
@@ -12,7 +13,7 @@ import { HttpFile } from '../http/http';
  * Type
  * @export
  */
-export type Payload = CreateCallbackReq | CreateDataReq | CreateEventReq | CreateExperiment | CreateExperimentShare | CreateModel | CreateRelationReq;
+export type Payload = CreateCallbackReq | CreateDataReq | CreateEventReq | CreateExperiment | CreateExperimentShare | CreateModel | CreateRelationReq | CreateWorkflowReq;
 
 /**
 * @type PayloadClass
@@ -29,8 +30,10 @@ export class PayloadClass {
         "model": "CreateModel",
         "relation": "CreateRelationReq",
         "share": "CreateExperimentShare",
+        "workflow": "CreateWorkflowReq",
     };
 }
+
 
 
 

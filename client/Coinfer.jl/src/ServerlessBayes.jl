@@ -22,7 +22,7 @@ using UUIDs
 using DocStringExtensions
 
 ### msg_collector
-interval = parse(Int, get(ENV, "COINFER_DATA_SENDING_INTERVAL", "1000"))
+interval = parse(Int, get(ENV, "COINFER_DATA_SENDING_INTERVAL", "3000"))
 function default_endpoints()
     return get(ENV, "COINFER_SERVER_ENDPOINT", "https://api.coinfer.ai")
 end
@@ -49,7 +49,7 @@ function open_collector(context_func::Function, name, send_func::Function)
     end
 end
 
-function collect_msg!(collector, data)
+function collect_msg!(collector::MsgCollector, data)
     lock(collector.lock) do
         push!(collector.datas, data)
         now = Dates.now()
@@ -59,6 +59,136 @@ function collect_msg!(collector, data)
             collector.send_func(collector.datas)
             empty!(collector.datas)
             collector.last_send_time = now
+        end
+    end
+end
+
+mutable struct DataCollector
+    name::String
+    datas::Dict{String,Dict{Int,Vector{Any}}}
+    last_send_time
+    send_func::Function
+    lock::Base.AbstractLock
+
+    # This is used to generate a seqno, so that the data can be ordered by a combination of:
+    # 1. The time at which the experiment is started
+    # 2. The seqno of the data
+    start_time::Int128
+end
+function DataCollector(name::String, send_func::Function)
+    return DataCollector(
+        name,
+        Dict{String,Dict{Int,Vector{Any}}}(),
+        Dates.now(),
+        send_func,
+        ReentrantLock(),
+        trunc(Int128, time() * 1E10),
+    )
+end
+
+function open_data_collector(context_func::Function, name, send_func::Function)
+    collector = DataCollector(name, send_func)
+    try
+        context_func(collector)
+    finally
+        vars = Dict{String,Dict{String,Vector{Any}}}()  # chain_name => var_name => var_vals
+        chain_iteration = Dict{String,Tuple{Int,Int,Int128}}()  # The min and max iteration value of each chain
+
+        for (chain_name, chain_data) in collector.datas
+            chain_iteration[chain_name] = tuple(typemax(Int), 0, 0)
+            if !haskey(vars, chain_name)
+                vars[chain_name] = Dict{String,Vector{Any}}()
+            end
+
+            sorted_items = sort(collect(chain_data); by=x -> x[1])  # sort by iteration
+            for (iteration, var_datas) in sorted_items
+                for (varname, varval) in var_datas
+                    if !(isa(varval, Number) || isa(varval, Bool))
+                        continue
+                    end
+                    if !haskey(vars[chain_name], varname)
+                        vars[chain_name][varname] = Vector{Any}()
+                    end
+
+                    push!(vars[chain_name][varname], varval)
+                end
+                chain_iteration[chain_name] = tuple(
+                    min(chain_iteration[chain_name][1], iteration),
+                    max(chain_iteration[chain_name][2], iteration),
+                    collector.start_time + max(chain_iteration[chain_name][2], iteration),
+                )
+            end
+        end
+
+        if !isempty(vars) && !all(isempty(x) for x in values(vars))
+            # println("$(collector.name) sending $(chain_iteration) messages")
+            collector.send_func(Dict(:vars=>vars, :iteration=>chain_iteration))
+        end
+    end
+end
+function collect_msg!(collector::DataCollector, data::Dict{Symbol,Any})
+    lock(collector.lock) do
+        chain_name = data[:chain_name]
+        iteration = data[:iteration]
+
+        if !haskey(collector.datas, chain_name)
+            collector.datas[chain_name] = Dict{Int,Vector{Any}}()
+        end
+
+        chain_dict = collector.datas[chain_name]
+
+        if !haskey(chain_dict, iteration)
+            chain_dict[iteration] = []
+        end
+
+        append!(chain_dict[iteration], data[:data])
+        now = Dates.now()
+        if now - collector.last_send_time > Dates.Millisecond(interval)
+            # println("$(now) - $(collector.last_send_time) > $(Dates.Millisecond(interval))")
+            uncompleted_data = Dict{String,Dict{Int,Vector{Any}}}()
+            vars = Dict{String,Dict{String,Vector{Any}}}()  # chain_name => var_name => var_vals
+            chain_iteration = Dict{String,Tuple{Int,Int,Int128}}()  # The min and max iteration value of each chain
+
+            for (chain_name, chain_data) in collector.datas
+                chain_iteration[chain_name] = tuple(typemax(Int), 0, 0)
+                if !haskey(vars, chain_name)
+                    vars[chain_name] = Dict{String,Vector{Any}}()
+                end
+
+                uncompleted_data[chain_name] = Dict{Int,Vector{Any}}()
+                sorted_items = sort(collect(chain_data); by=x -> x[1])  # sort by iteration
+                for (iteration, var_datas) in sorted_items[begin:(end - 1)]
+                    for (varname, varval) in var_datas
+                        if !(isa(varval, Number) || isa(varval, Bool))
+                            continue
+                        end
+                        if !haskey(vars[chain_name], varname)
+                            vars[chain_name][varname] = Vector{Any}()
+                        end
+
+                        push!(vars[chain_name][varname], varval)
+                    end
+                    chain_iteration[chain_name] = tuple(
+                        min(chain_iteration[chain_name][1], iteration),
+                        max(chain_iteration[chain_name][2], iteration),
+                        collector.start_time +
+                        max(chain_iteration[chain_name][2], iteration),
+                    )
+                end
+                if !isempty(sorted_items)
+                    last_item = sorted_items[end]
+                    iteration = last_item[1]
+                    uncompleted_data[chain_name] = Dict{Int,Vector{Any}}(last_item)
+                    delete!(chain_data, iteration)
+                end
+            end
+
+            if !isempty(vars) && !all(isempty(x) for x in values(vars))
+                # println("$(collector.name) sending $(chain_iteration) messages")
+                collector.send_func(Dict(:vars=>vars, :iteration=>chain_iteration))
+                collector.last_send_time = now
+            end
+            collector.datas = uncompleted_data
         end
     end
 end
@@ -306,7 +436,7 @@ end
 
 symbolize_keys(d::Dict) = Dict(Symbol(k) => v for (k, v) in d)
 
-function withdata_logger(experiment_id::String, url::String, collector::MsgCollector)
+function withdata_logger(experiment_id::String, url::String, collector::DataCollector)
     logger = CoinferLogger(experiment_id, collector; endpoint=url)
     return logger
 end
@@ -534,7 +664,7 @@ function inner_sample(args...; kwargs...)
     end
 
     try
-        open_collector("sample_data", send_sample_func) do collector
+        open_data_collector("sample_data", send_sample_func) do collector
             logger = withdata_logger(exp_id, url, collector)
             tb_callback = TensorBoardCallback(logger)
             # we don't use the internal message now
@@ -549,7 +679,7 @@ function inner_sample(args...; kwargs...)
         end
         update_experiment_runinfo(exp_id, ENV["BATCH_ID"], ENV["RUN_ID"], "SAMPLE_FIN")
     catch exp
-        @error exp
+        @error "ERROR" exception=(exp, catch_backtrace())
         update_experiment_runinfo(exp_id, ENV["BATCH_ID"], ENV["RUN_ID"], "USER_ERR")
     finally
         notify_after_sample(exp_id)
@@ -569,13 +699,13 @@ mutable struct CoinferLogger <: TensorBoardLogger.AbstractLogger
     global_step::Int
     step_increment::Int
     min_level::LogLevel
-    collector::MsgCollector
+    collector::DataCollector
     iteration::Int
 end
 
 function CoinferLogger(
     experiment_id,
-    collector::MsgCollector;
+    collector::DataCollector;
     endpoint="",
     auth_token="",
     purge_step::Union{Int,Nothing}=nothing,
@@ -611,6 +741,14 @@ CoreLogging.shouldlog(lg::CoinferLogger, level, _module, group, id) = true
 function CoreLogging.handle_message(
     lg::CoinferLogger, level, message, _module, group, id, file, line; kwargs...
 )
+    if isempty(lg.endpoint)
+        # calling @warn/info in handle_message causes recursive-calls
+        # thus stackoverflow.
+        #@warn "No endpoint provided, log ignored."
+        println("#Warning# No endpoint provided in CoinferLogger, log ignored.")
+        return nothing
+    end
+
     log = Dict{Symbol,Any}(:data => nothing)
     i_step = lg.step_increment # :log_step_increment default value
     if !isempty(kwargs)
@@ -632,13 +770,6 @@ function CoreLogging.handle_message(
     iter = increment_step!(lg, i_step)
     log[:step] = iter
     log[:chain_name] = group
-    if isempty(lg.endpoint)
-        # calling @warn/info in handle_message causes recursive-calls
-        # thus stackoverflow.
-        #@warn "No endpoint provided, log ignored."
-        println("#Warning# No endpoint provided in CoinferLogger, log ignored.")
-        return nothing
-    end
     return collect_msg!(lg.collector, log)
 end
 
