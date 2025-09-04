@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **object_type** | **str** |  | 
 **model_id** | **str** |  | [optional] [default to '']
+**workflow_id** | **str** |  | [optional] [default to '']
 **input_id** | **str** |  | [optional] [default to '']
 **xp_meta** | **object** |  | [optional] 
 **meta** | **object** |  | [optional] 

@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **lambda_image** | **bool** | Whether to build lambda image for this CloudFunction | [optional] [default to False]
 **source_url** | **str** | Source URL from where to import the model | [optional] [default to '']
 **model_id** | **str** | model ID | 
+**workflow_id** | **str** |  | [optional] [default to '']
 **input_id** | **str** |  | [optional] [default to '']
 **xp_meta** | **object** |  | [optional] 
 **meta** | **object** |  | [optional] 

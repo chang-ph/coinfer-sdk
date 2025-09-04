@@ -26,6 +26,7 @@ class CreateExperiment(BaseModel):
     """ # noqa: E501
     object_type: StrictStr
     model_id: Optional[StrictStr] = ''
+    workflow_id: Optional[StrictStr] = ''
     input_id: Optional[StrictStr] = ''
     xp_meta: Optional[Any] = None
     meta: Optional[Any] = None
@@ -34,7 +35,7 @@ class CreateExperiment(BaseModel):
     data_file_type: Optional[StrictStr] = None
     data_files: Optional[List[StrictStr]] = Field(default=None, description="File data in text format")
     data_uris: Optional[List[StrictStr]] = Field(default=None, description="File data URI")
-    __properties: ClassVar[List[str]] = ["object_type", "model_id", "input_id", "xp_meta", "meta", "name", "run_on", "data_file_type", "data_files", "data_uris"]
+    __properties: ClassVar[List[str]] = ["object_type", "model_id", "workflow_id", "input_id", "xp_meta", "meta", "name", "run_on", "data_file_type", "data_files", "data_uris"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -131,6 +132,7 @@ class CreateExperiment(BaseModel):
         _obj = cls.model_validate({
             "object_type": obj.get("object_type"),
             "model_id": obj.get("model_id") if obj.get("model_id") is not None else '',
+            "workflow_id": obj.get("workflow_id") if obj.get("workflow_id") is not None else '',
             "input_id": obj.get("input_id") if obj.get("input_id") is not None else '',
             "xp_meta": obj.get("xp_meta"),
             "meta": obj.get("meta"),
