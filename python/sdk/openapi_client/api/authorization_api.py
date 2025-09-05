@@ -9,7 +9,6 @@
 
     Do not edit the class manually.
 """  # noqa: E501
-
 import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
@@ -103,8 +102,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspCode2TokenRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -167,8 +165,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspCode2TokenRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -231,8 +228,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspCode2TokenRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -318,7 +314,7 @@ class AuthorizationApi:
     ) -> SuccRspAuth0ConfigRsp:
         """Get Auth0 login configuration
 
-        Returns the configurations need by the frontend to implement Auth0 login. By using an API to provide this information, we avoid hardcoding them in the frontend code.  This API doen't need authorization as it is usually called before login.
+        Returns the configurations need by the frontend to implement Auth0 login. By using an API to provide this information, we avoid hardcoding them in the frontend code.  This API doesn't need authorization as it is usually called before login.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -351,8 +347,7 @@ class AuthorizationApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspAuth0ConfigRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -381,7 +376,7 @@ class AuthorizationApi:
     ) -> ApiResponse[SuccRspAuth0ConfigRsp]:
         """Get Auth0 login configuration
 
-        Returns the configurations need by the frontend to implement Auth0 login. By using an API to provide this information, we avoid hardcoding them in the frontend code.  This API doen't need authorization as it is usually called before login.
+        Returns the configurations need by the frontend to implement Auth0 login. By using an API to provide this information, we avoid hardcoding them in the frontend code.  This API doesn't need authorization as it is usually called before login.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -414,8 +409,7 @@ class AuthorizationApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspAuth0ConfigRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -444,7 +438,7 @@ class AuthorizationApi:
     ) -> RESTResponseType:
         """Get Auth0 login configuration
 
-        Returns the configurations need by the frontend to implement Auth0 login. By using an API to provide this information, we avoid hardcoding them in the frontend code.  This API doen't need authorization as it is usually called before login.
+        Returns the configurations need by the frontend to implement Auth0 login. By using an API to provide this information, we avoid hardcoding them in the frontend code.  This API doesn't need authorization as it is usually called before login.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -477,8 +471,7 @@ class AuthorizationApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspAuth0ConfigRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -596,8 +589,7 @@ class AuthorizationApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspAuth0LoginRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -659,8 +651,7 @@ class AuthorizationApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspAuth0LoginRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -722,8 +713,7 @@ class AuthorizationApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspAuth0LoginRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -846,8 +836,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspCode2TokenRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -914,8 +903,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspCode2TokenRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -982,8 +970,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspCode2TokenRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1123,8 +1110,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspGetTokensRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1191,8 +1177,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspGetTokensRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1259,8 +1244,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspGetTokensRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1404,8 +1388,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspSoftDeletedRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1476,8 +1459,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspSoftDeletedRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1548,8 +1530,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspSoftDeletedRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1688,8 +1669,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspSoftDeletedRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1760,8 +1740,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspSoftDeletedRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1832,8 +1811,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspSoftDeletedRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1964,8 +1942,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspListGetTokensRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -2028,8 +2005,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspListGetTokensRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -2092,8 +2068,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspListGetTokensRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -2213,8 +2188,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspListLinkedAccountRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -2277,8 +2251,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspListLinkedAccountRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -2341,8 +2314,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspListLinkedAccountRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -2466,8 +2438,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspUserInfoRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -2534,8 +2505,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspUserInfoRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -2602,8 +2572,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspUserInfoRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -2747,8 +2716,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspGetTokensRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -2819,8 +2787,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspGetTokensRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -2891,8 +2858,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspGetTokensRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -3032,8 +2998,7 @@ class AuthorizationApi:
             '200': "SuccRspUserInfoRsp",
             '401': "ErrRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -3097,8 +3062,7 @@ class AuthorizationApi:
             '200': "SuccRspUserInfoRsp",
             '401': "ErrRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -3162,8 +3126,7 @@ class AuthorizationApi:
             '200': "SuccRspUserInfoRsp",
             '401': "ErrRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -3287,8 +3250,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspUserLoginRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -3355,8 +3317,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspUserLoginRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -3423,8 +3384,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspUserLoginRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -3559,8 +3519,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspNoneType",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -3623,8 +3582,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspNoneType",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -3687,8 +3645,7 @@ class AuthorizationApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspNoneType",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )

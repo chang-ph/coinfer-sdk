@@ -10,7 +10,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import unittest
 
 from openapi_client.models.view_object_tmp import ViewObjectTmp
@@ -39,9 +38,11 @@ class TestViewObjectTmp(unittest.TestCase):
                     share_id = '', 
                     sampledata = True, 
                     fmt = 'csv', 
+                    n_iteration = 56, 
                     cloudwatch_log = True, 
                     batch_id = '', 
-                    run_id = '', )
+                    run_id = '', 
+                    plot = True, )
             )
         else:
             return ViewObjectTmp(
@@ -50,9 +51,11 @@ class TestViewObjectTmp(unittest.TestCase):
                     share_id = '', 
                     sampledata = True, 
                     fmt = 'csv', 
+                    n_iteration = 56, 
                     cloudwatch_log = True, 
                     batch_id = '', 
-                    run_id = '', ),
+                    run_id = '', 
+                    plot = True, ),
         )
         """
 

@@ -10,7 +10,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import unittest
 
 from openapi_client.models.update_model import UpdateModel
@@ -53,7 +52,10 @@ class TestUpdateModel(unittest.TestCase):
                 version = '',
                 description = '',
                 status = '',
-                lambda_image = True
+                lambda_image = True,
+                tags = [
+                    ''
+                    ]
             )
         else:
             return UpdateModel(

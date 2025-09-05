@@ -10,13 +10,12 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +27,7 @@ class UpdateEventReq(BaseModel):
     object_type: StrictStr
     params: Optional[StrictStr] = ''
     engine: Optional[StrictStr] = 'lambda'
-    lock_key: Optional[StrictStr] = ''
+    lock_key: Optional[StrictStr] = Field(default='', description="lock key provided by user. It is combined with the cloudfunction_id to form the real lock key when running cloudfunction triggered by this event.  Sometimes, users may want CloudFunctions to run exclusively, but not just one instance globally. For example, when running a CloudFunction specific to an experiment, users may want only one instance of that CloudFunction to run simultaneously for that experiment. In this case, users can specify the lock_key as the experiment_id.")
     __properties: ClassVar[List[str]] = ["object_type", "params", "engine", "lock_key"]
 
     @field_validator('object_type')

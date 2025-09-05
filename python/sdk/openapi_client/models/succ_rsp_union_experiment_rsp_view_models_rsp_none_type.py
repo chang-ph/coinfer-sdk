@@ -10,7 +10,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 from __future__ import annotations
 import pprint
 import re  # noqa: F401
@@ -18,7 +17,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from openapi_client.models.data2 import Data2
+from openapi_client.models.data import Data
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +26,7 @@ class SuccRspUnionExperimentRspViewModelsRspNoneType(BaseModel):
     SuccRspUnionExperimentRspViewModelsRspNoneType
     """ # noqa: E501
     status: StrictStr
-    data: Optional[Data2]
+    data: Optional[Data]
     __properties: ClassVar[List[str]] = ["status", "data"]
 
     @field_validator('status')
@@ -97,7 +96,7 @@ class SuccRspUnionExperimentRspViewModelsRspNoneType(BaseModel):
 
         _obj = cls.model_validate({
             "status": obj.get("status"),
-            "data": Data2.from_dict(obj["data"]) if obj.get("data") is not None else None
+            "data": Data.from_dict(obj["data"]) if obj.get("data") is not None else None
         })
         return _obj
 

@@ -10,7 +10,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import unittest
 
 from openapi_client.api.system_api import SystemApi
@@ -23,6 +22,13 @@ class TestSystemApi(unittest.TestCase):
         self.api = SystemApi()
 
     def tearDown(self) -> None:
+        pass
+
+    def test_arviz_plot(self) -> None:
+        """Test case for arviz_plot
+
+        Get Arviz plot data.
+        """
         pass
 
     def test_config(self) -> None:

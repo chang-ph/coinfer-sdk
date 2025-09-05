@@ -10,11 +10,11 @@ import {SecurityAuthentication} from '../auth/auth';
 
 import { CreateObjectReq } from '../models/CreateObjectReq';
 import { ErrRsp } from '../models/ErrRsp';
-import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
-import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
-import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp';
 import { SuccRspSoftDeletedRsp } from '../models/SuccRspSoftDeletedRsp';
 import { SuccRspUnionExperimentRspViewModelsRspNoneType } from '../models/SuccRspUnionExperimentRspViewModelsRspNoneType';
+import { UUUU3d00ddc80a048e8fc9eddc3c1943d9f1 } from '../models/UUUU3d00ddc80a048e8fc9eddc3c1943d9f1';
+import { UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66 } from '../models/UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66';
+import { UUUU7f23cd8d5099a867ea3f026af4ed4207 } from '../models/UUUU7f23cd8d5099a867ea3f026af4ed4207';
 import { UpdateObject } from '../models/UpdateObject';
 
 /**
@@ -413,13 +413,13 @@ export class ObjectApiResponseProcessor {
      * @params response Response returned by the server for a request to createObject
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType >> {
+     public async createObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66 >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType = ObjectSerializer.deserialize(
+            const body: UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType", ""
-            ) as SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType;
+                "UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66", ""
+            ) as UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -432,10 +432,10 @@ export class ObjectApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType = ObjectSerializer.deserialize(
+            const body: UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType", ""
-            ) as SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType;
+                "UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66", ""
+            ) as UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
@@ -485,13 +485,13 @@ export class ObjectApiResponseProcessor {
      * @params response Response returned by the server for a request to listObject
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp >> {
+     public async listObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<UUUU3d00ddc80a048e8fc9eddc3c1943d9f1 >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp = ObjectSerializer.deserialize(
+            const body: UUUU3d00ddc80a048e8fc9eddc3c1943d9f1 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp", ""
-            ) as SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp;
+                "UUUU3d00ddc80a048e8fc9eddc3c1943d9f1", ""
+            ) as UUUU3d00ddc80a048e8fc9eddc3c1943d9f1;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -504,10 +504,10 @@ export class ObjectApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp = ObjectSerializer.deserialize(
+            const body: UUUU3d00ddc80a048e8fc9eddc3c1943d9f1 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp", ""
-            ) as SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp;
+                "UUUU3d00ddc80a048e8fc9eddc3c1943d9f1", ""
+            ) as UUUU3d00ddc80a048e8fc9eddc3c1943d9f1;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
@@ -557,13 +557,13 @@ export class ObjectApiResponseProcessor {
      * @params response Response returned by the server for a request to viewObject
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async viewObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType >> {
+     public async viewObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<UUUU7f23cd8d5099a867ea3f026af4ed4207 >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType = ObjectSerializer.deserialize(
+            const body: UUUU7f23cd8d5099a867ea3f026af4ed4207 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType", ""
-            ) as SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType;
+                "UUUU7f23cd8d5099a867ea3f026af4ed4207", ""
+            ) as UUUU7f23cd8d5099a867ea3f026af4ed4207;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -576,10 +576,10 @@ export class ObjectApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType = ObjectSerializer.deserialize(
+            const body: UUUU7f23cd8d5099a867ea3f026af4ed4207 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType", ""
-            ) as SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType;
+                "UUUU7f23cd8d5099a867ea3f026af4ed4207", ""
+            ) as UUUU7f23cd8d5099a867ea3f026af4ed4207;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 

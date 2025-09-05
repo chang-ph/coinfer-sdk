@@ -10,7 +10,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import unittest
 
 from openapi_client.api.notification_api import NotificationApi

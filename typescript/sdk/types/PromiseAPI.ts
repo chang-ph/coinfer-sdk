@@ -51,8 +51,6 @@ import { ListLinkedAccountRsp } from '../models/ListLinkedAccountRsp';
 import { ListModelsRspItem } from '../models/ListModelsRspItem';
 import { ListObjectTmp } from '../models/ListObjectTmp';
 import { ListingRspDataNotificationDict } from '../models/ListingRspDataNotificationDict';
-import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp';
-import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspObjectsInner } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspObjectsInner';
 import { MarkNotificationReadReq } from '../models/MarkNotificationReadReq';
 import { MetaModel } from '../models/MetaModel';
 import { ModelContent } from '../models/ModelContent';
@@ -64,12 +62,12 @@ import { ModifyToken } from '../models/ModifyToken';
 import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
+import { PlotReq } from '../models/PlotReq';
+import { PlotRsp } from '../models/PlotRsp';
 import { RunCloudFunctionScript } from '../models/RunCloudFunctionScript';
 import { RunWorkflowReq } from '../models/RunWorkflowReq';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SoftDeletedRsp } from '../models/SoftDeletedRsp';
-import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
-import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
 import { SuccRspCode2TokenRsp } from '../models/SuccRspCode2TokenRsp';
@@ -80,12 +78,17 @@ import { SuccRspGetTokensRsp } from '../models/SuccRspGetTokensRsp';
 import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
 import { SuccRspListLinkedAccountRsp } from '../models/SuccRspListLinkedAccountRsp';
 import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingRspDataNotificationDict';
-import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp';
 import { SuccRspNoneType } from '../models/SuccRspNoneType';
+import { SuccRspPlotRsp } from '../models/SuccRspPlotRsp';
 import { SuccRspSoftDeletedRsp } from '../models/SuccRspSoftDeletedRsp';
 import { SuccRspUnionExperimentRspViewModelsRspNoneType } from '../models/SuccRspUnionExperimentRspViewModelsRspNoneType';
 import { SuccRspUserInfoRsp } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp } from '../models/SuccRspUserLoginRsp';
+import { UUUU256545f429a0ce36bfec4159b7df9cf4 } from '../models/UUUU256545f429a0ce36bfec4159b7df9cf4';
+import { UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner } from '../models/UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner';
+import { UUUU3d00ddc80a048e8fc9eddc3c1943d9f1 } from '../models/UUUU3d00ddc80a048e8fc9eddc3c1943d9f1';
+import { UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66 } from '../models/UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66';
+import { UUUU7f23cd8d5099a867ea3f026af4ed4207 } from '../models/UUUU7f23cd8d5099a867ea3f026af4ed4207';
 import { UpdateEventReq } from '../models/UpdateEventReq';
 import { UpdateExperiment } from '../models/UpdateExperiment';
 import { UpdateModel } from '../models/UpdateModel';
@@ -470,7 +473,7 @@ export class PromiseObjectApi {
      * Create new object.
      * @param createObjectReq
      */
-    public createObjectWithHttpInfo(createObjectReq: CreateObjectReq, _options?: Configuration): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
+    public createObjectWithHttpInfo(createObjectReq: CreateObjectReq, _options?: Configuration): Promise<HttpInfo<UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66>> {
         const result = this.api.createObjectWithHttpInfo(createObjectReq, _options);
         return result.toPromise();
     }
@@ -480,7 +483,7 @@ export class PromiseObjectApi {
      * Create new object.
      * @param createObjectReq
      */
-    public createObject(createObjectReq: CreateObjectReq, _options?: Configuration): Promise<SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
+    public createObject(createObjectReq: CreateObjectReq, _options?: Configuration): Promise<UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66> {
         const result = this.api.createObject(createObjectReq, _options);
         return result.toPromise();
     }
@@ -522,7 +525,7 @@ export class PromiseObjectApi {
      * @param [hasModel]
      * @param [tags] Filter by tags
      */
-    public listObjectWithHttpInfo(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', tags?: Array<'internal' | 'builtin' | 'reserved' | 'model' | 'code'>, _options?: Configuration): Promise<HttpInfo<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp>> {
+    public listObjectWithHttpInfo(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', tags?: Array<'internal' | 'builtin' | 'reserved' | 'model' | 'code'>, _options?: Configuration): Promise<HttpInfo<UUUU3d00ddc80a048e8fc9eddc3c1943d9f1>> {
         const result = this.api.listObjectWithHttpInfo(objectType, pageNo, pageSize, withShareInfo, sharedByMe, sharedWithMe, modelIds, status, runOn, hasModel, tags, _options);
         return result.toPromise();
     }
@@ -542,7 +545,7 @@ export class PromiseObjectApi {
      * @param [hasModel]
      * @param [tags] Filter by tags
      */
-    public listObject(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', tags?: Array<'internal' | 'builtin' | 'reserved' | 'model' | 'code'>, _options?: Configuration): Promise<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp> {
+    public listObject(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', tags?: Array<'internal' | 'builtin' | 'reserved' | 'model' | 'code'>, _options?: Configuration): Promise<UUUU3d00ddc80a048e8fc9eddc3c1943d9f1> {
         const result = this.api.listObject(objectType, pageNo, pageSize, withShareInfo, sharedByMe, sharedWithMe, modelIds, status, runOn, hasModel, tags, _options);
         return result.toPromise();
     }
@@ -583,7 +586,7 @@ export class PromiseObjectApi {
      * @param [runId]
      * @param [plot] get arviz plot
      */
-    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, _options?: Configuration): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
+    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, _options?: Configuration): Promise<HttpInfo<UUUU7f23cd8d5099a867ea3f026af4ed4207>> {
         const result = this.api.viewObjectWithHttpInfo(objid, objectType, shareId, sampledata, fmt, nIteration, cloudwatchLog, batchId, runId, plot, _options);
         return result.toPromise();
     }
@@ -602,7 +605,7 @@ export class PromiseObjectApi {
      * @param [runId]
      * @param [plot] get arviz plot
      */
-    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, _options?: Configuration): Promise<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
+    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, _options?: Configuration): Promise<UUUU7f23cd8d5099a867ea3f026af4ed4207> {
         const result = this.api.viewObject(objid, objectType, shareId, sampledata, fmt, nIteration, cloudwatchLog, batchId, runId, plot, _options);
         return result.toPromise();
     }
@@ -661,6 +664,24 @@ export class PromiseSystemApi {
         responseProcessor?: SystemApiResponseProcessor
     ) {
         this.api = new ObservableSystemApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Get Arviz plot data.
+     * @param plotReq
+     */
+    public arvizPlotWithHttpInfo(plotReq: PlotReq, _options?: Configuration): Promise<HttpInfo<SuccRspPlotRsp>> {
+        const result = this.api.arvizPlotWithHttpInfo(plotReq, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get Arviz plot data.
+     * @param plotReq
+     */
+    public arvizPlot(plotReq: PlotReq, _options?: Configuration): Promise<SuccRspPlotRsp> {
+        const result = this.api.arvizPlot(plotReq, _options);
+        return result.toPromise();
     }
 
     /**

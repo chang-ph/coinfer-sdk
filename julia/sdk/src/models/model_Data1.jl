@@ -8,29 +8,27 @@
     Data1(; value=nothing)
 """
 mutable struct Data1 <: OpenAPI.OneOfAPIModel
-    value::Any # Union{ CreateDataRsp, CreateWorkflowRsp, ExperimentCloudwatchLogRsp, ExperimentPlotRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewExperimentShareRsp, ViewModelsRsp }
+    value::Any # Union{ CreateCallbackRsp, CreateDataRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, CreateWorkflowRsp, ExperimentRsp, ListModelsRspItem }
     Data1() = new()
     Data1(value) = new(value)
 end # type Data1
 
 function OpenAPI.property_type(::Type{ Data1 }, name::Symbol, json::Dict{String,Any})
     discriminator = json["object_type"]
-    if discriminator == "data"
+    if discriminator == "callback"
+        return eval(Base.Meta.parse("CreateCallbackRsp"))
+    elseif discriminator == "data"
         return eval(Base.Meta.parse("CreateDataRsp"))
+    elseif discriminator == "event"
+        return eval(Base.Meta.parse("CreateEventRsp"))
     elseif discriminator == "experiment"
         return eval(Base.Meta.parse("ExperimentRsp"))
-    elseif discriminator == "experiment.cloudwatch_log"
-        return eval(Base.Meta.parse("ExperimentCloudwatchLogRsp"))
-    elseif discriminator == "experiment.plot"
-        return eval(Base.Meta.parse("ExperimentPlotRsp"))
-    elseif discriminator == "experiment.run_info"
-        return eval(Base.Meta.parse("GetExperimentRunInfoRsp"))
-    elseif discriminator == "experiment.sampledata"
-        return eval(Base.Meta.parse("ExperimentSampleDataRsp"))
     elseif discriminator == "model"
-        return eval(Base.Meta.parse("ViewModelsRsp"))
+        return eval(Base.Meta.parse("ListModelsRspItem"))
+    elseif discriminator == "relation"
+        return eval(Base.Meta.parse("CreateRelationRsp"))
     elseif discriminator == "share"
-        return eval(Base.Meta.parse("ViewExperimentShareRsp"))
+        return eval(Base.Meta.parse("CreateExperimentShareRsp"))
     elseif discriminator == "workflow"
         return eval(Base.Meta.parse("CreateWorkflowRsp"))
     end

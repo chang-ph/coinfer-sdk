@@ -10,13 +10,12 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 from __future__ import annotations
 import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,10 +28,12 @@ class ViewObject(BaseModel):
     share_id: Optional[StrictStr] = Field(default='', description="                 Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot")
     sampledata: Optional[StrictBool] = False
     fmt: Optional[StrictStr] = 'csv'
+    n_iteration: Optional[StrictInt] = None
     cloudwatch_log: Optional[StrictBool] = False
     batch_id: Optional[StrictStr] = ''
     run_id: Optional[StrictStr] = ''
-    __properties: ClassVar[List[str]] = ["object_type", "share_id", "sampledata", "fmt", "cloudwatch_log", "batch_id", "run_id"]
+    plot: Optional[StrictBool] = Field(default=False, description="get arviz plot")
+    __properties: ClassVar[List[str]] = ["object_type", "share_id", "sampledata", "fmt", "n_iteration", "cloudwatch_log", "batch_id", "run_id", "plot"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -40,8 +41,8 @@ class ViewObject(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['model', 'experiment', 'share', 'event', 'callback', 'relation', '']):
-            raise ValueError("must be one of enum values ('model', 'experiment', 'share', 'event', 'callback', 'relation', '')")
+        if value not in set(['model', 'experiment', 'share', 'event', 'callback', 'relation', 'data', 'workflow', '']):
+            raise ValueError("must be one of enum values ('model', 'experiment', 'share', 'event', 'callback', 'relation', 'data', 'workflow', '')")
         return value
 
     @field_validator('fmt')
@@ -93,6 +94,11 @@ class ViewObject(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if n_iteration (nullable) is None
+        # and model_fields_set contains the field
+        if self.n_iteration is None and "n_iteration" in self.model_fields_set:
+            _dict['n_iteration'] = None
+
         return _dict
 
     @classmethod
@@ -109,9 +115,11 @@ class ViewObject(BaseModel):
             "share_id": obj.get("share_id") if obj.get("share_id") is not None else '',
             "sampledata": obj.get("sampledata") if obj.get("sampledata") is not None else False,
             "fmt": obj.get("fmt") if obj.get("fmt") is not None else 'csv',
+            "n_iteration": obj.get("n_iteration"),
             "cloudwatch_log": obj.get("cloudwatch_log") if obj.get("cloudwatch_log") is not None else False,
             "batch_id": obj.get("batch_id") if obj.get("batch_id") is not None else '',
-            "run_id": obj.get("run_id") if obj.get("run_id") is not None else ''
+            "run_id": obj.get("run_id") if obj.get("run_id") is not None else '',
+            "plot": obj.get("plot") if obj.get("plot") is not None else False
         })
         return _obj
 

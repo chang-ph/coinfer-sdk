@@ -1,9 +1,9 @@
-import { Data2 } from '../models/Data2';
+import { Data } from '../models/Data';
 import { HttpFile } from '../http/http';
 
 export class SuccRspUnionExperimentRspViewModelsRspNoneType {
     'status': SuccRspUnionExperimentRspViewModelsRspNoneTypeStatusEnum;
-    'data': Data2 | null;
+    'data': Data | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -19,7 +19,7 @@ export class SuccRspUnionExperimentRspViewModelsRspNoneType {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Data2",
+            "type": "Data",
             "format": ""
         }    ];
 

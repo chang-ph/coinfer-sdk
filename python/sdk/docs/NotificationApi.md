@@ -40,7 +40,6 @@ configuration = openapi_client.Configuration(
 configuration = openapi_client.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
-
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -57,7 +56,6 @@ with openapi_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling NotificationApi->get_notification: %s\n" % e)
 ```
-
 
 
 ### Parameters
@@ -124,7 +122,6 @@ configuration = openapi_client.Configuration(
 configuration = openapi_client.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
-
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -139,7 +136,6 @@ with openapi_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling NotificationApi->mark_notification_read: %s\n" % e)
 ```
-
 
 
 ### Parameters

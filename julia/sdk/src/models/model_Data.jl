@@ -7,30 +7,14 @@
 
     Data(; value=nothing)
 """
-mutable struct Data <: OpenAPI.OneOfAPIModel
-    value::Any # Union{ CreateCallbackRsp, CreateDataRsp, CreateEventRsp, CreateExperimentShareRsp, CreateRelationRsp, CreateWorkflowRsp, ExperimentRsp, ListModelsRspItem }
+mutable struct Data <: OpenAPI.AnyOfAPIModel
+    value::Any # Union{ ExperimentRsp, ViewModelsRsp }
     Data() = new()
     Data(value) = new(value)
 end # type Data
 
 function OpenAPI.property_type(::Type{ Data }, name::Symbol, json::Dict{String,Any})
-    discriminator = json["object_type"]
-    if discriminator == "callback"
-        return eval(Base.Meta.parse("CreateCallbackRsp"))
-    elseif discriminator == "data"
-        return eval(Base.Meta.parse("CreateDataRsp"))
-    elseif discriminator == "event"
-        return eval(Base.Meta.parse("CreateEventRsp"))
-    elseif discriminator == "experiment"
-        return eval(Base.Meta.parse("ExperimentRsp"))
-    elseif discriminator == "model"
-        return eval(Base.Meta.parse("ListModelsRspItem"))
-    elseif discriminator == "relation"
-        return eval(Base.Meta.parse("CreateRelationRsp"))
-    elseif discriminator == "share"
-        return eval(Base.Meta.parse("CreateExperimentShareRsp"))
-    elseif discriminator == "workflow"
-        return eval(Base.Meta.parse("CreateWorkflowRsp"))
-    end
-    throw(OpenAPI.ValidationException("Invalid discriminator value: $discriminator for Data"))
+    
+    # no discriminator specified, can't determine the exact type
+    return fieldtype(Data, name)
 end

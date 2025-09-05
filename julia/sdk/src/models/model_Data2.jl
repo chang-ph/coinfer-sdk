@@ -7,14 +7,32 @@
 
     Data2(; value=nothing)
 """
-mutable struct Data2 <: OpenAPI.AnyOfAPIModel
-    value::Any # Union{ ExperimentRsp, ViewModelsRsp }
+mutable struct Data2 <: OpenAPI.OneOfAPIModel
+    value::Any # Union{ CreateDataRsp, CreateWorkflowRsp, ExperimentCloudwatchLogRsp, ExperimentPlotRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewExperimentShareRsp, ViewModelsRsp }
     Data2() = new()
     Data2(value) = new(value)
 end # type Data2
 
 function OpenAPI.property_type(::Type{ Data2 }, name::Symbol, json::Dict{String,Any})
-    
-    # no discriminator specified, can't determine the exact type
-    return fieldtype(Data2, name)
+    discriminator = json["object_type"]
+    if discriminator == "data"
+        return eval(Base.Meta.parse("CreateDataRsp"))
+    elseif discriminator == "experiment"
+        return eval(Base.Meta.parse("ExperimentRsp"))
+    elseif discriminator == "experiment.cloudwatch_log"
+        return eval(Base.Meta.parse("ExperimentCloudwatchLogRsp"))
+    elseif discriminator == "experiment.plot"
+        return eval(Base.Meta.parse("ExperimentPlotRsp"))
+    elseif discriminator == "experiment.run_info"
+        return eval(Base.Meta.parse("GetExperimentRunInfoRsp"))
+    elseif discriminator == "experiment.sampledata"
+        return eval(Base.Meta.parse("ExperimentSampleDataRsp"))
+    elseif discriminator == "model"
+        return eval(Base.Meta.parse("ViewModelsRsp"))
+    elseif discriminator == "share"
+        return eval(Base.Meta.parse("ViewExperimentShareRsp"))
+    elseif discriminator == "workflow"
+        return eval(Base.Meta.parse("CreateWorkflowRsp"))
+    end
+    throw(OpenAPI.ValidationException("Invalid discriminator value: $discriminator for Data2"))
 end

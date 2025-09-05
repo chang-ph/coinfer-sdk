@@ -52,8 +52,6 @@ import { ListLinkedAccountRsp } from '../models/ListLinkedAccountRsp';
 import { ListModelsRspItem } from '../models/ListModelsRspItem';
 import { ListObjectTmp } from '../models/ListObjectTmp';
 import { ListingRspDataNotificationDict } from '../models/ListingRspDataNotificationDict';
-import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp';
-import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspObjectsInner } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspObjectsInner';
 import { MarkNotificationReadReq } from '../models/MarkNotificationReadReq';
 import { MetaModel } from '../models/MetaModel';
 import { ModelContent } from '../models/ModelContent';
@@ -65,12 +63,12 @@ import { ModifyToken } from '../models/ModifyToken';
 import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
+import { PlotReq } from '../models/PlotReq';
+import { PlotRsp } from '../models/PlotRsp';
 import { RunCloudFunctionScript } from '../models/RunCloudFunctionScript';
 import { RunWorkflowReq } from '../models/RunWorkflowReq';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SoftDeletedRsp } from '../models/SoftDeletedRsp';
-import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
-import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
 import { SuccRspCode2TokenRsp } from '../models/SuccRspCode2TokenRsp';
@@ -81,12 +79,17 @@ import { SuccRspGetTokensRsp } from '../models/SuccRspGetTokensRsp';
 import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
 import { SuccRspListLinkedAccountRsp } from '../models/SuccRspListLinkedAccountRsp';
 import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingRspDataNotificationDict';
-import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp';
 import { SuccRspNoneType } from '../models/SuccRspNoneType';
+import { SuccRspPlotRsp } from '../models/SuccRspPlotRsp';
 import { SuccRspSoftDeletedRsp } from '../models/SuccRspSoftDeletedRsp';
 import { SuccRspUnionExperimentRspViewModelsRspNoneType } from '../models/SuccRspUnionExperimentRspViewModelsRspNoneType';
 import { SuccRspUserInfoRsp } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp } from '../models/SuccRspUserLoginRsp';
+import { UUUU256545f429a0ce36bfec4159b7df9cf4 } from '../models/UUUU256545f429a0ce36bfec4159b7df9cf4';
+import { UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner } from '../models/UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner';
+import { UUUU3d00ddc80a048e8fc9eddc3c1943d9f1 } from '../models/UUUU3d00ddc80a048e8fc9eddc3c1943d9f1';
+import { UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66 } from '../models/UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66';
+import { UUUU7f23cd8d5099a867ea3f026af4ed4207 } from '../models/UUUU7f23cd8d5099a867ea3f026af4ed4207';
 import { UpdateEventReq } from '../models/UpdateEventReq';
 import { UpdateExperiment } from '../models/UpdateExperiment';
 import { UpdateModel } from '../models/UpdateModel';
@@ -680,7 +683,7 @@ export class ObservableObjectApi {
      * Create new object.
      * @param createObjectReq
      */
-    public createObjectWithHttpInfo(createObjectReq: CreateObjectReq, _options?: Configuration): Observable<HttpInfo<SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
+    public createObjectWithHttpInfo(createObjectReq: CreateObjectReq, _options?: Configuration): Observable<HttpInfo<UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66>> {
         const requestContextPromise = this.requestFactory.createObject(createObjectReq, _options);
 
         // build promise chain
@@ -704,8 +707,8 @@ export class ObservableObjectApi {
      * Create new object.
      * @param createObjectReq
      */
-    public createObject(createObjectReq: CreateObjectReq, _options?: Configuration): Observable<SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
-        return this.createObjectWithHttpInfo(createObjectReq, _options).pipe(map((apiResponse: HttpInfo<SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>) => apiResponse.data));
+    public createObject(createObjectReq: CreateObjectReq, _options?: Configuration): Observable<UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66> {
+        return this.createObjectWithHttpInfo(createObjectReq, _options).pipe(map((apiResponse: HttpInfo<UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66>) => apiResponse.data));
     }
 
     /**
@@ -758,7 +761,7 @@ export class ObservableObjectApi {
      * @param [hasModel]
      * @param [tags] Filter by tags
      */
-    public listObjectWithHttpInfo(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', tags?: Array<'internal' | 'builtin' | 'reserved' | 'model' | 'code'>, _options?: Configuration): Observable<HttpInfo<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp>> {
+    public listObjectWithHttpInfo(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', tags?: Array<'internal' | 'builtin' | 'reserved' | 'model' | 'code'>, _options?: Configuration): Observable<HttpInfo<UUUU3d00ddc80a048e8fc9eddc3c1943d9f1>> {
         const requestContextPromise = this.requestFactory.listObject(objectType, pageNo, pageSize, withShareInfo, sharedByMe, sharedWithMe, modelIds, status, runOn, hasModel, tags, _options);
 
         // build promise chain
@@ -792,8 +795,8 @@ export class ObservableObjectApi {
      * @param [hasModel]
      * @param [tags] Filter by tags
      */
-    public listObject(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', tags?: Array<'internal' | 'builtin' | 'reserved' | 'model' | 'code'>, _options?: Configuration): Observable<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp> {
-        return this.listObjectWithHttpInfo(objectType, pageNo, pageSize, withShareInfo, sharedByMe, sharedWithMe, modelIds, status, runOn, hasModel, tags, _options).pipe(map((apiResponse: HttpInfo<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp>) => apiResponse.data));
+    public listObject(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', tags?: Array<'internal' | 'builtin' | 'reserved' | 'model' | 'code'>, _options?: Configuration): Observable<UUUU3d00ddc80a048e8fc9eddc3c1943d9f1> {
+        return this.listObjectWithHttpInfo(objectType, pageNo, pageSize, withShareInfo, sharedByMe, sharedWithMe, modelIds, status, runOn, hasModel, tags, _options).pipe(map((apiResponse: HttpInfo<UUUU3d00ddc80a048e8fc9eddc3c1943d9f1>) => apiResponse.data));
     }
 
     /**
@@ -845,7 +848,7 @@ export class ObservableObjectApi {
      * @param [runId]
      * @param [plot] get arviz plot
      */
-    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, _options?: Configuration): Observable<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
+    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, _options?: Configuration): Observable<HttpInfo<UUUU7f23cd8d5099a867ea3f026af4ed4207>> {
         const requestContextPromise = this.requestFactory.viewObject(objid, objectType, shareId, sampledata, fmt, nIteration, cloudwatchLog, batchId, runId, plot, _options);
 
         // build promise chain
@@ -878,8 +881,8 @@ export class ObservableObjectApi {
      * @param [runId]
      * @param [plot] get arviz plot
      */
-    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, _options?: Configuration): Observable<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
-        return this.viewObjectWithHttpInfo(objid, objectType, shareId, sampledata, fmt, nIteration, cloudwatchLog, batchId, runId, plot, _options).pipe(map((apiResponse: HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>) => apiResponse.data));
+    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, _options?: Configuration): Observable<UUUU7f23cd8d5099a867ea3f026af4ed4207> {
+        return this.viewObjectWithHttpInfo(objid, objectType, shareId, sampledata, fmt, nIteration, cloudwatchLog, batchId, runId, plot, _options).pipe(map((apiResponse: HttpInfo<UUUU7f23cd8d5099a867ea3f026af4ed4207>) => apiResponse.data));
     }
 
 }
@@ -947,6 +950,37 @@ export class ObservableSystemApi {
         this.configuration = configuration;
         this.requestFactory = requestFactory || new SystemApiRequestFactory(configuration);
         this.responseProcessor = responseProcessor || new SystemApiResponseProcessor();
+    }
+
+    /**
+     * Get Arviz plot data.
+     * @param plotReq
+     */
+    public arvizPlotWithHttpInfo(plotReq: PlotReq, _options?: Configuration): Observable<HttpInfo<SuccRspPlotRsp>> {
+        const requestContextPromise = this.requestFactory.arvizPlot(plotReq, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.arvizPlotWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Get Arviz plot data.
+     * @param plotReq
+     */
+    public arvizPlot(plotReq: PlotReq, _options?: Configuration): Observable<SuccRspPlotRsp> {
+        return this.arvizPlotWithHttpInfo(plotReq, _options).pipe(map((apiResponse: HttpInfo<SuccRspPlotRsp>) => apiResponse.data));
     }
 
     /**

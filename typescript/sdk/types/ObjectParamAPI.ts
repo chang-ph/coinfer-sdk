@@ -51,8 +51,6 @@ import { ListLinkedAccountRsp } from '../models/ListLinkedAccountRsp';
 import { ListModelsRspItem } from '../models/ListModelsRspItem';
 import { ListObjectTmp } from '../models/ListObjectTmp';
 import { ListingRspDataNotificationDict } from '../models/ListingRspDataNotificationDict';
-import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp';
-import { ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspObjectsInner } from '../models/ListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspObjectsInner';
 import { MarkNotificationReadReq } from '../models/MarkNotificationReadReq';
 import { MetaModel } from '../models/MetaModel';
 import { ModelContent } from '../models/ModelContent';
@@ -64,12 +62,12 @@ import { ModifyToken } from '../models/ModifyToken';
 import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
+import { PlotReq } from '../models/PlotReq';
+import { PlotRsp } from '../models/PlotRsp';
 import { RunCloudFunctionScript } from '../models/RunCloudFunctionScript';
 import { RunWorkflowReq } from '../models/RunWorkflowReq';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SoftDeletedRsp } from '../models/SoftDeletedRsp';
-import { SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
-import { SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType } from '../models/SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType';
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
 import { SuccRspCode2TokenRsp } from '../models/SuccRspCode2TokenRsp';
@@ -80,12 +78,17 @@ import { SuccRspGetTokensRsp } from '../models/SuccRspGetTokensRsp';
 import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
 import { SuccRspListLinkedAccountRsp } from '../models/SuccRspListLinkedAccountRsp';
 import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingRspDataNotificationDict';
-import { SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp } from '../models/SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp';
 import { SuccRspNoneType } from '../models/SuccRspNoneType';
+import { SuccRspPlotRsp } from '../models/SuccRspPlotRsp';
 import { SuccRspSoftDeletedRsp } from '../models/SuccRspSoftDeletedRsp';
 import { SuccRspUnionExperimentRspViewModelsRspNoneType } from '../models/SuccRspUnionExperimentRspViewModelsRspNoneType';
 import { SuccRspUserInfoRsp } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp } from '../models/SuccRspUserLoginRsp';
+import { UUUU256545f429a0ce36bfec4159b7df9cf4 } from '../models/UUUU256545f429a0ce36bfec4159b7df9cf4';
+import { UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner } from '../models/UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner';
+import { UUUU3d00ddc80a048e8fc9eddc3c1943d9f1 } from '../models/UUUU3d00ddc80a048e8fc9eddc3c1943d9f1';
+import { UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66 } from '../models/UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66';
+import { UUUU7f23cd8d5099a867ea3f026af4ed4207 } from '../models/UUUU7f23cd8d5099a867ea3f026af4ed4207';
 import { UpdateEventReq } from '../models/UpdateEventReq';
 import { UpdateExperiment } from '../models/UpdateExperiment';
 import { UpdateModel } from '../models/UpdateModel';
@@ -763,7 +766,7 @@ export class ObjectObjectApi {
      * Create new object.
      * @param param the request object
      */
-    public createObjectWithHttpInfo(param: ObjectApiCreateObjectRequest, options?: Configuration): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
+    public createObjectWithHttpInfo(param: ObjectApiCreateObjectRequest, options?: Configuration): Promise<HttpInfo<UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66>> {
         return this.api.createObjectWithHttpInfo(param.createObjectReq,  options).toPromise();
     }
 
@@ -772,7 +775,7 @@ export class ObjectObjectApi {
      * Create new object.
      * @param param the request object
      */
-    public createObject(param: ObjectApiCreateObjectRequest, options?: Configuration): Promise<SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
+    public createObject(param: ObjectApiCreateObjectRequest, options?: Configuration): Promise<UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66> {
         return this.api.createObject(param.createObjectReq,  options).toPromise();
     }
 
@@ -799,7 +802,7 @@ export class ObjectObjectApi {
      * List objects.
      * @param param the request object
      */
-    public listObjectWithHttpInfo(param: ObjectApiListObjectRequest, options?: Configuration): Promise<HttpInfo<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp>> {
+    public listObjectWithHttpInfo(param: ObjectApiListObjectRequest, options?: Configuration): Promise<HttpInfo<UUUU3d00ddc80a048e8fc9eddc3c1943d9f1>> {
         return this.api.listObjectWithHttpInfo(param.objectType, param.pageNo, param.pageSize, param.withShareInfo, param.sharedByMe, param.sharedWithMe, param.modelIds, param.status, param.runOn, param.hasModel, param.tags,  options).toPromise();
     }
 
@@ -808,7 +811,7 @@ export class ObjectObjectApi {
      * List objects.
      * @param param the request object
      */
-    public listObject(param: ObjectApiListObjectRequest, options?: Configuration): Promise<SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspCreateWorkflowRsp> {
+    public listObject(param: ObjectApiListObjectRequest, options?: Configuration): Promise<UUUU3d00ddc80a048e8fc9eddc3c1943d9f1> {
         return this.api.listObject(param.objectType, param.pageNo, param.pageSize, param.withShareInfo, param.sharedByMe, param.sharedWithMe, param.modelIds, param.status, param.runOn, param.hasModel, param.tags,  options).toPromise();
     }
 
@@ -835,7 +838,7 @@ export class ObjectObjectApi {
      * View object.
      * @param param the request object
      */
-    public viewObjectWithHttpInfo(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<HttpInfo<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType>> {
+    public viewObjectWithHttpInfo(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<HttpInfo<UUUU7f23cd8d5099a867ea3f026af4ed4207>> {
         return this.api.viewObjectWithHttpInfo(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt, param.nIteration, param.cloudwatchLog, param.batchId, param.runId, param.plot,  options).toPromise();
     }
 
@@ -844,7 +847,7 @@ export class ObjectObjectApi {
      * View object.
      * @param param the request object
      */
-    public viewObject(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspCreateWorkflowRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType> {
+    public viewObject(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<UUUU7f23cd8d5099a867ea3f026af4ed4207> {
         return this.api.viewObject(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt, param.nIteration, param.cloudwatchLog, param.batchId, param.runId, param.plot,  options).toPromise();
     }
 
@@ -891,6 +894,15 @@ export class ObjectShareApi {
 import { ObservableSystemApi } from "./ObservableAPI";
 import { SystemApiRequestFactory, SystemApiResponseProcessor} from "../apis/SystemApi";
 
+export interface SystemApiArvizPlotRequest {
+    /**
+     * 
+     * @type PlotReq
+     * @memberof SystemApiarvizPlot
+     */
+    plotReq: PlotReq
+}
+
 export interface SystemApiConfigRequest {
 }
 
@@ -902,6 +914,22 @@ export class ObjectSystemApi {
 
     public constructor(configuration: Configuration, requestFactory?: SystemApiRequestFactory, responseProcessor?: SystemApiResponseProcessor) {
         this.api = new ObservableSystemApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Get Arviz plot data.
+     * @param param the request object
+     */
+    public arvizPlotWithHttpInfo(param: SystemApiArvizPlotRequest, options?: Configuration): Promise<HttpInfo<SuccRspPlotRsp>> {
+        return this.api.arvizPlotWithHttpInfo(param.plotReq,  options).toPromise();
+    }
+
+    /**
+     * Get Arviz plot data.
+     * @param param the request object
+     */
+    public arvizPlot(param: SystemApiArvizPlotRequest, options?: Configuration): Promise<SuccRspPlotRsp> {
+        return this.api.arvizPlot(param.plotReq,  options).toPromise();
     }
 
     /**

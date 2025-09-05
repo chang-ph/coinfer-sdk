@@ -12,7 +12,7 @@ This can be used to construct the `OpenAPI.Clients.Client` instance.
 basepath(::Type{ ObjectApi }) = "https://api.coinfer.ai"
 
 const _returntypes_create_object_ObjectApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType,
+    Regex("^" * replace("200", "x"=>".") * "\$") => UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
@@ -30,7 +30,7 @@ Create new object.  ### Example Create model: ``` POST /api/object {     \"paylo
 Params:
 - create_object_req::CreateObjectReq (required)
 
-Return: SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, OpenAPI.Clients.ApiResponse
+Return: UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66, OpenAPI.Clients.ApiResponse
 """
 function create_object(_api::ObjectApi, create_object_req::CreateObjectReq; _mediaType=nothing)
     _ctx = _oacinternal_create_object(_api, create_object_req; _mediaType=_mediaType)
@@ -77,7 +77,7 @@ function delete_object(_api::ObjectApi, response_stream::Channel; objids=nothing
 end
 
 const _returntypes_list_object_ObjectApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRsp,
+    Regex("^" * replace("200", "x"=>".") * "\$") => UUUU3d00ddc80a048e8fc9eddc3c1943d9f1,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
@@ -118,7 +118,7 @@ Params:
 - has_model::String
 - tags::Vector{String}
 
-Return: SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRsp, OpenAPI.Clients.ApiResponse
+Return: UUUU3d00ddc80a048e8fc9eddc3c1943d9f1, OpenAPI.Clients.ApiResponse
 """
 function list_object(_api::ObjectApi, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, tags=nothing, _mediaType=nothing)
     _ctx = _oacinternal_list_object(_api, object_type; page_no=page_no, page_size=page_size, with_share_info=with_share_info, shared_by_me=shared_by_me, shared_with_me=shared_with_me, model_ids=model_ids, status=status, run_on=run_on, has_model=has_model, tags=tags, _mediaType=_mediaType)
@@ -164,7 +164,7 @@ function update_object(_api::ObjectApi, response_stream::Channel, objid::String,
 end
 
 const _returntypes_view_object_ObjectApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType,
+    Regex("^" * replace("200", "x"=>".") * "\$") => UUUU7f23cd8d5099a867ea3f026af4ed4207,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
@@ -201,7 +201,7 @@ Params:
 - run_id::String
 - plot::Bool
 
-Return: SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, OpenAPI.Clients.ApiResponse
+Return: UUUU7f23cd8d5099a867ea3f026af4ed4207, OpenAPI.Clients.ApiResponse
 """
 function view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, plot=nothing, _mediaType=nothing)
     _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, plot=plot, _mediaType=_mediaType)

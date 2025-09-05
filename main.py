@@ -1,7 +1,9 @@
-import sys
+import argparse
+import hashlib
 import json
 import subprocess
-import argparse
+import sys
+from typing import Any, Dict, List, Union
 
 import httpx
 
@@ -30,15 +32,53 @@ rm -rf {target_lang_dir}/sdk \
 """
 
 
+def replace_long_keys(data: Any) -> None:
+    key_mapping = {}
+
+    def collect_replacements(node: Any):
+        if isinstance(node, dict):
+            for key, value in list(node.items()):
+                if len(key) > 100:
+                    md5_hash = hashlib.md5(key.encode('utf-8')).hexdigest()
+                    new_key = f"UUUU{md5_hash}"
+                    key_mapping[key] = new_key
+
+                    node[new_key] = value
+                    del node[key]
+                collect_replacements(value)
+
+        elif isinstance(node, list):
+            for idx, item in enumerate(node):
+                collect_replacements(item)
+
+    def apply_replacements(node: Any):
+        if isinstance(node, dict):
+            for key, value in list(node.items()):
+                if isinstance(value, str):
+                    for old_ref, new_ref in key_mapping.items():
+                        if old_ref in value:
+                            node[key] = value.replace(old_ref, new_ref)
+
+                apply_replacements(value)
+
+        elif isinstance(node, list):
+            for item in node:
+                apply_replacements(item)
+
+    collect_replacements(data)
+    apply_replacements(data)
+    return data
+
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('http_endpoint', nargs='?', default='https://dev.coinfer.ai')
+    parser.add_argument("http_endpoint", nargs="?", default="https://dev.coinfer.ai")
     args = parser.parse_args()
     print(args.http_endpoint)
     rsp = httpx.get(f"{args.http_endpoint}/openapi.json")
     openapi_json = rsp.json()
     # remove common prefix to make the method name shorter
-    for path, path_item in openapi_json['paths'].items():
+    for path, path_item in openapi_json["paths"].items():
         for method, operation in path_item.items():
             operation["operationId"] = (
                 operation["operationId"]
@@ -53,35 +93,44 @@ def main():
 
     # check if all the operationIds are fixed
     check_uniq = set()
-    for path, path_item in openapi_json['paths'].items():
+    for path, path_item in openapi_json["paths"].items():
         for method, operation in path_item.items():
             opid = operation["operationId"]
             if opid.startswith("coinfer_apis_"):
-                print(f'{opid} has invalid naming', file=sys.stderr)
+                print(f"{opid} has invalid naming", file=sys.stderr)
                 sys.exit(1)
 
             if opid in check_uniq:
-                print(f'{opid} conflict', file=sys.stderr)
+                print(f"{opid} conflict", file=sys.stderr)
                 sys.exit(2)
             check_uniq.add(opid)
 
     with open("openapi.json", "wt") as fout:
-        json.dump(openapi_json, fout)
+        json.dump(replace_long_keys(openapi_json), fout)
 
-    lang_config['typescript']['additional_properties']['npmVersion'] = openapi_json['info']['version']
+    lang_config["typescript"]["additional_properties"]["npmVersion"] = openapi_json[
+        "info"
+    ]["version"]
     for lang in ("python", "julia-client", "typescript"):
         if _lang_config := lang_config.get(lang):
             additional_properties = ",".join(
-                f"{key}={val}" for key, val in _lang_config.get("additional_properties", {}).items()
+                f"{key}={val}"
+                for key, val in _lang_config.get("additional_properties", {}).items()
             )
-            additional_properties = f"--additional-properties={additional_properties}" if additional_properties else ""
+            additional_properties = (
+                f"--additional-properties={additional_properties}"
+                if additional_properties
+                else ""
+            )
             dir_name = _lang_config.get("dir_name", lang)
         else:
             additional_properties = ""
             dir_name = lang
         subprocess.check_call(
             cmd_template.format(
-                target_lang=lang, target_lang_dir=dir_name, additional_properties=additional_properties
+                target_lang=lang,
+                target_lang_dir=dir_name,
+                additional_properties=additional_properties,
             ),
             shell=True,
         )

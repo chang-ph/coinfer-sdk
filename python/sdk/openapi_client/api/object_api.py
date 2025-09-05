@@ -9,7 +9,6 @@
 
     Do not edit the class manually.
 """  # noqa: E501
-
 import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
@@ -19,11 +18,11 @@ from pydantic import Field, StrictBool, StrictInt, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
 from openapi_client.models.create_object_req import CreateObjectReq
-from openapi_client.models.succ_rsp_annotated_union_experiment_rsp_list_models_rsp_item_create_experiment_share_rsp_create_event_rsp_create_callback_rsp_create_relation_rsp_field_info_annotation_none_type_required_true_discriminator_object_type import SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType
-from openapi_client.models.succ_rsp_annotated_union_experiment_rsp_view_models_rsp_view_experiment_share_rsp_experiment_sample_data_rsp_experiment_cloudwatch_log_rsp_get_experiment_run_info_rsp_field_info_annotation_none_type_required_true_discriminator_object_type import SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType
-from openapi_client.models.succ_rsp_listing_rsp_data_union_list_experiment_rsp_list_models_rsp_item_create_event_rsp_create_callback_rsp_create_relation_rsp import SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp
 from openapi_client.models.succ_rsp_soft_deleted_rsp import SuccRspSoftDeletedRsp
 from openapi_client.models.succ_rsp_union_experiment_rsp_view_models_rsp_none_type import SuccRspUnionExperimentRspViewModelsRspNoneType
+from openapi_client.models.uuuu3d00ddc80a048e8fc9eddc3c1943d9f1 import UUUU3d00ddc80a048e8fc9eddc3c1943d9f1
+from openapi_client.models.uuuu4be0e69353a8fb4b4ca5b5b1a94b3f66 import UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66
+from openapi_client.models.uuuu7f23cd8d5099a867ea3f026af4ed4207 import UUUU7f23cd8d5099a867ea3f026af4ed4207
 from openapi_client.models.update_object import UpdateObject
 
 from openapi_client.api_client import ApiClient, RequestSerialized
@@ -60,7 +59,7 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType:
+    ) -> UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66:
         """Create new object.
 
         Create new object.  ### Example Create model: ``` POST /api/object {     \"payload\": {         \"object_type\": \"model\",         \"name\": \"model name\",         \"type\": \"local\",         \"content\": {             \"meta\": {\"entrance_file\": \"main.jl\"},             \"tree\": [],         }     } } ```  Create model from GitHub repo: ``` POST /api/object {     \"payload\": {         \"object_type\": \"model\",         \"repo\": \"vectorly-ai/simple-model\",         \"branch\": \"main\",         \"type\": \"repo\",     } } ```  Create model from GitHub gist: ``` POST /api/object {     \"payload\": {         \"object_type\": \"model\",         \"repo\": \"<the-gist-id>\",         \"type\": \"gist\",     } } ```  Create experiment: ``` POST /api/object {     \"payload\": {         \"object_type\": \"experiment\",         \"name\": \"experiment name\",         \"model_id\": \"M1234567\",     } } ```  Create share of experiment: ``` POST /api/object {     \"payload\": {         \"object_type\": \"share\",         \"objid\": \"X1234567\",         \"password\": \"the-pass\",     } } ```
@@ -98,10 +97,9 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType",
+            '200': "UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -128,7 +126,7 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType]:
+    ) -> ApiResponse[UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66]:
         """Create new object.
 
         Create new object.  ### Example Create model: ``` POST /api/object {     \"payload\": {         \"object_type\": \"model\",         \"name\": \"model name\",         \"type\": \"local\",         \"content\": {             \"meta\": {\"entrance_file\": \"main.jl\"},             \"tree\": [],         }     } } ```  Create model from GitHub repo: ``` POST /api/object {     \"payload\": {         \"object_type\": \"model\",         \"repo\": \"vectorly-ai/simple-model\",         \"branch\": \"main\",         \"type\": \"repo\",     } } ```  Create model from GitHub gist: ``` POST /api/object {     \"payload\": {         \"object_type\": \"model\",         \"repo\": \"<the-gist-id>\",         \"type\": \"gist\",     } } ```  Create experiment: ``` POST /api/object {     \"payload\": {         \"object_type\": \"experiment\",         \"name\": \"experiment name\",         \"model_id\": \"M1234567\",     } } ```  Create share of experiment: ``` POST /api/object {     \"payload\": {         \"object_type\": \"share\",         \"objid\": \"X1234567\",         \"password\": \"the-pass\",     } } ```
@@ -166,10 +164,9 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType",
+            '200': "UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -234,10 +231,9 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType",
+            '200': "UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -381,8 +377,7 @@ class ObjectApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspSoftDeletedRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -453,8 +448,7 @@ class ObjectApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspSoftDeletedRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -525,8 +519,7 @@ class ObjectApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspSoftDeletedRsp",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -631,7 +624,7 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp:
+    ) -> UUUU3d00ddc80a048e8fc9eddc3c1943d9f1:
         """List objects.
 
         ### List Objects  By default, the API returns only objects created by the current user, excluding sharing information for performance optimization.  When `shared_with_me` is enabled, the API returns objects owned by other users but shared with the current user, including their sharing details.  Enabling `shared_by_me` will include sharing information for objects that the current user has shared with others.  Setting `with_share_info` to true combines both scenarios: it returns objects shared by the current user as well as objects shared with the current user, complete with their respective sharing information. This effectively merges the functionality of both `shared_by_me` and `shared_with_me`.  ### Example  List models: ``` GET /api/object?object_type=model GET /api/object?object_type=model&shared_by_me=true GET /api/object?object_type=model&shared_with_me=true GET /api/object?object_type=model&with_share_info=true ```  List experiments: ``` GET /api/object?object_type=experiment GET /api/object?object_type=experiment&shared_by_me=true GET /api/object?object_type=experiment&shared_with_me=true GET /api/object?object_type=experiment&with_share_info=true ```
@@ -699,10 +692,9 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp",
+            '200': "UUUU3d00ddc80a048e8fc9eddc3c1943d9f1",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -739,7 +731,7 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp]:
+    ) -> ApiResponse[UUUU3d00ddc80a048e8fc9eddc3c1943d9f1]:
         """List objects.
 
         ### List Objects  By default, the API returns only objects created by the current user, excluding sharing information for performance optimization.  When `shared_with_me` is enabled, the API returns objects owned by other users but shared with the current user, including their sharing details.  Enabling `shared_by_me` will include sharing information for objects that the current user has shared with others.  Setting `with_share_info` to true combines both scenarios: it returns objects shared by the current user as well as objects shared with the current user, complete with their respective sharing information. This effectively merges the functionality of both `shared_by_me` and `shared_with_me`.  ### Example  List models: ``` GET /api/object?object_type=model GET /api/object?object_type=model&shared_by_me=true GET /api/object?object_type=model&shared_with_me=true GET /api/object?object_type=model&with_share_info=true ```  List experiments: ``` GET /api/object?object_type=experiment GET /api/object?object_type=experiment&shared_by_me=true GET /api/object?object_type=experiment&shared_with_me=true GET /api/object?object_type=experiment&with_share_info=true ```
@@ -807,10 +799,9 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp",
+            '200': "UUUU3d00ddc80a048e8fc9eddc3c1943d9f1",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -915,10 +906,9 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRsp",
+            '200': "UUUU3d00ddc80a048e8fc9eddc3c1943d9f1",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1103,8 +1093,7 @@ class ObjectApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspUnionExperimentRspViewModelsRspNoneType",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1175,8 +1164,7 @@ class ObjectApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspUnionExperimentRspViewModelsRspNoneType",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1247,8 +1235,7 @@ class ObjectApi:
         _response_types_map: Dict[str, Optional[str]] = {
             '200': "SuccRspUnionExperimentRspViewModelsRspNoneType",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1343,9 +1330,11 @@ class ObjectApi:
         share_id: Annotated[Optional[StrictStr], Field(description="                 Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot")] = None,
         sampledata: Optional[StrictBool] = None,
         fmt: Optional[StrictStr] = None,
+        n_iteration: Annotated[Optional[StrictInt], Field(description="Number of iterations to sample")] = None,
         cloudwatch_log: Optional[StrictBool] = None,
         batch_id: Optional[StrictStr] = None,
         run_id: Optional[StrictStr] = None,
+        plot: Annotated[Optional[StrictBool], Field(description="get arviz plot")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1358,7 +1347,7 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType:
+    ) -> UUUU7f23cd8d5099a867ea3f026af4ed4207:
         """View object.
 
         View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view model data GET /api/object/X1234567  # view experiment data GET /api/object/S1234566  # view share data ```
@@ -1373,12 +1362,16 @@ class ObjectApi:
         :type sampledata: bool
         :param fmt:
         :type fmt: str
+        :param n_iteration: Number of iterations to sample
+        :type n_iteration: int
         :param cloudwatch_log:
         :type cloudwatch_log: bool
         :param batch_id:
         :type batch_id: str
         :param run_id:
         :type run_id: str
+        :param plot: get arviz plot
+        :type plot: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1407,9 +1400,11 @@ class ObjectApi:
             share_id=share_id,
             sampledata=sampledata,
             fmt=fmt,
+            n_iteration=n_iteration,
             cloudwatch_log=cloudwatch_log,
             batch_id=batch_id,
             run_id=run_id,
+            plot=plot,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1417,10 +1412,9 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType",
+            '200': "UUUU7f23cd8d5099a867ea3f026af4ed4207",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1439,9 +1433,11 @@ class ObjectApi:
         share_id: Annotated[Optional[StrictStr], Field(description="                 Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot")] = None,
         sampledata: Optional[StrictBool] = None,
         fmt: Optional[StrictStr] = None,
+        n_iteration: Annotated[Optional[StrictInt], Field(description="Number of iterations to sample")] = None,
         cloudwatch_log: Optional[StrictBool] = None,
         batch_id: Optional[StrictStr] = None,
         run_id: Optional[StrictStr] = None,
+        plot: Annotated[Optional[StrictBool], Field(description="get arviz plot")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1454,7 +1450,7 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType]:
+    ) -> ApiResponse[UUUU7f23cd8d5099a867ea3f026af4ed4207]:
         """View object.
 
         View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view model data GET /api/object/X1234567  # view experiment data GET /api/object/S1234566  # view share data ```
@@ -1469,12 +1465,16 @@ class ObjectApi:
         :type sampledata: bool
         :param fmt:
         :type fmt: str
+        :param n_iteration: Number of iterations to sample
+        :type n_iteration: int
         :param cloudwatch_log:
         :type cloudwatch_log: bool
         :param batch_id:
         :type batch_id: str
         :param run_id:
         :type run_id: str
+        :param plot: get arviz plot
+        :type plot: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1503,9 +1503,11 @@ class ObjectApi:
             share_id=share_id,
             sampledata=sampledata,
             fmt=fmt,
+            n_iteration=n_iteration,
             cloudwatch_log=cloudwatch_log,
             batch_id=batch_id,
             run_id=run_id,
+            plot=plot,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1513,10 +1515,9 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType",
+            '200': "UUUU7f23cd8d5099a867ea3f026af4ed4207",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1535,9 +1536,11 @@ class ObjectApi:
         share_id: Annotated[Optional[StrictStr], Field(description="                 Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot")] = None,
         sampledata: Optional[StrictBool] = None,
         fmt: Optional[StrictStr] = None,
+        n_iteration: Annotated[Optional[StrictInt], Field(description="Number of iterations to sample")] = None,
         cloudwatch_log: Optional[StrictBool] = None,
         batch_id: Optional[StrictStr] = None,
         run_id: Optional[StrictStr] = None,
+        plot: Annotated[Optional[StrictBool], Field(description="get arviz plot")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1565,12 +1568,16 @@ class ObjectApi:
         :type sampledata: bool
         :param fmt:
         :type fmt: str
+        :param n_iteration: Number of iterations to sample
+        :type n_iteration: int
         :param cloudwatch_log:
         :type cloudwatch_log: bool
         :param batch_id:
         :type batch_id: str
         :param run_id:
         :type run_id: str
+        :param plot: get arviz plot
+        :type plot: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1599,9 +1606,11 @@ class ObjectApi:
             share_id=share_id,
             sampledata=sampledata,
             fmt=fmt,
+            n_iteration=n_iteration,
             cloudwatch_log=cloudwatch_log,
             batch_id=batch_id,
             run_id=run_id,
+            plot=plot,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1609,10 +1618,9 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType",
+            '200': "UUUU7f23cd8d5099a867ea3f026af4ed4207",
             '400': "ErrRsp",
-        }
-        response_data = self.api_client.call_api(
+        }        response_data = self.api_client.call_api(
             *_param,
             _request_timeout=_request_timeout
         )
@@ -1626,9 +1634,11 @@ class ObjectApi:
         share_id,
         sampledata,
         fmt,
+        n_iteration,
         cloudwatch_log,
         batch_id,
         run_id,
+        plot,
         _request_auth,
         _content_type,
         _headers,
@@ -1669,6 +1679,10 @@ class ObjectApi:
             
             _query_params.append(('fmt', fmt))
             
+        if n_iteration is not None:
+            
+            _query_params.append(('n_iteration', n_iteration))
+            
         if cloudwatch_log is not None:
             
             _query_params.append(('cloudwatch_log', cloudwatch_log))
@@ -1680,6 +1694,10 @@ class ObjectApi:
         if run_id is not None:
             
             _query_params.append(('run_id', run_id))
+            
+        if plot is not None:
+            
+            _query_params.append(('plot', plot))
             
         # process the header parameters
         # process the form parameters

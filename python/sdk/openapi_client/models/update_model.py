@@ -10,7 +10,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 from __future__ import annotations
 import pprint
 import re  # noqa: F401
@@ -33,7 +32,8 @@ class UpdateModel(BaseModel):
     description: Optional[StrictStr] = None
     status: Optional[StrictStr] = None
     lambda_image: Optional[StrictBool] = None
-    __properties: ClassVar[List[str]] = ["object_type", "content", "name", "version", "description", "status", "lambda_image"]
+    tags: Optional[List[StrictStr]] = None
+    __properties: ClassVar[List[str]] = ["object_type", "content", "name", "version", "description", "status", "lambda_image", "tags"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -114,6 +114,11 @@ class UpdateModel(BaseModel):
         if self.lambda_image is None and "lambda_image" in self.model_fields_set:
             _dict['lambda_image'] = None
 
+        # set to None if tags (nullable) is None
+        # and model_fields_set contains the field
+        if self.tags is None and "tags" in self.model_fields_set:
+            _dict['tags'] = None
+
         return _dict
 
     @classmethod
@@ -132,7 +137,8 @@ class UpdateModel(BaseModel):
             "version": obj.get("version"),
             "description": obj.get("description"),
             "status": obj.get("status"),
-            "lambda_image": obj.get("lambda_image")
+            "lambda_image": obj.get("lambda_image"),
+            "tags": obj.get("tags")
         })
         return _obj
 

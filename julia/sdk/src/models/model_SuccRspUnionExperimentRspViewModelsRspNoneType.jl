@@ -10,11 +10,11 @@
     )
 
     - status::String
-    - data::Data2
+    - data::Data
 """
 Base.@kwdef mutable struct SuccRspUnionExperimentRspViewModelsRspNoneType <: OpenAPI.APIModel
     status::Union{Nothing, String} = nothing
-    data = nothing # spec type: Union{ Nothing, Data2 }
+    data = nothing # spec type: Union{ Nothing, Data }
 
     function SuccRspUnionExperimentRspViewModelsRspNoneType(status, data, )
         OpenAPI.validate_property(SuccRspUnionExperimentRspViewModelsRspNoneType, Symbol("status"), status)
@@ -23,7 +23,7 @@ Base.@kwdef mutable struct SuccRspUnionExperimentRspViewModelsRspNoneType <: Ope
     end
 end # type SuccRspUnionExperimentRspViewModelsRspNoneType
 
-const _property_types_SuccRspUnionExperimentRspViewModelsRspNoneType = Dict{Symbol,String}(Symbol("status")=>"String", Symbol("data")=>"Data2", )
+const _property_types_SuccRspUnionExperimentRspViewModelsRspNoneType = Dict{Symbol,String}(Symbol("status")=>"String", Symbol("data")=>"Data", )
 OpenAPI.property_type(::Type{ SuccRspUnionExperimentRspViewModelsRspNoneType }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_SuccRspUnionExperimentRspViewModelsRspNoneType[name]))}
 
 function check_required(o::SuccRspUnionExperimentRspViewModelsRspNoneType)

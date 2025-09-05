@@ -10,7 +10,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import unittest
 
 from openapi_client.models.succ_rsp_get_config_rsp import SuccRspGetConfigRsp
@@ -41,7 +40,8 @@ class TestSuccRspGetConfigRsp(unittest.TestCase):
                     max_upload_sample_file = 56, 
                     upload_file_types = '', 
                     google_client_id = '', 
-                    google_app_id = '', )
+                    google_app_id = '', 
+                    arviz_plotting_endpoint = '', )
             )
         else:
             return SuccRspGetConfigRsp(
@@ -52,7 +52,8 @@ class TestSuccRspGetConfigRsp(unittest.TestCase):
                     max_upload_sample_file = 56, 
                     upload_file_types = '', 
                     google_client_id = '', 
-                    google_app_id = '', ),
+                    google_app_id = '', 
+                    arviz_plotting_endpoint = '', ),
         )
         """
 

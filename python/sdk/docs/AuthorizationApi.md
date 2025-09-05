@@ -52,7 +52,6 @@ configuration = openapi_client.Configuration(
 configuration = openapi_client.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
-
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -66,7 +65,6 @@ with openapi_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthorizationApi->access_token: %s\n" % e)
 ```
-
 
 
 ### Parameters
@@ -100,7 +98,7 @@ This endpoint does not need any parameter.
 
 Get Auth0 login configuration
 
-Returns the configurations need by the frontend to implement Auth0 login. By using an API to provide this information, we avoid hardcoding them in the frontend code.  This API doen't need authorization as it is usually called before login.
+Returns the configurations need by the frontend to implement Auth0 login. By using an API to provide this information, we avoid hardcoding them in the frontend code.  This API doesn't need authorization as it is usually called before login.
 
 ### Example
 
@@ -117,7 +115,6 @@ configuration = openapi_client.Configuration(
     host = "https://api.coinfer.ai"
 )
 
-
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -131,7 +128,6 @@ with openapi_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthorizationApi->auth0_config: %s\n" % e)
 ```
-
 
 
 ### Parameters
@@ -181,7 +177,6 @@ configuration = openapi_client.Configuration(
     host = "https://api.coinfer.ai"
 )
 
-
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -195,7 +190,6 @@ with openapi_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthorizationApi->auth0_login: %s\n" % e)
 ```
-
 
 
 ### Parameters
@@ -255,7 +249,6 @@ configuration = openapi_client.Configuration(
 configuration = openapi_client.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
-
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -270,7 +263,6 @@ with openapi_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthorizationApi->code2token: %s\n" % e)
 ```
-
 
 
 ### Parameters
@@ -335,7 +327,6 @@ configuration = openapi_client.Configuration(
 configuration = openapi_client.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
-
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -350,7 +341,6 @@ with openapi_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthorizationApi->create_token: %s\n" % e)
 ```
-
 
 
 ### Parameters
@@ -414,7 +404,6 @@ configuration = openapi_client.Configuration(
 configuration = openapi_client.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
-
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -430,7 +419,6 @@ with openapi_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthorizationApi->delete_linked_account: %s\n" % e)
 ```
-
 
 
 ### Parameters
@@ -495,7 +483,6 @@ configuration = openapi_client.Configuration(
 configuration = openapi_client.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
-
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -511,7 +498,6 @@ with openapi_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthorizationApi->delete_token: %s\n" % e)
 ```
-
 
 
 ### Parameters
@@ -576,7 +562,6 @@ configuration = openapi_client.Configuration(
 configuration = openapi_client.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
-
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -590,7 +575,6 @@ with openapi_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthorizationApi->get_tokens: %s\n" % e)
 ```
-
 
 
 ### Parameters
@@ -651,7 +635,6 @@ configuration = openapi_client.Configuration(
 configuration = openapi_client.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
-
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -665,7 +648,6 @@ with openapi_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthorizationApi->list_linked_account: %s\n" % e)
 ```
-
 
 
 ### Parameters
@@ -727,7 +709,6 @@ configuration = openapi_client.Configuration(
 configuration = openapi_client.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
-
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -742,7 +723,6 @@ with openapi_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthorizationApi->modify_current_user: %s\n" % e)
 ```
-
 
 
 ### Parameters
@@ -807,7 +787,6 @@ configuration = openapi_client.Configuration(
 configuration = openapi_client.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
-
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -823,7 +802,6 @@ with openapi_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthorizationApi->modify_token: %s\n" % e)
 ```
-
 
 
 ### Parameters
@@ -888,7 +866,6 @@ configuration = openapi_client.Configuration(
 configuration = openapi_client.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
-
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -902,7 +879,6 @@ with openapi_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthorizationApi->user_info: %s\n" % e)
 ```
-
 
 
 ### Parameters
@@ -955,7 +931,6 @@ configuration = openapi_client.Configuration(
     host = "https://api.coinfer.ai"
 )
 
-
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -970,7 +945,6 @@ with openapi_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthorizationApi->user_login: %s\n" % e)
 ```
-
 
 
 ### Parameters
@@ -1034,7 +1008,6 @@ configuration = openapi_client.Configuration(
 configuration = openapi_client.Configuration(
     access_token = os.environ["BEARER_TOKEN"]
 )
-
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -1048,7 +1021,6 @@ with openapi_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling AuthorizationApi->user_logout: %s\n" % e)
 ```
-
 
 
 ### Parameters

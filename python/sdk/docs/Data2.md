@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **object_type** | **str** |  | 
 **short_id** | **str** |  | 
 **name** | **str** |  | 
-**model_id** | **str** |  | [optional] [default to '']
-**status** | **str** |  | [optional] [default to '']
+**model_id** | **str** |  | 
+**status** | **str** |  | 
 **meta** | [**ModelMetaInRsp**](ModelMetaInRsp.md) |  | 
 **n_chains** | **int** |  | [optional] [default to 0]
 **n_variables** | **int** |  | [optional] [default to 0]
@@ -25,6 +25,18 @@ Name | Type | Description | Notes
 **tags** | **List[str]** |  | 
 **lambda_image_url** | **str** |  | [optional] 
 **lambda_image_name** | **str** |  | [optional] 
+**require_password** | **bool** |  | 
+**url** | **str** |  | 
+**progress** | **str** |  | 
+**message** | **str** |  | [optional] [default to '']
+**logs** | **List[List[object]]** |  | 
+**description** | **str** |  | 
+**created_at** | **datetime** |  | 
+**updated_at** | **datetime** |  | 
+**path** | **str** |  | [optional] [default to '']
+**fmt** | **str** |  | [optional] [default to 'raw']
+**data_id** | **str** |  | [optional] 
+**data_name** | **str** |  | [optional] [default to '']
 
 ## Example
 

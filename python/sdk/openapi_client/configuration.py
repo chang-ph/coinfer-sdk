@@ -10,7 +10,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import copy
 import http.client as httplib
 import logging
@@ -530,7 +529,7 @@ conf = openapi_client.Configuration(
         return "Python SDK Debug Report:\n"\
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
-               "Version of the API: 0.0.1754956943+32a86cd\n"\
+               "Version of the API: 0.0.1757040586+c8b1bb2\n"\
                "SDK Package Version: 1.0.0".\
                format(env=sys.platform, pyversion=sys.version)
 

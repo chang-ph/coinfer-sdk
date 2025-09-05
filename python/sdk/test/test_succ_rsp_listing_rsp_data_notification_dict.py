@@ -10,7 +10,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import unittest
 
 from openapi_client.models.succ_rsp_listing_rsp_data_notification_dict import SuccRspListingRspDataNotificationDict

@@ -12,8 +12,8 @@ Method | HTTP request | Description
 
 
 # **create_object**
-> create_object(_api::ObjectApi, create_object_req::CreateObjectReq; _mediaType=nothing) -> SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, OpenAPI.Clients.ApiResponse <br/>
-> create_object(_api::ObjectApi, response_stream::Channel, create_object_req::CreateObjectReq; _mediaType=nothing) -> Channel{ SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType }, OpenAPI.Clients.ApiResponse
+> create_object(_api::ObjectApi, create_object_req::CreateObjectReq; _mediaType=nothing) -> UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66, OpenAPI.Clients.ApiResponse <br/>
+> create_object(_api::ObjectApi, response_stream::Channel, create_object_req::CreateObjectReq; _mediaType=nothing) -> Channel{ UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66 }, OpenAPI.Clients.ApiResponse
 
 Create new object.
 
@@ -28,7 +28,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType**](SuccRspAnnotatedUnionExperimentRspListModelsRspItemCreateExperimentShareRspCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType.md)
+[**UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66**](UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66.md)
 
 ### Authorization
 
@@ -78,8 +78,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **list_object**
-> list_object(_api::ObjectApi, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, tags=nothing, _mediaType=nothing) -> SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRsp, OpenAPI.Clients.ApiResponse <br/>
-> list_object(_api::ObjectApi, response_stream::Channel, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, tags=nothing, _mediaType=nothing) -> Channel{ SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRsp }, OpenAPI.Clients.ApiResponse
+> list_object(_api::ObjectApi, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, tags=nothing, _mediaType=nothing) -> UUUU3d00ddc80a048e8fc9eddc3c1943d9f1, OpenAPI.Clients.ApiResponse <br/>
+> list_object(_api::ObjectApi, response_stream::Channel, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, tags=nothing, _mediaType=nothing) -> Channel{ UUUU3d00ddc80a048e8fc9eddc3c1943d9f1 }, OpenAPI.Clients.ApiResponse
 
 List objects.
 
@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRsp**](SuccRspListingRspDataUnionListExperimentRspListModelsRspItemCreateEventRspCreateCallbackRspCreateRelationRspCreateDataRsp.md)
+[**UUUU3d00ddc80a048e8fc9eddc3c1943d9f1**](UUUU3d00ddc80a048e8fc9eddc3c1943d9f1.md)
 
 ### Authorization
 
@@ -154,8 +154,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **view_object**
-> view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, plot=nothing, _mediaType=nothing) -> SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType, OpenAPI.Clients.ApiResponse <br/>
-> view_object(_api::ObjectApi, response_stream::Channel, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, plot=nothing, _mediaType=nothing) -> Channel{ SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType }, OpenAPI.Clients.ApiResponse
+> view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, plot=nothing, _mediaType=nothing) -> UUUU7f23cd8d5099a867ea3f026af4ed4207, OpenAPI.Clients.ApiResponse <br/>
+> view_object(_api::ObjectApi, response_stream::Channel, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, plot=nothing, _mediaType=nothing) -> Channel{ UUUU7f23cd8d5099a867ea3f026af4ed4207 }, OpenAPI.Clients.ApiResponse
 
 View object.
 
@@ -184,7 +184,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType**](SuccRspAnnotatedUnionExperimentRspViewModelsRspViewExperimentShareRspExperimentSampleDataRspExperimentCloudwatchLogRspGetExperimentRunInfoRspExperimentPlotRspCreateDataRspFieldInfoAnnotationNoneTypeRequiredTrueDiscriminatorObjectType.md)
+[**UUUU7f23cd8d5099a867ea3f026af4ed4207**](UUUU7f23cd8d5099a867ea3f026af4ed4207.md)
 
 ### Authorization
 

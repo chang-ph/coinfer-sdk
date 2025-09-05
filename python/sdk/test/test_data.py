@@ -33,7 +33,7 @@ class TestData(unittest.TestCase):
         model = Data()
         if include_optional:
             return Data(
-                object_type = 'workflow',
+                object_type = 'model',
                 short_id = '',
                 name = '',
                 model_id = '',
@@ -65,32 +65,13 @@ class TestData(unittest.TestCase):
                     ''
                     ],
                 lambda_image_url = '',
-                lambda_image_name = '',
-                user_id = 56,
-                experiment_id = '',
-                experiment_name = '',
-                password = '',
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                from_user = '',
-                to_user = '',
-                lang = '',
-                code = '',
-                token = '',
-                object1_id = '',
-                object2_id = '',
-                description = '',
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                path = '',
-                fmt = 'raw',
-                data_id = '',
-                data_name = ''
+                lambda_image_name = ''
             )
         else:
             return Data(
-                object_type = 'workflow',
+                object_type = 'model',
                 short_id = '',
                 name = '',
-                model_id = '',
                 meta = openapi_client.models._model_meta_in_rsp._ModelMetaInRsp(
                     github = '', 
                     commit_id = '', 
@@ -101,18 +82,6 @@ class TestData(unittest.TestCase):
                 tags = [
                     ''
                     ],
-                user_id = 56,
-                experiment_id = '',
-                experiment_name = '',
-                password = '',
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                lang = '',
-                code = '',
-                token = '',
-                object1_id = '',
-                object2_id = '',
-                description = '',
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
         """
 

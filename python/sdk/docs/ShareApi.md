@@ -27,7 +27,6 @@ configuration = openapi_client.Configuration(
     host = "https://api.coinfer.ai"
 )
 
-
 # Enter a context with an instance of the API client
 with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -42,7 +41,6 @@ with openapi_client.ApiClient(configuration) as api_client:
     except Exception as e:
         print("Exception when calling ShareApi->get_experiment_share: %s\n" % e)
 ```
-
 
 
 ### Parameters

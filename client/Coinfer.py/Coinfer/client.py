@@ -76,12 +76,13 @@ class Client:
         )
         return self.response_data(res)
 
-    def create_experiment(self, model_id, input_id, xp_meta, name="", run_on=""):
+    def create_experiment(self, model_id, workflow_id, input_id, xp_meta, name="", run_on=""):
         url = self.endpoint("api", "/object")
         data = {
             "payload": {
                 "object_type": "experiment",
                 "model_id": model_id,
+                "workflow_id": workflow_id,
                 "input_id": input_id,
                 "xp_meta": xp_meta,
                 "name": name,

@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **status** | **str** |  | 
-**data** | [**Data2**](Data2.md) |  | 
+**data** | [**Data**](Data.md) |  | 
 
 ## Example
 

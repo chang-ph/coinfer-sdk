@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **description** | **str** |  | [optional] 
 **status** | **str** |  | [optional] 
 **lambda_image** | **bool** |  | [optional] 
+**tags** | **List[str]** |  | [optional] 
 
 ## Example
 

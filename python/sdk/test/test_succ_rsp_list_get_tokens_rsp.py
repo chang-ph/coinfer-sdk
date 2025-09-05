@@ -10,7 +10,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 import unittest
 
 from openapi_client.models.succ_rsp_list_get_tokens_rsp import SuccRspListGetTokensRsp
