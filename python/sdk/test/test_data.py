@@ -59,6 +59,8 @@ class TestData(unittest.TestCase):
                         to_user_id = '', )
                     ],
                 model_name = '',
+                workflow_id = '',
+                workflow_name = '',
                 id = 56,
                 content = None,
                 tags = [
@@ -77,7 +79,6 @@ class TestData(unittest.TestCase):
                     commit_id = '', 
                     origin_url = '', 
                     fixed_version_url = '', ),
-                model_name = '',
                 id = 56,
                 tags = [
                     ''

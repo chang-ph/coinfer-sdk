@@ -18,7 +18,9 @@ Name | Type | Description | Notes
 **input** | **String** |  | [optional] [default to nothing]
 **output** | **String** |  | [optional] [default to nothing]
 **share_info** | [**Vector{ShareInfoModel}**](ShareInfoModel.md) |  | [optional] [default to nothing]
-**model_name** | **String** |  | [default to nothing]
+**model_name** | **String** |  | [optional] [default to ""]
+**workflow_id** | **String** |  | [optional] [default to ""]
+**workflow_name** | **String** |  | [optional] [default to ""]
 
 
 [[Back to Model list]](../README.md#models) [[Back to API list]](../README.md#api-endpoints) [[Back to README]](../README.md)

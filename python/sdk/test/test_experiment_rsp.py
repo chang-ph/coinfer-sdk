@@ -54,12 +54,13 @@ class TestExperimentRsp(unittest.TestCase):
                         short_id = '', 
                         to_user_id = '', )
                     ],
-                model_name = ''
+                model_name = '',
+                workflow_id = '',
+                workflow_name = ''
             )
         else:
             return ExperimentRsp(
                 object_type = 'experiment',
-                model_name = '',
         )
         """
 

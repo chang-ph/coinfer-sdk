@@ -19,7 +19,9 @@ export class Data {
     'input'?: string;
     'output'?: string;
     'shareInfo'?: Array<ShareInfoModel>;
-    'modelName': string;
+    'modelName'?: string;
+    'workflowId'?: string;
+    'workflowName'?: string;
     'id': number;
     'content'?: any | null;
     'tags': Array<string>;
@@ -118,6 +120,18 @@ export class Data {
         {
             "name": "modelName",
             "baseName": "model_name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "workflowId",
+            "baseName": "workflow_id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "workflowName",
+            "baseName": "workflow_name",
             "type": "string",
             "format": ""
         },

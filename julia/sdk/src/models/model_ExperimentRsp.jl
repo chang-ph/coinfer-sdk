@@ -19,7 +19,9 @@
         input=nothing,
         output=nothing,
         share_info=nothing,
-        model_name=nothing,
+        model_name="",
+        workflow_id="",
+        workflow_name="",
     )
 
     - object_type::String
@@ -37,6 +39,8 @@
     - output::String
     - share_info::Vector{ShareInfoModel}
     - model_name::String
+    - workflow_id::String
+    - workflow_name::String
 """
 Base.@kwdef mutable struct ExperimentRsp <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
@@ -53,9 +57,11 @@ Base.@kwdef mutable struct ExperimentRsp <: OpenAPI.APIModel
     input::Union{Nothing, String} = nothing
     output::Union{Nothing, String} = nothing
     share_info::Union{Nothing, Vector} = nothing # spec type: Union{ Nothing, Vector{ShareInfoModel} }
-    model_name::Union{Nothing, String} = nothing
+    model_name::Union{Nothing, String} = ""
+    workflow_id::Union{Nothing, String} = ""
+    workflow_name::Union{Nothing, String} = ""
 
-    function ExperimentRsp(object_type, short_id, name, model_id, status, meta, n_chains, n_variables, n_samples, sample_update_time, run_on, input, output, share_info, model_name, )
+    function ExperimentRsp(object_type, short_id, name, model_id, status, meta, n_chains, n_variables, n_samples, sample_update_time, run_on, input, output, share_info, model_name, workflow_id, workflow_name, )
         OpenAPI.validate_property(ExperimentRsp, Symbol("object_type"), object_type)
         OpenAPI.validate_property(ExperimentRsp, Symbol("short_id"), short_id)
         OpenAPI.validate_property(ExperimentRsp, Symbol("name"), name)
@@ -71,16 +77,17 @@ Base.@kwdef mutable struct ExperimentRsp <: OpenAPI.APIModel
         OpenAPI.validate_property(ExperimentRsp, Symbol("output"), output)
         OpenAPI.validate_property(ExperimentRsp, Symbol("share_info"), share_info)
         OpenAPI.validate_property(ExperimentRsp, Symbol("model_name"), model_name)
-        return new(object_type, short_id, name, model_id, status, meta, n_chains, n_variables, n_samples, sample_update_time, run_on, input, output, share_info, model_name, )
+        OpenAPI.validate_property(ExperimentRsp, Symbol("workflow_id"), workflow_id)
+        OpenAPI.validate_property(ExperimentRsp, Symbol("workflow_name"), workflow_name)
+        return new(object_type, short_id, name, model_id, status, meta, n_chains, n_variables, n_samples, sample_update_time, run_on, input, output, share_info, model_name, workflow_id, workflow_name, )
     end
 end # type ExperimentRsp
 
-const _property_types_ExperimentRsp = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("short_id")=>"String", Symbol("name")=>"String", Symbol("model_id")=>"String", Symbol("status")=>"String", Symbol("meta")=>"Any", Symbol("n_chains")=>"Int64", Symbol("n_variables")=>"Int64", Symbol("n_samples")=>"Int64", Symbol("sample_update_time")=>"ZonedDateTime", Symbol("run_on")=>"String", Symbol("input")=>"String", Symbol("output")=>"String", Symbol("share_info")=>"Vector{ShareInfoModel}", Symbol("model_name")=>"String", )
+const _property_types_ExperimentRsp = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("short_id")=>"String", Symbol("name")=>"String", Symbol("model_id")=>"String", Symbol("status")=>"String", Symbol("meta")=>"Any", Symbol("n_chains")=>"Int64", Symbol("n_variables")=>"Int64", Symbol("n_samples")=>"Int64", Symbol("sample_update_time")=>"ZonedDateTime", Symbol("run_on")=>"String", Symbol("input")=>"String", Symbol("output")=>"String", Symbol("share_info")=>"Vector{ShareInfoModel}", Symbol("model_name")=>"String", Symbol("workflow_id")=>"String", Symbol("workflow_name")=>"String", )
 OpenAPI.property_type(::Type{ ExperimentRsp }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_ExperimentRsp[name]))}
 
 function check_required(o::ExperimentRsp)
     o.object_type === nothing && (return false)
-    o.model_name === nothing && (return false)
     true
 end
 
@@ -102,6 +109,8 @@ function OpenAPI.validate_property(::Type{ ExperimentRsp }, name::Symbol, val)
     if name === Symbol("sample_update_time")
         OpenAPI.validate_param(name, "ExperimentRsp", :format, val, "date-time")
     end
+
+
 
 
 

@@ -59,6 +59,8 @@ class TestData2(unittest.TestCase):
                         to_user_id = '', )
                     ],
                 model_name = '',
+                workflow_id = '',
+                workflow_name = '',
                 id = 56,
                 content = None,
                 tags = [

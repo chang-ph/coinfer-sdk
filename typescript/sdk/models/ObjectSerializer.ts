@@ -123,7 +123,7 @@ import { CreateTextMessageReq, CreateTextMessageReqObjectTypeEnum      } from '.
 import { CreateToken } from '../models/CreateToken';
 import { CreateWorkflowReq, CreateWorkflowReqObjectTypeEnum      } from '../models/CreateWorkflowReq';
 import { CreateWorkflowRsp, CreateWorkflowRspObjectTypeEnum           } from '../models/CreateWorkflowRsp';
-import { Data, DataObjectTypeEnum                      } from '../models/Data';
+import { Data, DataObjectTypeEnum                        } from '../models/Data';
 import { Data1Class } from '../models/Data1';
 import { Data2Class } from '../models/Data2';
 import { DataTyping } from '../models/DataTyping';
@@ -135,7 +135,7 @@ import { DemoListRsp } from '../models/DemoListRsp';
 import { ErrRsp, ErrRspStatusEnum     } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp, ExperimentCloudwatchLogRspObjectTypeEnum    } from '../models/ExperimentCloudwatchLogRsp';
 import { ExperimentPlotRsp, ExperimentPlotRspObjectTypeEnum    } from '../models/ExperimentPlotRsp';
-import { ExperimentRsp, ExperimentRspObjectTypeEnum                 } from '../models/ExperimentRsp';
+import { ExperimentRsp, ExperimentRspObjectTypeEnum                   } from '../models/ExperimentRsp';
 import { ExperimentSampleDataRsp, ExperimentSampleDataRspObjectTypeEnum      } from '../models/ExperimentSampleDataRsp';
 import { GetConfigRsp } from '../models/GetConfigRsp';
 import { GetExperimentRunInfoRsp, GetExperimentRunInfoRspObjectTypeEnum    } from '../models/GetExperimentRunInfoRsp';

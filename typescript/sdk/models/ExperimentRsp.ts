@@ -16,7 +16,9 @@ export class ExperimentRsp {
     'input'?: string | null;
     'output'?: string | null;
     'shareInfo'?: Array<ShareInfoModel> | null;
-    'modelName': string;
+    'modelName'?: string;
+    'workflowId'?: string;
+    'workflowName'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -110,6 +112,18 @@ export class ExperimentRsp {
         {
             "name": "modelName",
             "baseName": "model_name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "workflowId",
+            "baseName": "workflow_id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "workflowName",
+            "baseName": "workflow_name",
             "type": "string",
             "format": ""
         }    ];
