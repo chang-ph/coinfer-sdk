@@ -7,7 +7,7 @@ using Dates, TimeZones
 using OpenAPI
 using OpenAPI.Clients
 
-const API_VERSION = "0.0.1757317565+0bee244"
+const API_VERSION = "0.0.1757380267+d9d9a45"
 
 include("modelincludes.jl")
 

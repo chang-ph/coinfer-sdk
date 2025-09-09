@@ -5,9 +5,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**value** | This is a oneOf model. The value must be exactly one of the following types: CreateNSampleStatReq, CreateProtobufMessageReq, CreateTextMessageReq, RunCloudFunctionScript, RunWorkflowReq, UpdateEventReq, UpdateExperiment, UpdateModel |  | [optional] 
+**value** | This is a oneOf model. The value must be exactly one of the following types: CreateNSampleStatReq, CreateProtobufMessageReq, CreateTextMessageReq, RunCloudFunctionScript, RunWorkflowReq, UpdateDataReq, UpdateEventReq, UpdateExperiment, UpdateModel, UpdateWorkflowReq |  | [optional] 
 
 The discriminator field is `object_type` with the following mapping:
+ - `data`: `UpdateDataReq`
  - `event`: `UpdateEventReq`
  - `experiment`: `UpdateExperiment`
  - `experiment.nsample_stat`: `CreateNSampleStatReq`
@@ -15,6 +16,7 @@ The discriminator field is `object_type` with the following mapping:
  - `experiment.text_message`: `CreateTextMessageReq`
  - `model`: `UpdateModel`
  - `model.run_script`: `RunCloudFunctionScript`
+ - `workflow`: `UpdateWorkflowReq`
  - `workflow.run`: `RunWorkflowReq`
 
 

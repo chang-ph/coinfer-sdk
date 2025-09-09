@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **input** | **str** |  | [optional] 
 **output** | **str** |  | [optional] 
 **share_info** | [**List[ShareInfoModel]**](ShareInfoModel.md) |  | [optional] 
-**model_name** | **str** |  | [optional] [default to '']
+**model_name** | **str** |  | 
 **workflow_id** | **str** |  | [optional] [default to '']
 **workflow_name** | **str** |  | [optional] [default to '']
 

@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **input** | **String** |  | [optional] [default to nothing]
 **output** | **String** |  | [optional] [default to nothing]
 **share_info** | [**Vector{ShareInfoModel}**](ShareInfoModel.md) |  | [optional] [default to nothing]
-**model_name** | **String** |  | [optional] [default to ""]
+**model_name** | **String** |  | [default to nothing]
 **workflow_id** | **String** |  | [optional] [default to ""]
 **workflow_name** | **String** |  | [optional] [default to ""]
 

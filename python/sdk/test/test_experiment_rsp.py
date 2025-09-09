@@ -61,6 +61,7 @@ class TestExperimentRsp(unittest.TestCase):
         else:
             return ExperimentRsp(
                 object_type = 'experiment',
+                model_name = '',
         )
         """
 

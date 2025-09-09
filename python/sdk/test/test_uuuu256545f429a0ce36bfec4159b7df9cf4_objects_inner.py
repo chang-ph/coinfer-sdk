@@ -56,6 +56,8 @@ class TestUUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner(unittest.TestCase):
                         to_user_id = '', )
                     ],
                 model_name = '',
+                workflow_id = '',
+                workflow_name = '',
                 object_type = 'workflow',
                 id = 56,
                 content = None,

@@ -86,10 +86,12 @@ export * from '../models/UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner';
 export * from '../models/UUUU3d00ddc80a048e8fc9eddc3c1943d9f1';
 export * from '../models/UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66';
 export * from '../models/UUUU7f23cd8d5099a867ea3f026af4ed4207';
+export * from '../models/UpdateDataReq';
 export * from '../models/UpdateEventReq';
 export * from '../models/UpdateExperiment';
 export * from '../models/UpdateModel';
 export * from '../models/UpdateObject';
+export * from '../models/UpdateWorkflowReq';
 export * from '../models/UserInfoRsp';
 export * from '../models/UserLogin';
 export * from '../models/UserLoginRsp';
@@ -182,14 +184,16 @@ import { SuccRspUnionExperimentRspViewModelsRspNoneType, SuccRspUnionExperimentR
 import { SuccRspUserInfoRsp, SuccRspUserInfoRspStatusEnum    } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp, SuccRspUserLoginRspStatusEnum    } from '../models/SuccRspUserLoginRsp';
 import { UUUU256545f429a0ce36bfec4159b7df9cf4 } from '../models/UUUU256545f429a0ce36bfec4159b7df9cf4';
-import { UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner            , UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInnerObjectTypeEnum                     } from '../models/UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner';
+import { UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner              , UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInnerObjectTypeEnum                     } from '../models/UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner';
 import { UUUU3d00ddc80a048e8fc9eddc3c1943d9f1, UUUU3d00ddc80a048e8fc9eddc3c1943d9f1StatusEnum    } from '../models/UUUU3d00ddc80a048e8fc9eddc3c1943d9f1';
 import { UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66, UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66StatusEnum    } from '../models/UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66';
 import { UUUU7f23cd8d5099a867ea3f026af4ed4207, UUUU7f23cd8d5099a867ea3f026af4ed4207StatusEnum    } from '../models/UUUU7f23cd8d5099a867ea3f026af4ed4207';
+import { UpdateDataReq, UpdateDataReqObjectTypeEnum     } from '../models/UpdateDataReq';
 import { UpdateEventReq, UpdateEventReqObjectTypeEnum   , UpdateEventReqEngineEnum    } from '../models/UpdateEventReq';
 import { UpdateExperiment, UpdateExperimentObjectTypeEnum           } from '../models/UpdateExperiment';
 import { UpdateModel, UpdateModelObjectTypeEnum          } from '../models/UpdateModel';
 import { UpdateObject } from '../models/UpdateObject';
+import { UpdateWorkflowReq, UpdateWorkflowReqObjectTypeEnum     } from '../models/UpdateWorkflowReq';
 import { UserInfoRsp } from '../models/UserInfoRsp';
 import { UserLogin } from '../models/UserLogin';
 import { UserLoginRsp } from '../models/UserLoginRsp';
@@ -286,10 +290,12 @@ let enumsMap: Set<string> = new Set<string>([
     "UUUU3d00ddc80a048e8fc9eddc3c1943d9f1StatusEnum",
     "UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66StatusEnum",
     "UUUU7f23cd8d5099a867ea3f026af4ed4207StatusEnum",
+    "UpdateDataReqObjectTypeEnum",
     "UpdateEventReqObjectTypeEnum",
     "UpdateEventReqEngineEnum",
     "UpdateExperimentObjectTypeEnum",
     "UpdateModelObjectTypeEnum",
+    "UpdateWorkflowReqObjectTypeEnum",
     "ViewExperimentShareRspObjectTypeEnum",
     "ViewModelsRspObjectTypeEnum",
     "ViewObjectObjectTypeEnum",
@@ -382,10 +388,12 @@ let typeMap: {[index: string]: any} = {
     "UUUU3d00ddc80a048e8fc9eddc3c1943d9f1": UUUU3d00ddc80a048e8fc9eddc3c1943d9f1,
     "UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66": UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66,
     "UUUU7f23cd8d5099a867ea3f026af4ed4207": UUUU7f23cd8d5099a867ea3f026af4ed4207,
+    "UpdateDataReq": UpdateDataReq,
     "UpdateEventReq": UpdateEventReq,
     "UpdateExperiment": UpdateExperiment,
     "UpdateModel": UpdateModel,
     "UpdateObject": UpdateObject,
+    "UpdateWorkflowReq": UpdateWorkflowReq,
     "UserInfoRsp": UserInfoRsp,
     "UserLogin": UserLogin,
     "UserLoginRsp": UserLoginRsp,

@@ -53,7 +53,9 @@ class TestListExperimentRsp(unittest.TestCase):
                         short_id = '', 
                         to_user_id = '', )
                     ],
-                model_name = ''
+                model_name = '',
+                workflow_id = '',
+                workflow_name = ''
             )
         else:
             return ListExperimentRsp(

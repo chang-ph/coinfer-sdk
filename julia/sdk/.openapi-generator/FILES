@@ -93,10 +93,12 @@ docs/UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner.md
 docs/UUUU3d00ddc80a048e8fc9eddc3c1943d9f1.md
 docs/UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66.md
 docs/UUUU7f23cd8d5099a867ea3f026af4ed4207.md
+docs/UpdateDataReq.md
 docs/UpdateEventReq.md
 docs/UpdateExperiment.md
 docs/UpdateModel.md
 docs/UpdateObject.md
+docs/UpdateWorkflowReq.md
 docs/UserInfoRsp.md
 docs/UserLogin.md
 docs/UserLoginRsp.md
@@ -199,10 +201,12 @@ src/models/model_UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner.jl
 src/models/model_UUUU3d00ddc80a048e8fc9eddc3c1943d9f1.jl
 src/models/model_UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66.jl
 src/models/model_UUUU7f23cd8d5099a867ea3f026af4ed4207.jl
+src/models/model_UpdateDataReq.jl
 src/models/model_UpdateEventReq.jl
 src/models/model_UpdateExperiment.jl
 src/models/model_UpdateModel.jl
 src/models/model_UpdateObject.jl
+src/models/model_UpdateWorkflowReq.jl
 src/models/model_UserInfoRsp.jl
 src/models/model_UserLogin.jl
 src/models/model_UserLoginRsp.jl

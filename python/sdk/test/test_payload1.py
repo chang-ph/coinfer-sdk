@@ -55,7 +55,7 @@ class TestPayload1(unittest.TestCase):
                                     type = 'file', )
                                 ], )
                         ], ),
-                name = '',
+                name = '0',
                 version = '',
                 description = '',
                 status = '',

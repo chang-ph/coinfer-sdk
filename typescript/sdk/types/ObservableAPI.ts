@@ -90,10 +90,12 @@ import { UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner } from '../models/UUUU
 import { UUUU3d00ddc80a048e8fc9eddc3c1943d9f1 } from '../models/UUUU3d00ddc80a048e8fc9eddc3c1943d9f1';
 import { UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66 } from '../models/UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66';
 import { UUUU7f23cd8d5099a867ea3f026af4ed4207 } from '../models/UUUU7f23cd8d5099a867ea3f026af4ed4207';
+import { UpdateDataReq } from '../models/UpdateDataReq';
 import { UpdateEventReq } from '../models/UpdateEventReq';
 import { UpdateExperiment } from '../models/UpdateExperiment';
 import { UpdateModel } from '../models/UpdateModel';
 import { UpdateObject } from '../models/UpdateObject';
+import { UpdateWorkflowReq } from '../models/UpdateWorkflowReq';
 import { UserInfoRsp } from '../models/UserInfoRsp';
 import { UserLogin } from '../models/UserLogin';
 import { UserLoginRsp } from '../models/UserLoginRsp';

@@ -22,6 +22,8 @@ export class UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner {
     'runOn': string;
     'shareInfo'?: Array<ShareInfoModel>;
     'modelName': string;
+    'workflowId'?: string;
+    'workflowName'?: string;
     'objectType': UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInnerObjectTypeEnum;
     'id': number;
     'content'?: any | null;
@@ -116,6 +118,18 @@ export class UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner {
         {
             "name": "modelName",
             "baseName": "model_name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "workflowId",
+            "baseName": "workflow_id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "workflowName",
+            "baseName": "workflow_name",
             "type": "string",
             "format": ""
         },

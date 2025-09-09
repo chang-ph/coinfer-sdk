@@ -100,10 +100,12 @@ from openapi_client.models.uuuu256545f429a0ce36bfec4159b7df9cf4_objects_inner im
 from openapi_client.models.uuuu3d00ddc80a048e8fc9eddc3c1943d9f1 import UUUU3d00ddc80a048e8fc9eddc3c1943d9f1
 from openapi_client.models.uuuu4be0e69353a8fb4b4ca5b5b1a94b3f66 import UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66
 from openapi_client.models.uuuu7f23cd8d5099a867ea3f026af4ed4207 import UUUU7f23cd8d5099a867ea3f026af4ed4207
+from openapi_client.models.update_data_req import UpdateDataReq
 from openapi_client.models.update_event_req import UpdateEventReq
 from openapi_client.models.update_experiment import UpdateExperiment
 from openapi_client.models.update_model import UpdateModel
 from openapi_client.models.update_object import UpdateObject
+from openapi_client.models.update_workflow_req import UpdateWorkflowReq
 from openapi_client.models.user_info_rsp import UserInfoRsp
 from openapi_client.models.user_login import UserLogin
 from openapi_client.models.user_login_rsp import UserLoginRsp

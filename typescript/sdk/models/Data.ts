@@ -19,7 +19,7 @@ export class Data {
     'input'?: string;
     'output'?: string;
     'shareInfo'?: Array<ShareInfoModel>;
-    'modelName'?: string;
+    'modelName': string;
     'workflowId'?: string;
     'workflowName'?: string;
     'id': number;

@@ -39,7 +39,9 @@ class ListExperimentRsp(BaseModel):
     run_on: StrictStr
     share_info: Optional[List[ShareInfoModel]] = None
     model_name: StrictStr
-    __properties: ClassVar[List[str]] = ["short_id", "name", "model_id", "status", "meta", "n_chains", "n_variables", "n_samples", "sample_update_time", "run_on", "share_info", "model_name"]
+    workflow_id: Optional[StrictStr] = ''
+    workflow_name: Optional[StrictStr] = ''
+    __properties: ClassVar[List[str]] = ["short_id", "name", "model_id", "status", "meta", "n_chains", "n_variables", "n_samples", "sample_update_time", "run_on", "share_info", "model_name", "workflow_id", "workflow_name"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -128,7 +130,9 @@ class ListExperimentRsp(BaseModel):
             "sample_update_time": obj.get("sample_update_time"),
             "run_on": obj.get("run_on"),
             "share_info": [ShareInfoModel.from_dict(_item) for _item in obj["share_info"]] if obj.get("share_info") is not None else None,
-            "model_name": obj.get("model_name")
+            "model_name": obj.get("model_name"),
+            "workflow_id": obj.get("workflow_id") if obj.get("workflow_id") is not None else '',
+            "workflow_name": obj.get("workflow_name") if obj.get("workflow_name") is not None else ''
         })
         return _obj
 

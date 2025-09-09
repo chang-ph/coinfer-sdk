@@ -16,7 +16,7 @@ export class ExperimentRsp {
     'input'?: string | null;
     'output'?: string | null;
     'shareInfo'?: Array<ShareInfoModel> | null;
-    'modelName'?: string;
+    'modelName': string;
     'workflowId'?: string;
     'workflowName'?: string;
 

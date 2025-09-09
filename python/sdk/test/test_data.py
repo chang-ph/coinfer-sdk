@@ -79,6 +79,7 @@ class TestData(unittest.TestCase):
                     commit_id = '', 
                     origin_url = '', 
                     fixed_version_url = '', ),
+                model_name = '',
                 id = 56,
                 tags = [
                     ''

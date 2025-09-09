@@ -19,7 +19,7 @@
         input=nothing,
         output=nothing,
         share_info=nothing,
-        model_name="",
+        model_name=nothing,
         workflow_id="",
         workflow_name="",
     )
@@ -57,7 +57,7 @@ Base.@kwdef mutable struct ExperimentRsp <: OpenAPI.APIModel
     input::Union{Nothing, String} = nothing
     output::Union{Nothing, String} = nothing
     share_info::Union{Nothing, Vector} = nothing # spec type: Union{ Nothing, Vector{ShareInfoModel} }
-    model_name::Union{Nothing, String} = ""
+    model_name::Union{Nothing, String} = nothing
     workflow_id::Union{Nothing, String} = ""
     workflow_name::Union{Nothing, String} = ""
 
@@ -88,6 +88,7 @@ OpenAPI.property_type(::Type{ ExperimentRsp }, name::Symbol) = Union{Nothing,eva
 
 function check_required(o::ExperimentRsp)
     o.object_type === nothing && (return false)
+    o.model_name === nothing && (return false)
     true
 end
 
