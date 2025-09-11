@@ -43,6 +43,10 @@ export class UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner {
     'fmt'?: string;
     'dataId'?: string;
     'dataName'?: string;
+    'experimentId'?: string;
+    'experimentName'?: string;
+    'analyzerId'?: string;
+    'analyzerName'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -244,6 +248,30 @@ export class UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner {
         {
             "name": "dataName",
             "baseName": "data_name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "experimentId",
+            "baseName": "experiment_id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "experimentName",
+            "baseName": "experiment_name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "analyzerId",
+            "baseName": "analyzer_id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "analyzerName",
+            "baseName": "analyzer_name",
             "type": "string",
             "format": ""
         }    ];

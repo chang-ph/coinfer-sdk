@@ -98,7 +98,11 @@ class Client:
         url = self.endpoint("api", f"/object/{exp_id}")
         headers = self.headers_with_auth()
         res = self.session.get(url, headers=headers)
-        return self.response_data(res)
+        ret = self.response_data(res)
+        if ret is None:
+            logger.error("get experiment failed: %s", self.session.reqid)
+            return ret
+        return ret
 
     def generate_script(self, params):
         url = self.endpoint("turing", "/model/generate-script")

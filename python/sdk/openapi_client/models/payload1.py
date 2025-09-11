@@ -19,6 +19,7 @@ from openapi_client.models.create_n_sample_stat_req import CreateNSampleStatReq
 from openapi_client.models.create_protobuf_message_req import CreateProtobufMessageReq
 from openapi_client.models.create_text_message_req import CreateTextMessageReq
 from openapi_client.models.run_cloud_function_script import RunCloudFunctionScript
+from openapi_client.models.run_workflow_analyzer_req import RunWorkflowAnalyzerReq
 from openapi_client.models.run_workflow_req import RunWorkflowReq
 from openapi_client.models.update_data_req import UpdateDataReq
 from openapi_client.models.update_event_req import UpdateEventReq
@@ -29,7 +30,7 @@ from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-PAYLOAD1_ONE_OF_SCHEMAS = ["CreateNSampleStatReq", "CreateProtobufMessageReq", "CreateTextMessageReq", "RunCloudFunctionScript", "RunWorkflowReq", "UpdateDataReq", "UpdateEventReq", "UpdateExperiment", "UpdateModel", "UpdateWorkflowReq"]
+PAYLOAD1_ONE_OF_SCHEMAS = ["CreateNSampleStatReq", "CreateProtobufMessageReq", "CreateTextMessageReq", "RunCloudFunctionScript", "RunWorkflowAnalyzerReq", "RunWorkflowReq", "UpdateDataReq", "UpdateEventReq", "UpdateExperiment", "UpdateModel", "UpdateWorkflowReq"]
 
 class Payload1(BaseModel):
     """
@@ -53,10 +54,12 @@ class Payload1(BaseModel):
     oneof_schema_8_validator: Optional[UpdateWorkflowReq] = None
     # data type: UpdateDataReq
     oneof_schema_9_validator: Optional[UpdateDataReq] = None
+    # data type: RunWorkflowAnalyzerReq
+    oneof_schema_10_validator: Optional[RunWorkflowAnalyzerReq] = None
     # data type: RunWorkflowReq
-    oneof_schema_10_validator: Optional[RunWorkflowReq] = None
-    actual_instance: Optional[Union[CreateNSampleStatReq, CreateProtobufMessageReq, CreateTextMessageReq, RunCloudFunctionScript, RunWorkflowReq, UpdateDataReq, UpdateEventReq, UpdateExperiment, UpdateModel, UpdateWorkflowReq]] = None
-    one_of_schemas: Set[str] = { "CreateNSampleStatReq", "CreateProtobufMessageReq", "CreateTextMessageReq", "RunCloudFunctionScript", "RunWorkflowReq", "UpdateDataReq", "UpdateEventReq", "UpdateExperiment", "UpdateModel", "UpdateWorkflowReq" }
+    oneof_schema_11_validator: Optional[RunWorkflowReq] = None
+    actual_instance: Optional[Union[CreateNSampleStatReq, CreateProtobufMessageReq, CreateTextMessageReq, RunCloudFunctionScript, RunWorkflowAnalyzerReq, RunWorkflowReq, UpdateDataReq, UpdateEventReq, UpdateExperiment, UpdateModel, UpdateWorkflowReq]] = None
+    one_of_schemas: Set[str] = { "CreateNSampleStatReq", "CreateProtobufMessageReq", "CreateTextMessageReq", "RunCloudFunctionScript", "RunWorkflowAnalyzerReq", "RunWorkflowReq", "UpdateDataReq", "UpdateEventReq", "UpdateExperiment", "UpdateModel", "UpdateWorkflowReq" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -127,6 +130,11 @@ class Payload1(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `UpdateDataReq`")
         else:
             match += 1
+        # validate data type: RunWorkflowAnalyzerReq
+        if not isinstance(v, RunWorkflowAnalyzerReq):
+            error_messages.append(f"Error! Input type `{type(v)}` is not `RunWorkflowAnalyzerReq`")
+        else:
+            match += 1
         # validate data type: RunWorkflowReq
         if not isinstance(v, RunWorkflowReq):
             error_messages.append(f"Error! Input type `{type(v)}` is not `RunWorkflowReq`")
@@ -134,10 +142,10 @@ class Payload1(BaseModel):
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in Payload1 with oneOf schemas: CreateNSampleStatReq, CreateProtobufMessageReq, CreateTextMessageReq, RunCloudFunctionScript, RunWorkflowReq, UpdateDataReq, UpdateEventReq, UpdateExperiment, UpdateModel, UpdateWorkflowReq. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in Payload1 with oneOf schemas: CreateNSampleStatReq, CreateProtobufMessageReq, CreateTextMessageReq, RunCloudFunctionScript, RunWorkflowAnalyzerReq, RunWorkflowReq, UpdateDataReq, UpdateEventReq, UpdateExperiment, UpdateModel, UpdateWorkflowReq. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in Payload1 with oneOf schemas: CreateNSampleStatReq, CreateProtobufMessageReq, CreateTextMessageReq, RunCloudFunctionScript, RunWorkflowReq, UpdateDataReq, UpdateEventReq, UpdateExperiment, UpdateModel, UpdateWorkflowReq. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in Payload1 with oneOf schemas: CreateNSampleStatReq, CreateProtobufMessageReq, CreateTextMessageReq, RunCloudFunctionScript, RunWorkflowAnalyzerReq, RunWorkflowReq, UpdateDataReq, UpdateEventReq, UpdateExperiment, UpdateModel, UpdateWorkflowReq. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -206,6 +214,12 @@ class Payload1(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
+        # deserialize data into RunWorkflowAnalyzerReq
+        try:
+            instance.actual_instance = RunWorkflowAnalyzerReq.from_json(json_str)
+            match += 1
+        except (ValidationError, ValueError) as e:
+            error_messages.append(str(e))
         # deserialize data into RunWorkflowReq
         try:
             instance.actual_instance = RunWorkflowReq.from_json(json_str)
@@ -215,10 +229,10 @@ class Payload1(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into Payload1 with oneOf schemas: CreateNSampleStatReq, CreateProtobufMessageReq, CreateTextMessageReq, RunCloudFunctionScript, RunWorkflowReq, UpdateDataReq, UpdateEventReq, UpdateExperiment, UpdateModel, UpdateWorkflowReq. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into Payload1 with oneOf schemas: CreateNSampleStatReq, CreateProtobufMessageReq, CreateTextMessageReq, RunCloudFunctionScript, RunWorkflowAnalyzerReq, RunWorkflowReq, UpdateDataReq, UpdateEventReq, UpdateExperiment, UpdateModel, UpdateWorkflowReq. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Payload1 with oneOf schemas: CreateNSampleStatReq, CreateProtobufMessageReq, CreateTextMessageReq, RunCloudFunctionScript, RunWorkflowReq, UpdateDataReq, UpdateEventReq, UpdateExperiment, UpdateModel, UpdateWorkflowReq. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into Payload1 with oneOf schemas: CreateNSampleStatReq, CreateProtobufMessageReq, CreateTextMessageReq, RunCloudFunctionScript, RunWorkflowAnalyzerReq, RunWorkflowReq, UpdateDataReq, UpdateEventReq, UpdateExperiment, UpdateModel, UpdateWorkflowReq. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -232,7 +246,7 @@ class Payload1(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], CreateNSampleStatReq, CreateProtobufMessageReq, CreateTextMessageReq, RunCloudFunctionScript, RunWorkflowReq, UpdateDataReq, UpdateEventReq, UpdateExperiment, UpdateModel, UpdateWorkflowReq]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], CreateNSampleStatReq, CreateProtobufMessageReq, CreateTextMessageReq, RunCloudFunctionScript, RunWorkflowAnalyzerReq, RunWorkflowReq, UpdateDataReq, UpdateEventReq, UpdateExperiment, UpdateModel, UpdateWorkflowReq]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

@@ -35,7 +35,11 @@ class TestUpdateWorkflowReq(unittest.TestCase):
             return UpdateWorkflowReq(
                 object_type = 'workflow',
                 name = '',
-                description = ''
+                description = '',
+                data_id = '',
+                experiment_id = '',
+                analyzer_id = '',
+                analyzer_result = ''
             )
         else:
             return UpdateWorkflowReq(

@@ -680,7 +680,7 @@ function inner_sample(args...; kwargs...)
         update_experiment_runinfo(exp_id, ENV["BATCH_ID"], ENV["RUN_ID"], "SAMPLE_FIN")
     catch exp
         @error "ERROR" exception=(exp, catch_backtrace())
-        update_experiment_runinfo(exp_id, ENV["BATCH_ID"], ENV["RUN_ID"], "USER_ERR")
+        update_experiment_runinfo(exp_id, ENV["BATCH_ID"], ENV["RUN_ID"], "ERR")
     finally
         notify_after_sample(exp_id)
     end

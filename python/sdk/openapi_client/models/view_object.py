@@ -33,7 +33,8 @@ class ViewObject(BaseModel):
     batch_id: Optional[StrictStr] = ''
     run_id: Optional[StrictStr] = ''
     plot: Optional[StrictBool] = Field(default=False, description="get arviz plot")
-    __properties: ClassVar[List[str]] = ["object_type", "share_id", "sampledata", "fmt", "n_iteration", "cloudwatch_log", "batch_id", "run_id", "plot"]
+    view_analyzer: Optional[StrictBool] = Field(default=False, description="view analyzer result", alias="view-analyzer")
+    __properties: ClassVar[List[str]] = ["object_type", "share_id", "sampledata", "fmt", "n_iteration", "cloudwatch_log", "batch_id", "run_id", "plot", "view-analyzer"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -119,7 +120,8 @@ class ViewObject(BaseModel):
             "cloudwatch_log": obj.get("cloudwatch_log") if obj.get("cloudwatch_log") is not None else False,
             "batch_id": obj.get("batch_id") if obj.get("batch_id") is not None else '',
             "run_id": obj.get("run_id") if obj.get("run_id") is not None else '',
-            "plot": obj.get("plot") if obj.get("plot") is not None else False
+            "plot": obj.get("plot") if obj.get("plot") is not None else False,
+            "view-analyzer": obj.get("view-analyzer") if obj.get("view-analyzer") is not None else False
         })
         return _obj
 

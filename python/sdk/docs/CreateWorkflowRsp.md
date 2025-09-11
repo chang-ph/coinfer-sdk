@@ -11,7 +11,11 @@ Name | Type | Description | Notes
 **model_id** | **str** |  | 
 **model_name** | **str** |  | 
 **data_id** | **str** |  | [optional] 
-**data_name** | **str** |  | [optional] [default to '']
+**data_name** | **str** |  | [optional] 
+**experiment_id** | **str** |  | [optional] 
+**experiment_name** | **str** |  | [optional] 
+**analyzer_id** | **str** |  | [optional] 
+**analyzer_name** | **str** |  | [optional] 
 **created_at** | **datetime** |  | 
 **updated_at** | **datetime** |  | 
 

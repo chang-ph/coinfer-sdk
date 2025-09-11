@@ -11,7 +11,7 @@ import {SecurityAuthentication} from '../auth/auth';
 import { CreateObjectReq } from '../models/CreateObjectReq';
 import { ErrRsp } from '../models/ErrRsp';
 import { SuccRspSoftDeletedRsp } from '../models/SuccRspSoftDeletedRsp';
-import { SuccRspUnionExperimentRspViewModelsRspNoneType } from '../models/SuccRspUnionExperimentRspViewModelsRspNoneType';
+import { UUUU28b510deefc97bb409a5d7911e299314 } from '../models/UUUU28b510deefc97bb409a5d7911e299314';
 import { UUUU3d00ddc80a048e8fc9eddc3c1943d9f1 } from '../models/UUUU3d00ddc80a048e8fc9eddc3c1943d9f1';
 import { UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66 } from '../models/UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66';
 import { UUUU7f23cd8d5099a867ea3f026af4ed4207 } from '../models/UUUU7f23cd8d5099a867ea3f026af4ed4207';
@@ -309,14 +309,16 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
      * @param batchId 
      * @param runId 
      * @param plot get arviz plot
+     * @param viewAnalyzer view analyzer result
      */
-    public async viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, viewAnalyzer?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'objid' is not null or undefined
         if (objid === null || objid === undefined) {
             throw new RequiredError("ObjectApi", "viewObject", "objid");
         }
+
 
 
 
@@ -379,6 +381,11 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (plot !== undefined) {
             requestContext.setQueryParam("plot", ObjectSerializer.serialize(plot, "boolean", ""));
+        }
+
+        // Query Params
+        if (viewAnalyzer !== undefined) {
+            requestContext.setQueryParam("view-analyzer", ObjectSerializer.serialize(viewAnalyzer, "boolean", ""));
         }
 
 
@@ -521,13 +528,13 @@ export class ObjectApiResponseProcessor {
      * @params response Response returned by the server for a request to updateObject
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async updateObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspUnionExperimentRspViewModelsRspNoneType >> {
+     public async updateObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<UUUU28b510deefc97bb409a5d7911e299314 >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: SuccRspUnionExperimentRspViewModelsRspNoneType = ObjectSerializer.deserialize(
+            const body: UUUU28b510deefc97bb409a5d7911e299314 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspUnionExperimentRspViewModelsRspNoneType", ""
-            ) as SuccRspUnionExperimentRspViewModelsRspNoneType;
+                "UUUU28b510deefc97bb409a5d7911e299314", ""
+            ) as UUUU28b510deefc97bb409a5d7911e299314;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -540,10 +547,10 @@ export class ObjectApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: SuccRspUnionExperimentRspViewModelsRspNoneType = ObjectSerializer.deserialize(
+            const body: UUUU28b510deefc97bb409a5d7911e299314 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspUnionExperimentRspViewModelsRspNoneType", ""
-            ) as SuccRspUnionExperimentRspViewModelsRspNoneType;
+                "UUUU28b510deefc97bb409a5d7911e299314", ""
+            ) as UUUU28b510deefc97bb409a5d7911e299314;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 

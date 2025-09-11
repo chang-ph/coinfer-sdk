@@ -28,7 +28,11 @@ class UpdateWorkflowReq(BaseModel):
     object_type: StrictStr
     name: Optional[StrictStr] = None
     description: Optional[Annotated[str, Field(strict=True, max_length=2048)]] = None
-    __properties: ClassVar[List[str]] = ["object_type", "name", "description"]
+    data_id: Optional[Annotated[str, Field(strict=True, max_length=9)]] = None
+    experiment_id: Optional[Annotated[str, Field(strict=True, max_length=9)]] = None
+    analyzer_id: Optional[Annotated[str, Field(strict=True, max_length=9)]] = None
+    analyzer_result: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["object_type", "name", "description", "data_id", "experiment_id", "analyzer_id", "analyzer_result"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -86,6 +90,26 @@ class UpdateWorkflowReq(BaseModel):
         if self.description is None and "description" in self.model_fields_set:
             _dict['description'] = None
 
+        # set to None if data_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.data_id is None and "data_id" in self.model_fields_set:
+            _dict['data_id'] = None
+
+        # set to None if experiment_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.experiment_id is None and "experiment_id" in self.model_fields_set:
+            _dict['experiment_id'] = None
+
+        # set to None if analyzer_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.analyzer_id is None and "analyzer_id" in self.model_fields_set:
+            _dict['analyzer_id'] = None
+
+        # set to None if analyzer_result (nullable) is None
+        # and model_fields_set contains the field
+        if self.analyzer_result is None and "analyzer_result" in self.model_fields_set:
+            _dict['analyzer_result'] = None
+
         return _dict
 
     @classmethod
@@ -100,7 +124,11 @@ class UpdateWorkflowReq(BaseModel):
         _obj = cls.model_validate({
             "object_type": obj.get("object_type"),
             "name": obj.get("name"),
-            "description": obj.get("description")
+            "description": obj.get("description"),
+            "data_id": obj.get("data_id"),
+            "experiment_id": obj.get("experiment_id"),
+            "analyzer_id": obj.get("analyzer_id"),
+            "analyzer_result": obj.get("analyzer_result")
         })
         return _obj
 

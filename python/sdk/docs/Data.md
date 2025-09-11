@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **object_type** | **str** |  | 
 **short_id** | **str** |  | 
 **name** | **str** |  | 
-**model_id** | **str** |  | [optional] [default to '']
+**model_id** | **str** |  | 
 **status** | **str** |  | [optional] [default to '']
 **meta** | [**ModelMetaInRsp**](ModelMetaInRsp.md) |  | 
 **n_chains** | **int** |  | [optional] [default to 0]
@@ -27,6 +27,26 @@ Name | Type | Description | Notes
 **tags** | **List[str]** |  | 
 **lambda_image_url** | **str** |  | [optional] 
 **lambda_image_name** | **str** |  | [optional] 
+**user_id** | **int** |  | 
+**experiment_id** | **str** |  | 
+**experiment_name** | **str** |  | 
+**password** | **str** |  | 
+**created_at** | **datetime** |  | 
+**from_user** | **str** |  | [optional] 
+**to_user** | **str** |  | [optional] 
+**lang** | **str** |  | 
+**code** | **str** |  | 
+**token** | **str** |  | 
+**object1_id** | **str** |  | 
+**object2_id** | **str** |  | 
+**description** | **str** |  | 
+**updated_at** | **datetime** |  | 
+**path** | **str** |  | [optional] [default to '']
+**fmt** | **str** |  | [optional] [default to 'raw']
+**data_id** | **str** |  | [optional] 
+**data_name** | **str** |  | [optional] 
+**analyzer_id** | **str** |  | [optional] 
+**analyzer_name** | **str** |  | [optional] 
 
 ## Example
 

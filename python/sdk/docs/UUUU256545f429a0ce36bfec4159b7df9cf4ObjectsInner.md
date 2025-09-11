@@ -37,7 +37,11 @@ Name | Type | Description | Notes
 **path** | **str** |  | [optional] [default to '']
 **fmt** | **str** |  | [optional] [default to 'raw']
 **data_id** | **str** |  | [optional] 
-**data_name** | **str** |  | [optional] [default to '']
+**data_name** | **str** |  | [optional] 
+**experiment_id** | **str** |  | [optional] 
+**experiment_name** | **str** |  | [optional] 
+**analyzer_id** | **str** |  | [optional] 
+**analyzer_name** | **str** |  | [optional] 
 
 ## Example
 

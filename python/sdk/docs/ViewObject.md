@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **batch_id** | **str** |  | [optional] [default to '']
 **run_id** | **str** |  | [optional] [default to '']
 **plot** | **bool** | get arviz plot | [optional] [default to False]
+**view_analyzer** | **bool** | view analyzer result | [optional] [default to False]
 
 ## Example
 

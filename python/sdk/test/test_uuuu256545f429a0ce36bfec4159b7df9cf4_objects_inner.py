@@ -78,7 +78,11 @@ class TestUUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner(unittest.TestCase):
                 path = '',
                 fmt = 'raw',
                 data_id = '',
-                data_name = ''
+                data_name = '',
+                experiment_id = '',
+                experiment_name = '',
+                analyzer_id = '',
+                analyzer_name = ''
             )
         else:
             return UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner(

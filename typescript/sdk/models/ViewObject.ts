@@ -16,6 +16,10 @@ export class ViewObject {
     * get arviz plot
     */
     'plot'?: boolean;
+    /**
+    * view analyzer result
+    */
+    'viewAnalyzer'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -73,6 +77,12 @@ export class ViewObject {
         {
             "name": "plot",
             "baseName": "plot",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "viewAnalyzer",
+            "baseName": "view-analyzer",
             "type": "boolean",
             "format": ""
         }    ];

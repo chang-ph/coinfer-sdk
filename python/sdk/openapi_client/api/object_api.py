@@ -19,7 +19,7 @@ from typing import List, Optional
 from typing_extensions import Annotated
 from openapi_client.models.create_object_req import CreateObjectReq
 from openapi_client.models.succ_rsp_soft_deleted_rsp import SuccRspSoftDeletedRsp
-from openapi_client.models.succ_rsp_union_experiment_rsp_view_models_rsp_none_type import SuccRspUnionExperimentRspViewModelsRspNoneType
+from openapi_client.models.uuuu28b510deefc97bb409a5d7911e299314 import UUUU28b510deefc97bb409a5d7911e299314
 from openapi_client.models.uuuu3d00ddc80a048e8fc9eddc3c1943d9f1 import UUUU3d00ddc80a048e8fc9eddc3c1943d9f1
 from openapi_client.models.uuuu4be0e69353a8fb4b4ca5b5b1a94b3f66 import UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66
 from openapi_client.models.uuuu7f23cd8d5099a867ea3f026af4ed4207 import UUUU7f23cd8d5099a867ea3f026af4ed4207
@@ -1050,7 +1050,7 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> SuccRspUnionExperimentRspViewModelsRspNoneType:
+    ) -> UUUU28b510deefc97bb409a5d7911e299314:
         """Update object.
 
         Update object of certain ID.  ### Example  Update model: ``` POST /api/object/M1234567  {     \"payload\": {         \"object_type\": \"model\",         \"name\": \"model name\",         \"content\": {             \"meta\": {\"entrance_file\": \"main.jl\"},             \"tree\": [],         }     } } ```  Update experiment: ``` POST /api/object/X1234567  {     \"payload\": {         \"object_type\": \"experiment\",         \"name\": \"experiment name\",     } } ```
@@ -1091,7 +1091,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SuccRspUnionExperimentRspViewModelsRspNoneType",
+            '200': "UUUU28b510deefc97bb409a5d7911e299314",
             '400': "ErrRsp",
         }        response_data = self.api_client.call_api(
             *_param,
@@ -1121,7 +1121,7 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[SuccRspUnionExperimentRspViewModelsRspNoneType]:
+    ) -> ApiResponse[UUUU28b510deefc97bb409a5d7911e299314]:
         """Update object.
 
         Update object of certain ID.  ### Example  Update model: ``` POST /api/object/M1234567  {     \"payload\": {         \"object_type\": \"model\",         \"name\": \"model name\",         \"content\": {             \"meta\": {\"entrance_file\": \"main.jl\"},             \"tree\": [],         }     } } ```  Update experiment: ``` POST /api/object/X1234567  {     \"payload\": {         \"object_type\": \"experiment\",         \"name\": \"experiment name\",     } } ```
@@ -1162,7 +1162,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SuccRspUnionExperimentRspViewModelsRspNoneType",
+            '200': "UUUU28b510deefc97bb409a5d7911e299314",
             '400': "ErrRsp",
         }        response_data = self.api_client.call_api(
             *_param,
@@ -1233,7 +1233,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "SuccRspUnionExperimentRspViewModelsRspNoneType",
+            '200': "UUUU28b510deefc97bb409a5d7911e299314",
             '400': "ErrRsp",
         }        response_data = self.api_client.call_api(
             *_param,
@@ -1335,6 +1335,7 @@ class ObjectApi:
         batch_id: Optional[StrictStr] = None,
         run_id: Optional[StrictStr] = None,
         plot: Annotated[Optional[StrictBool], Field(description="get arviz plot")] = None,
+        view_analyzer: Annotated[Optional[StrictBool], Field(description="view analyzer result")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1372,6 +1373,8 @@ class ObjectApi:
         :type run_id: str
         :param plot: get arviz plot
         :type plot: bool
+        :param view_analyzer: view analyzer result
+        :type view_analyzer: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1405,6 +1408,7 @@ class ObjectApi:
             batch_id=batch_id,
             run_id=run_id,
             plot=plot,
+            view_analyzer=view_analyzer,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1438,6 +1442,7 @@ class ObjectApi:
         batch_id: Optional[StrictStr] = None,
         run_id: Optional[StrictStr] = None,
         plot: Annotated[Optional[StrictBool], Field(description="get arviz plot")] = None,
+        view_analyzer: Annotated[Optional[StrictBool], Field(description="view analyzer result")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1475,6 +1480,8 @@ class ObjectApi:
         :type run_id: str
         :param plot: get arviz plot
         :type plot: bool
+        :param view_analyzer: view analyzer result
+        :type view_analyzer: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1508,6 +1515,7 @@ class ObjectApi:
             batch_id=batch_id,
             run_id=run_id,
             plot=plot,
+            view_analyzer=view_analyzer,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1541,6 +1549,7 @@ class ObjectApi:
         batch_id: Optional[StrictStr] = None,
         run_id: Optional[StrictStr] = None,
         plot: Annotated[Optional[StrictBool], Field(description="get arviz plot")] = None,
+        view_analyzer: Annotated[Optional[StrictBool], Field(description="view analyzer result")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1578,6 +1587,8 @@ class ObjectApi:
         :type run_id: str
         :param plot: get arviz plot
         :type plot: bool
+        :param view_analyzer: view analyzer result
+        :type view_analyzer: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1611,6 +1622,7 @@ class ObjectApi:
             batch_id=batch_id,
             run_id=run_id,
             plot=plot,
+            view_analyzer=view_analyzer,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1639,6 +1651,7 @@ class ObjectApi:
         batch_id,
         run_id,
         plot,
+        view_analyzer,
         _request_auth,
         _content_type,
         _headers,
@@ -1698,6 +1711,10 @@ class ObjectApi:
         if plot is not None:
             
             _query_params.append(('plot', plot))
+            
+        if view_analyzer is not None:
+            
+            _query_params.append(('view-analyzer', view_analyzer))
             
         # process the header parameters
         # process the form parameters

@@ -10,11 +10,11 @@
     )
 
     - status::String
-    - data::Data2
+    - data::Data1
 """
 Base.@kwdef mutable struct UUUU7f23cd8d5099a867ea3f026af4ed4207 <: OpenAPI.APIModel
     status::Union{Nothing, String} = nothing
-    data = nothing # spec type: Union{ Nothing, Data2 }
+    data = nothing # spec type: Union{ Nothing, Data1 }
 
     function UUUU7f23cd8d5099a867ea3f026af4ed4207(status, data, )
         OpenAPI.validate_property(UUUU7f23cd8d5099a867ea3f026af4ed4207, Symbol("status"), status)
@@ -23,7 +23,7 @@ Base.@kwdef mutable struct UUUU7f23cd8d5099a867ea3f026af4ed4207 <: OpenAPI.APIMo
     end
 end # type UUUU7f23cd8d5099a867ea3f026af4ed4207
 
-const _property_types_UUUU7f23cd8d5099a867ea3f026af4ed4207 = Dict{Symbol,String}(Symbol("status")=>"String", Symbol("data")=>"Data2", )
+const _property_types_UUUU7f23cd8d5099a867ea3f026af4ed4207 = Dict{Symbol,String}(Symbol("status")=>"String", Symbol("data")=>"Data1", )
 OpenAPI.property_type(::Type{ UUUU7f23cd8d5099a867ea3f026af4ed4207 }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_UUUU7f23cd8d5099a867ea3f026af4ed4207[name]))}
 
 function check_required(o::UUUU7f23cd8d5099a867ea3f026af4ed4207)

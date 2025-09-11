@@ -68,24 +68,26 @@ class TestData1(unittest.TestCase):
                     ],
                 lambda_image_url = '',
                 lambda_image_name = '',
-                user_id = 56,
-                experiment_id = '',
-                experiment_name = '',
-                password = '',
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                from_user = '',
-                to_user = '',
-                lang = '',
-                code = '',
-                token = '',
-                object1_id = '',
-                object2_id = '',
+                require_password = True,
+                url = '',
+                progress = '',
+                message = '',
+                logs = [
+                    [
+                        null
+                        ]
+                    ],
                 description = '',
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 path = '',
                 fmt = 'raw',
                 data_id = '',
-                data_name = ''
+                data_name = '',
+                experiment_id = '',
+                experiment_name = '',
+                analyzer_id = '',
+                analyzer_name = ''
             )
         else:
             return Data1(
@@ -93,6 +95,7 @@ class TestData1(unittest.TestCase):
                 short_id = '',
                 name = '',
                 model_id = '',
+                status = '',
                 meta = openapi_client.models._model_meta_in_rsp._ModelMetaInRsp(
                     github = '', 
                     commit_id = '', 
@@ -103,17 +106,16 @@ class TestData1(unittest.TestCase):
                 tags = [
                     ''
                     ],
-                user_id = 56,
-                experiment_id = '',
-                experiment_name = '',
-                password = '',
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                lang = '',
-                code = '',
-                token = '',
-                object1_id = '',
-                object2_id = '',
+                require_password = True,
+                url = '',
+                progress = '',
+                logs = [
+                    [
+                        null
+                        ]
+                    ],
                 description = '',
+                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
         """

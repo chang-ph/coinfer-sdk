@@ -18,9 +18,9 @@ Name | Type | Description | Notes
 **status** | **str** |  | [optional] 
 **lambda_image** | **bool** |  | [optional] 
 **tags** | **List[str]** |  | [optional] 
-**params** | **str** |  | [optional] [default to '']
+**params** | **str** | params for analyzer | [optional] [default to '{}']
 **engine** | **str** |  | [optional] [default to 'fargate']
-**lock_key** | **str** | lock key provided by user. It is combined with the cloudfunction_id to form the real lock key when running cloudfunction triggered by this event.  Sometimes, users may want CloudFunctions to run exclusively, but not just one instance globally. For example, when running a CloudFunction specific to an experiment, users may want only one instance of that CloudFunction to run simultaneously for that experiment. In this case, users can specify the lock_key as the experiment_id. | [optional] [default to '']
+**lock_key** | **str** | lock key | [optional] [default to '']
 **action** | **str** |  | [optional] 
 **meta** | **Dict[str, object]** |  | [optional] 
 **n_chains** | **int** |  | [optional] [default to 0]
@@ -29,6 +29,10 @@ Name | Type | Description | Notes
 **sample_update_time** | **datetime** |  | [optional] 
 **datas** | **List[Dict[str, object]]** | list of messages | 
 **logs** | [**DataTyping**](DataTyping.md) |  | 
+**data_id** | **str** |  | [optional] 
+**experiment_id** | **str** |  | [optional] 
+**analyzer_id** | **str** |  | [optional] 
+**analyzer_result** | **str** |  | [optional] 
 **experiment_name** | **str** | experiment name | 
 **iteration** | **int** | iteration number | [optional] [default to 1000]
 **parallel** | **int** | parallel number | [optional] [default to 1]

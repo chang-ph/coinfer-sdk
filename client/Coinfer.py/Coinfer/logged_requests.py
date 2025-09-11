@@ -1,4 +1,6 @@
 import json
+import random
+import string
 import time
 from enum import Flag, auto
 import logging
@@ -45,12 +47,14 @@ class _DoParamType(TypedDict, total=False):
     json: dict[str, Any]
     timeout: float | int
     data: dict[str, Any]
+    params: dict[str, Any]
 
 
 class Req:
     def __init__(self):
         self.session = requests_lib.Session()
         self.errmsg = ""
+        self.reqid = ""
 
     def get(self, *args: str, **kwargs: Unpack[_DoParamType]):
         return self._do("get", *args, **kwargs)
@@ -68,6 +72,8 @@ class Req:
         return self._do("patch", *args, **kwargs)
 
     def _do(self, method_name: str, *args: str, **kwargs: Unpack[_DoParamType]):
+        self.reqid = "".join(random.choices(string.ascii_letters + string.digits, k=5))
+        kwargs.setdefault('headers', {})['x-request-id'] = self.reqid
         self.errmsg = ""
         subjects: CheckResponseSubject = kwargs.pop(
             "check_subjects", CheckResponseSubject.TIMEOUT | CheckResponseSubject.STATUS_CODE
@@ -76,7 +82,7 @@ class Req:
         kwargs.setdefault('timeout', 60)
         method = getattr(self.session, method_name, None)
         if not method:
-            self.errmsg = f"no such request method: {method_name}"
+            self.errmsg = f"[{self.reqid}]no such request method: {method_name}"
             logger.error("%s", self.errmsg)
             raise RuntimeError(self.errmsg)
 
@@ -85,13 +91,14 @@ class Req:
             rsp = method(*args, **kwargs)
         except requests_lib.exceptions.Timeout:
             if CheckResponseSubject.TIMEOUT in subjects:
-                self.errmsg = f'(http)timeout: {args[0]}, {time.time() - start}, {kwargs}'
+                self.errmsg = f'[{self.reqid}](http)timeout: {args[0]}, {time.time() - start}, {kwargs}'
                 logger.exception("%s", self.errmsg)
                 return None
             else:
                 raise
         rsp, err = check_response(rsp, subjects, valid_status_code)
-        self.errmsg = err
+        if err:
+            self.errmsg = f'[{self.reqid}]{err}'
         if err:
             logger.error("%s", err)
         return rsp

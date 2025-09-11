@@ -215,7 +215,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **updateObject**
-> SuccRspUnionExperimentRspViewModelsRspNoneType updateObject(updateObject)
+> UUUU28b510deefc97bb409a5d7911e299314 updateObject(updateObject)
 
 Update object of certain ID.  ### Example  Update model: ``` POST /api/object/M1234567  {     \"payload\": {         \"object_type\": \"model\",         \"name\": \"model name\",         \"content\": {             \"meta\": {\"entrance_file\": \"main.jl\"},             \"tree\": [],         }     } } ```  Update experiment: ``` POST /api/object/X1234567  {     \"payload\": {         \"object_type\": \"experiment\",         \"name\": \"experiment name\",     } } ```
 
@@ -253,7 +253,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**SuccRspUnionExperimentRspViewModelsRspNoneType**
+**UUUU28b510deefc97bb409a5d7911e299314**
 
 ### Authorization
 
@@ -309,6 +309,8 @@ const request: ObjectApiViewObjectRequest = {
   runId: "",
     // get arviz plot (optional)
   plot: false,
+    // view analyzer result (optional)
+  viewAnalyzer: false,
 };
 
 const data = await apiInstance.viewObject(request);
@@ -330,6 +332,7 @@ Name | Type | Description  | Notes
  **batchId** | [**string**] |  | (optional) defaults to ''
  **runId** | [**string**] |  | (optional) defaults to ''
  **plot** | [**boolean**] | get arviz plot | (optional) defaults to false
+ **viewAnalyzer** | [**boolean**] | view analyzer result | (optional) defaults to false
 
 
 ### Return type

@@ -8,6 +8,10 @@ Name | Type | Description | Notes
 **object_type** | **str** |  | 
 **name** | **str** |  | [optional] 
 **description** | **str** |  | [optional] 
+**data_id** | **str** |  | [optional] 
+**experiment_id** | **str** |  | [optional] 
+**analyzer_id** | **str** |  | [optional] 
+**analyzer_result** | **str** |  | [optional] 
 
 ## Example
 

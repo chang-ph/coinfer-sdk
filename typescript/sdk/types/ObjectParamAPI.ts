@@ -28,7 +28,6 @@ import { CreateWorkflowReq } from '../models/CreateWorkflowReq';
 import { CreateWorkflowRsp } from '../models/CreateWorkflowRsp';
 import { Data } from '../models/Data';
 import { Data1 } from '../models/Data1';
-import { Data2 } from '../models/Data2';
 import { DataTyping } from '../models/DataTyping';
 import { DeleteLinkedAccountReq } from '../models/DeleteLinkedAccountReq';
 import { DeleteObject } from '../models/DeleteObject';
@@ -65,6 +64,7 @@ import { Payload1 } from '../models/Payload1';
 import { PlotReq } from '../models/PlotReq';
 import { PlotRsp } from '../models/PlotRsp';
 import { RunCloudFunctionScript } from '../models/RunCloudFunctionScript';
+import { RunWorkflowAnalyzerReq } from '../models/RunWorkflowAnalyzerReq';
 import { RunWorkflowReq } from '../models/RunWorkflowReq';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SoftDeletedRsp } from '../models/SoftDeletedRsp';
@@ -81,11 +81,12 @@ import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingR
 import { SuccRspNoneType } from '../models/SuccRspNoneType';
 import { SuccRspPlotRsp } from '../models/SuccRspPlotRsp';
 import { SuccRspSoftDeletedRsp } from '../models/SuccRspSoftDeletedRsp';
-import { SuccRspUnionExperimentRspViewModelsRspNoneType } from '../models/SuccRspUnionExperimentRspViewModelsRspNoneType';
 import { SuccRspUserInfoRsp } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp } from '../models/SuccRspUserLoginRsp';
 import { UUUU256545f429a0ce36bfec4159b7df9cf4 } from '../models/UUUU256545f429a0ce36bfec4159b7df9cf4';
 import { UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner } from '../models/UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner';
+import { UUUU28b510deefc97bb409a5d7911e299314 } from '../models/UUUU28b510deefc97bb409a5d7911e299314';
+import { UUUU28b510deefc97bb409a5d7911e299314Data } from '../models/UUUU28b510deefc97bb409a5d7911e299314Data';
 import { UUUU3d00ddc80a048e8fc9eddc3c1943d9f1 } from '../models/UUUU3d00ddc80a048e8fc9eddc3c1943d9f1';
 import { UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66 } from '../models/UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66';
 import { UUUU7f23cd8d5099a867ea3f026af4ed4207 } from '../models/UUUU7f23cd8d5099a867ea3f026af4ed4207';
@@ -102,6 +103,7 @@ import { ViewExperimentShareRsp } from '../models/ViewExperimentShareRsp';
 import { ViewModelsRsp } from '../models/ViewModelsRsp';
 import { ViewObject } from '../models/ViewObject';
 import { ViewObjectTmp } from '../models/ViewObjectTmp';
+import { WorkflowRunRsp } from '../models/WorkflowRunRsp';
 
 import { ObservableAuthorizationApi } from "./ObservableAPI";
 import { AuthorizationApiRequestFactory, AuthorizationApiResponseProcessor} from "../apis/AuthorizationApi";
@@ -754,6 +756,13 @@ export interface ObjectApiViewObjectRequest {
      * @memberof ObjectApiviewObject
      */
     plot?: boolean
+    /**
+     * view analyzer result
+     * Defaults to: false
+     * @type boolean
+     * @memberof ObjectApiviewObject
+     */
+    viewAnalyzer?: boolean
 }
 
 export class ObjectObjectApi {
@@ -822,7 +831,7 @@ export class ObjectObjectApi {
      * Update object.
      * @param param the request object
      */
-    public updateObjectWithHttpInfo(param: ObjectApiUpdateObjectRequest, options?: Configuration): Promise<HttpInfo<SuccRspUnionExperimentRspViewModelsRspNoneType>> {
+    public updateObjectWithHttpInfo(param: ObjectApiUpdateObjectRequest, options?: Configuration): Promise<HttpInfo<UUUU28b510deefc97bb409a5d7911e299314>> {
         return this.api.updateObjectWithHttpInfo(param.objid, param.updateObject,  options).toPromise();
     }
 
@@ -831,7 +840,7 @@ export class ObjectObjectApi {
      * Update object.
      * @param param the request object
      */
-    public updateObject(param: ObjectApiUpdateObjectRequest, options?: Configuration): Promise<SuccRspUnionExperimentRspViewModelsRspNoneType> {
+    public updateObject(param: ObjectApiUpdateObjectRequest, options?: Configuration): Promise<UUUU28b510deefc97bb409a5d7911e299314> {
         return this.api.updateObject(param.objid, param.updateObject,  options).toPromise();
     }
 
@@ -841,7 +850,7 @@ export class ObjectObjectApi {
      * @param param the request object
      */
     public viewObjectWithHttpInfo(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<HttpInfo<UUUU7f23cd8d5099a867ea3f026af4ed4207>> {
-        return this.api.viewObjectWithHttpInfo(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt, param.nIteration, param.cloudwatchLog, param.batchId, param.runId, param.plot,  options).toPromise();
+        return this.api.viewObjectWithHttpInfo(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt, param.nIteration, param.cloudwatchLog, param.batchId, param.runId, param.plot, param.viewAnalyzer,  options).toPromise();
     }
 
     /**
@@ -850,7 +859,7 @@ export class ObjectObjectApi {
      * @param param the request object
      */
     public viewObject(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<UUUU7f23cd8d5099a867ea3f026af4ed4207> {
-        return this.api.viewObject(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt, param.nIteration, param.cloudwatchLog, param.batchId, param.runId, param.plot,  options).toPromise();
+        return this.api.viewObject(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt, param.nIteration, param.cloudwatchLog, param.batchId, param.runId, param.plot, param.viewAnalyzer,  options).toPromise();
     }
 
 }

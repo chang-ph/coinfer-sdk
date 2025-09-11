@@ -7,7 +7,11 @@ export class CreateWorkflowRsp {
     'modelId': string;
     'modelName': string;
     'dataId'?: string | null;
-    'dataName'?: string;
+    'dataName'?: string | null;
+    'experimentId'?: string | null;
+    'experimentName'?: string | null;
+    'analyzerId'?: string | null;
+    'analyzerName'?: string | null;
     'createdAt': Date;
     'updatedAt': Date;
 
@@ -55,6 +59,30 @@ export class CreateWorkflowRsp {
         {
             "name": "dataName",
             "baseName": "data_name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "experimentId",
+            "baseName": "experiment_id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "experimentName",
+            "baseName": "experiment_name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "analyzerId",
+            "baseName": "analyzer_id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "analyzerName",
+            "baseName": "analyzer_name",
             "type": "string",
             "format": ""
         },

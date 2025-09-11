@@ -31,10 +31,14 @@ class CreateWorkflowRsp(BaseModel):
     model_id: StrictStr
     model_name: StrictStr
     data_id: Optional[StrictStr] = None
-    data_name: Optional[StrictStr] = ''
+    data_name: Optional[StrictStr] = None
+    experiment_id: Optional[StrictStr] = None
+    experiment_name: Optional[StrictStr] = None
+    analyzer_id: Optional[StrictStr] = None
+    analyzer_name: Optional[StrictStr] = None
     created_at: datetime
     updated_at: datetime
-    __properties: ClassVar[List[str]] = ["object_type", "short_id", "name", "model_id", "model_name", "data_id", "data_name", "created_at", "updated_at"]
+    __properties: ClassVar[List[str]] = ["object_type", "short_id", "name", "model_id", "model_name", "data_id", "data_name", "experiment_id", "experiment_name", "analyzer_id", "analyzer_name", "created_at", "updated_at"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -87,6 +91,31 @@ class CreateWorkflowRsp(BaseModel):
         if self.data_id is None and "data_id" in self.model_fields_set:
             _dict['data_id'] = None
 
+        # set to None if data_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.data_name is None and "data_name" in self.model_fields_set:
+            _dict['data_name'] = None
+
+        # set to None if experiment_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.experiment_id is None and "experiment_id" in self.model_fields_set:
+            _dict['experiment_id'] = None
+
+        # set to None if experiment_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.experiment_name is None and "experiment_name" in self.model_fields_set:
+            _dict['experiment_name'] = None
+
+        # set to None if analyzer_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.analyzer_id is None and "analyzer_id" in self.model_fields_set:
+            _dict['analyzer_id'] = None
+
+        # set to None if analyzer_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.analyzer_name is None and "analyzer_name" in self.model_fields_set:
+            _dict['analyzer_name'] = None
+
         return _dict
 
     @classmethod
@@ -105,7 +134,11 @@ class CreateWorkflowRsp(BaseModel):
             "model_id": obj.get("model_id"),
             "model_name": obj.get("model_name"),
             "data_id": obj.get("data_id"),
-            "data_name": obj.get("data_name") if obj.get("data_name") is not None else '',
+            "data_name": obj.get("data_name"),
+            "experiment_id": obj.get("experiment_id"),
+            "experiment_name": obj.get("experiment_name"),
+            "analyzer_id": obj.get("analyzer_id"),
+            "analyzer_name": obj.get("analyzer_name"),
             "created_at": obj.get("created_at"),
             "updated_at": obj.get("updated_at")
         })

@@ -2,6 +2,7 @@ import { CreateNSampleStatReq } from '../models/CreateNSampleStatReq';
 import { CreateProtobufMessageReq } from '../models/CreateProtobufMessageReq';
 import { CreateTextMessageReq } from '../models/CreateTextMessageReq';
 import { RunCloudFunctionScript } from '../models/RunCloudFunctionScript';
+import { RunWorkflowAnalyzerReq } from '../models/RunWorkflowAnalyzerReq';
 import { RunWorkflowReq } from '../models/RunWorkflowReq';
 import { UpdateDataReq } from '../models/UpdateDataReq';
 import { UpdateEventReq } from '../models/UpdateEventReq';
@@ -15,7 +16,7 @@ import { HttpFile } from '../http/http';
  * Type
  * @export
  */
-export type Payload1 = CreateNSampleStatReq | CreateProtobufMessageReq | CreateTextMessageReq | RunCloudFunctionScript | RunWorkflowReq | UpdateDataReq | UpdateEventReq | UpdateExperiment | UpdateModel | UpdateWorkflowReq;
+export type Payload1 = CreateNSampleStatReq | CreateProtobufMessageReq | CreateTextMessageReq | RunCloudFunctionScript | RunWorkflowAnalyzerReq | RunWorkflowReq | UpdateDataReq | UpdateEventReq | UpdateExperiment | UpdateModel | UpdateWorkflowReq;
 
 /**
 * @type Payload1Class
@@ -35,8 +36,10 @@ export class Payload1Class {
         "model.run_script": "RunCloudFunctionScript",
         "workflow": "UpdateWorkflowReq",
         "workflow.run": "RunWorkflowReq",
+        "workflow.run_analyzer": "RunWorkflowAnalyzerReq",
     };
 }
+
 
 
 

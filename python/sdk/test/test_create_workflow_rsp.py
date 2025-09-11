@@ -40,6 +40,10 @@ class TestCreateWorkflowRsp(unittest.TestCase):
                 model_name = '',
                 data_id = '',
                 data_name = '',
+                experiment_id = '',
+                experiment_name = '',
+                analyzer_id = '',
+                analyzer_name = '',
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
             )

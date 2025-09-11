@@ -4,6 +4,10 @@ export class UpdateWorkflowReq {
     'objectType': UpdateWorkflowReqObjectTypeEnum;
     'name'?: string | null;
     'description'?: string | null;
+    'dataId'?: string | null;
+    'experimentId'?: string | null;
+    'analyzerId'?: string | null;
+    'analyzerResult'?: string | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -25,6 +29,30 @@ export class UpdateWorkflowReq {
         {
             "name": "description",
             "baseName": "description",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "dataId",
+            "baseName": "data_id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "experimentId",
+            "baseName": "experiment_id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "analyzerId",
+            "baseName": "analyzer_id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "analyzerResult",
+            "baseName": "analyzer_result",
             "type": "string",
             "format": ""
         }    ];

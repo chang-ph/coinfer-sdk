@@ -266,7 +266,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_object**
-> SuccRspUnionExperimentRspViewModelsRspNoneType update_object(objid, update_object)
+> UUUU28b510deefc97bb409a5d7911e299314 update_object(objid, update_object)
 
 Update object.
 
@@ -278,7 +278,7 @@ Update object of certain ID.  ### Example  Update model: ``` POST /api/object/M1
 
 ```python
 import openapi_client
-from openapi_client.models.succ_rsp_union_experiment_rsp_view_models_rsp_none_type import SuccRspUnionExperimentRspViewModelsRspNoneType
+from openapi_client.models.uuuu28b510deefc97bb409a5d7911e299314 import UUUU28b510deefc97bb409a5d7911e299314
 from openapi_client.models.update_object import UpdateObject
 from openapi_client.rest import ApiException
 from pprint import pprint
@@ -325,7 +325,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SuccRspUnionExperimentRspViewModelsRspNoneType**](SuccRspUnionExperimentRspViewModelsRspNoneType.md)
+[**UUUU28b510deefc97bb409a5d7911e299314**](UUUU28b510deefc97bb409a5d7911e299314.md)
 
 ### Authorization
 
@@ -346,7 +346,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **view_object**
-> UUUU7f23cd8d5099a867ea3f026af4ed4207 view_object(objid, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, plot=plot)
+> UUUU7f23cd8d5099a867ea3f026af4ed4207 view_object(objid, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, plot=plot, view_analyzer=view_analyzer)
 
 View object.
 
@@ -398,10 +398,11 @@ with openapi_client.ApiClient(configuration) as api_client:
     batch_id = '' # str |  (optional) (default to '')
     run_id = '' # str |  (optional) (default to '')
     plot = False # bool | get arviz plot (optional) (default to False)
+    view_analyzer = False # bool | view analyzer result (optional) (default to False)
 
     try:
         # View object.
-        api_response = api_instance.view_object(objid, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, plot=plot)
+        api_response = api_instance.view_object(objid, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, plot=plot, view_analyzer=view_analyzer)
         print("The response of ObjectApi->view_object:\n")
         pprint(api_response)
     except Exception as e:
@@ -424,6 +425,7 @@ Name | Type | Description  | Notes
  **batch_id** | **str**|  | [optional] [default to &#39;&#39;]
  **run_id** | **str**|  | [optional] [default to &#39;&#39;]
  **plot** | **bool**| get arviz plot | [optional] [default to False]
+ **view_analyzer** | **bool**| view analyzer result | [optional] [default to False]
 
 ### Return type
 

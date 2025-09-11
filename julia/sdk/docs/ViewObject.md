@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **batch_id** | **String** |  | [optional] [default to ""]
 **run_id** | **String** |  | [optional] [default to ""]
 **plot** | **Bool** | get arviz plot | [optional] [default to false]
+**var&quot;view-analyzer&quot;** | **Bool** | view analyzer result | [optional] [default to false]
 
 
 [[Back to Model list]](../README.md#models) [[Back to API list]](../README.md#api-endpoints) [[Back to README]](../README.md)

@@ -10,7 +10,11 @@ Name | Type | Description | Notes
 **model_id** | **String** |  | [default to nothing]
 **model_name** | **String** |  | [default to nothing]
 **data_id** | **String** |  | [optional] [default to nothing]
-**data_name** | **String** |  | [optional] [default to ""]
+**data_name** | **String** |  | [optional] [default to nothing]
+**experiment_id** | **String** |  | [optional] [default to nothing]
+**experiment_name** | **String** |  | [optional] [default to nothing]
+**analyzer_id** | **String** |  | [optional] [default to nothing]
+**analyzer_name** | **String** |  | [optional] [default to nothing]
 **created_at** | **ZonedDateTime** |  | [default to nothing]
 **updated_at** | **ZonedDateTime** |  | [default to nothing]
 

@@ -1,11 +1,12 @@
-import { CreateCallbackRsp } from '../models/CreateCallbackRsp';
 import { CreateDataRsp } from '../models/CreateDataRsp';
-import { CreateEventRsp } from '../models/CreateEventRsp';
-import { CreateExperimentShareRsp } from '../models/CreateExperimentShareRsp';
-import { CreateRelationRsp } from '../models/CreateRelationRsp';
 import { CreateWorkflowRsp } from '../models/CreateWorkflowRsp';
+import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
+import { ExperimentPlotRsp } from '../models/ExperimentPlotRsp';
 import { ExperimentRsp } from '../models/ExperimentRsp';
-import { ListModelsRspItem } from '../models/ListModelsRspItem';
+import { ExperimentSampleDataRsp } from '../models/ExperimentSampleDataRsp';
+import { GetExperimentRunInfoRsp } from '../models/GetExperimentRunInfoRsp';
+import { ViewExperimentShareRsp } from '../models/ViewExperimentShareRsp';
+import { ViewModelsRsp } from '../models/ViewModelsRsp';
 import { HttpFile } from '../http/http';
 
 /**
@@ -13,7 +14,7 @@ import { HttpFile } from '../http/http';
  * Type
  * @export
  */
-export type Data1 = CreateCallbackRsp | CreateDataRsp | CreateEventRsp | CreateExperimentShareRsp | CreateRelationRsp | CreateWorkflowRsp | ExperimentRsp | ListModelsRspItem;
+export type Data1 = CreateDataRsp | CreateWorkflowRsp | ExperimentCloudwatchLogRsp | ExperimentPlotRsp | ExperimentRsp | ExperimentSampleDataRsp | GetExperimentRunInfoRsp | ViewExperimentShareRsp | ViewModelsRsp;
 
 /**
 * @type Data1Class
@@ -23,16 +24,18 @@ export class Data1Class {
     static readonly discriminator: string | undefined = "objectType";
 
     static readonly mapping: {[index: string]: string} | undefined = {
-        "callback": "CreateCallbackRsp",
         "data": "CreateDataRsp",
-        "event": "CreateEventRsp",
         "experiment": "ExperimentRsp",
-        "model": "ListModelsRspItem",
-        "relation": "CreateRelationRsp",
-        "share": "CreateExperimentShareRsp",
+        "experiment.cloudwatch_log": "ExperimentCloudwatchLogRsp",
+        "experiment.plot": "ExperimentPlotRsp",
+        "experiment.run_info": "GetExperimentRunInfoRsp",
+        "experiment.sampledata": "ExperimentSampleDataRsp",
+        "model": "ViewModelsRsp",
+        "share": "ViewExperimentShareRsp",
         "workflow": "CreateWorkflowRsp",
     };
 }
+
 
 
 

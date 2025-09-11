@@ -17,7 +17,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
-from openapi_client.models.data2 import Data2
+from openapi_client.models.data1 import Data1
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,7 +26,7 @@ class UUUU7f23cd8d5099a867ea3f026af4ed4207(BaseModel):
     UUUU7f23cd8d5099a867ea3f026af4ed4207
     """ # noqa: E501
     status: StrictStr
-    data: Data2
+    data: Data1
     __properties: ClassVar[List[str]] = ["status", "data"]
 
     @field_validator('status')
@@ -91,7 +91,7 @@ class UUUU7f23cd8d5099a867ea3f026af4ed4207(BaseModel):
 
         _obj = cls.model_validate({
             "status": obj.get("status"),
-            "data": Data2.from_dict(obj["data"]) if obj.get("data") is not None else None
+            "data": Data1.from_dict(obj["data"]) if obj.get("data") is not None else None
         })
         return _obj
 

@@ -63,7 +63,7 @@ class TestPayload1(unittest.TestCase):
                 tags = [
                     ''
                     ],
-                params = '',
+                params = '{}',
                 engine = 'fargate',
                 lock_key = '',
                 action = '',
@@ -88,6 +88,10 @@ class TestPayload1(unittest.TestCase):
                                 ]
                             }
                         }, ),
+                data_id = '',
+                experiment_id = '',
+                analyzer_id = '',
+                analyzer_result = '',
                 experiment_name = '',
                 iteration = 56,
                 parallel = 56,

@@ -1,9 +1,9 @@
-import { Data1 } from '../models/Data1';
+import { Data } from '../models/Data';
 import { HttpFile } from '../http/http';
 
 export class UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66 {
     'status': UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66StatusEnum;
-    'data': Data1;
+    'data': Data;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -19,7 +19,7 @@ export class UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66 {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Data1",
+            "type": "Data",
             "format": ""
         }    ];
 

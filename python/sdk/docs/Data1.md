@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **short_id** | **str** |  | 
 **name** | **str** |  | 
 **model_id** | **str** |  | 
-**status** | **str** |  | [optional] [default to '']
+**status** | **str** |  | 
 **meta** | [**ModelMetaInRsp**](ModelMetaInRsp.md) |  | 
 **n_chains** | **int** |  | [optional] [default to 0]
 **n_variables** | **int** |  | [optional] [default to 0]
@@ -27,24 +27,22 @@ Name | Type | Description | Notes
 **tags** | **List[str]** |  | 
 **lambda_image_url** | **str** |  | [optional] 
 **lambda_image_name** | **str** |  | [optional] 
-**user_id** | **int** |  | 
-**experiment_id** | **str** |  | 
-**experiment_name** | **str** |  | 
-**password** | **str** |  | 
-**created_at** | **datetime** |  | 
-**from_user** | **str** |  | [optional] 
-**to_user** | **str** |  | [optional] 
-**lang** | **str** |  | 
-**code** | **str** |  | 
-**token** | **str** |  | 
-**object1_id** | **str** |  | 
-**object2_id** | **str** |  | 
+**require_password** | **bool** |  | 
+**url** | **str** |  | 
+**progress** | **str** |  | 
+**message** | **str** |  | [optional] [default to '']
+**logs** | **List[List[object]]** |  | 
 **description** | **str** |  | 
+**created_at** | **datetime** |  | 
 **updated_at** | **datetime** |  | 
 **path** | **str** |  | [optional] [default to '']
 **fmt** | **str** |  | [optional] [default to 'raw']
 **data_id** | **str** |  | [optional] 
-**data_name** | **str** |  | [optional] [default to '']
+**data_name** | **str** |  | [optional] 
+**experiment_id** | **str** |  | [optional] 
+**experiment_name** | **str** |  | [optional] 
+**analyzer_id** | **str** |  | [optional] 
+**analyzer_name** | **str** |  | [optional] 
 
 ## Example
 
