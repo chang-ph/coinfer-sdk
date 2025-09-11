@@ -19,10 +19,10 @@ from typing import List, Optional
 from typing_extensions import Annotated
 from openapi_client.models.create_object_req import CreateObjectReq
 from openapi_client.models.succ_rsp_soft_deleted_rsp import SuccRspSoftDeletedRsp
+from openapi_client.models.uuuu0bdaccc02abe3e86fd53540d087462d8 import UUUU0bdaccc02abe3e86fd53540d087462d8
 from openapi_client.models.uuuu28b510deefc97bb409a5d7911e299314 import UUUU28b510deefc97bb409a5d7911e299314
 from openapi_client.models.uuuu3d00ddc80a048e8fc9eddc3c1943d9f1 import UUUU3d00ddc80a048e8fc9eddc3c1943d9f1
 from openapi_client.models.uuuu4be0e69353a8fb4b4ca5b5b1a94b3f66 import UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66
-from openapi_client.models.uuuu7f23cd8d5099a867ea3f026af4ed4207 import UUUU7f23cd8d5099a867ea3f026af4ed4207
 from openapi_client.models.update_object import UpdateObject
 
 from openapi_client.api_client import ApiClient, RequestSerialized
@@ -1348,7 +1348,7 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UUUU7f23cd8d5099a867ea3f026af4ed4207:
+    ) -> UUUU0bdaccc02abe3e86fd53540d087462d8:
         """View object.
 
         View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view model data GET /api/object/X1234567  # view experiment data GET /api/object/S1234566  # view share data ```
@@ -1416,7 +1416,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UUUU7f23cd8d5099a867ea3f026af4ed4207",
+            '200': "UUUU0bdaccc02abe3e86fd53540d087462d8",
             '400': "ErrRsp",
         }        response_data = self.api_client.call_api(
             *_param,
@@ -1455,7 +1455,7 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UUUU7f23cd8d5099a867ea3f026af4ed4207]:
+    ) -> ApiResponse[UUUU0bdaccc02abe3e86fd53540d087462d8]:
         """View object.
 
         View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view model data GET /api/object/X1234567  # view experiment data GET /api/object/S1234566  # view share data ```
@@ -1523,7 +1523,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UUUU7f23cd8d5099a867ea3f026af4ed4207",
+            '200': "UUUU0bdaccc02abe3e86fd53540d087462d8",
             '400': "ErrRsp",
         }        response_data = self.api_client.call_api(
             *_param,
@@ -1630,7 +1630,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UUUU7f23cd8d5099a867ea3f026af4ed4207",
+            '200': "UUUU0bdaccc02abe3e86fd53540d087462d8",
             '400': "ErrRsp",
         }        response_data = self.api_client.call_api(
             *_param,

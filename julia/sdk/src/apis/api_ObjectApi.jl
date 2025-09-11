@@ -164,7 +164,7 @@ function update_object(_api::ObjectApi, response_stream::Channel, objid::String,
 end
 
 const _returntypes_view_object_ObjectApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => UUUU7f23cd8d5099a867ea3f026af4ed4207,
+    Regex("^" * replace("200", "x"=>".") * "\$") => UUUU0bdaccc02abe3e86fd53540d087462d8,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
@@ -203,7 +203,7 @@ Params:
 - plot::Bool
 - view_analyzer::Bool
 
-Return: UUUU7f23cd8d5099a867ea3f026af4ed4207, OpenAPI.Clients.ApiResponse
+Return: UUUU0bdaccc02abe3e86fd53540d087462d8, OpenAPI.Clients.ApiResponse
 """
 function view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, plot=nothing, view_analyzer=nothing, _mediaType=nothing)
     _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, plot=plot, view_analyzer=view_analyzer, _mediaType=_mediaType)

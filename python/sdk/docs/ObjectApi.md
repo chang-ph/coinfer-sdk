@@ -346,7 +346,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **view_object**
-> UUUU7f23cd8d5099a867ea3f026af4ed4207 view_object(objid, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, plot=plot, view_analyzer=view_analyzer)
+> UUUU0bdaccc02abe3e86fd53540d087462d8 view_object(objid, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, plot=plot, view_analyzer=view_analyzer)
 
 View object.
 
@@ -359,7 +359,7 @@ View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view mo
 
 ```python
 import openapi_client
-from openapi_client.models.uuuu7f23cd8d5099a867ea3f026af4ed4207 import UUUU7f23cd8d5099a867ea3f026af4ed4207
+from openapi_client.models.uuuu0bdaccc02abe3e86fd53540d087462d8 import UUUU0bdaccc02abe3e86fd53540d087462d8
 from openapi_client.rest import ApiException
 from pprint import pprint
 
@@ -429,7 +429,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UUUU7f23cd8d5099a867ea3f026af4ed4207**](UUUU7f23cd8d5099a867ea3f026af4ed4207.md)
+[**UUUU0bdaccc02abe3e86fd53540d087462d8**](UUUU0bdaccc02abe3e86fd53540d087462d8.md)
 
 ### Authorization
 
