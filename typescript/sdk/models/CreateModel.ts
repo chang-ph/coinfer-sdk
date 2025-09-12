@@ -15,7 +15,6 @@ export class CreateModel {
     */
     'name'?: string;
     'content'?: ModelContent | null;
-    'isDemo'?: boolean;
     'tag'?: CloudFunctionKind;
     /**
     * Only allow one instance to run as cloud function at a time.
@@ -65,12 +64,6 @@ export class CreateModel {
             "name": "content",
             "baseName": "content",
             "type": "ModelContent",
-            "format": ""
-        },
-        {
-            "name": "isDemo",
-            "baseName": "is_demo",
-            "type": "boolean",
             "format": ""
         },
         {

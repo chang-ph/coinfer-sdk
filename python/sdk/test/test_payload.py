@@ -49,7 +49,6 @@ class TestPayload(unittest.TestCase):
                                     type = 'file', )
                                 ], )
                         ], ),
-                is_demo = True,
                 tag = 'model',
                 single_instance = True,
                 lang = 'julia',

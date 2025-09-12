@@ -118,7 +118,7 @@ import { CreateEventRsp, CreateEventRspObjectTypeEnum      } from '../models/Cre
 import { CreateExperiment, CreateExperimentObjectTypeEnum        , CreateExperimentRunOnEnum  , CreateExperimentDataFileTypeEnum     } from '../models/CreateExperiment';
 import { CreateExperimentShare, CreateExperimentShareObjectTypeEnum      } from '../models/CreateExperimentShare';
 import { CreateExperimentShareRsp, CreateExperimentShareRspObjectTypeEnum            } from '../models/CreateExperimentShareRsp';
-import { CreateModel, CreateModelObjectTypeEnum  , CreateModelTypeEnum             } from '../models/CreateModel';
+import { CreateModel, CreateModelObjectTypeEnum  , CreateModelTypeEnum            } from '../models/CreateModel';
 import { CreateNSampleStatReq, CreateNSampleStatReqObjectTypeEnum        } from '../models/CreateNSampleStatReq';
 import { CreateObjectReq } from '../models/CreateObjectReq';
 import { CreateProtobufMessageReq, CreateProtobufMessageReqObjectTypeEnum      } from '../models/CreateProtobufMessageReq';

@@ -10,7 +10,6 @@ Name | Type | Description | Notes
 **env** | **str** |  | [optional] 
 **name** | **str** | model name | [optional] [default to '']
 **content** | [**ModelContent**](ModelContent.md) |  | [optional] 
-**is_demo** | **bool** |  | [optional] [default to False]
 **tag** | [**CloudFunctionKind**](CloudFunctionKind.md) |  | [optional] 
 **single_instance** | **bool** | Only allow one instance to run as cloud function at a time. | [optional] [default to True]
 **lang** | [**CloudFunctionLang**](CloudFunctionLang.md) |  | [optional] 
