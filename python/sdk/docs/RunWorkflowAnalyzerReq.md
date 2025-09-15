@@ -6,8 +6,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **object_type** | **str** |  | 
-**params** | **str** | params for analyzer | [optional] [default to '{}']
-**lock_key** | **str** | lock key | [optional] [default to '']
 
 ## Example
 

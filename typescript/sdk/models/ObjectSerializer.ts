@@ -166,7 +166,7 @@ import { Payload1Class } from '../models/Payload1';
 import { PlotReq } from '../models/PlotReq';
 import { PlotRsp } from '../models/PlotRsp';
 import { RunCloudFunctionScript, RunCloudFunctionScriptObjectTypeEnum   , RunCloudFunctionScriptEngineEnum    } from '../models/RunCloudFunctionScript';
-import { RunWorkflowAnalyzerReq, RunWorkflowAnalyzerReqObjectTypeEnum     } from '../models/RunWorkflowAnalyzerReq';
+import { RunWorkflowAnalyzerReq, RunWorkflowAnalyzerReqObjectTypeEnum   } from '../models/RunWorkflowAnalyzerReq';
 import { RunWorkflowReq, RunWorkflowReqObjectTypeEnum     , RunWorkflowReqEngineEnum   , RunWorkflowReqParallelAlgorithmEnum   } from '../models/RunWorkflowReq';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SoftDeletedRsp } from '../models/SoftDeletedRsp';

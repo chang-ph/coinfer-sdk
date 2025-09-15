@@ -33,9 +33,7 @@ class TestRunWorkflowAnalyzerReq(unittest.TestCase):
         model = RunWorkflowAnalyzerReq()
         if include_optional:
             return RunWorkflowAnalyzerReq(
-                object_type = 'workflow.run_analyzer',
-                params = '{}',
-                lock_key = ''
+                object_type = 'workflow.run_analyzer'
             )
         else:
             return RunWorkflowAnalyzerReq(

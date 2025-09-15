@@ -6,28 +6,20 @@
 
     RunWorkflowAnalyzerReq(;
         object_type=nothing,
-        params="{}",
-        lock_key="",
     )
 
     - object_type::String
-    - params::String : params for analyzer
-    - lock_key::String : lock key
 """
 Base.@kwdef mutable struct RunWorkflowAnalyzerReq <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
-    params::Union{Nothing, String} = "{}"
-    lock_key::Union{Nothing, String} = ""
 
-    function RunWorkflowAnalyzerReq(object_type, params, lock_key, )
+    function RunWorkflowAnalyzerReq(object_type, )
         OpenAPI.validate_property(RunWorkflowAnalyzerReq, Symbol("object_type"), object_type)
-        OpenAPI.validate_property(RunWorkflowAnalyzerReq, Symbol("params"), params)
-        OpenAPI.validate_property(RunWorkflowAnalyzerReq, Symbol("lock_key"), lock_key)
-        return new(object_type, params, lock_key, )
+        return new(object_type, )
     end
 end # type RunWorkflowAnalyzerReq
 
-const _property_types_RunWorkflowAnalyzerReq = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("params")=>"String", Symbol("lock_key")=>"String", )
+const _property_types_RunWorkflowAnalyzerReq = Dict{Symbol,String}(Symbol("object_type")=>"String", )
 OpenAPI.property_type(::Type{ RunWorkflowAnalyzerReq }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_RunWorkflowAnalyzerReq[name]))}
 
 function check_required(o::RunWorkflowAnalyzerReq)
@@ -40,7 +32,5 @@ function OpenAPI.validate_property(::Type{ RunWorkflowAnalyzerReq }, name::Symbo
     if name === Symbol("object_type")
         OpenAPI.validate_param(name, "RunWorkflowAnalyzerReq", :enum, val, ["workflow.run_analyzer"])
     end
-
-
 
 end

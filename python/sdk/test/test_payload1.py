@@ -63,7 +63,7 @@ class TestPayload1(unittest.TestCase):
                 tags = [
                     ''
                     ],
-                params = '{}',
+                params = '',
                 engine = 'fargate',
                 lock_key = '',
                 action = '',

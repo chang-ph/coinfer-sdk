@@ -15,8 +15,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -25,9 +25,7 @@ class RunWorkflowAnalyzerReq(BaseModel):
     RunWorkflowAnalyzerReq
     """ # noqa: E501
     object_type: StrictStr
-    params: Optional[StrictStr] = Field(default='{}', description="params for analyzer")
-    lock_key: Optional[StrictStr] = Field(default='', description="lock key")
-    __properties: ClassVar[List[str]] = ["object_type", "params", "lock_key"]
+    __properties: ClassVar[List[str]] = ["object_type"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -87,9 +85,7 @@ class RunWorkflowAnalyzerReq(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "object_type": obj.get("object_type"),
-            "params": obj.get("params") if obj.get("params") is not None else '{}',
-            "lock_key": obj.get("lock_key") if obj.get("lock_key") is not None else ''
+            "object_type": obj.get("object_type")
         })
         return _obj
 
