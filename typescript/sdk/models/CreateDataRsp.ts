@@ -1,3 +1,4 @@
+import { DataTag } from '../models/DataTag';
 import { HttpFile } from '../http/http';
 
 export class CreateDataRsp {
@@ -9,6 +10,10 @@ export class CreateDataRsp {
     'updatedAt': Date;
     'path'?: string;
     'fmt'?: string;
+    /**
+    * Data tags
+    */
+    'tags'?: Array<DataTag>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -61,6 +66,12 @@ export class CreateDataRsp {
             "name": "fmt",
             "baseName": "fmt",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "tags",
+            "baseName": "tags",
+            "type": "Array<DataTag>",
             "format": ""
         }    ];
 

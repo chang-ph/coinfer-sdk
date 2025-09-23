@@ -33,6 +33,7 @@ class TestListExperimentRsp(unittest.TestCase):
         model = ListExperimentRsp()
         if include_optional:
             return ListExperimentRsp(
+                object_type = 'experiment',
                 short_id = '',
                 name = '',
                 model_id = '',
@@ -59,6 +60,7 @@ class TestListExperimentRsp(unittest.TestCase):
             )
         else:
             return ListExperimentRsp(
+                object_type = 'experiment',
                 short_id = '',
                 name = '',
                 status = '',

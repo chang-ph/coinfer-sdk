@@ -28,14 +28,13 @@ class CreateExperiment(BaseModel):
     model_id: Optional[StrictStr] = ''
     workflow_id: Optional[StrictStr] = ''
     input_id: Optional[StrictStr] = ''
-    xp_meta: Optional[Any] = None
     meta: Optional[Any] = None
     name: Optional[StrictStr] = ''
     run_on: Optional[StrictStr] = 'Lambda'
     data_file_type: Optional[StrictStr] = None
     data_files: Optional[List[StrictStr]] = Field(default=None, description="File data in text format")
     data_uris: Optional[List[StrictStr]] = Field(default=None, description="File data URI")
-    __properties: ClassVar[List[str]] = ["object_type", "model_id", "workflow_id", "input_id", "xp_meta", "meta", "name", "run_on", "data_file_type", "data_files", "data_uris"]
+    __properties: ClassVar[List[str]] = ["object_type", "model_id", "workflow_id", "input_id", "meta", "name", "run_on", "data_file_type", "data_files", "data_uris"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -103,11 +102,6 @@ class CreateExperiment(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if xp_meta (nullable) is None
-        # and model_fields_set contains the field
-        if self.xp_meta is None and "xp_meta" in self.model_fields_set:
-            _dict['xp_meta'] = None
-
         # set to None if meta (nullable) is None
         # and model_fields_set contains the field
         if self.meta is None and "meta" in self.model_fields_set:
@@ -134,7 +128,6 @@ class CreateExperiment(BaseModel):
             "model_id": obj.get("model_id") if obj.get("model_id") is not None else '',
             "workflow_id": obj.get("workflow_id") if obj.get("workflow_id") is not None else '',
             "input_id": obj.get("input_id") if obj.get("input_id") is not None else '',
-            "xp_meta": obj.get("xp_meta"),
             "meta": obj.get("meta"),
             "name": obj.get("name") if obj.get("name") is not None else '',
             "run_on": obj.get("run_on") if obj.get("run_on") is not None else 'Lambda',

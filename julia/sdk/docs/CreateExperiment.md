@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **model_id** | **String** |  | [optional] [default to ""]
 **workflow_id** | **String** |  | [optional] [default to ""]
 **input_id** | **String** |  | [optional] [default to ""]
-**xp_meta** | **Any** |  | [optional] [default to nothing]
 **meta** | **Any** |  | [optional] [default to nothing]
 **name** | **String** |  | [optional] [default to ""]
 **run_on** | **String** |  | [optional] [default to "Lambda"]

@@ -39,7 +39,9 @@ class TestGetConfigRsp(unittest.TestCase):
                 upload_file_types = '',
                 google_client_id = '',
                 google_app_id = '',
-                arviz_plotting_endpoint = ''
+                arviz_plotting_endpoint = '',
+                default_model = '',
+                default_data = ''
             )
         else:
             return GetConfigRsp(
@@ -50,6 +52,8 @@ class TestGetConfigRsp(unittest.TestCase):
                 google_client_id = '',
                 google_app_id = '',
                 arviz_plotting_endpoint = '',
+                default_model = '',
+                default_data = '',
         )
         """
 

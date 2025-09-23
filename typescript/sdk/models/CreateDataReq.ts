@@ -1,3 +1,4 @@
+import { DataTag } from '../models/DataTag';
 import { HttpFile } from '../http/http';
 
 export class CreateDataReq {
@@ -11,7 +12,7 @@ export class CreateDataReq {
     */
     'description'?: string;
     /**
-    * Whether the data in `data_file` is base64 encoded
+    * Whether the data in `data` is base64 encoded
     */
     'base64Encoded'?: boolean;
     /**
@@ -22,6 +23,10 @@ export class CreateDataReq {
     * File data URI
     */
     'dataUri'?: string;
+    /**
+    * Data tags
+    */
+    'tags'?: Array<DataTag>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -62,6 +67,12 @@ export class CreateDataReq {
             "name": "dataUri",
             "baseName": "data_uri",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "tags",
+            "baseName": "tags",
+            "type": "Array<DataTag>",
             "format": ""
         }    ];
 

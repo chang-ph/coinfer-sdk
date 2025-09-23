@@ -20,8 +20,8 @@ from typing_extensions import Annotated
 from openapi_client.models.create_object_req import CreateObjectReq
 from openapi_client.models.succ_rsp_soft_deleted_rsp import SuccRspSoftDeletedRsp
 from openapi_client.models.uuuu0bdaccc02abe3e86fd53540d087462d8 import UUUU0bdaccc02abe3e86fd53540d087462d8
+from openapi_client.models.uuuu18d10abbf81f28b86769c427804ea587 import UUUU18d10abbf81f28b86769c427804ea587
 from openapi_client.models.uuuu28b510deefc97bb409a5d7911e299314 import UUUU28b510deefc97bb409a5d7911e299314
-from openapi_client.models.uuuu3d00ddc80a048e8fc9eddc3c1943d9f1 import UUUU3d00ddc80a048e8fc9eddc3c1943d9f1
 from openapi_client.models.uuuu4be0e69353a8fb4b4ca5b5b1a94b3f66 import UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66
 from openapi_client.models.update_object import UpdateObject
 
@@ -624,7 +624,7 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UUUU3d00ddc80a048e8fc9eddc3c1943d9f1:
+    ) -> UUUU18d10abbf81f28b86769c427804ea587:
         """List objects.
 
         ### List Objects  By default, the API returns only objects created by the current user, excluding sharing information for performance optimization.  When `shared_with_me` is enabled, the API returns objects owned by other users but shared with the current user, including their sharing details.  Enabling `shared_by_me` will include sharing information for objects that the current user has shared with others.  Setting `with_share_info` to true combines both scenarios: it returns objects shared by the current user as well as objects shared with the current user, complete with their respective sharing information. This effectively merges the functionality of both `shared_by_me` and `shared_with_me`.  ### Example  List models: ``` GET /api/object?object_type=model GET /api/object?object_type=model&shared_by_me=true GET /api/object?object_type=model&shared_with_me=true GET /api/object?object_type=model&with_share_info=true ```  List experiments: ``` GET /api/object?object_type=experiment GET /api/object?object_type=experiment&shared_by_me=true GET /api/object?object_type=experiment&shared_with_me=true GET /api/object?object_type=experiment&with_share_info=true ```
@@ -692,7 +692,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UUUU3d00ddc80a048e8fc9eddc3c1943d9f1",
+            '200': "UUUU18d10abbf81f28b86769c427804ea587",
             '400': "ErrRsp",
         }        response_data = self.api_client.call_api(
             *_param,
@@ -731,7 +731,7 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UUUU3d00ddc80a048e8fc9eddc3c1943d9f1]:
+    ) -> ApiResponse[UUUU18d10abbf81f28b86769c427804ea587]:
         """List objects.
 
         ### List Objects  By default, the API returns only objects created by the current user, excluding sharing information for performance optimization.  When `shared_with_me` is enabled, the API returns objects owned by other users but shared with the current user, including their sharing details.  Enabling `shared_by_me` will include sharing information for objects that the current user has shared with others.  Setting `with_share_info` to true combines both scenarios: it returns objects shared by the current user as well as objects shared with the current user, complete with their respective sharing information. This effectively merges the functionality of both `shared_by_me` and `shared_with_me`.  ### Example  List models: ``` GET /api/object?object_type=model GET /api/object?object_type=model&shared_by_me=true GET /api/object?object_type=model&shared_with_me=true GET /api/object?object_type=model&with_share_info=true ```  List experiments: ``` GET /api/object?object_type=experiment GET /api/object?object_type=experiment&shared_by_me=true GET /api/object?object_type=experiment&shared_with_me=true GET /api/object?object_type=experiment&with_share_info=true ```
@@ -799,7 +799,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UUUU3d00ddc80a048e8fc9eddc3c1943d9f1",
+            '200': "UUUU18d10abbf81f28b86769c427804ea587",
             '400': "ErrRsp",
         }        response_data = self.api_client.call_api(
             *_param,
@@ -906,7 +906,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UUUU3d00ddc80a048e8fc9eddc3c1943d9f1",
+            '200': "UUUU18d10abbf81f28b86769c427804ea587",
             '400': "ErrRsp",
         }        response_data = self.api_client.call_api(
             *_param,

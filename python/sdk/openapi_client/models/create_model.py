@@ -32,13 +32,13 @@ class CreateModel(BaseModel):
     env: Optional[StrictStr] = None
     name: Optional[StrictStr] = Field(default='', description="model name")
     content: Optional[ModelContent] = None
-    tag: Optional[CloudFunctionKind] = None
+    tags: Optional[List[CloudFunctionKind]] = Field(default=None, description="Model tags")
     single_instance: Optional[StrictBool] = Field(default=True, description="Only allow one instance to run as cloud function at a time.")
     lang: Optional[CloudFunctionLang] = None
     entrance_file: Optional[StrictStr] = ''
     lambda_image: Optional[StrictBool] = Field(default=False, description="Whether to build lambda image for this CloudFunction")
     source_url: Optional[StrictStr] = Field(default='', description="Source URL from where to import the model")
-    __properties: ClassVar[List[str]] = ["object_type", "type", "env", "name", "content", "tag", "single_instance", "lang", "entrance_file", "lambda_image", "source_url"]
+    __properties: ClassVar[List[str]] = ["object_type", "type", "env", "name", "content", "tags", "single_instance", "lang", "entrance_file", "lambda_image", "source_url"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -126,7 +126,7 @@ class CreateModel(BaseModel):
             "env": obj.get("env"),
             "name": obj.get("name") if obj.get("name") is not None else '',
             "content": ModelContent.from_dict(obj["content"]) if obj.get("content") is not None else None,
-            "tag": obj.get("tag"),
+            "tags": obj.get("tags"),
             "single_instance": obj.get("single_instance") if obj.get("single_instance") is not None else True,
             "lang": obj.get("lang"),
             "entrance_file": obj.get("entrance_file") if obj.get("entrance_file") is not None else '',

@@ -15,7 +15,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -25,39 +25,14 @@ class RunWorkflowReq(BaseModel):
     RunWorkflowReq
     """ # noqa: E501
     object_type: StrictStr
-    experiment_name: StrictStr = Field(description="experiment name")
-    iteration: Optional[StrictInt] = Field(default=1000, description="iteration number")
-    parallel: Optional[StrictInt] = Field(default=1, description="parallel number")
-    engine: Optional[StrictStr] = 'fargate'
-    chains: Optional[StrictInt] = Field(default=1, description="chains number")
-    parallel_algorithm: Optional[StrictStr] = 'Serial'
-    __properties: ClassVar[List[str]] = ["object_type", "experiment_name", "iteration", "parallel", "engine", "chains", "parallel_algorithm"]
+    startup_script: Optional[StrictStr] = ''
+    __properties: ClassVar[List[str]] = ["object_type", "startup_script"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(['workflow.run']):
             raise ValueError("must be one of enum values ('workflow.run')")
-        return value
-
-    @field_validator('engine')
-    def engine_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['lambda', 'fargate']):
-            raise ValueError("must be one of enum values ('lambda', 'fargate')")
-        return value
-
-    @field_validator('parallel_algorithm')
-    def parallel_algorithm_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['Serial', 'Threaded', 'Distributed']):
-            raise ValueError("must be one of enum values ('Serial', 'Threaded', 'Distributed')")
         return value
 
     model_config = ConfigDict(
@@ -112,12 +87,7 @@ class RunWorkflowReq(BaseModel):
 
         _obj = cls.model_validate({
             "object_type": obj.get("object_type"),
-            "experiment_name": obj.get("experiment_name"),
-            "iteration": obj.get("iteration") if obj.get("iteration") is not None else 1000,
-            "parallel": obj.get("parallel") if obj.get("parallel") is not None else 1,
-            "engine": obj.get("engine") if obj.get("engine") is not None else 'fargate',
-            "chains": obj.get("chains") if obj.get("chains") is not None else 1,
-            "parallel_algorithm": obj.get("parallel_algorithm") if obj.get("parallel_algorithm") is not None else 'Serial'
+            "startup_script": obj.get("startup_script") if obj.get("startup_script") is not None else ''
         })
         return _obj
 

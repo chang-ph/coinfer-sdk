@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **updated_at** | **datetime** |  | 
 **path** | **str** |  | [optional] [default to '']
 **fmt** | **str** |  | [optional] [default to 'raw']
+**tags** | [**List[DataTag]**](DataTag.md) | Data tags | [optional] 
 
 ## Example
 

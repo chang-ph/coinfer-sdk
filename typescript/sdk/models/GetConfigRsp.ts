@@ -8,6 +8,8 @@ export class GetConfigRsp {
     'googleClientId': string;
     'googleAppId': string;
     'arvizPlottingEndpoint': string | null;
+    'defaultModel': string;
+    'defaultData': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -53,6 +55,18 @@ export class GetConfigRsp {
         {
             "name": "arvizPlottingEndpoint",
             "baseName": "arviz_plotting_endpoint",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "defaultModel",
+            "baseName": "default_model",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "defaultData",
+            "baseName": "default_data",
             "type": "string",
             "format": ""
         }    ];

@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **google_client_id** | **str** |  | 
 **google_app_id** | **str** |  | 
 **arviz_plotting_endpoint** | **str** |  | 
+**default_model** | **str** |  | 
+**default_data** | **str** |  | 
 
 ## Example
 

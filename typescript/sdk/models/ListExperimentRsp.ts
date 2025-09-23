@@ -3,6 +3,7 @@ import { ShareInfoModel } from '../models/ShareInfoModel';
 import { HttpFile } from '../http/http';
 
 export class ListExperimentRsp {
+    'objectType': ListExperimentRspObjectTypeEnum;
     'shortId': string;
     'name': string;
     'modelId'?: string | null;
@@ -23,6 +24,12 @@ export class ListExperimentRsp {
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "objectType",
+            "baseName": "object_type",
+            "type": "ListExperimentRspObjectTypeEnum",
+            "format": ""
+        },
         {
             "name": "shortId",
             "baseName": "short_id",
@@ -115,3 +122,8 @@ export class ListExperimentRsp {
     public constructor() {
     }
 }
+
+export enum ListExperimentRspObjectTypeEnum {
+    Experiment = 'experiment'
+}
+

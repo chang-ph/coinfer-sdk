@@ -26,6 +26,7 @@ class CloudFunctionKind(str, Enum):
     """
     MODEL = 'model'
     CODE = 'code'
+    ANONYMOUS = 'anonymous'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

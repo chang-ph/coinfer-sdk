@@ -5,7 +5,6 @@ export class CreateExperiment {
     'modelId'?: string;
     'workflowId'?: string;
     'inputId'?: string;
-    'xpMeta'?: any | null;
     'meta'?: any | null;
     'name'?: string;
     'runOn'?: CreateExperimentRunOnEnum;
@@ -46,12 +45,6 @@ export class CreateExperiment {
             "name": "inputId",
             "baseName": "input_id",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "xpMeta",
-            "baseName": "xp_meta",
-            "type": "any",
             "format": ""
         },
         {

@@ -18,6 +18,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from openapi_client.models.data_tag import DataTag
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,10 +29,11 @@ class CreateDataReq(BaseModel):
     object_type: StrictStr
     name: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="Data name")
     description: Optional[Annotated[str, Field(strict=True, max_length=2048)]] = Field(default='', description="Data description")
-    base64_encoded: Optional[StrictBool] = Field(default=False, description="Whether the data in `data_file` is base64 encoded")
+    base64_encoded: Optional[StrictBool] = Field(default=False, description="Whether the data in `data` is base64 encoded")
     data: Optional[StrictStr] = Field(default='', description="File data in text format")
     data_uri: Optional[StrictStr] = Field(default='', description="File data URI")
-    __properties: ClassVar[List[str]] = ["object_type", "name", "description", "base64_encoded", "data", "data_uri"]
+    tags: Optional[List[DataTag]] = Field(default=None, description="Data tags")
+    __properties: ClassVar[List[str]] = ["object_type", "name", "description", "base64_encoded", "data", "data_uri", "tags"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -96,7 +98,8 @@ class CreateDataReq(BaseModel):
             "description": obj.get("description") if obj.get("description") is not None else '',
             "base64_encoded": obj.get("base64_encoded") if obj.get("base64_encoded") is not None else False,
             "data": obj.get("data") if obj.get("data") is not None else '',
-            "data_uri": obj.get("data_uri") if obj.get("data_uri") is not None else ''
+            "data_uri": obj.get("data_uri") if obj.get("data_uri") is not None else '',
+            "tags": obj.get("tags")
         })
         return _obj
 

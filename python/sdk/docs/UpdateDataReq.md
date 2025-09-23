@@ -8,6 +8,9 @@ Name | Type | Description | Notes
 **object_type** | **str** |  | 
 **name** | **str** |  | [optional] 
 **description** | **str** |  | [optional] 
+**base64_encoded** | **bool** | Whether the data in &#x60;data&#x60; is base64 encoded | [optional] [default to False]
+**data** | **str** |  | [optional] 
+**data_uri** | **str** |  | [optional] 
 
 ## Example
 

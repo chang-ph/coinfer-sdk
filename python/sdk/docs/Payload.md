@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **env** | **str** |  | [optional] 
 **name** | **str** | workflow name | 
 **content** | [**ModelContent**](ModelContent.md) |  | [optional] 
-**tag** | [**CloudFunctionKind**](CloudFunctionKind.md) |  | [optional] 
+**tags** | [**List[DataTag]**](DataTag.md) | Data tags | [optional] 
 **single_instance** | **bool** | Only allow one instance of this callback to run at a time. | [optional] [default to True]
 **lang** | **str** |  | 
 **entrance_file** | **str** |  | [optional] [default to '']
@@ -19,7 +19,6 @@ Name | Type | Description | Notes
 **model_id** | **str** | model ID | 
 **workflow_id** | **str** |  | [optional] [default to '']
 **input_id** | **str** |  | [optional] [default to '']
-**xp_meta** | **object** |  | [optional] 
 **meta** | **object** |  | [optional] 
 **run_on** | **str** |  | [optional] [default to 'Lambda']
 **data_file_type** | **str** |  | [optional] 
@@ -32,7 +31,7 @@ Name | Type | Description | Notes
 **object1_id** | **str** |  | 
 **object2_id** | **str** |  | 
 **description** | **str** | Data description | [optional] [default to '']
-**base64_encoded** | **bool** | Whether the data in &#x60;data_file&#x60; is base64 encoded | [optional] [default to False]
+**base64_encoded** | **bool** | Whether the data in &#x60;data&#x60; is base64 encoded | [optional] [default to False]
 **data** | **str** | File data in text format | [optional] [default to '']
 **data_uri** | **str** | File data URI | [optional] [default to '']
 **data_id** | **str** | data ID | [optional] [default to '']

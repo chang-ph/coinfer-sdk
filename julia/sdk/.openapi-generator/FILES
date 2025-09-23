@@ -28,6 +28,7 @@ docs/CreateWorkflowReq.md
 docs/CreateWorkflowRsp.md
 docs/Data.md
 docs/Data1.md
+docs/DataTag.md
 docs/DataTyping.md
 docs/DeleteLinkedAccountReq.md
 docs/DeleteObject.md
@@ -88,12 +89,12 @@ docs/SuccRspUserInfoRsp.md
 docs/SuccRspUserLoginRsp.md
 docs/SystemApi.md
 docs/UUUU0bdaccc02abe3e86fd53540d087462d8.md
-docs/UUUU256545f429a0ce36bfec4159b7df9cf4.md
-docs/UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner.md
+docs/UUUU18d10abbf81f28b86769c427804ea587.md
 docs/UUUU28b510deefc97bb409a5d7911e299314.md
 docs/UUUU28b510deefc97bb409a5d7911e299314Data.md
-docs/UUUU3d00ddc80a048e8fc9eddc3c1943d9f1.md
 docs/UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66.md
+docs/UUUUc9932bea1f007b34d507c4c4c680b4a7.md
+docs/UUUUc9932bea1f007b34d507c4c4c680b4a7ObjectsInner.md
 docs/UpdateDataReq.md
 docs/UpdateEventReq.md
 docs/UpdateExperiment.md
@@ -143,6 +144,7 @@ src/models/model_CreateWorkflowReq.jl
 src/models/model_CreateWorkflowRsp.jl
 src/models/model_Data.jl
 src/models/model_Data1.jl
+src/models/model_DataTag.jl
 src/models/model_DataTyping.jl
 src/models/model_DeleteLinkedAccountReq.jl
 src/models/model_DeleteObject.jl
@@ -199,12 +201,12 @@ src/models/model_SuccRspSoftDeletedRsp.jl
 src/models/model_SuccRspUserInfoRsp.jl
 src/models/model_SuccRspUserLoginRsp.jl
 src/models/model_UUUU0bdaccc02abe3e86fd53540d087462d8.jl
-src/models/model_UUUU256545f429a0ce36bfec4159b7df9cf4.jl
-src/models/model_UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner.jl
+src/models/model_UUUU18d10abbf81f28b86769c427804ea587.jl
 src/models/model_UUUU28b510deefc97bb409a5d7911e299314.jl
 src/models/model_UUUU28b510deefc97bb409a5d7911e299314Data.jl
-src/models/model_UUUU3d00ddc80a048e8fc9eddc3c1943d9f1.jl
 src/models/model_UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66.jl
+src/models/model_UUUUc9932bea1f007b34d507c4c4c680b4a7.jl
+src/models/model_UUUUc9932bea1f007b34d507c4c4c680b4a7ObjectsInner.jl
 src/models/model_UpdateDataReq.jl
 src/models/model_UpdateEventReq.jl
 src/models/model_UpdateExperiment.jl

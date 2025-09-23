@@ -5,5 +5,6 @@ import { HttpFile } from '../http/http';
 */
 export enum CloudFunctionKind {
     Model = 'model',
-    Code = 'code'
+    Code = 'code',
+    Anonymous = 'anonymous'
 }

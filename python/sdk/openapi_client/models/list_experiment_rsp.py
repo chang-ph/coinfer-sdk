@@ -16,7 +16,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from openapi_client.models.meta_model import MetaModel
 from openapi_client.models.share_info_model import ShareInfoModel
@@ -27,6 +27,7 @@ class ListExperimentRsp(BaseModel):
     """
     ListExperimentRsp
     """ # noqa: E501
+    object_type: StrictStr
     short_id: StrictStr
     name: StrictStr
     model_id: Optional[StrictStr] = None
@@ -41,7 +42,14 @@ class ListExperimentRsp(BaseModel):
     model_name: StrictStr
     workflow_id: Optional[StrictStr] = ''
     workflow_name: Optional[StrictStr] = ''
-    __properties: ClassVar[List[str]] = ["short_id", "name", "model_id", "status", "meta", "n_chains", "n_variables", "n_samples", "sample_update_time", "run_on", "share_info", "model_name", "workflow_id", "workflow_name"]
+    __properties: ClassVar[List[str]] = ["object_type", "short_id", "name", "model_id", "status", "meta", "n_chains", "n_variables", "n_samples", "sample_update_time", "run_on", "share_info", "model_name", "workflow_id", "workflow_name"]
+
+    @field_validator('object_type')
+    def object_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['experiment']):
+            raise ValueError("must be one of enum values ('experiment')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -119,6 +127,7 @@ class ListExperimentRsp(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "object_type": obj.get("object_type"),
             "short_id": obj.get("short_id"),
             "name": obj.get("name"),
             "model_id": obj.get("model_id"),

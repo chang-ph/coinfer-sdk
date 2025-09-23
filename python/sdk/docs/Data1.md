@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 **workflow_name** | **str** |  | [optional] [default to '']
 **id** | **int** |  | 
 **content** | **object** |  | [optional] 
-**tags** | **List[str]** |  | 
+**tags** | [**List[DataTag]**](DataTag.md) | Data tags | 
 **lambda_image_url** | **str** |  | [optional] 
 **lambda_image_name** | **str** |  | [optional] 
 **require_password** | **bool** |  | 
@@ -43,6 +43,7 @@ Name | Type | Description | Notes
 **experiment_name** | **str** |  | [optional] 
 **analyzer_id** | **str** |  | [optional] 
 **analyzer_name** | **str** |  | [optional] 
+**startup_script** | **str** |  | [optional] 
 
 ## Example
 

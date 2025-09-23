@@ -8,26 +8,38 @@
         object_type=nothing,
         name=nothing,
         description=nothing,
+        base64_encoded=false,
+        data=nothing,
+        data_uri=nothing,
     )
 
     - object_type::String
     - name::String
     - description::String
+    - base64_encoded::Bool : Whether the data in &#x60;data&#x60; is base64 encoded
+    - data::String
+    - data_uri::String
 """
 Base.@kwdef mutable struct UpdateDataReq <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
     name::Union{Nothing, String} = nothing
     description::Union{Nothing, String} = nothing
+    base64_encoded::Union{Nothing, Bool} = false
+    data::Union{Nothing, String} = nothing
+    data_uri::Union{Nothing, String} = nothing
 
-    function UpdateDataReq(object_type, name, description, )
+    function UpdateDataReq(object_type, name, description, base64_encoded, data, data_uri, )
         OpenAPI.validate_property(UpdateDataReq, Symbol("object_type"), object_type)
         OpenAPI.validate_property(UpdateDataReq, Symbol("name"), name)
         OpenAPI.validate_property(UpdateDataReq, Symbol("description"), description)
-        return new(object_type, name, description, )
+        OpenAPI.validate_property(UpdateDataReq, Symbol("base64_encoded"), base64_encoded)
+        OpenAPI.validate_property(UpdateDataReq, Symbol("data"), data)
+        OpenAPI.validate_property(UpdateDataReq, Symbol("data_uri"), data_uri)
+        return new(object_type, name, description, base64_encoded, data, data_uri, )
     end
 end # type UpdateDataReq
 
-const _property_types_UpdateDataReq = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("name")=>"String", Symbol("description")=>"String", )
+const _property_types_UpdateDataReq = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("name")=>"String", Symbol("description")=>"String", Symbol("base64_encoded")=>"Bool", Symbol("data")=>"String", Symbol("data_uri")=>"String", )
 OpenAPI.property_type(::Type{ UpdateDataReq }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_UpdateDataReq[name]))}
 
 function check_required(o::UpdateDataReq)
@@ -50,4 +62,7 @@ function OpenAPI.validate_property(::Type{ UpdateDataReq }, name::Symbol, val)
     if name === Symbol("description")
         OpenAPI.validate_param(name, "UpdateDataReq", :maxLength, val, 2048)
     end
+
+
+
 end

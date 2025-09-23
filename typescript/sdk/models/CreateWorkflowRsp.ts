@@ -14,6 +14,7 @@ export class CreateWorkflowRsp {
     'analyzerName'?: string | null;
     'createdAt': Date;
     'updatedAt': Date;
+    'startupScript'?: string | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -97,6 +98,12 @@ export class CreateWorkflowRsp {
             "baseName": "updated_at",
             "type": "Date",
             "format": "date-time"
+        },
+        {
+            "name": "startupScript",
+            "baseName": "startup_script",
+            "type": "string",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {

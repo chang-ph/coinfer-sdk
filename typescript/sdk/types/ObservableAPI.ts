@@ -29,6 +29,7 @@ import { CreateWorkflowReq } from '../models/CreateWorkflowReq';
 import { CreateWorkflowRsp } from '../models/CreateWorkflowRsp';
 import { Data } from '../models/Data';
 import { Data1 } from '../models/Data1';
+import { DataTag } from '../models/DataTag';
 import { DataTyping } from '../models/DataTyping';
 import { DeleteLinkedAccountReq } from '../models/DeleteLinkedAccountReq';
 import { DeleteObject } from '../models/DeleteObject';
@@ -85,12 +86,12 @@ import { SuccRspSoftDeletedRsp } from '../models/SuccRspSoftDeletedRsp';
 import { SuccRspUserInfoRsp } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp } from '../models/SuccRspUserLoginRsp';
 import { UUUU0bdaccc02abe3e86fd53540d087462d8 } from '../models/UUUU0bdaccc02abe3e86fd53540d087462d8';
-import { UUUU256545f429a0ce36bfec4159b7df9cf4 } from '../models/UUUU256545f429a0ce36bfec4159b7df9cf4';
-import { UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner } from '../models/UUUU256545f429a0ce36bfec4159b7df9cf4ObjectsInner';
+import { UUUU18d10abbf81f28b86769c427804ea587 } from '../models/UUUU18d10abbf81f28b86769c427804ea587';
 import { UUUU28b510deefc97bb409a5d7911e299314 } from '../models/UUUU28b510deefc97bb409a5d7911e299314';
 import { UUUU28b510deefc97bb409a5d7911e299314Data } from '../models/UUUU28b510deefc97bb409a5d7911e299314Data';
-import { UUUU3d00ddc80a048e8fc9eddc3c1943d9f1 } from '../models/UUUU3d00ddc80a048e8fc9eddc3c1943d9f1';
 import { UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66 } from '../models/UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66';
+import { UUUUc9932bea1f007b34d507c4c4c680b4a7 } from '../models/UUUUc9932bea1f007b34d507c4c4c680b4a7';
+import { UUUUc9932bea1f007b34d507c4c4c680b4a7ObjectsInner } from '../models/UUUUc9932bea1f007b34d507c4c4c680b4a7ObjectsInner';
 import { UpdateDataReq } from '../models/UpdateDataReq';
 import { UpdateEventReq } from '../models/UpdateEventReq';
 import { UpdateExperiment } from '../models/UpdateExperiment';
@@ -766,7 +767,7 @@ export class ObservableObjectApi {
      * @param [hasModel]
      * @param [tags] Filter by tags
      */
-    public listObjectWithHttpInfo(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', tags?: Array<'internal' | 'builtin' | 'reserved' | 'model' | 'code'>, _options?: Configuration): Observable<HttpInfo<UUUU3d00ddc80a048e8fc9eddc3c1943d9f1>> {
+    public listObjectWithHttpInfo(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', tags?: Array<'internal' | 'builtin' | 'reserved' | 'model' | 'code'>, _options?: Configuration): Observable<HttpInfo<UUUU18d10abbf81f28b86769c427804ea587>> {
         const requestContextPromise = this.requestFactory.listObject(objectType, pageNo, pageSize, withShareInfo, sharedByMe, sharedWithMe, modelIds, status, runOn, hasModel, tags, _options);
 
         // build promise chain
@@ -800,8 +801,8 @@ export class ObservableObjectApi {
      * @param [hasModel]
      * @param [tags] Filter by tags
      */
-    public listObject(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', tags?: Array<'internal' | 'builtin' | 'reserved' | 'model' | 'code'>, _options?: Configuration): Observable<UUUU3d00ddc80a048e8fc9eddc3c1943d9f1> {
-        return this.listObjectWithHttpInfo(objectType, pageNo, pageSize, withShareInfo, sharedByMe, sharedWithMe, modelIds, status, runOn, hasModel, tags, _options).pipe(map((apiResponse: HttpInfo<UUUU3d00ddc80a048e8fc9eddc3c1943d9f1>) => apiResponse.data));
+    public listObject(objectType: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', pageNo?: number, pageSize?: number, withShareInfo?: boolean, sharedByMe?: boolean, sharedWithMe?: boolean, modelIds?: Array<string>, status?: 'NEW' | 'RUN' | 'FIN' | 'ERR' | '', runOn?: 'Lambda' | 'Fargate' | 'Local' | '', hasModel?: 'true' | 'false' | '', tags?: Array<'internal' | 'builtin' | 'reserved' | 'model' | 'code'>, _options?: Configuration): Observable<UUUU18d10abbf81f28b86769c427804ea587> {
+        return this.listObjectWithHttpInfo(objectType, pageNo, pageSize, withShareInfo, sharedByMe, sharedWithMe, modelIds, status, runOn, hasModel, tags, _options).pipe(map((apiResponse: HttpInfo<UUUU18d10abbf81f28b86769c427804ea587>) => apiResponse.data));
     }
 
     /**

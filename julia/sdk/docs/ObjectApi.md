@@ -78,8 +78,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **list_object**
-> list_object(_api::ObjectApi, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, tags=nothing, _mediaType=nothing) -> UUUU3d00ddc80a048e8fc9eddc3c1943d9f1, OpenAPI.Clients.ApiResponse <br/>
-> list_object(_api::ObjectApi, response_stream::Channel, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, tags=nothing, _mediaType=nothing) -> Channel{ UUUU3d00ddc80a048e8fc9eddc3c1943d9f1 }, OpenAPI.Clients.ApiResponse
+> list_object(_api::ObjectApi, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, tags=nothing, _mediaType=nothing) -> UUUU18d10abbf81f28b86769c427804ea587, OpenAPI.Clients.ApiResponse <br/>
+> list_object(_api::ObjectApi, response_stream::Channel, object_type::String; page_no=nothing, page_size=nothing, with_share_info=nothing, shared_by_me=nothing, shared_with_me=nothing, model_ids=nothing, status=nothing, run_on=nothing, has_model=nothing, tags=nothing, _mediaType=nothing) -> Channel{ UUUU18d10abbf81f28b86769c427804ea587 }, OpenAPI.Clients.ApiResponse
 
 List objects.
 
@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UUUU3d00ddc80a048e8fc9eddc3c1943d9f1**](UUUU3d00ddc80a048e8fc9eddc3c1943d9f1.md)
+[**UUUU18d10abbf81f28b86769c427804ea587**](UUUU18d10abbf81f28b86769c427804ea587.md)
 
 ### Authorization
 

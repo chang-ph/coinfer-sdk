@@ -6,49 +6,28 @@
 
     RunWorkflowReq(;
         object_type=nothing,
-        experiment_name=nothing,
-        iteration=1000,
-        parallel=1,
-        engine="fargate",
-        chains=1,
-        parallel_algorithm="Serial",
+        startup_script="",
     )
 
     - object_type::String
-    - experiment_name::String : experiment name
-    - iteration::Int64 : iteration number
-    - parallel::Int64 : parallel number
-    - engine::String
-    - chains::Int64 : chains number
-    - parallel_algorithm::String
+    - startup_script::String
 """
 Base.@kwdef mutable struct RunWorkflowReq <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
-    experiment_name::Union{Nothing, String} = nothing
-    iteration::Union{Nothing, Int64} = 1000
-    parallel::Union{Nothing, Int64} = 1
-    engine::Union{Nothing, String} = "fargate"
-    chains::Union{Nothing, Int64} = 1
-    parallel_algorithm::Union{Nothing, String} = "Serial"
+    startup_script::Union{Nothing, String} = ""
 
-    function RunWorkflowReq(object_type, experiment_name, iteration, parallel, engine, chains, parallel_algorithm, )
+    function RunWorkflowReq(object_type, startup_script, )
         OpenAPI.validate_property(RunWorkflowReq, Symbol("object_type"), object_type)
-        OpenAPI.validate_property(RunWorkflowReq, Symbol("experiment_name"), experiment_name)
-        OpenAPI.validate_property(RunWorkflowReq, Symbol("iteration"), iteration)
-        OpenAPI.validate_property(RunWorkflowReq, Symbol("parallel"), parallel)
-        OpenAPI.validate_property(RunWorkflowReq, Symbol("engine"), engine)
-        OpenAPI.validate_property(RunWorkflowReq, Symbol("chains"), chains)
-        OpenAPI.validate_property(RunWorkflowReq, Symbol("parallel_algorithm"), parallel_algorithm)
-        return new(object_type, experiment_name, iteration, parallel, engine, chains, parallel_algorithm, )
+        OpenAPI.validate_property(RunWorkflowReq, Symbol("startup_script"), startup_script)
+        return new(object_type, startup_script, )
     end
 end # type RunWorkflowReq
 
-const _property_types_RunWorkflowReq = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("experiment_name")=>"String", Symbol("iteration")=>"Int64", Symbol("parallel")=>"Int64", Symbol("engine")=>"String", Symbol("chains")=>"Int64", Symbol("parallel_algorithm")=>"String", )
+const _property_types_RunWorkflowReq = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("startup_script")=>"String", )
 OpenAPI.property_type(::Type{ RunWorkflowReq }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_RunWorkflowReq[name]))}
 
 function check_required(o::RunWorkflowReq)
     o.object_type === nothing && (return false)
-    o.experiment_name === nothing && (return false)
     true
 end
 
@@ -58,18 +37,5 @@ function OpenAPI.validate_property(::Type{ RunWorkflowReq }, name::Symbol, val)
         OpenAPI.validate_param(name, "RunWorkflowReq", :enum, val, ["workflow.run"])
     end
 
-
-
-
-
-    if name === Symbol("engine")
-        OpenAPI.validate_param(name, "RunWorkflowReq", :enum, val, ["lambda", "fargate"])
-    end
-
-
-
-    if name === Symbol("parallel_algorithm")
-        OpenAPI.validate_param(name, "RunWorkflowReq", :enum, val, ["Serial", "Threaded", "Distributed"])
-    end
 
 end

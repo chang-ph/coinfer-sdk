@@ -8,9 +8,10 @@ Name | Type | Description | Notes
 **object_type** | **str** |  | 
 **name** | **str** | Data name | 
 **description** | **str** | Data description | [optional] [default to '']
-**base64_encoded** | **bool** | Whether the data in &#x60;data_file&#x60; is base64 encoded | [optional] [default to False]
+**base64_encoded** | **bool** | Whether the data in &#x60;data&#x60; is base64 encoded | [optional] [default to False]
 **data** | **str** | File data in text format | [optional] [default to '']
 **data_uri** | **str** | File data URI | [optional] [default to '']
+**tags** | [**List[DataTag]**](DataTag.md) | Data tags | [optional] 
 
 ## Example
 

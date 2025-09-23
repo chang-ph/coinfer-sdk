@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **analyzer_name** | **String** |  | [optional] [default to nothing]
 **created_at** | **ZonedDateTime** |  | [default to nothing]
 **updated_at** | **ZonedDateTime** |  | [default to nothing]
+**startup_script** | **String** |  | [optional] [default to nothing]
 
 
 [[Back to Model list]](../README.md#models) [[Back to API list]](../README.md#api-endpoints) [[Back to README]](../README.md)

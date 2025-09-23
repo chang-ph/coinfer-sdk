@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **updated_at** | **ZonedDateTime** |  | [default to nothing]
 **path** | **String** |  | [optional] [default to ""]
 **fmt** | **String** |  | [optional] [default to "raw"]
+**tags** | [**Vector{DataTag}**](DataTag.md) | Data tags | [optional] [default to nothing]
 
 
 [[Back to Model list]](../README.md#models) [[Back to API list]](../README.md#api-endpoints) [[Back to README]](../README.md)

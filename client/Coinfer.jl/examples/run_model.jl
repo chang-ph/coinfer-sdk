@@ -43,7 +43,6 @@ model_id, experiment_id = Coinfer.ServerlessBayes.sample(
     10,  # the iteration count. As a demo, we set this to a small value
     MCMCThreads(),  # the parallel algorithm
     2;  # the chain number
-    run_remotely=true,
     use_script=true,
     executor=executor,
 )
@@ -56,6 +55,4 @@ model = Coinfer.ServerlessBayes.LocalFunction(;
 )
 
 # run the sample in local environment
-Coinfer.ServerlessBayes.sample(
-    StableRNG(123), model, 10, MCMCThreads(), 2; run_remotely=false
-)
+Coinfer.ServerlessBayes.sample(StableRNG(123), model, 10, MCMCThreads(), 2)

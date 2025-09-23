@@ -4,6 +4,12 @@ export class UpdateDataReq {
     'objectType': UpdateDataReqObjectTypeEnum;
     'name'?: string | null;
     'description'?: string | null;
+    /**
+    * Whether the data in `data` is base64 encoded
+    */
+    'base64Encoded'?: boolean;
+    'data'?: string | null;
+    'dataUri'?: string | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -25,6 +31,24 @@ export class UpdateDataReq {
         {
             "name": "description",
             "baseName": "description",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "base64Encoded",
+            "baseName": "base64_encoded",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "data",
+            "baseName": "data",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "dataUri",
+            "baseName": "data_uri",
             "type": "string",
             "format": ""
         }    ];

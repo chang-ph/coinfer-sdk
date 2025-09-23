@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **model_id** | **str** |  | [optional] [default to '']
 **workflow_id** | **str** |  | [optional] [default to '']
 **input_id** | **str** |  | [optional] [default to '']
-**xp_meta** | **object** |  | [optional] 
 **meta** | **object** |  | [optional] 
 **name** | **str** |  | [optional] [default to '']
 **run_on** | **str** |  | [optional] [default to 'Lambda']

@@ -64,7 +64,7 @@ class TestData(unittest.TestCase):
                 id = 56,
                 content = None,
                 tags = [
-                    ''
+                    'anonymous'
                     ],
                 lambda_image_url = '',
                 lambda_image_name = '',
@@ -87,7 +87,8 @@ class TestData(unittest.TestCase):
                 data_id = '',
                 data_name = '',
                 analyzer_id = '',
-                analyzer_name = ''
+                analyzer_name = '',
+                startup_script = ''
             )
         else:
             return Data(
@@ -103,7 +104,7 @@ class TestData(unittest.TestCase):
                 model_name = '',
                 id = 56,
                 tags = [
-                    ''
+                    'anonymous'
                     ],
                 user_id = 56,
                 experiment_id = '',

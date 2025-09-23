@@ -64,7 +64,7 @@ class TestPayload1(unittest.TestCase):
                     ''
                     ],
                 params = '',
-                engine = 'fargate',
+                engine = 'lambda',
                 lock_key = '',
                 action = '',
                 meta = { },
@@ -92,11 +92,10 @@ class TestPayload1(unittest.TestCase):
                 experiment_id = '',
                 analyzer_id = '',
                 analyzer_result = '',
-                experiment_name = '',
-                iteration = 56,
-                parallel = 56,
-                chains = 56,
-                parallel_algorithm = 'Serial'
+                base64_encoded = True,
+                data = '',
+                data_uri = '',
+                startup_script = ''
             )
         else:
             return Payload1(
@@ -126,7 +125,6 @@ class TestPayload1(unittest.TestCase):
                                 ]
                             }
                         }, ),
-                experiment_name = '',
         )
         """
 

@@ -15,7 +15,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -28,7 +28,10 @@ class UpdateDataReq(BaseModel):
     object_type: StrictStr
     name: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=255)]] = None
     description: Optional[Annotated[str, Field(strict=True, max_length=2048)]] = None
-    __properties: ClassVar[List[str]] = ["object_type", "name", "description"]
+    base64_encoded: Optional[StrictBool] = Field(default=False, description="Whether the data in `data` is base64 encoded")
+    data: Optional[StrictStr] = None
+    data_uri: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["object_type", "name", "description", "base64_encoded", "data", "data_uri"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -86,6 +89,16 @@ class UpdateDataReq(BaseModel):
         if self.description is None and "description" in self.model_fields_set:
             _dict['description'] = None
 
+        # set to None if data (nullable) is None
+        # and model_fields_set contains the field
+        if self.data is None and "data" in self.model_fields_set:
+            _dict['data'] = None
+
+        # set to None if data_uri (nullable) is None
+        # and model_fields_set contains the field
+        if self.data_uri is None and "data_uri" in self.model_fields_set:
+            _dict['data_uri'] = None
+
         return _dict
 
     @classmethod
@@ -100,7 +113,10 @@ class UpdateDataReq(BaseModel):
         _obj = cls.model_validate({
             "object_type": obj.get("object_type"),
             "name": obj.get("name"),
-            "description": obj.get("description")
+            "description": obj.get("description"),
+            "base64_encoded": obj.get("base64_encoded") if obj.get("base64_encoded") is not None else False,
+            "data": obj.get("data"),
+            "data_uri": obj.get("data_uri")
         })
         return _obj
 

@@ -51,7 +51,9 @@ class TestCreateModel(unittest.TestCase):
                                     content = '', )
                                 ], )
                         ], ),
-                tag = 'model',
+                tags = [
+                    'model'
+                    ],
                 single_instance = True,
                 lang = 'python',
                 entrance_file = '',

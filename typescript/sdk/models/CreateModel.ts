@@ -15,7 +15,10 @@ export class CreateModel {
     */
     'name'?: string;
     'content'?: ModelContent | null;
-    'tag'?: CloudFunctionKind;
+    /**
+    * Model tags
+    */
+    'tags'?: Array<CloudFunctionKind>;
     /**
     * Only allow one instance to run as cloud function at a time.
     */
@@ -67,9 +70,9 @@ export class CreateModel {
             "format": ""
         },
         {
-            "name": "tag",
-            "baseName": "tag",
-            "type": "CloudFunctionKind",
+            "name": "tags",
+            "baseName": "tags",
+            "type": "Array<CloudFunctionKind>",
             "format": ""
         },
         {

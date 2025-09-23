@@ -277,7 +277,7 @@ end
 @with_kw struct LocalFunctionCarriage
     func::LocalFunction
     experiment_id::String = ""
-    generated_script::String = ""
+    startup_script::String = ""
     executor::String = ""
     julia_args::String = ""
 end
@@ -320,7 +320,7 @@ end
 @with_kw struct CloudFunctionCarriage
     func::CloudFunction
     experiment_id::String = ""
-    generated_script::String = ""
+    startup_script::String = ""
     executor::String = ""
     julia_args::String = ""
 end
@@ -361,7 +361,7 @@ end
 @with_kw struct AnonymousCloudFunctionCarriage
     func::AnonymousCloudFunction
     experiment_id::String = ""
-    generated_script::String = ""
+    startup_script::String = ""
     executor::String = ""
     julia_args::String = ""
 end
@@ -640,10 +640,10 @@ function initialize_batch_id()
     end
 end
 
-function inner_sample(args...; kwargs...)
+function sample(args...; kwargs...)
     initialize_batch_id()
-    url = endpoint("api", "/object/" * ENV["EXPERIMENT_ID"])
     exp_id = get_experiment_id()
+    url = endpoint("api", "/object/" * ENV["EXPERIMENT_ID"])
 
     function send_sample_func(log_data)
         headers = headers_with_token("Content-Type" => "application/json")
@@ -933,7 +933,7 @@ function sample(
         model_carriage = carriage_class(;
             func=model,
             experiment_id=experiment_id,
-            generated_script=generate_script(
+            startup_script=generate_script(
                 rng, model, N, parallel, nchains; sample_kwargs...
             ),
             executor=executor,
@@ -996,6 +996,11 @@ function dir_to_json(path)
     end
 
     return children
+end
+
+function get_input_data()
+    input_id = get(ENV, "INPUT_ID", "")
+    isempty(input_id) ? nothing : as_local(OpaqueData(input_id))
 end
 
 function get_sample_args(m, sampler)
@@ -1082,7 +1087,7 @@ function _cloud_evaluate(
             "cmd" => """run_in_$(executor)""",
             "coinfer_server_endpoint" => endpoint,
             "experiment_id" => _func["experiment_id"],
-            "generated_script" => carriage.generated_script,
+            "startup_script" => carriage.startup_script,
             "julia_args" => get(entrance_kwargs, :julia_args, ""),
             "save_model" => save_model,
         ),

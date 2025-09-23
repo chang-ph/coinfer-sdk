@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**object_type** | **str** |  | 
 **short_id** | **str** |  | 
 **name** | **str** |  | 
 **model_id** | **str** |  | [optional] 

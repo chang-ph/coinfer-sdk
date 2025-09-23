@@ -49,7 +49,9 @@ class TestPayload(unittest.TestCase):
                                     type = 'file', )
                                 ], )
                         ], ),
-                tag = 'model',
+                tags = [
+                    'anonymous'
+                    ],
                 single_instance = True,
                 lang = 'julia',
                 entrance_file = '',
@@ -58,7 +60,6 @@ class TestPayload(unittest.TestCase):
                 model_id = '0',
                 workflow_id = '',
                 input_id = '',
-                xp_meta = None,
                 meta = None,
                 run_on = 'Lambda',
                 data_file_type = 'turing csv',

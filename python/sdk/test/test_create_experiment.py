@@ -37,7 +37,6 @@ class TestCreateExperiment(unittest.TestCase):
                 model_id = '',
                 workflow_id = '',
                 input_id = '',
-                xp_meta = None,
                 meta = None,
                 name = '',
                 run_on = 'Lambda',

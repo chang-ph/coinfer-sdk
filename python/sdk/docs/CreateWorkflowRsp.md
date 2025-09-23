@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **analyzer_name** | **str** |  | [optional] 
 **created_at** | **datetime** |  | 
 **updated_at** | **datetime** |  | 
+**startup_script** | **str** |  | [optional] 
 
 ## Example
 

@@ -38,7 +38,10 @@ class TestCreateDataReq(unittest.TestCase):
                 description = '',
                 base64_encoded = True,
                 data = '',
-                data_uri = ''
+                data_uri = '',
+                tags = [
+                    'anonymous'
+                    ]
             )
         else:
             return CreateDataReq(

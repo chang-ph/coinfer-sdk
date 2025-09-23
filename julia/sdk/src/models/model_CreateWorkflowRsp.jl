@@ -18,6 +18,7 @@
         analyzer_name=nothing,
         created_at=nothing,
         updated_at=nothing,
+        startup_script=nothing,
     )
 
     - object_type::String
@@ -33,6 +34,7 @@
     - analyzer_name::String
     - created_at::ZonedDateTime
     - updated_at::ZonedDateTime
+    - startup_script::String
 """
 Base.@kwdef mutable struct CreateWorkflowRsp <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
@@ -48,8 +50,9 @@ Base.@kwdef mutable struct CreateWorkflowRsp <: OpenAPI.APIModel
     analyzer_name::Union{Nothing, String} = nothing
     created_at::Union{Nothing, ZonedDateTime} = nothing
     updated_at::Union{Nothing, ZonedDateTime} = nothing
+    startup_script::Union{Nothing, String} = nothing
 
-    function CreateWorkflowRsp(object_type, short_id, name, model_id, model_name, data_id, data_name, experiment_id, experiment_name, analyzer_id, analyzer_name, created_at, updated_at, )
+    function CreateWorkflowRsp(object_type, short_id, name, model_id, model_name, data_id, data_name, experiment_id, experiment_name, analyzer_id, analyzer_name, created_at, updated_at, startup_script, )
         OpenAPI.validate_property(CreateWorkflowRsp, Symbol("object_type"), object_type)
         OpenAPI.validate_property(CreateWorkflowRsp, Symbol("short_id"), short_id)
         OpenAPI.validate_property(CreateWorkflowRsp, Symbol("name"), name)
@@ -63,11 +66,12 @@ Base.@kwdef mutable struct CreateWorkflowRsp <: OpenAPI.APIModel
         OpenAPI.validate_property(CreateWorkflowRsp, Symbol("analyzer_name"), analyzer_name)
         OpenAPI.validate_property(CreateWorkflowRsp, Symbol("created_at"), created_at)
         OpenAPI.validate_property(CreateWorkflowRsp, Symbol("updated_at"), updated_at)
-        return new(object_type, short_id, name, model_id, model_name, data_id, data_name, experiment_id, experiment_name, analyzer_id, analyzer_name, created_at, updated_at, )
+        OpenAPI.validate_property(CreateWorkflowRsp, Symbol("startup_script"), startup_script)
+        return new(object_type, short_id, name, model_id, model_name, data_id, data_name, experiment_id, experiment_name, analyzer_id, analyzer_name, created_at, updated_at, startup_script, )
     end
 end # type CreateWorkflowRsp
 
-const _property_types_CreateWorkflowRsp = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("short_id")=>"String", Symbol("name")=>"String", Symbol("model_id")=>"String", Symbol("model_name")=>"String", Symbol("data_id")=>"String", Symbol("data_name")=>"String", Symbol("experiment_id")=>"String", Symbol("experiment_name")=>"String", Symbol("analyzer_id")=>"String", Symbol("analyzer_name")=>"String", Symbol("created_at")=>"ZonedDateTime", Symbol("updated_at")=>"ZonedDateTime", )
+const _property_types_CreateWorkflowRsp = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("short_id")=>"String", Symbol("name")=>"String", Symbol("model_id")=>"String", Symbol("model_name")=>"String", Symbol("data_id")=>"String", Symbol("data_name")=>"String", Symbol("experiment_id")=>"String", Symbol("experiment_name")=>"String", Symbol("analyzer_id")=>"String", Symbol("analyzer_name")=>"String", Symbol("created_at")=>"ZonedDateTime", Symbol("updated_at")=>"ZonedDateTime", Symbol("startup_script")=>"String", )
 OpenAPI.property_type(::Type{ CreateWorkflowRsp }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_CreateWorkflowRsp[name]))}
 
 function check_required(o::CreateWorkflowRsp)
@@ -105,4 +109,5 @@ function OpenAPI.validate_property(::Type{ CreateWorkflowRsp }, name::Symbol, va
     if name === Symbol("updated_at")
         OpenAPI.validate_param(name, "CreateWorkflowRsp", :format, val, "date-time")
     end
+
 end

@@ -11,14 +11,16 @@
         base64_encoded=false,
         data="",
         data_uri="",
+        tags=nothing,
     )
 
     - object_type::String
     - name::String : Data name
     - description::String : Data description
-    - base64_encoded::Bool : Whether the data in &#x60;data_file&#x60; is base64 encoded
+    - base64_encoded::Bool : Whether the data in &#x60;data&#x60; is base64 encoded
     - data::String : File data in text format
     - data_uri::String : File data URI
+    - tags::Vector{DataTag} : Data tags
 """
 Base.@kwdef mutable struct CreateDataReq <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
@@ -27,19 +29,21 @@ Base.@kwdef mutable struct CreateDataReq <: OpenAPI.APIModel
     base64_encoded::Union{Nothing, Bool} = false
     data::Union{Nothing, String} = ""
     data_uri::Union{Nothing, String} = ""
+    tags::Union{Nothing, Vector} = nothing # spec type: Union{ Nothing, Vector{DataTag} }
 
-    function CreateDataReq(object_type, name, description, base64_encoded, data, data_uri, )
+    function CreateDataReq(object_type, name, description, base64_encoded, data, data_uri, tags, )
         OpenAPI.validate_property(CreateDataReq, Symbol("object_type"), object_type)
         OpenAPI.validate_property(CreateDataReq, Symbol("name"), name)
         OpenAPI.validate_property(CreateDataReq, Symbol("description"), description)
         OpenAPI.validate_property(CreateDataReq, Symbol("base64_encoded"), base64_encoded)
         OpenAPI.validate_property(CreateDataReq, Symbol("data"), data)
         OpenAPI.validate_property(CreateDataReq, Symbol("data_uri"), data_uri)
-        return new(object_type, name, description, base64_encoded, data, data_uri, )
+        OpenAPI.validate_property(CreateDataReq, Symbol("tags"), tags)
+        return new(object_type, name, description, base64_encoded, data, data_uri, tags, )
     end
 end # type CreateDataReq
 
-const _property_types_CreateDataReq = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("name")=>"String", Symbol("description")=>"String", Symbol("base64_encoded")=>"Bool", Symbol("data")=>"String", Symbol("data_uri")=>"String", )
+const _property_types_CreateDataReq = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("name")=>"String", Symbol("description")=>"String", Symbol("base64_encoded")=>"Bool", Symbol("data")=>"String", Symbol("data_uri")=>"String", Symbol("tags")=>"Vector{DataTag}", )
 OpenAPI.property_type(::Type{ CreateDataReq }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_CreateDataReq[name]))}
 
 function check_required(o::CreateDataReq)
@@ -63,6 +67,7 @@ function OpenAPI.validate_property(::Type{ CreateDataReq }, name::Symbol, val)
     if name === Symbol("description")
         OpenAPI.validate_param(name, "CreateDataReq", :maxLength, val, 2048)
     end
+
 
 
 

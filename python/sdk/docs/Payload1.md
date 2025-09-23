@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **lambda_image** | **bool** |  | [optional] 
 **tags** | **List[str]** |  | [optional] 
 **params** | **str** |  | [optional] [default to '']
-**engine** | **str** |  | [optional] [default to 'fargate']
+**engine** | **str** |  | [optional] [default to 'lambda']
 **lock_key** | **str** | lock key provided by user. It is combined with the cloudfunction_id to form the real lock key when running cloudfunction triggered by this event.  Sometimes, users may want CloudFunctions to run exclusively, but not just one instance globally. For example, when running a CloudFunction specific to an experiment, users may want only one instance of that CloudFunction to run simultaneously for that experiment. In this case, users can specify the lock_key as the experiment_id. | [optional] [default to '']
 **action** | **str** |  | [optional] 
 **meta** | **Dict[str, object]** |  | [optional] 
@@ -33,11 +33,10 @@ Name | Type | Description | Notes
 **experiment_id** | **str** |  | [optional] 
 **analyzer_id** | **str** |  | [optional] 
 **analyzer_result** | **str** |  | [optional] 
-**experiment_name** | **str** | experiment name | 
-**iteration** | **int** | iteration number | [optional] [default to 1000]
-**parallel** | **int** | parallel number | [optional] [default to 1]
-**chains** | **int** | chains number | [optional] [default to 1]
-**parallel_algorithm** | **str** |  | [optional] [default to 'Serial']
+**base64_encoded** | **bool** | Whether the data in &#x60;data&#x60; is base64 encoded | [optional] [default to False]
+**data** | **str** |  | [optional] 
+**data_uri** | **str** |  | [optional] 
+**startup_script** | **str** |  | [optional] [default to '']
 
 ## Example
 

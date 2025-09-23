@@ -12,6 +12,8 @@
         google_client_id=nothing,
         google_app_id=nothing,
         arviz_plotting_endpoint=nothing,
+        default_model=nothing,
+        default_data=nothing,
     )
 
     - run_model_url::String
@@ -21,6 +23,8 @@
     - google_client_id::String
     - google_app_id::String
     - arviz_plotting_endpoint::String
+    - default_model::String
+    - default_data::String
 """
 Base.@kwdef mutable struct GetConfigRsp <: OpenAPI.APIModel
     run_model_url::Union{Nothing, String} = nothing
@@ -30,8 +34,10 @@ Base.@kwdef mutable struct GetConfigRsp <: OpenAPI.APIModel
     google_client_id::Union{Nothing, String} = nothing
     google_app_id::Union{Nothing, String} = nothing
     arviz_plotting_endpoint::Union{Nothing, String} = nothing
+    default_model::Union{Nothing, String} = nothing
+    default_data::Union{Nothing, String} = nothing
 
-    function GetConfigRsp(run_model_url, max_upload_sample_size, max_upload_sample_file, upload_file_types, google_client_id, google_app_id, arviz_plotting_endpoint, )
+    function GetConfigRsp(run_model_url, max_upload_sample_size, max_upload_sample_file, upload_file_types, google_client_id, google_app_id, arviz_plotting_endpoint, default_model, default_data, )
         OpenAPI.validate_property(GetConfigRsp, Symbol("run_model_url"), run_model_url)
         OpenAPI.validate_property(GetConfigRsp, Symbol("max_upload_sample_size"), max_upload_sample_size)
         OpenAPI.validate_property(GetConfigRsp, Symbol("max_upload_sample_file"), max_upload_sample_file)
@@ -39,11 +45,13 @@ Base.@kwdef mutable struct GetConfigRsp <: OpenAPI.APIModel
         OpenAPI.validate_property(GetConfigRsp, Symbol("google_client_id"), google_client_id)
         OpenAPI.validate_property(GetConfigRsp, Symbol("google_app_id"), google_app_id)
         OpenAPI.validate_property(GetConfigRsp, Symbol("arviz_plotting_endpoint"), arviz_plotting_endpoint)
-        return new(run_model_url, max_upload_sample_size, max_upload_sample_file, upload_file_types, google_client_id, google_app_id, arviz_plotting_endpoint, )
+        OpenAPI.validate_property(GetConfigRsp, Symbol("default_model"), default_model)
+        OpenAPI.validate_property(GetConfigRsp, Symbol("default_data"), default_data)
+        return new(run_model_url, max_upload_sample_size, max_upload_sample_file, upload_file_types, google_client_id, google_app_id, arviz_plotting_endpoint, default_model, default_data, )
     end
 end # type GetConfigRsp
 
-const _property_types_GetConfigRsp = Dict{Symbol,String}(Symbol("run_model_url")=>"String", Symbol("max_upload_sample_size")=>"Int64", Symbol("max_upload_sample_file")=>"Int64", Symbol("upload_file_types")=>"String", Symbol("google_client_id")=>"String", Symbol("google_app_id")=>"String", Symbol("arviz_plotting_endpoint")=>"String", )
+const _property_types_GetConfigRsp = Dict{Symbol,String}(Symbol("run_model_url")=>"String", Symbol("max_upload_sample_size")=>"Int64", Symbol("max_upload_sample_file")=>"Int64", Symbol("upload_file_types")=>"String", Symbol("google_client_id")=>"String", Symbol("google_app_id")=>"String", Symbol("arviz_plotting_endpoint")=>"String", Symbol("default_model")=>"String", Symbol("default_data")=>"String", )
 OpenAPI.property_type(::Type{ GetConfigRsp }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_GetConfigRsp[name]))}
 
 function check_required(o::GetConfigRsp)
@@ -54,10 +62,14 @@ function check_required(o::GetConfigRsp)
     o.google_client_id === nothing && (return false)
     o.google_app_id === nothing && (return false)
     o.arviz_plotting_endpoint === nothing && (return false)
+    o.default_model === nothing && (return false)
+    o.default_data === nothing && (return false)
     true
 end
 
 function OpenAPI.validate_property(::Type{ GetConfigRsp }, name::Symbol, val)
+
+
 
 
 

@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **google_client_id** | **String** |  | [default to nothing]
 **google_app_id** | **String** |  | [default to nothing]
 **arviz_plotting_endpoint** | **String** |  | [default to nothing]
+**default_model** | **String** |  | [default to nothing]
+**default_data** | **String** |  | [default to nothing]
 
 
 [[Back to Model list]](../README.md#models) [[Back to API list]](../README.md#api-endpoints) [[Back to README]](../README.md)

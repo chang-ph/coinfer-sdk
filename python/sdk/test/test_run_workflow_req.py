@@ -34,17 +34,11 @@ class TestRunWorkflowReq(unittest.TestCase):
         if include_optional:
             return RunWorkflowReq(
                 object_type = 'workflow.run',
-                experiment_name = '',
-                iteration = 56,
-                parallel = 56,
-                engine = 'fargate',
-                chains = 56,
-                parallel_algorithm = 'Serial'
+                startup_script = ''
             )
         else:
             return RunWorkflowReq(
                 object_type = 'workflow.run',
-                experiment_name = '',
         )
         """
 

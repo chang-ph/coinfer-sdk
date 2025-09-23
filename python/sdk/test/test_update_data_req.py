@@ -35,7 +35,10 @@ class TestUpdateDataReq(unittest.TestCase):
             return UpdateDataReq(
                 object_type = 'data',
                 name = '0',
-                description = ''
+                description = '',
+                base64_encoded = True,
+                data = '',
+                data_uri = ''
             )
         else:
             return UpdateDataReq(

@@ -16,8 +16,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from openapi_client.models.data_tag import DataTag
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -33,7 +34,8 @@ class CreateDataRsp(BaseModel):
     updated_at: datetime
     path: Optional[StrictStr] = ''
     fmt: Optional[StrictStr] = 'raw'
-    __properties: ClassVar[List[str]] = ["object_type", "name", "description", "short_id", "created_at", "updated_at", "path", "fmt"]
+    tags: Optional[List[DataTag]] = Field(default=None, description="Data tags")
+    __properties: ClassVar[List[str]] = ["object_type", "name", "description", "short_id", "created_at", "updated_at", "path", "fmt", "tags"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -100,7 +102,8 @@ class CreateDataRsp(BaseModel):
             "created_at": obj.get("created_at"),
             "updated_at": obj.get("updated_at"),
             "path": obj.get("path") if obj.get("path") is not None else '',
-            "fmt": obj.get("fmt") if obj.get("fmt") is not None else 'raw'
+            "fmt": obj.get("fmt") if obj.get("fmt") is not None else 'raw',
+            "tags": obj.get("tags")
         })
         return _obj
 

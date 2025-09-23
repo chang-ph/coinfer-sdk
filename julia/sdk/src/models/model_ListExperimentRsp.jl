@@ -5,6 +5,7 @@
 @doc raw"""ListExperimentRsp
 
     ListExperimentRsp(;
+        object_type=nothing,
         short_id=nothing,
         name=nothing,
         model_id=nothing,
@@ -21,6 +22,7 @@
         workflow_name="",
     )
 
+    - object_type::String
     - short_id::String
     - name::String
     - model_id::String
@@ -37,6 +39,7 @@
     - workflow_name::String
 """
 Base.@kwdef mutable struct ListExperimentRsp <: OpenAPI.APIModel
+    object_type::Union{Nothing, String} = nothing
     short_id::Union{Nothing, String} = nothing
     name::Union{Nothing, String} = nothing
     model_id::Union{Nothing, String} = nothing
@@ -52,7 +55,8 @@ Base.@kwdef mutable struct ListExperimentRsp <: OpenAPI.APIModel
     workflow_id::Union{Nothing, String} = ""
     workflow_name::Union{Nothing, String} = ""
 
-    function ListExperimentRsp(short_id, name, model_id, status, meta, n_chains, n_variables, n_samples, sample_update_time, run_on, share_info, model_name, workflow_id, workflow_name, )
+    function ListExperimentRsp(object_type, short_id, name, model_id, status, meta, n_chains, n_variables, n_samples, sample_update_time, run_on, share_info, model_name, workflow_id, workflow_name, )
+        OpenAPI.validate_property(ListExperimentRsp, Symbol("object_type"), object_type)
         OpenAPI.validate_property(ListExperimentRsp, Symbol("short_id"), short_id)
         OpenAPI.validate_property(ListExperimentRsp, Symbol("name"), name)
         OpenAPI.validate_property(ListExperimentRsp, Symbol("model_id"), model_id)
@@ -67,14 +71,15 @@ Base.@kwdef mutable struct ListExperimentRsp <: OpenAPI.APIModel
         OpenAPI.validate_property(ListExperimentRsp, Symbol("model_name"), model_name)
         OpenAPI.validate_property(ListExperimentRsp, Symbol("workflow_id"), workflow_id)
         OpenAPI.validate_property(ListExperimentRsp, Symbol("workflow_name"), workflow_name)
-        return new(short_id, name, model_id, status, meta, n_chains, n_variables, n_samples, sample_update_time, run_on, share_info, model_name, workflow_id, workflow_name, )
+        return new(object_type, short_id, name, model_id, status, meta, n_chains, n_variables, n_samples, sample_update_time, run_on, share_info, model_name, workflow_id, workflow_name, )
     end
 end # type ListExperimentRsp
 
-const _property_types_ListExperimentRsp = Dict{Symbol,String}(Symbol("short_id")=>"String", Symbol("name")=>"String", Symbol("model_id")=>"String", Symbol("status")=>"String", Symbol("meta")=>"MetaModel", Symbol("n_chains")=>"Int64", Symbol("n_variables")=>"Int64", Symbol("n_samples")=>"Int64", Symbol("sample_update_time")=>"ZonedDateTime", Symbol("run_on")=>"String", Symbol("share_info")=>"Vector{ShareInfoModel}", Symbol("model_name")=>"String", Symbol("workflow_id")=>"String", Symbol("workflow_name")=>"String", )
+const _property_types_ListExperimentRsp = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("short_id")=>"String", Symbol("name")=>"String", Symbol("model_id")=>"String", Symbol("status")=>"String", Symbol("meta")=>"MetaModel", Symbol("n_chains")=>"Int64", Symbol("n_variables")=>"Int64", Symbol("n_samples")=>"Int64", Symbol("sample_update_time")=>"ZonedDateTime", Symbol("run_on")=>"String", Symbol("share_info")=>"Vector{ShareInfoModel}", Symbol("model_name")=>"String", Symbol("workflow_id")=>"String", Symbol("workflow_name")=>"String", )
 OpenAPI.property_type(::Type{ ListExperimentRsp }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_ListExperimentRsp[name]))}
 
 function check_required(o::ListExperimentRsp)
+    o.object_type === nothing && (return false)
     o.short_id === nothing && (return false)
     o.name === nothing && (return false)
     o.status === nothing && (return false)
@@ -88,6 +93,11 @@ function check_required(o::ListExperimentRsp)
 end
 
 function OpenAPI.validate_property(::Type{ ListExperimentRsp }, name::Symbol, val)
+
+    if name === Symbol("object_type")
+        OpenAPI.validate_param(name, "ListExperimentRsp", :enum, val, ["experiment"])
+    end
+
 
 
 

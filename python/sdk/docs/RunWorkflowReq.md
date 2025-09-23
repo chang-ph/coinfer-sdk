@@ -6,12 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **object_type** | **str** |  | 
-**experiment_name** | **str** | experiment name | 
-**iteration** | **int** | iteration number | [optional] [default to 1000]
-**parallel** | **int** | parallel number | [optional] [default to 1]
-**engine** | **str** |  | [optional] [default to 'fargate']
-**chains** | **int** | chains number | [optional] [default to 1]
-**parallel_algorithm** | **str** |  | [optional] [default to 'Serial']
+**startup_script** | **str** |  | [optional] [default to '']
 
 ## Example
 

@@ -24,7 +24,7 @@ if Coinfer.ServerlessBayes.is_model(ret)
         )
     end
 
-    Coinfer.ServerlessBayes.inner_sample(sample_args...; sample_kwargs...)
+    Coinfer.ServerlessBayes.sample(sample_args...; sample_kwargs...)
 else
     println("ret: ", Coinfer.ServerlessBayes.json(rets))
 end
