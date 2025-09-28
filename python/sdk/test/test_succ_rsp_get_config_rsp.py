@@ -43,7 +43,8 @@ class TestSuccRspGetConfigRsp(unittest.TestCase):
                     google_app_id = '', 
                     arviz_plotting_endpoint = '', 
                     default_model = '', 
-                    default_data = '', )
+                    default_data = '', 
+                    default_analyzer = '', )
             )
         else:
             return SuccRspGetConfigRsp(
@@ -57,7 +58,8 @@ class TestSuccRspGetConfigRsp(unittest.TestCase):
                     google_app_id = '', 
                     arviz_plotting_endpoint = '', 
                     default_model = '', 
-                    default_data = '', ),
+                    default_data = '', 
+                    default_analyzer = '', ),
         )
         """
 

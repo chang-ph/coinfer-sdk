@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **experiment_id** | **str** |  | [optional] 
 **analyzer_id** | **str** |  | [optional] 
 **analyzer_result** | **str** |  | [optional] 
+**startup_script** | **str** |  | [optional] 
 
 ## Example
 

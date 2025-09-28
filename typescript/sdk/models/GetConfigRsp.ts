@@ -10,6 +10,7 @@ export class GetConfigRsp {
     'arvizPlottingEndpoint': string | null;
     'defaultModel': string;
     'defaultData': string;
+    'defaultAnalyzer': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -67,6 +68,12 @@ export class GetConfigRsp {
         {
             "name": "defaultData",
             "baseName": "default_data",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "defaultAnalyzer",
+            "baseName": "default_analyzer",
             "type": "string",
             "format": ""
         }    ];

@@ -33,7 +33,8 @@ class GetConfigRsp(BaseModel):
     arviz_plotting_endpoint: Optional[StrictStr]
     default_model: StrictStr
     default_data: StrictStr
-    __properties: ClassVar[List[str]] = ["run_model_url", "max_upload_sample_size", "max_upload_sample_file", "upload_file_types", "google_client_id", "google_app_id", "arviz_plotting_endpoint", "default_model", "default_data"]
+    default_analyzer: StrictStr
+    __properties: ClassVar[List[str]] = ["run_model_url", "max_upload_sample_size", "max_upload_sample_file", "upload_file_types", "google_client_id", "google_app_id", "arviz_plotting_endpoint", "default_model", "default_data", "default_analyzer"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,7 +100,8 @@ class GetConfigRsp(BaseModel):
             "google_app_id": obj.get("google_app_id"),
             "arviz_plotting_endpoint": obj.get("arviz_plotting_endpoint"),
             "default_model": obj.get("default_model"),
-            "default_data": obj.get("default_data")
+            "default_data": obj.get("default_data"),
+            "default_analyzer": obj.get("default_analyzer")
         })
         return _obj
 

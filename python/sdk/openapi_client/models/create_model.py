@@ -109,6 +109,11 @@ class CreateModel(BaseModel):
         if self.content is None and "content" in self.model_fields_set:
             _dict['content'] = None
 
+        # set to None if lang (nullable) is None
+        # and model_fields_set contains the field
+        if self.lang is None and "lang" in self.model_fields_set:
+            _dict['lang'] = None
+
         return _dict
 
     @classmethod

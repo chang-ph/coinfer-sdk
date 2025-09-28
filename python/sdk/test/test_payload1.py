@@ -92,10 +92,10 @@ class TestPayload1(unittest.TestCase):
                 experiment_id = '',
                 analyzer_id = '',
                 analyzer_result = '',
+                startup_script = '',
                 base64_encoded = True,
                 data = '',
-                data_uri = '',
-                startup_script = ''
+                data_uri = ''
             )
         else:
             return Payload1(

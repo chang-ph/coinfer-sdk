@@ -8,6 +8,7 @@ export class UpdateWorkflowReq {
     'experimentId'?: string | null;
     'analyzerId'?: string | null;
     'analyzerResult'?: string | null;
+    'startupScript'?: string | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -53,6 +54,12 @@ export class UpdateWorkflowReq {
         {
             "name": "analyzerResult",
             "baseName": "analyzer_result",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "startupScript",
+            "baseName": "startup_script",
             "type": "string",
             "format": ""
         }    ];

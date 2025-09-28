@@ -23,7 +23,7 @@ export class CreateModel {
     * Only allow one instance to run as cloud function at a time.
     */
     'singleInstance'?: boolean;
-    'lang'?: CloudFunctionLang;
+    'lang'?: CloudFunctionLang | null;
     'entranceFile'?: string;
     /**
     * Whether to build lambda image for this CloudFunction

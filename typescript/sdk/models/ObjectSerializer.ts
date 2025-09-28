@@ -199,7 +199,7 @@ import { UpdateEventReq, UpdateEventReqObjectTypeEnum   , UpdateEventReqEngineEn
 import { UpdateExperiment, UpdateExperimentObjectTypeEnum           } from '../models/UpdateExperiment';
 import { UpdateModel, UpdateModelObjectTypeEnum          } from '../models/UpdateModel';
 import { UpdateObject } from '../models/UpdateObject';
-import { UpdateWorkflowReq, UpdateWorkflowReqObjectTypeEnum         } from '../models/UpdateWorkflowReq';
+import { UpdateWorkflowReq, UpdateWorkflowReqObjectTypeEnum          } from '../models/UpdateWorkflowReq';
 import { UserInfoRsp } from '../models/UserInfoRsp';
 import { UserLogin } from '../models/UserLogin';
 import { UserLoginRsp } from '../models/UserLoginRsp';

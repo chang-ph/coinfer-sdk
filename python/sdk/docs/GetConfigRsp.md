@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **arviz_plotting_endpoint** | **str** |  | 
 **default_model** | **str** |  | 
 **default_data** | **str** |  | 
+**default_analyzer** | **str** |  | 
 
 ## Example
 

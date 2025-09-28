@@ -39,7 +39,8 @@ class TestUpdateWorkflowReq(unittest.TestCase):
                 data_id = '',
                 experiment_id = '',
                 analyzer_id = '',
-                analyzer_result = ''
+                analyzer_result = '',
+                startup_script = ''
             )
         else:
             return UpdateWorkflowReq(

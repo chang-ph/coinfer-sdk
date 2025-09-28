@@ -12,6 +12,7 @@
         experiment_id=nothing,
         analyzer_id=nothing,
         analyzer_result=nothing,
+        startup_script=nothing,
     )
 
     - object_type::String
@@ -21,6 +22,7 @@
     - experiment_id::String
     - analyzer_id::String
     - analyzer_result::String
+    - startup_script::String
 """
 Base.@kwdef mutable struct UpdateWorkflowReq <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
@@ -30,8 +32,9 @@ Base.@kwdef mutable struct UpdateWorkflowReq <: OpenAPI.APIModel
     experiment_id::Union{Nothing, String} = nothing
     analyzer_id::Union{Nothing, String} = nothing
     analyzer_result::Union{Nothing, String} = nothing
+    startup_script::Union{Nothing, String} = nothing
 
-    function UpdateWorkflowReq(object_type, name, description, data_id, experiment_id, analyzer_id, analyzer_result, )
+    function UpdateWorkflowReq(object_type, name, description, data_id, experiment_id, analyzer_id, analyzer_result, startup_script, )
         OpenAPI.validate_property(UpdateWorkflowReq, Symbol("object_type"), object_type)
         OpenAPI.validate_property(UpdateWorkflowReq, Symbol("name"), name)
         OpenAPI.validate_property(UpdateWorkflowReq, Symbol("description"), description)
@@ -39,11 +42,12 @@ Base.@kwdef mutable struct UpdateWorkflowReq <: OpenAPI.APIModel
         OpenAPI.validate_property(UpdateWorkflowReq, Symbol("experiment_id"), experiment_id)
         OpenAPI.validate_property(UpdateWorkflowReq, Symbol("analyzer_id"), analyzer_id)
         OpenAPI.validate_property(UpdateWorkflowReq, Symbol("analyzer_result"), analyzer_result)
-        return new(object_type, name, description, data_id, experiment_id, analyzer_id, analyzer_result, )
+        OpenAPI.validate_property(UpdateWorkflowReq, Symbol("startup_script"), startup_script)
+        return new(object_type, name, description, data_id, experiment_id, analyzer_id, analyzer_result, startup_script, )
     end
 end # type UpdateWorkflowReq
 
-const _property_types_UpdateWorkflowReq = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("name")=>"String", Symbol("description")=>"String", Symbol("data_id")=>"String", Symbol("experiment_id")=>"String", Symbol("analyzer_id")=>"String", Symbol("analyzer_result")=>"String", )
+const _property_types_UpdateWorkflowReq = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("name")=>"String", Symbol("description")=>"String", Symbol("data_id")=>"String", Symbol("experiment_id")=>"String", Symbol("analyzer_id")=>"String", Symbol("analyzer_result")=>"String", Symbol("startup_script")=>"String", )
 OpenAPI.property_type(::Type{ UpdateWorkflowReq }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_UpdateWorkflowReq[name]))}
 
 function check_required(o::UpdateWorkflowReq)
@@ -74,5 +78,6 @@ function OpenAPI.validate_property(::Type{ UpdateWorkflowReq }, name::Symbol, va
     if name === Symbol("analyzer_id")
         OpenAPI.validate_param(name, "UpdateWorkflowReq", :maxLength, val, 9)
     end
+
 
 end

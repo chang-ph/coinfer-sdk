@@ -32,7 +32,8 @@ class UpdateWorkflowReq(BaseModel):
     experiment_id: Optional[Annotated[str, Field(strict=True, max_length=9)]] = None
     analyzer_id: Optional[Annotated[str, Field(strict=True, max_length=9)]] = None
     analyzer_result: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["object_type", "name", "description", "data_id", "experiment_id", "analyzer_id", "analyzer_result"]
+    startup_script: Optional[StrictStr] = None
+    __properties: ClassVar[List[str]] = ["object_type", "name", "description", "data_id", "experiment_id", "analyzer_id", "analyzer_result", "startup_script"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -110,6 +111,11 @@ class UpdateWorkflowReq(BaseModel):
         if self.analyzer_result is None and "analyzer_result" in self.model_fields_set:
             _dict['analyzer_result'] = None
 
+        # set to None if startup_script (nullable) is None
+        # and model_fields_set contains the field
+        if self.startup_script is None and "startup_script" in self.model_fields_set:
+            _dict['startup_script'] = None
+
         return _dict
 
     @classmethod
@@ -128,7 +134,8 @@ class UpdateWorkflowReq(BaseModel):
             "data_id": obj.get("data_id"),
             "experiment_id": obj.get("experiment_id"),
             "analyzer_id": obj.get("analyzer_id"),
-            "analyzer_result": obj.get("analyzer_result")
+            "analyzer_result": obj.get("analyzer_result"),
+            "startup_script": obj.get("startup_script")
         })
         return _obj
 

@@ -33,10 +33,10 @@ Name | Type | Description | Notes
 **experiment_id** | **str** |  | [optional] 
 **analyzer_id** | **str** |  | [optional] 
 **analyzer_result** | **str** |  | [optional] 
+**startup_script** | **str** |  | [optional] [default to '']
 **base64_encoded** | **bool** | Whether the data in &#x60;data&#x60; is base64 encoded | [optional] [default to False]
 **data** | **str** |  | [optional] 
 **data_uri** | **str** |  | [optional] 
-**startup_script** | **str** |  | [optional] [default to '']
 
 ## Example
 

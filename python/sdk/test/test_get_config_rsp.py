@@ -41,7 +41,8 @@ class TestGetConfigRsp(unittest.TestCase):
                 google_app_id = '',
                 arviz_plotting_endpoint = '',
                 default_model = '',
-                default_data = ''
+                default_data = '',
+                default_analyzer = ''
             )
         else:
             return GetConfigRsp(
@@ -54,6 +55,7 @@ class TestGetConfigRsp(unittest.TestCase):
                 arviz_plotting_endpoint = '',
                 default_model = '',
                 default_data = '',
+                default_analyzer = '',
         )
         """
 
