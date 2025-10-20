@@ -346,7 +346,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **view_object**
-> UUUU0bdaccc02abe3e86fd53540d087462d8 view_object(objid, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, plot=plot, view_analyzer=view_analyzer)
+> UUUU0bdaccc02abe3e86fd53540d087462d8 view_object(objid, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, view_analyzer=view_analyzer)
 
 View object.
 
@@ -397,12 +397,11 @@ with openapi_client.ApiClient(configuration) as api_client:
     cloudwatch_log = False # bool |  (optional) (default to False)
     batch_id = '' # str |  (optional) (default to '')
     run_id = '' # str |  (optional) (default to '')
-    plot = False # bool | get arviz plot (optional) (default to False)
     view_analyzer = False # bool | view analyzer result (optional) (default to False)
 
     try:
         # View object.
-        api_response = api_instance.view_object(objid, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, plot=plot, view_analyzer=view_analyzer)
+        api_response = api_instance.view_object(objid, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, view_analyzer=view_analyzer)
         print("The response of ObjectApi->view_object:\n")
         pprint(api_response)
     except Exception as e:
@@ -424,7 +423,6 @@ Name | Type | Description  | Notes
  **cloudwatch_log** | **bool**|  | [optional] [default to False]
  **batch_id** | **str**|  | [optional] [default to &#39;&#39;]
  **run_id** | **str**|  | [optional] [default to &#39;&#39;]
- **plot** | **bool**| get arviz plot | [optional] [default to False]
  **view_analyzer** | **bool**| view analyzer result | [optional] [default to False]
 
 ### Return type

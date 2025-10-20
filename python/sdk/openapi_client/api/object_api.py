@@ -1334,7 +1334,6 @@ class ObjectApi:
         cloudwatch_log: Optional[StrictBool] = None,
         batch_id: Optional[StrictStr] = None,
         run_id: Optional[StrictStr] = None,
-        plot: Annotated[Optional[StrictBool], Field(description="get arviz plot")] = None,
         view_analyzer: Annotated[Optional[StrictBool], Field(description="view analyzer result")] = None,
         _request_timeout: Union[
             None,
@@ -1371,8 +1370,6 @@ class ObjectApi:
         :type batch_id: str
         :param run_id:
         :type run_id: str
-        :param plot: get arviz plot
-        :type plot: bool
         :param view_analyzer: view analyzer result
         :type view_analyzer: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -1407,7 +1404,6 @@ class ObjectApi:
             cloudwatch_log=cloudwatch_log,
             batch_id=batch_id,
             run_id=run_id,
-            plot=plot,
             view_analyzer=view_analyzer,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1441,7 +1437,6 @@ class ObjectApi:
         cloudwatch_log: Optional[StrictBool] = None,
         batch_id: Optional[StrictStr] = None,
         run_id: Optional[StrictStr] = None,
-        plot: Annotated[Optional[StrictBool], Field(description="get arviz plot")] = None,
         view_analyzer: Annotated[Optional[StrictBool], Field(description="view analyzer result")] = None,
         _request_timeout: Union[
             None,
@@ -1478,8 +1473,6 @@ class ObjectApi:
         :type batch_id: str
         :param run_id:
         :type run_id: str
-        :param plot: get arviz plot
-        :type plot: bool
         :param view_analyzer: view analyzer result
         :type view_analyzer: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -1514,7 +1507,6 @@ class ObjectApi:
             cloudwatch_log=cloudwatch_log,
             batch_id=batch_id,
             run_id=run_id,
-            plot=plot,
             view_analyzer=view_analyzer,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1548,7 +1540,6 @@ class ObjectApi:
         cloudwatch_log: Optional[StrictBool] = None,
         batch_id: Optional[StrictStr] = None,
         run_id: Optional[StrictStr] = None,
-        plot: Annotated[Optional[StrictBool], Field(description="get arviz plot")] = None,
         view_analyzer: Annotated[Optional[StrictBool], Field(description="view analyzer result")] = None,
         _request_timeout: Union[
             None,
@@ -1585,8 +1576,6 @@ class ObjectApi:
         :type batch_id: str
         :param run_id:
         :type run_id: str
-        :param plot: get arviz plot
-        :type plot: bool
         :param view_analyzer: view analyzer result
         :type view_analyzer: bool
         :param _request_timeout: timeout setting for this request. If one
@@ -1621,7 +1610,6 @@ class ObjectApi:
             cloudwatch_log=cloudwatch_log,
             batch_id=batch_id,
             run_id=run_id,
-            plot=plot,
             view_analyzer=view_analyzer,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -1650,7 +1638,6 @@ class ObjectApi:
         cloudwatch_log,
         batch_id,
         run_id,
-        plot,
         view_analyzer,
         _request_auth,
         _content_type,
@@ -1707,10 +1694,6 @@ class ObjectApi:
         if run_id is not None:
             
             _query_params.append(('run_id', run_id))
-            
-        if plot is not None:
-            
-            _query_params.append(('plot', plot))
             
         if view_analyzer is not None:
             

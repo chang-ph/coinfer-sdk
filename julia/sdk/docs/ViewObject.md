@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **cloudwatch_log** | **Bool** |  | [optional] [default to false]
 **batch_id** | **String** |  | [optional] [default to ""]
 **run_id** | **String** |  | [optional] [default to ""]
-**plot** | **Bool** | get arviz plot | [optional] [default to false]
 **var&quot;view-analyzer&quot;** | **Bool** | view analyzer result | [optional] [default to false]
 
 

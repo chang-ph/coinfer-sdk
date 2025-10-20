@@ -307,8 +307,6 @@ const request: ObjectApiViewObjectRequest = {
   batchId: "",
   
   runId: "",
-    // get arviz plot (optional)
-  plot: false,
     // view analyzer result (optional)
   viewAnalyzer: false,
 };
@@ -331,7 +329,6 @@ Name | Type | Description  | Notes
  **cloudwatchLog** | [**boolean**] |  | (optional) defaults to false
  **batchId** | [**string**] |  | (optional) defaults to ''
  **runId** | [**string**] |  | (optional) defaults to ''
- **plot** | [**boolean**] | get arviz plot | (optional) defaults to false
  **viewAnalyzer** | [**boolean**] | view analyzer result | (optional) defaults to false
 
 

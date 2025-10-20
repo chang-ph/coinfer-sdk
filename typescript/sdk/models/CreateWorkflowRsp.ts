@@ -8,6 +8,7 @@ export class CreateWorkflowRsp {
     'modelName': string;
     'dataId'?: string | null;
     'dataName'?: string | null;
+    'dataFmt'?: string | null;
     'experimentId'?: string | null;
     'experimentName'?: string | null;
     'analyzerId'?: string | null;
@@ -60,6 +61,12 @@ export class CreateWorkflowRsp {
         {
             "name": "dataName",
             "baseName": "data_name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "dataFmt",
+            "baseName": "data_fmt",
             "type": "string",
             "format": ""
         },

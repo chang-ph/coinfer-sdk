@@ -32,6 +32,7 @@ class CreateWorkflowRsp(BaseModel):
     model_name: StrictStr
     data_id: Optional[StrictStr] = None
     data_name: Optional[StrictStr] = None
+    data_fmt: Optional[StrictStr] = None
     experiment_id: Optional[StrictStr] = None
     experiment_name: Optional[StrictStr] = None
     analyzer_id: Optional[StrictStr] = None
@@ -39,7 +40,7 @@ class CreateWorkflowRsp(BaseModel):
     created_at: datetime
     updated_at: datetime
     startup_script: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["object_type", "short_id", "name", "model_id", "model_name", "data_id", "data_name", "experiment_id", "experiment_name", "analyzer_id", "analyzer_name", "created_at", "updated_at", "startup_script"]
+    __properties: ClassVar[List[str]] = ["object_type", "short_id", "name", "model_id", "model_name", "data_id", "data_name", "data_fmt", "experiment_id", "experiment_name", "analyzer_id", "analyzer_name", "created_at", "updated_at", "startup_script"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -97,6 +98,11 @@ class CreateWorkflowRsp(BaseModel):
         if self.data_name is None and "data_name" in self.model_fields_set:
             _dict['data_name'] = None
 
+        # set to None if data_fmt (nullable) is None
+        # and model_fields_set contains the field
+        if self.data_fmt is None and "data_fmt" in self.model_fields_set:
+            _dict['data_fmt'] = None
+
         # set to None if experiment_id (nullable) is None
         # and model_fields_set contains the field
         if self.experiment_id is None and "experiment_id" in self.model_fields_set:
@@ -141,6 +147,7 @@ class CreateWorkflowRsp(BaseModel):
             "model_name": obj.get("model_name"),
             "data_id": obj.get("data_id"),
             "data_name": obj.get("data_name"),
+            "data_fmt": obj.get("data_fmt"),
             "experiment_id": obj.get("experiment_id"),
             "experiment_name": obj.get("experiment_name"),
             "analyzer_id": obj.get("analyzer_id"),

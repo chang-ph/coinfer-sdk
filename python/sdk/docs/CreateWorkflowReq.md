@@ -6,9 +6,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **object_type** | **str** |  | 
-**name** | **str** | workflow name | 
-**model_id** | **str** | model ID | 
+**name** | **str** | workflow name | [optional] [default to '']
+**model_id** | **str** | model ID | [optional] [default to '']
 **data_id** | **str** | data ID | [optional] [default to '']
+**uri** | **str** | URI of model in Gallery | [optional] [default to '']
 
 ## Example
 

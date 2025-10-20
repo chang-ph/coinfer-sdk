@@ -86,6 +86,7 @@ class TestData(unittest.TestCase):
                 fmt = 'raw',
                 data_id = '',
                 data_name = '',
+                data_fmt = '',
                 analyzer_id = '',
                 analyzer_name = '',
                 startup_script = ''

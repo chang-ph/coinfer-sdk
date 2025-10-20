@@ -36,7 +36,7 @@ class TestPayload(unittest.TestCase):
                 object_type = 'workflow',
                 type = 'local',
                 env = '',
-                name = '0',
+                name = '',
                 content = openapi_client.models.model_content.ModelContent(
                     meta = null, 
                     tree = [
@@ -57,7 +57,7 @@ class TestPayload(unittest.TestCase):
                 entrance_file = '',
                 lambda_image = True,
                 source_url = '',
-                model_id = '0',
+                model_id = '',
                 workflow_id = '',
                 input_id = '',
                 meta = None,
@@ -79,14 +79,14 @@ class TestPayload(unittest.TestCase):
                 base64_encoded = True,
                 data = '',
                 data_uri = '',
-                data_id = ''
+                data_id = '',
+                uri = ''
             )
         else:
             return Payload(
                 object_type = 'workflow',
-                name = '0',
+                name = '',
                 lang = 'julia',
-                model_id = '0',
                 objid = '',
                 code = '',
                 object1_id = '',

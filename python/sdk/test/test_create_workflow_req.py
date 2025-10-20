@@ -34,15 +34,14 @@ class TestCreateWorkflowReq(unittest.TestCase):
         if include_optional:
             return CreateWorkflowReq(
                 object_type = 'workflow',
-                name = '0',
-                model_id = '0',
-                data_id = ''
+                name = '',
+                model_id = '',
+                data_id = '',
+                uri = ''
             )
         else:
             return CreateWorkflowReq(
                 object_type = 'workflow',
-                name = '0',
-                model_id = '0',
         )
         """
 

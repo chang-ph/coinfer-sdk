@@ -13,10 +13,6 @@ export class ViewObject {
     'batchId'?: string;
     'runId'?: string;
     /**
-    * get arviz plot
-    */
-    'plot'?: boolean;
-    /**
     * view analyzer result
     */
     'viewAnalyzer'?: boolean;
@@ -72,12 +68,6 @@ export class ViewObject {
             "name": "runId",
             "baseName": "run_id",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "plot",
-            "baseName": "plot",
-            "type": "boolean",
             "format": ""
         },
         {

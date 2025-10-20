@@ -10,7 +10,6 @@ from html import escape as html_escape
 from typing import Any
 from urllib.parse import unquote
 
-import arviz as az
 import numpy as np
 from bokeh.embed import json_item
 from bokeh.layouts import gridplot
@@ -44,7 +43,6 @@ def set_arviz_params(az):
     az.rcParams["plot.max_subplots"] = 100
 
 
-set_arviz_params(az)
 
 
 class Experiment:
@@ -69,6 +67,9 @@ class Experiment:
     def _download_inference_data(
         cls, server_endpoint: str, auth_token: str, experiment_id: str
     ):
+        import arviz as az
+        set_arviz_params(az)
+
         download_url = (
             f"{server_endpoint}/sys/get-arviz-data?experiment_id={experiment_id}"
         )

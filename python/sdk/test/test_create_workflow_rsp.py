@@ -40,6 +40,7 @@ class TestCreateWorkflowRsp(unittest.TestCase):
                 model_name = '',
                 data_id = '',
                 data_name = '',
+                data_fmt = '',
                 experiment_id = '',
                 experiment_name = '',
                 analyzer_id = '',

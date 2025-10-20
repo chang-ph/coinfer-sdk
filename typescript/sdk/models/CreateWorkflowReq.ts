@@ -5,15 +5,19 @@ export class CreateWorkflowReq {
     /**
     * workflow name
     */
-    'name': string;
+    'name'?: string;
     /**
     * model ID
     */
-    'modelId': string;
+    'modelId'?: string;
     /**
     * data ID
     */
     'dataId'?: string;
+    /**
+    * URI of model in Gallery
+    */
+    'uri'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -41,6 +45,12 @@ export class CreateWorkflowReq {
         {
             "name": "dataId",
             "baseName": "data_id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "uri",
+            "baseName": "uri",
             "type": "string",
             "format": ""
         }    ];

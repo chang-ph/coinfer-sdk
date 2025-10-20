@@ -45,6 +45,7 @@ Name | Type | Description | Notes
 **fmt** | **str** |  | [optional] [default to 'raw']
 **data_id** | **str** |  | [optional] 
 **data_name** | **str** |  | [optional] 
+**data_fmt** | **str** |  | [optional] 
 **analyzer_id** | **str** |  | [optional] 
 **analyzer_name** | **str** |  | [optional] 
 **startup_script** | **str** |  | [optional] 

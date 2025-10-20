@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **model_name** | **str** |  | 
 **data_id** | **str** |  | [optional] 
 **data_name** | **str** |  | [optional] 
+**data_fmt** | **str** |  | [optional] 
 **experiment_id** | **str** |  | [optional] 
 **experiment_name** | **str** |  | [optional] 
 **analyzer_id** | **str** |  | [optional] 

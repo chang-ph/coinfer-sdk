@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **model_name** | **String** |  | [default to nothing]
 **data_id** | **String** |  | [optional] [default to nothing]
 **data_name** | **String** |  | [optional] [default to nothing]
+**data_fmt** | **String** |  | [optional] [default to nothing]
 **experiment_id** | **String** |  | [optional] [default to nothing]
 **experiment_name** | **String** |  | [optional] [default to nothing]
 **analyzer_id** | **String** |  | [optional] [default to nothing]

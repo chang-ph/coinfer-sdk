@@ -127,8 +127,8 @@ import { CreateRelationReq, CreateRelationReqObjectTypeEnum     } from '../model
 import { CreateRelationRsp, CreateRelationRspObjectTypeEnum        } from '../models/CreateRelationRsp';
 import { CreateTextMessageReq, CreateTextMessageReqObjectTypeEnum      } from '../models/CreateTextMessageReq';
 import { CreateToken } from '../models/CreateToken';
-import { CreateWorkflowReq, CreateWorkflowReqObjectTypeEnum      } from '../models/CreateWorkflowReq';
-import { CreateWorkflowRsp, CreateWorkflowRspObjectTypeEnum                } from '../models/CreateWorkflowRsp';
+import { CreateWorkflowReq, CreateWorkflowReqObjectTypeEnum       } from '../models/CreateWorkflowReq';
+import { CreateWorkflowRsp, CreateWorkflowRspObjectTypeEnum                 } from '../models/CreateWorkflowRsp';
 import { DataClass } from '../models/Data';
 import { Data1Class } from '../models/Data1';
 import { DataTag } from '../models/DataTag';
@@ -206,7 +206,7 @@ import { UserLoginRsp } from '../models/UserLoginRsp';
 import { ViewAnalyzerRsp, ViewAnalyzerRspObjectTypeEnum    } from '../models/ViewAnalyzerRsp';
 import { ViewExperimentShareRsp, ViewExperimentShareRspObjectTypeEnum    } from '../models/ViewExperimentShareRsp';
 import { ViewModelsRsp, ViewModelsRspObjectTypeEnum           } from '../models/ViewModelsRsp';
-import { ViewObject, ViewObjectObjectTypeEnum    , ViewObjectFmtEnum         } from '../models/ViewObject';
+import { ViewObject, ViewObjectObjectTypeEnum    , ViewObjectFmtEnum        } from '../models/ViewObject';
 import { ViewObjectTmp } from '../models/ViewObjectTmp';
 import { WorkflowRunRsp, WorkflowRunRspObjectTypeEnum     } from '../models/WorkflowRunRsp';
 

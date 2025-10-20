@@ -308,17 +308,15 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
      * @param cloudwatchLog 
      * @param batchId 
      * @param runId 
-     * @param plot get arviz plot
      * @param viewAnalyzer view analyzer result
      */
-    public async viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, viewAnalyzer?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, viewAnalyzer?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'objid' is not null or undefined
         if (objid === null || objid === undefined) {
             throw new RequiredError("ObjectApi", "viewObject", "objid");
         }
-
 
 
 
@@ -376,11 +374,6 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (runId !== undefined) {
             requestContext.setQueryParam("run_id", ObjectSerializer.serialize(runId, "string", ""));
-        }
-
-        // Query Params
-        if (plot !== undefined) {
-            requestContext.setQueryParam("plot", ObjectSerializer.serialize(plot, "boolean", ""));
         }
 
         // Query Params

@@ -752,13 +752,6 @@ export interface ObjectApiViewObjectRequest {
      */
     runId?: string
     /**
-     * get arviz plot
-     * Defaults to: false
-     * @type boolean
-     * @memberof ObjectApiviewObject
-     */
-    plot?: boolean
-    /**
      * view analyzer result
      * Defaults to: false
      * @type boolean
@@ -852,7 +845,7 @@ export class ObjectObjectApi {
      * @param param the request object
      */
     public viewObjectWithHttpInfo(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<HttpInfo<UUUU0bdaccc02abe3e86fd53540d087462d8>> {
-        return this.api.viewObjectWithHttpInfo(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt, param.nIteration, param.cloudwatchLog, param.batchId, param.runId, param.plot, param.viewAnalyzer,  options).toPromise();
+        return this.api.viewObjectWithHttpInfo(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt, param.nIteration, param.cloudwatchLog, param.batchId, param.runId, param.viewAnalyzer,  options).toPromise();
     }
 
     /**
@@ -861,7 +854,7 @@ export class ObjectObjectApi {
      * @param param the request object
      */
     public viewObject(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<UUUU0bdaccc02abe3e86fd53540d087462d8> {
-        return this.api.viewObject(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt, param.nIteration, param.cloudwatchLog, param.batchId, param.runId, param.plot, param.viewAnalyzer,  options).toPromise();
+        return this.api.viewObject(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt, param.nIteration, param.cloudwatchLog, param.batchId, param.runId, param.viewAnalyzer,  options).toPromise();
     }
 
 }

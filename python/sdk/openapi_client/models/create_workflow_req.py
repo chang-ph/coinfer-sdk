@@ -26,10 +26,11 @@ class CreateWorkflowReq(BaseModel):
     CreateWorkflowReq
     """ # noqa: E501
     object_type: StrictStr
-    name: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="workflow name")
-    model_id: Annotated[str, Field(min_length=1, strict=True, max_length=9)] = Field(description="model ID")
+    name: Optional[Annotated[str, Field(strict=True, max_length=255)]] = Field(default='', description="workflow name")
+    model_id: Optional[Annotated[str, Field(strict=True, max_length=9)]] = Field(default='', description="model ID")
     data_id: Optional[Annotated[str, Field(strict=True, max_length=9)]] = Field(default='', description="data ID")
-    __properties: ClassVar[List[str]] = ["object_type", "name", "model_id", "data_id"]
+    uri: Optional[StrictStr] = Field(default='', description="URI of model in Gallery")
+    __properties: ClassVar[List[str]] = ["object_type", "name", "model_id", "data_id", "uri"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -90,9 +91,10 @@ class CreateWorkflowReq(BaseModel):
 
         _obj = cls.model_validate({
             "object_type": obj.get("object_type"),
-            "name": obj.get("name"),
-            "model_id": obj.get("model_id"),
-            "data_id": obj.get("data_id") if obj.get("data_id") is not None else ''
+            "name": obj.get("name") if obj.get("name") is not None else '',
+            "model_id": obj.get("model_id") if obj.get("model_id") is not None else '',
+            "data_id": obj.get("data_id") if obj.get("data_id") is not None else '',
+            "uri": obj.get("uri") if obj.get("uri") is not None else ''
         })
         return _obj
 

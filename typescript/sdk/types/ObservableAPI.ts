@@ -852,11 +852,10 @@ export class ObservableObjectApi {
      * @param [cloudwatchLog]
      * @param [batchId]
      * @param [runId]
-     * @param [plot] get arviz plot
      * @param [viewAnalyzer] view analyzer result
      */
-    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, viewAnalyzer?: boolean, _options?: Configuration): Observable<HttpInfo<UUUU0bdaccc02abe3e86fd53540d087462d8>> {
-        const requestContextPromise = this.requestFactory.viewObject(objid, objectType, shareId, sampledata, fmt, nIteration, cloudwatchLog, batchId, runId, plot, viewAnalyzer, _options);
+    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, viewAnalyzer?: boolean, _options?: Configuration): Observable<HttpInfo<UUUU0bdaccc02abe3e86fd53540d087462d8>> {
+        const requestContextPromise = this.requestFactory.viewObject(objid, objectType, shareId, sampledata, fmt, nIteration, cloudwatchLog, batchId, runId, viewAnalyzer, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -886,11 +885,10 @@ export class ObservableObjectApi {
      * @param [cloudwatchLog]
      * @param [batchId]
      * @param [runId]
-     * @param [plot] get arviz plot
      * @param [viewAnalyzer] view analyzer result
      */
-    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, plot?: boolean, viewAnalyzer?: boolean, _options?: Configuration): Observable<UUUU0bdaccc02abe3e86fd53540d087462d8> {
-        return this.viewObjectWithHttpInfo(objid, objectType, shareId, sampledata, fmt, nIteration, cloudwatchLog, batchId, runId, plot, viewAnalyzer, _options).pipe(map((apiResponse: HttpInfo<UUUU0bdaccc02abe3e86fd53540d087462d8>) => apiResponse.data));
+    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, viewAnalyzer?: boolean, _options?: Configuration): Observable<UUUU0bdaccc02abe3e86fd53540d087462d8> {
+        return this.viewObjectWithHttpInfo(objid, objectType, shareId, sampledata, fmt, nIteration, cloudwatchLog, batchId, runId, viewAnalyzer, _options).pipe(map((apiResponse: HttpInfo<UUUU0bdaccc02abe3e86fd53540d087462d8>) => apiResponse.data));
     }
 
 }

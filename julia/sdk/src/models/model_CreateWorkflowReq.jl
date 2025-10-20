@@ -6,38 +6,40 @@
 
     CreateWorkflowReq(;
         object_type=nothing,
-        name=nothing,
-        model_id=nothing,
+        name="",
+        model_id="",
         data_id="",
+        uri="",
     )
 
     - object_type::String
     - name::String : workflow name
     - model_id::String : model ID
     - data_id::String : data ID
+    - uri::String : URI of model in Gallery
 """
 Base.@kwdef mutable struct CreateWorkflowReq <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
-    name::Union{Nothing, String} = nothing
-    model_id::Union{Nothing, String} = nothing
+    name::Union{Nothing, String} = ""
+    model_id::Union{Nothing, String} = ""
     data_id::Union{Nothing, String} = ""
+    uri::Union{Nothing, String} = ""
 
-    function CreateWorkflowReq(object_type, name, model_id, data_id, )
+    function CreateWorkflowReq(object_type, name, model_id, data_id, uri, )
         OpenAPI.validate_property(CreateWorkflowReq, Symbol("object_type"), object_type)
         OpenAPI.validate_property(CreateWorkflowReq, Symbol("name"), name)
         OpenAPI.validate_property(CreateWorkflowReq, Symbol("model_id"), model_id)
         OpenAPI.validate_property(CreateWorkflowReq, Symbol("data_id"), data_id)
-        return new(object_type, name, model_id, data_id, )
+        OpenAPI.validate_property(CreateWorkflowReq, Symbol("uri"), uri)
+        return new(object_type, name, model_id, data_id, uri, )
     end
 end # type CreateWorkflowReq
 
-const _property_types_CreateWorkflowReq = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("name")=>"String", Symbol("model_id")=>"String", Symbol("data_id")=>"String", )
+const _property_types_CreateWorkflowReq = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("name")=>"String", Symbol("model_id")=>"String", Symbol("data_id")=>"String", Symbol("uri")=>"String", )
 OpenAPI.property_type(::Type{ CreateWorkflowReq }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_CreateWorkflowReq[name]))}
 
 function check_required(o::CreateWorkflowReq)
     o.object_type === nothing && (return false)
-    o.name === nothing && (return false)
-    o.model_id === nothing && (return false)
     true
 end
 
@@ -50,15 +52,14 @@ function OpenAPI.validate_property(::Type{ CreateWorkflowReq }, name::Symbol, va
 
     if name === Symbol("name")
         OpenAPI.validate_param(name, "CreateWorkflowReq", :maxLength, val, 255)
-        OpenAPI.validate_param(name, "CreateWorkflowReq", :minLength, val, 1)
     end
 
     if name === Symbol("model_id")
         OpenAPI.validate_param(name, "CreateWorkflowReq", :maxLength, val, 9)
-        OpenAPI.validate_param(name, "CreateWorkflowReq", :minLength, val, 1)
     end
 
     if name === Symbol("data_id")
         OpenAPI.validate_param(name, "CreateWorkflowReq", :maxLength, val, 9)
     end
+
 end

@@ -154,8 +154,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **view_object**
-> view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, plot=nothing, view_analyzer=nothing, _mediaType=nothing) -> UUUU0bdaccc02abe3e86fd53540d087462d8, OpenAPI.Clients.ApiResponse <br/>
-> view_object(_api::ObjectApi, response_stream::Channel, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, plot=nothing, view_analyzer=nothing, _mediaType=nothing) -> Channel{ UUUU0bdaccc02abe3e86fd53540d087462d8 }, OpenAPI.Clients.ApiResponse
+> view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, _mediaType=nothing) -> UUUU0bdaccc02abe3e86fd53540d087462d8, OpenAPI.Clients.ApiResponse <br/>
+> view_object(_api::ObjectApi, response_stream::Channel, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, _mediaType=nothing) -> Channel{ UUUU0bdaccc02abe3e86fd53540d087462d8 }, OpenAPI.Clients.ApiResponse
 
 View object.
 
@@ -180,7 +180,6 @@ Name | Type | Description  | Notes
  **cloudwatch_log** | **Bool** |  | [default to false]
  **batch_id** | **String** |  | [default to &quot;&quot;]
  **run_id** | **String** |  | [default to &quot;&quot;]
- **plot** | **Bool** | get arviz plot | [default to false]
  **view_analyzer** | **Bool** | view analyzer result | [default to false]
 
 ### Return type

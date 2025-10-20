@@ -79,6 +79,7 @@ class TestUUUUc9932bea1f007b34d507c4c4c680b4a7ObjectsInner(unittest.TestCase):
                 fmt = 'raw',
                 data_id = '',
                 data_name = '',
+                data_fmt = '',
                 experiment_id = '',
                 experiment_name = '',
                 analyzer_id = '',
