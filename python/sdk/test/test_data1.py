@@ -89,7 +89,10 @@ class TestData1(unittest.TestCase):
                 experiment_name = '',
                 analyzer_id = '',
                 analyzer_name = '',
-                startup_script = ''
+                startup_script = '',
+                settings = '',
+                data_script = '',
+                parsed_data_id = ''
             )
         else:
             return Data1(

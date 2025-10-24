@@ -47,7 +47,10 @@ class TestCreateWorkflowRsp(unittest.TestCase):
                 analyzer_name = '',
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                startup_script = ''
+                startup_script = '',
+                settings = '',
+                data_script = '',
+                parsed_data_id = ''
             )
         else:
             return CreateWorkflowRsp(

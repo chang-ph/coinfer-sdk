@@ -84,7 +84,10 @@ class TestUUUUc9932bea1f007b34d507c4c4c680b4a7ObjectsInner(unittest.TestCase):
                 experiment_name = '',
                 analyzer_id = '',
                 analyzer_name = '',
-                startup_script = ''
+                startup_script = '',
+                settings = '',
+                data_script = '',
+                parsed_data_id = ''
             )
         else:
             return UUUUc9932bea1f007b34d507c4c4c680b4a7ObjectsInner(

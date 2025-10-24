@@ -33,7 +33,10 @@ class UpdateWorkflowReq(BaseModel):
     analyzer_id: Optional[Annotated[str, Field(strict=True, max_length=9)]] = None
     analyzer_result: Optional[StrictStr] = None
     startup_script: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["object_type", "name", "description", "data_id", "experiment_id", "analyzer_id", "analyzer_result", "startup_script"]
+    settings: Optional[StrictStr] = None
+    data_script: Optional[StrictStr] = None
+    parsed_data_id: Optional[Annotated[str, Field(strict=True, max_length=9)]] = None
+    __properties: ClassVar[List[str]] = ["object_type", "name", "description", "data_id", "experiment_id", "analyzer_id", "analyzer_result", "startup_script", "settings", "data_script", "parsed_data_id"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -116,6 +119,21 @@ class UpdateWorkflowReq(BaseModel):
         if self.startup_script is None and "startup_script" in self.model_fields_set:
             _dict['startup_script'] = None
 
+        # set to None if settings (nullable) is None
+        # and model_fields_set contains the field
+        if self.settings is None and "settings" in self.model_fields_set:
+            _dict['settings'] = None
+
+        # set to None if data_script (nullable) is None
+        # and model_fields_set contains the field
+        if self.data_script is None and "data_script" in self.model_fields_set:
+            _dict['data_script'] = None
+
+        # set to None if parsed_data_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.parsed_data_id is None and "parsed_data_id" in self.model_fields_set:
+            _dict['parsed_data_id'] = None
+
         return _dict
 
     @classmethod
@@ -135,7 +153,10 @@ class UpdateWorkflowReq(BaseModel):
             "experiment_id": obj.get("experiment_id"),
             "analyzer_id": obj.get("analyzer_id"),
             "analyzer_result": obj.get("analyzer_result"),
-            "startup_script": obj.get("startup_script")
+            "startup_script": obj.get("startup_script"),
+            "settings": obj.get("settings"),
+            "data_script": obj.get("data_script"),
+            "parsed_data_id": obj.get("parsed_data_id")
         })
         return _obj
 

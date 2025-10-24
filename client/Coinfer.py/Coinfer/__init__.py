@@ -43,8 +43,6 @@ def set_arviz_params(az):
     az.rcParams["plot.max_subplots"] = 100
 
 
-
-
 class Experiment:
     def __init__(self, server_endpoint: str, auth_token: str, experiment_id: str):
         self.experiment_id = experiment_id
@@ -68,6 +66,7 @@ class Experiment:
         cls, server_endpoint: str, auth_token: str, experiment_id: str
     ):
         import arviz as az
+
         set_arviz_params(az)
 
         download_url = (
@@ -188,6 +187,26 @@ def _convert_plots_to_json(plots):
     return plot_jsons
 
 
+class Workflow:
+    def __init__(self, workflow_id: str, client: Client) -> None:
+        wf_rsp = client.get_object(workflow_id)
+        self.model_id = wf_rsp["model_id"]
+        self.data_id = wf_rsp["data_id"]
+        self.experiment_id = wf_rsp["experiment_id"]
+        self.analyzer_id = wf_rsp["analyzer_id"]
+
+        self.experiment = Experiment(
+            client.endpoints, client.coinfer_auth_token, self.experiment_id
+        )
+
+
+def current_workflow():
+    client = Client(
+        os.environ["COINFER_SERVER_ENDPOINT"], os.environ["COINFER_AUTH_TOKEN"]
+    )
+    return Workflow(os.environ["WORKFLOW_ID"], client)
+
+
 __all__ = [
     "requests",
     "Client",
@@ -196,4 +215,6 @@ __all__ = [
     "save_result",
     "current_experiment",
     "render_plots_to_html",
+    "Workflow",
+    "current_workflow",
 ]

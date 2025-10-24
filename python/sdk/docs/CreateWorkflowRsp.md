@@ -20,6 +20,9 @@ Name | Type | Description | Notes
 **created_at** | **datetime** |  | 
 **updated_at** | **datetime** |  | 
 **startup_script** | **str** |  | [optional] 
+**settings** | **str** |  | [optional] 
+**data_script** | **str** |  | [optional] 
+**parsed_data_id** | **str** |  | [optional] 
 
 ## Example
 

@@ -134,3 +134,10 @@ class Client:
             self.endpoint("base", "/access_token"), headers=self.headers_with_auth()
         )
         return self.response_data(res)["access_token"]
+
+    def get_object(self, object_id: str):
+        url = self.endpoint("api", f"/object/{object_id}")
+        headers = self.headers_with_auth()
+        res = self.session.get(url, headers=headers)
+        return self.response_data(res)
+

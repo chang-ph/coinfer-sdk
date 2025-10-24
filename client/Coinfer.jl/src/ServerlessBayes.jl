@@ -27,6 +27,39 @@ function default_endpoints()
     return get(ENV, "COINFER_SERVER_ENDPOINT", "https://api.coinfer.ai")
 end
 
+mutable struct Workflow
+    model
+    data
+    analyzer
+end
+
+function get_object(objid::String)
+    url = endpoint("api", "/object/$objid")
+    headers = headers_with_token("Content-Type" => "application/json")
+    resp = HTTP.get(url, headers)
+    json = JSON.parse(String(resp.body))
+    if json["status"] != "ok"
+        throw(ErrorException("Failed to get object $id: $(json["message"])"))
+    end
+    return json["data"]
+end
+
+wf = Ref{Workflow}()
+function current_workflow()
+    if isassigned(wf)
+        return wf[]
+    end
+    wf_id = get(ENV, "WORKFLOW_ID", "")
+    wf_rsp = get_object(wf_id)
+    data = nothing
+    if !isnothing(wf_rsp["data_id"])
+        data = read(as_local(OpaqueData(wf_rsp["data_id"])).file, String)
+    end
+
+    wf[] = Workflow(nothing, data, nothing)
+    return wf[]
+end
+
 mutable struct MsgCollector
     name::String
     datas
@@ -392,11 +425,6 @@ function endpoint(name, path; endpoints=default_endpoints())
     return rstrip(endpoints, '/') * "/" * name * "/" * lstrip(path, '/')
 end
 
-function iteration_count()
-    str_icount = get(ENV, "ITERATION_COUNT", "1000")
-    return parse(Int, str_icount)
-end
-
 const _TOKEN = Ref("")
 set_token(t) = _TOKEN[] = t
 
@@ -452,41 +480,6 @@ copy_file(src_dir::String, relative_path::String) = copy_file(src_dir, pwd(), re
 
 ## model, input, and output
 
-function get_entrance()
-    file = get(ENV, "ENTRANCE_FILE", "main.jl")
-    isfile(file) || error("ENTRANCE_FILE $file doesn't exist.")
-    Base.include(Main, file)
-    func = Symbol(get(ENV, "ENTRANCE_FUNC", "model"))
-    isdefined(Main, func) && return getproperty(Main, func)
-    return error("Entrance function '$func' is undefined.")
-end
-
-function get_entrance_args()
-    model_dir = ENV["MODEL_DIR"]
-    modelmeta = JSON.parse(open(joinpath(model_dir, "__modelmeta")))
-    serialized_entrance_args = get(modelmeta, "entrance_args", [])
-    return get_entrance_args(serialized_entrance_args)
-end
-
-function get_entrance_args(serialized_entrance_args)
-    args = []
-    for item in serialized_entrance_args
-        if item isa Dict && item["type"] == "input_id"
-            input_id = item["params"]
-            if isempty(input_id)
-                input = nothing
-            else
-                input = as_local(OpaqueData(input_id))
-            end
-            args = push!(args, input)
-        else
-            args = push!(args, item)
-        end
-    end
-
-    return args
-end
-
 function create_experiment()
     url = endpoint("api", "/object")
     data = Dict{String,Any}(
@@ -497,10 +490,6 @@ function create_experiment()
         ),
     )
     xp_meta = Dict()
-    iteration_count = parse(Int, get(ENV, "ITERATION_COUNT", "1000"))
-    if !isempty(iteration_count)
-        xp_meta["iteration_count"] = iteration_count
-    end
     if !isempty(xp_meta)
         data["xp_meta"] = xp_meta
     end
@@ -1001,43 +990,6 @@ end
 function get_input_data()
     input_id = get(ENV, "INPUT_ID", "")
     isempty(input_id) ? nothing : as_local(OpaqueData(input_id))
-end
-
-function get_sample_args(m, sampler)
-    model_dir = ENV["MODEL_DIR"]
-    modelmeta = JSON.parse(open(joinpath(model_dir, "__modelmeta")))
-    serialized_sample_args = get(modelmeta, "sample_args", [])
-    return get_sample_args(serialized_sample_args, m, sampler)
-end
-
-function get_sample_args(serialized_sample_args, m, sampler)
-    args = []
-    for item in serialized_sample_args
-        args = push!(args, _deserialize(item, m, sampler))
-    end
-
-    return args
-end
-
-function get_sample_kwargs()
-    model_dir = ENV["MODEL_DIR"]
-    modelmeta = JSON.parse(open(joinpath(model_dir, "__modelmeta")))
-    serialized_sample_kwargs = get(modelmeta, "sample_kwargs", Dict())
-    return get_sample_kwargs(serialized_sample_kwargs)
-end
-
-function get_sample_kwargs(serialized_sample_kwargs)
-    kwargs = Dict()
-    for (key, item) in serialized_sample_kwargs
-        kwargs[Symbol(key)] = item
-    end
-
-    return kwargs
-end
-
-function default_sampler_args(model, sampler, iteration_count)
-    seed = round(Integer, datetime2unix(Dates.now()))
-    return [StableRNG(seed), model, sampler, iteration_count]
 end
 
 function adapt_model_return(model_return)
