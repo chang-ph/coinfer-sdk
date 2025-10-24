@@ -22,7 +22,6 @@
         startup_script=nothing,
         settings=nothing,
         data_script=nothing,
-        parsed_data_id=nothing,
     )
 
     - object_type::String
@@ -42,7 +41,6 @@
     - startup_script::String
     - settings::String
     - data_script::String
-    - parsed_data_id::String
 """
 Base.@kwdef mutable struct CreateWorkflowRsp <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
@@ -62,9 +60,8 @@ Base.@kwdef mutable struct CreateWorkflowRsp <: OpenAPI.APIModel
     startup_script::Union{Nothing, String} = nothing
     settings::Union{Nothing, String} = nothing
     data_script::Union{Nothing, String} = nothing
-    parsed_data_id::Union{Nothing, String} = nothing
 
-    function CreateWorkflowRsp(object_type, short_id, name, model_id, model_name, data_id, data_name, data_fmt, experiment_id, experiment_name, analyzer_id, analyzer_name, created_at, updated_at, startup_script, settings, data_script, parsed_data_id, )
+    function CreateWorkflowRsp(object_type, short_id, name, model_id, model_name, data_id, data_name, data_fmt, experiment_id, experiment_name, analyzer_id, analyzer_name, created_at, updated_at, startup_script, settings, data_script, )
         OpenAPI.validate_property(CreateWorkflowRsp, Symbol("object_type"), object_type)
         OpenAPI.validate_property(CreateWorkflowRsp, Symbol("short_id"), short_id)
         OpenAPI.validate_property(CreateWorkflowRsp, Symbol("name"), name)
@@ -82,12 +79,11 @@ Base.@kwdef mutable struct CreateWorkflowRsp <: OpenAPI.APIModel
         OpenAPI.validate_property(CreateWorkflowRsp, Symbol("startup_script"), startup_script)
         OpenAPI.validate_property(CreateWorkflowRsp, Symbol("settings"), settings)
         OpenAPI.validate_property(CreateWorkflowRsp, Symbol("data_script"), data_script)
-        OpenAPI.validate_property(CreateWorkflowRsp, Symbol("parsed_data_id"), parsed_data_id)
-        return new(object_type, short_id, name, model_id, model_name, data_id, data_name, data_fmt, experiment_id, experiment_name, analyzer_id, analyzer_name, created_at, updated_at, startup_script, settings, data_script, parsed_data_id, )
+        return new(object_type, short_id, name, model_id, model_name, data_id, data_name, data_fmt, experiment_id, experiment_name, analyzer_id, analyzer_name, created_at, updated_at, startup_script, settings, data_script, )
     end
 end # type CreateWorkflowRsp
 
-const _property_types_CreateWorkflowRsp = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("short_id")=>"String", Symbol("name")=>"String", Symbol("model_id")=>"String", Symbol("model_name")=>"String", Symbol("data_id")=>"String", Symbol("data_name")=>"String", Symbol("data_fmt")=>"String", Symbol("experiment_id")=>"String", Symbol("experiment_name")=>"String", Symbol("analyzer_id")=>"String", Symbol("analyzer_name")=>"String", Symbol("created_at")=>"ZonedDateTime", Symbol("updated_at")=>"ZonedDateTime", Symbol("startup_script")=>"String", Symbol("settings")=>"String", Symbol("data_script")=>"String", Symbol("parsed_data_id")=>"String", )
+const _property_types_CreateWorkflowRsp = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("short_id")=>"String", Symbol("name")=>"String", Symbol("model_id")=>"String", Symbol("model_name")=>"String", Symbol("data_id")=>"String", Symbol("data_name")=>"String", Symbol("data_fmt")=>"String", Symbol("experiment_id")=>"String", Symbol("experiment_name")=>"String", Symbol("analyzer_id")=>"String", Symbol("analyzer_name")=>"String", Symbol("created_at")=>"ZonedDateTime", Symbol("updated_at")=>"ZonedDateTime", Symbol("startup_script")=>"String", Symbol("settings")=>"String", Symbol("data_script")=>"String", )
 OpenAPI.property_type(::Type{ CreateWorkflowRsp }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_CreateWorkflowRsp[name]))}
 
 function check_required(o::CreateWorkflowRsp)
@@ -126,7 +122,6 @@ function OpenAPI.validate_property(::Type{ CreateWorkflowRsp }, name::Symbol, va
     if name === Symbol("updated_at")
         OpenAPI.validate_param(name, "CreateWorkflowRsp", :format, val, "date-time")
     end
-
 
 
 

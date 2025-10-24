@@ -51,7 +51,6 @@ Name | Type | Description | Notes
 **startup_script** | **str** |  | [optional] 
 **settings** | **str** |  | [optional] 
 **data_script** | **str** |  | [optional] 
-**parsed_data_id** | **str** |  | [optional] 
 
 ## Example
 

@@ -95,7 +95,6 @@ class TestPayload1(unittest.TestCase):
                 startup_script = '',
                 settings = '',
                 data_script = '',
-                parsed_data_id = '',
                 base64_encoded = True,
                 data = '',
                 data_uri = ''

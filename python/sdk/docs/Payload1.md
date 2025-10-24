@@ -36,7 +36,6 @@ Name | Type | Description | Notes
 **startup_script** | **str** |  | [optional] [default to '']
 **settings** | **str** |  | [optional] 
 **data_script** | **str** |  | [optional] 
-**parsed_data_id** | **str** |  | [optional] 
 **base64_encoded** | **bool** | Whether the data in &#x60;data&#x60; is base64 encoded | [optional] [default to False]
 **data** | **str** |  | [optional] 
 **data_uri** | **str** |  | [optional] 

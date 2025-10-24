@@ -42,8 +42,7 @@ class TestUpdateWorkflowReq(unittest.TestCase):
                 analyzer_result = '',
                 startup_script = '',
                 settings = '',
-                data_script = '',
-                parsed_data_id = ''
+                data_script = ''
             )
         else:
             return UpdateWorkflowReq(

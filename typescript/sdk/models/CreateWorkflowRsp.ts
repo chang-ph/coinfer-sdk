@@ -18,7 +18,6 @@ export class CreateWorkflowRsp {
     'startupScript'?: string | null;
     'settings'?: string | null;
     'dataScript'?: string | null;
-    'parsedDataId'?: string | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -124,12 +123,6 @@ export class CreateWorkflowRsp {
         {
             "name": "dataScript",
             "baseName": "data_script",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "parsedDataId",
-            "baseName": "parsed_data_id",
             "type": "string",
             "format": ""
         }    ];

@@ -1,12 +1,13 @@
 name = "Coinfer"
 uuid = "2494631e-bceb-4539-8821-5341beee86e1"
-authors = ["withdata.io"]
 version = "0.0.2"
+authors = ["withdata.io"]
 
 [deps]
 AbstractMCMC = "80f14c24-f653-4e6a-9b94-39d6b0f70001"
 Base64 = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+CodecZlib = "944b1d66-785c-5afd-91f1-9de20f533193"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 Dates = "ade2ca70-3891-5945-98fb-dc099432e06a"
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
@@ -27,6 +28,7 @@ TensorBoardLogger = "899adc3e-224a-11e9-021f-63837185c80f"
 Turing = "fce5fe82-541a-59a6-adf8-730c64b5f9a0"
 TuringCallbacks = "ea0860ee-d0ef-45ef-82e6-cc37d6be2f9c"
 UUIDs = "cf7118a7-6976-5b1a-9a39-7adc72f591a4"
+YAML = "ddb6d928-2868-570f-bddf-ab3f9cf99eb6"
 
 [sources]
 AbstractMCMC = {rev = "multiple-chains", url = "https://github.com/vectorly-ai/AbstractMCMC.jl"}

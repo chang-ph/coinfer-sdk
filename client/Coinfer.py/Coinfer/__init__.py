@@ -5,9 +5,9 @@ import sys
 import tarfile
 import tempfile
 from collections import defaultdict
-from functools import lru_cache
+from functools import cached_property, lru_cache
 from html import escape as html_escape
-from typing import Any
+from typing import Any, Callable
 from urllib.parse import unquote
 
 import numpy as np
@@ -189,15 +189,31 @@ def _convert_plots_to_json(plots):
 
 class Workflow:
     def __init__(self, workflow_id: str, client: Client) -> None:
+        self.client = client
         wf_rsp = client.get_object(workflow_id)
+        self.workflow_id = workflow_id
         self.model_id = wf_rsp["model_id"]
         self.data_id = wf_rsp["data_id"]
         self.experiment_id = wf_rsp["experiment_id"]
         self.analyzer_id = wf_rsp["analyzer_id"]
 
-        self.experiment = Experiment(
-            client.endpoints, client.coinfer_auth_token, self.experiment_id
+    @cached_property
+    def experiment(self):
+        return Experiment(
+            self.client.endpoints, self.client.coinfer_auth_token, self.experiment_id
         )
+
+    def parse_data(self, parse_func: Callable[[bytes | None], Any]) -> None:
+        if self.data_id:
+            data = self.client.get_object(self.data_id)
+            url = data["path"]
+            rsp = requests.get(url)
+            assert rsp
+            parsed_data = json.dumps(parse_func(rsp.content))
+        else:
+            parsed_data = json.dumps(parse_func(None))
+        with open(f"/tmp/parsed_data.{self.workflow_id}", "w") as fout:
+            fout.write(parsed_data)
 
 
 def current_workflow():

@@ -19,7 +19,10 @@ using Random
 using Base64
 using DynamicPPL
 using UUIDs
+using CodecZlib
 using DocStringExtensions
+using YAML
+using Base.Filesystem
 
 ### msg_collector
 interval = parse(Int, get(ENV, "COINFER_DATA_SENDING_INTERVAL", "3000"))
@@ -29,8 +32,9 @@ end
 
 mutable struct Workflow
     model
-    data
+    parsed_data
     analyzer
+    settings
 end
 
 function get_object(objid::String)
@@ -51,13 +55,22 @@ function current_workflow()
     end
     wf_id = get(ENV, "WORKFLOW_ID", "")
     wf_rsp = get_object(wf_id)
-    data = nothing
-    if !isnothing(wf_rsp["data_id"])
-        data = read(as_local(OpaqueData(wf_rsp["data_id"])).file, String)
+    parsed_data = []
+    if Filesystem.isfile("/tmp/parsed_data.$wf_id")
+        parsed_data = [_convert_type(x) for x in JSON.parsefile("/tmp/parsed_data.$wf_id")]
     end
 
-    wf[] = Workflow(nothing, data, nothing)
+    settings = YAML.load(wf_rsp["settings"])
+    wf[] = Workflow(nothing, parsed_data, nothing, settings)
     return wf[]
+end
+
+function _convert_type(v::Union{Any,Array{Any}})
+    if isa(v, Vector)
+        isempty(v) && return v
+        return convert.(typeof(v[1]), v)
+    end
+    return v
 end
 
 mutable struct MsgCollector

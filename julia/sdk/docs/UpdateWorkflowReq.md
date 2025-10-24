@@ -14,7 +14,6 @@ Name | Type | Description | Notes
 **startup_script** | **String** |  | [optional] [default to nothing]
 **settings** | **String** |  | [optional] [default to nothing]
 **data_script** | **String** |  | [optional] [default to nothing]
-**parsed_data_id** | **String** |  | [optional] [default to nothing]
 
 
 [[Back to Model list]](../README.md#models) [[Back to API list]](../README.md#api-endpoints) [[Back to README]](../README.md)

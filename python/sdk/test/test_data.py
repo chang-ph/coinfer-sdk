@@ -91,8 +91,7 @@ class TestData(unittest.TestCase):
                 analyzer_name = '',
                 startup_script = '',
                 settings = '',
-                data_script = '',
-                parsed_data_id = ''
+                data_script = ''
             )
         else:
             return Data(
