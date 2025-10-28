@@ -11,6 +11,7 @@ export class GetConfigRsp {
     'defaultModel': string;
     'defaultData': string;
     'defaultAnalyzer': string;
+    'defaultDataScript': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -74,6 +75,12 @@ export class GetConfigRsp {
         {
             "name": "defaultAnalyzer",
             "baseName": "default_analyzer",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "defaultDataScript",
+            "baseName": "default_data_script",
             "type": "string",
             "format": ""
         }    ];

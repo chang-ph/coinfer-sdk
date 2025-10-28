@@ -42,7 +42,8 @@ class TestGetConfigRsp(unittest.TestCase):
                 arviz_plotting_endpoint = '',
                 default_model = '',
                 default_data = '',
-                default_analyzer = ''
+                default_analyzer = '',
+                default_data_script = ''
             )
         else:
             return GetConfigRsp(
@@ -56,6 +57,7 @@ class TestGetConfigRsp(unittest.TestCase):
                 default_model = '',
                 default_data = '',
                 default_analyzer = '',
+                default_data_script = '',
         )
         """
 

@@ -44,7 +44,8 @@ class TestSuccRspGetConfigRsp(unittest.TestCase):
                     arviz_plotting_endpoint = '', 
                     default_model = '', 
                     default_data = '', 
-                    default_analyzer = '', )
+                    default_analyzer = '', 
+                    default_data_script = '', )
             )
         else:
             return SuccRspGetConfigRsp(
@@ -59,7 +60,8 @@ class TestSuccRspGetConfigRsp(unittest.TestCase):
                     arviz_plotting_endpoint = '', 
                     default_model = '', 
                     default_data = '', 
-                    default_analyzer = '', ),
+                    default_analyzer = '', 
+                    default_data_script = '', ),
         )
         """
 

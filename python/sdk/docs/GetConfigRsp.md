@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **default_model** | **str** |  | 
 **default_data** | **str** |  | 
 **default_analyzer** | **str** |  | 
+**default_data_script** | **str** |  | 
 
 ## Example
 
