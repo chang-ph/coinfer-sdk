@@ -70,6 +70,37 @@ function config(_api::SystemApi, response_stream::Channel; _mediaType=nothing)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
+const _returntypes_download_workflow_SystemApi = Dict{Regex,Type}(
+    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspAny,
+)
+
+function _oacinternal_download_workflow(_api::SystemApi, objid::String; is_cloud=nothing, _mediaType=nothing)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_download_workflow_SystemApi, "/sys/download-workflow", ["GlobalAuth", ])
+    OpenAPI.Clients.set_param(_ctx.query, "objid", objid; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "is_cloud", is_cloud; style="form", is_explode=true)  # type Bool
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
+    return _ctx
+end
+
+@doc raw"""Download workflow.
+
+Params:
+- objid::String (required)
+- is_cloud::Bool
+
+Return: SuccRspAny, OpenAPI.Clients.ApiResponse
+"""
+function download_workflow(_api::SystemApi, objid::String; is_cloud=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_download_workflow(_api, objid; is_cloud=is_cloud, _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx)
+end
+
+function download_workflow(_api::SystemApi, response_stream::Channel, objid::String; is_cloud=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_download_workflow(_api, objid; is_cloud=is_cloud, _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx, response_stream)
+end
+
 const _returntypes_repository_SystemApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspDemoListRsp,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
@@ -100,4 +131,5 @@ end
 
 export arviz_plot
 export config
+export download_workflow
 export repository

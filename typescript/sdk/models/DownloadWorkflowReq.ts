@@ -1,9 +1,8 @@
-import { Null } from '../models/Null';
 import { HttpFile } from '../http/http';
 
-export class SuccRspNoneType {
-    'status': SuccRspNoneTypeStatusEnum;
-    'data': Null;
+export class DownloadWorkflowReq {
+    'objid': string;
+    'isCloud'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -11,27 +10,22 @@ export class SuccRspNoneType {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "status",
-            "baseName": "status",
-            "type": "SuccRspNoneTypeStatusEnum",
+            "name": "objid",
+            "baseName": "objid",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "data",
-            "baseName": "data",
-            "type": "Null",
+            "name": "isCloud",
+            "baseName": "is_cloud",
+            "type": "boolean",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return SuccRspNoneType.attributeTypeMap;
+        return DownloadWorkflowReq.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
-
-export enum SuccRspNoneTypeStatusEnum {
-    Ok = 'ok'
-}
-

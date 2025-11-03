@@ -1,12 +1,7 @@
 .gitattributes
 .gitignore
 .openapi-generator-ignore
-AuthorizationApi.md
-NotificationApi.md
-ObjectApi.md
 README.md
-ShareApi.md
-SystemApi.md
 apis/AuthorizationApi.ts
 apis/NotificationApi.ts
 apis/ObjectApi.ts
@@ -16,6 +11,11 @@ apis/baseapi.ts
 apis/exception.ts
 auth/auth.ts
 configuration.ts
+docs/AuthorizationApi.md
+docs/NotificationApi.md
+docs/ObjectApi.md
+docs/ShareApi.md
+docs/SystemApi.md
 git_push.sh
 http/http.ts
 http/isomorphic-fetch.ts
@@ -55,6 +55,7 @@ models/DeleteObject.ts
 models/DeleteTokenReq.ts
 models/DemoListItem.ts
 models/DemoListRsp.ts
+models/DownloadWorkflowReq.ts
 models/ErrRsp.ts
 models/ExperimentCloudwatchLogRsp.ts
 models/ExperimentPlotRsp.ts
@@ -90,6 +91,7 @@ models/RunWorkflowAnalyzerReq.ts
 models/RunWorkflowReq.ts
 models/ShareInfoModel.ts
 models/SoftDeletedRsp.ts
+models/SuccRspAny.ts
 models/SuccRspAuth0ConfigRsp.ts
 models/SuccRspAuth0LoginRsp.ts
 models/SuccRspCode2TokenRsp.ts

@@ -11,7 +11,7 @@
         input_id="",
         meta=nothing,
         name="",
-        run_on="Lambda",
+        run_on="lambda",
         data_file_type=nothing,
         data_files=nothing,
         data_uris=nothing,
@@ -35,7 +35,7 @@ Base.@kwdef mutable struct CreateExperiment <: OpenAPI.APIModel
     input_id::Union{Nothing, String} = ""
     meta::Union{Nothing, Any} = nothing
     name::Union{Nothing, String} = ""
-    run_on::Union{Nothing, String} = "Lambda"
+    run_on::Union{Nothing, String} = "lambda"
     data_file_type::Union{Nothing, String} = nothing
     data_files::Union{Nothing, Vector{String}} = nothing
     data_uris::Union{Nothing, Vector{String}} = nothing
@@ -76,7 +76,7 @@ function OpenAPI.validate_property(::Type{ CreateExperiment }, name::Symbol, val
 
 
     if name === Symbol("run_on")
-        OpenAPI.validate_param(name, "CreateExperiment", :enum, val, ["Lambda", "Fargate", "Local"])
+        OpenAPI.validate_param(name, "CreateExperiment", :enum, val, ["lambda", "fargate", "local"])
     end
 
 

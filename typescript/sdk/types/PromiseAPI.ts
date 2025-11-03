@@ -35,6 +35,7 @@ import { DeleteObject } from '../models/DeleteObject';
 import { DeleteTokenReq } from '../models/DeleteTokenReq';
 import { DemoListItem } from '../models/DemoListItem';
 import { DemoListRsp } from '../models/DemoListRsp';
+import { DownloadWorkflowReq } from '../models/DownloadWorkflowReq';
 import { ErrRsp } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
 import { ExperimentPlotRsp } from '../models/ExperimentPlotRsp';
@@ -69,6 +70,7 @@ import { RunWorkflowAnalyzerReq } from '../models/RunWorkflowAnalyzerReq';
 import { RunWorkflowReq } from '../models/RunWorkflowReq';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SoftDeletedRsp } from '../models/SoftDeletedRsp';
+import { SuccRspAny } from '../models/SuccRspAny';
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
 import { SuccRspCode2TokenRsp } from '../models/SuccRspCode2TokenRsp';
@@ -705,6 +707,26 @@ export class PromiseSystemApi {
      */
     public config(_options?: Configuration): Promise<SuccRspGetConfigRsp> {
         const result = this.api.config(_options);
+        return result.toPromise();
+    }
+
+    /**
+     * Download workflow.
+     * @param objid
+     * @param [isCloud]
+     */
+    public downloadWorkflowWithHttpInfo(objid: string, isCloud?: boolean, _options?: Configuration): Promise<HttpInfo<SuccRspAny>> {
+        const result = this.api.downloadWorkflowWithHttpInfo(objid, isCloud, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * Download workflow.
+     * @param objid
+     * @param [isCloud]
+     */
+    public downloadWorkflow(objid: string, isCloud?: boolean, _options?: Configuration): Promise<SuccRspAny> {
+        const result = this.api.downloadWorkflow(objid, isCloud, _options);
         return result.toPromise();
     }
 

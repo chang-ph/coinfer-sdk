@@ -35,6 +35,7 @@ docs/DeleteObject.md
 docs/DeleteTokenReq.md
 docs/DemoListItem.md
 docs/DemoListRsp.md
+docs/DownloadWorkflowReq.md
 docs/ErrRsp.md
 docs/ExperimentCloudwatchLogRsp.md
 docs/ExperimentPlotRsp.md
@@ -72,6 +73,7 @@ docs/RunWorkflowReq.md
 docs/ShareApi.md
 docs/ShareInfoModel.md
 docs/SoftDeletedRsp.md
+docs/SuccRspAny.md
 docs/SuccRspAuth0ConfigRsp.md
 docs/SuccRspAuth0LoginRsp.md
 docs/SuccRspCode2TokenRsp.md
@@ -151,6 +153,7 @@ src/models/model_DeleteObject.jl
 src/models/model_DeleteTokenReq.jl
 src/models/model_DemoListItem.jl
 src/models/model_DemoListRsp.jl
+src/models/model_DownloadWorkflowReq.jl
 src/models/model_ErrRsp.jl
 src/models/model_ExperimentCloudwatchLogRsp.jl
 src/models/model_ExperimentPlotRsp.jl
@@ -185,6 +188,7 @@ src/models/model_RunWorkflowAnalyzerReq.jl
 src/models/model_RunWorkflowReq.jl
 src/models/model_ShareInfoModel.jl
 src/models/model_SoftDeletedRsp.jl
+src/models/model_SuccRspAny.jl
 src/models/model_SuccRspAuth0ConfigRsp.jl
 src/models/model_SuccRspAuth0LoginRsp.jl
 src/models/model_SuccRspCode2TokenRsp.jl

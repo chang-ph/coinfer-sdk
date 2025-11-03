@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **input_id** | **String** |  | [optional] [default to ""]
 **meta** | **Any** |  | [optional] [default to nothing]
 **name** | **String** |  | [optional] [default to ""]
-**run_on** | **String** |  | [optional] [default to "Lambda"]
+**run_on** | **String** |  | [optional] [default to "lambda"]
 **data_file_type** | **String** |  | [optional] [default to nothing]
 **data_files** | **Vector{String}** | File data in text format | [optional] [default to nothing]
 **data_uris** | **Vector{String}** | File data URI | [optional] [default to nothing]

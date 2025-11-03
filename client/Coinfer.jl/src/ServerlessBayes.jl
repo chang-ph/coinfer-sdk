@@ -657,7 +657,8 @@ function sample(args...; kwargs...)
                     "batch_id" => ENV["BATCH_ID"],
                     "run_id" => ENV["RUN_ID"],
                 ),
-            ),
+            );
+            allownan=true,
         )
         resp = @mock HTTP.post(
             url, headers, body; retry_non_idempotent=true, retries=2, retry=true

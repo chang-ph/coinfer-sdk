@@ -10,11 +10,11 @@
     )
 
     - status::String
-    - data::Any
+    - data::Null
 """
 Base.@kwdef mutable struct SuccRspNoneType <: OpenAPI.APIModel
     status::Union{Nothing, String} = nothing
-    data::Union{Nothing, Any} = nothing
+    data = nothing # spec type: Union{ Nothing, Null }
 
     function SuccRspNoneType(status, data, )
         OpenAPI.validate_property(SuccRspNoneType, Symbol("status"), status)
@@ -23,7 +23,7 @@ Base.@kwdef mutable struct SuccRspNoneType <: OpenAPI.APIModel
     end
 end # type SuccRspNoneType
 
-const _property_types_SuccRspNoneType = Dict{Symbol,String}(Symbol("status")=>"String", Symbol("data")=>"Any", )
+const _property_types_SuccRspNoneType = Dict{Symbol,String}(Symbol("status")=>"String", Symbol("data")=>"Null", )
 OpenAPI.property_type(::Type{ SuccRspNoneType }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_SuccRspNoneType[name]))}
 
 function check_required(o::SuccRspNoneType)

@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**arviz_plot**](SystemApi.md#arviz_plot) | **POST** /sys/plot | Get Arviz plot data.
 [**config**](SystemApi.md#config) | **GET** /sys/config | Get configuration about how to run a model.
+[**download_workflow**](SystemApi.md#download_workflow) | **GET** /sys/download-workflow | Download workflow.
 [**repository**](SystemApi.md#repository) | **GET** /sys/gallery | List gallery data.
 
 
@@ -55,6 +56,40 @@ This endpoint does not need any parameter.
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+# **download_workflow**
+> download_workflow(_api::SystemApi, objid::String; is_cloud=nothing, _mediaType=nothing) -> SuccRspAny, OpenAPI.Clients.ApiResponse <br/>
+> download_workflow(_api::SystemApi, response_stream::Channel, objid::String; is_cloud=nothing, _mediaType=nothing) -> Channel{ SuccRspAny }, OpenAPI.Clients.ApiResponse
+
+Download workflow.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **SystemApi** | API context | 
+**objid** | **String** |  |
+
+### Optional Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **is_cloud** | **Bool** |  | [default to false]
+
+### Return type
+
+[**SuccRspAny**](SuccRspAny.md)
+
+### Authorization
+
+[GlobalAuth](../README.md#GlobalAuth)
 
 ### HTTP request headers
 

@@ -35,6 +35,7 @@ import { DeleteObject } from '../models/DeleteObject';
 import { DeleteTokenReq } from '../models/DeleteTokenReq';
 import { DemoListItem } from '../models/DemoListItem';
 import { DemoListRsp } from '../models/DemoListRsp';
+import { DownloadWorkflowReq } from '../models/DownloadWorkflowReq';
 import { ErrRsp } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
 import { ExperimentPlotRsp } from '../models/ExperimentPlotRsp';
@@ -69,6 +70,7 @@ import { RunWorkflowAnalyzerReq } from '../models/RunWorkflowAnalyzerReq';
 import { RunWorkflowReq } from '../models/RunWorkflowReq';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SoftDeletedRsp } from '../models/SoftDeletedRsp';
+import { SuccRspAny } from '../models/SuccRspAny';
 import { SuccRspAuth0ConfigRsp } from '../models/SuccRspAuth0ConfigRsp';
 import { SuccRspAuth0LoginRsp } from '../models/SuccRspAuth0LoginRsp';
 import { SuccRspCode2TokenRsp } from '../models/SuccRspCode2TokenRsp';
@@ -912,6 +914,23 @@ export interface SystemApiArvizPlotRequest {
 export interface SystemApiConfigRequest {
 }
 
+export interface SystemApiDownloadWorkflowRequest {
+    /**
+     * 
+     * Defaults to: undefined
+     * @type string
+     * @memberof SystemApidownloadWorkflow
+     */
+    objid: string
+    /**
+     * 
+     * Defaults to: false
+     * @type boolean
+     * @memberof SystemApidownloadWorkflow
+     */
+    isCloud?: boolean
+}
+
 export interface SystemApiRepositoryRequest {
 }
 
@@ -954,6 +973,22 @@ export class ObjectSystemApi {
      */
     public config(param: SystemApiConfigRequest = {}, options?: Configuration): Promise<SuccRspGetConfigRsp> {
         return this.api.config( options).toPromise();
+    }
+
+    /**
+     * Download workflow.
+     * @param param the request object
+     */
+    public downloadWorkflowWithHttpInfo(param: SystemApiDownloadWorkflowRequest, options?: Configuration): Promise<HttpInfo<SuccRspAny>> {
+        return this.api.downloadWorkflowWithHttpInfo(param.objid, param.isCloud,  options).toPromise();
+    }
+
+    /**
+     * Download workflow.
+     * @param param the request object
+     */
+    public downloadWorkflow(param: SystemApiDownloadWorkflowRequest, options?: Configuration): Promise<SuccRspAny> {
+        return this.api.downloadWorkflow(param.objid, param.isCloud,  options).toPromise();
     }
 
     /**

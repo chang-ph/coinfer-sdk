@@ -96,9 +96,9 @@ export enum CreateExperimentObjectTypeEnum {
     Experiment = 'experiment'
 }
 export enum CreateExperimentRunOnEnum {
-    Lambda = 'Lambda',
-    Fargate = 'Fargate',
-    Local = 'Local'
+    Lambda = 'lambda',
+    Fargate = 'fargate',
+    Local = 'local'
 }
 export enum CreateExperimentDataFileTypeEnum {
     TuringCsv = 'turing csv',
