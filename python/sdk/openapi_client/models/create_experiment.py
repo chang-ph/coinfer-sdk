@@ -30,7 +30,7 @@ class CreateExperiment(BaseModel):
     input_id: Optional[StrictStr] = ''
     meta: Optional[Any] = None
     name: Optional[StrictStr] = ''
-    run_on: Optional[StrictStr] = 'Lambda'
+    run_on: Optional[StrictStr] = 'lambda'
     data_file_type: Optional[StrictStr] = None
     data_files: Optional[List[StrictStr]] = Field(default=None, description="File data in text format")
     data_uris: Optional[List[StrictStr]] = Field(default=None, description="File data URI")
@@ -49,8 +49,8 @@ class CreateExperiment(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Lambda', 'Fargate', 'Local']):
-            raise ValueError("must be one of enum values ('Lambda', 'Fargate', 'Local')")
+        if value not in set(['lambda', 'fargate', 'local']):
+            raise ValueError("must be one of enum values ('lambda', 'fargate', 'local')")
         return value
 
     @field_validator('data_file_type')
@@ -130,7 +130,7 @@ class CreateExperiment(BaseModel):
             "input_id": obj.get("input_id") if obj.get("input_id") is not None else '',
             "meta": obj.get("meta"),
             "name": obj.get("name") if obj.get("name") is not None else '',
-            "run_on": obj.get("run_on") if obj.get("run_on") is not None else 'Lambda',
+            "run_on": obj.get("run_on") if obj.get("run_on") is not None else 'lambda',
             "data_file_type": obj.get("data_file_type"),
             "data_files": obj.get("data_files"),
             "data_uris": obj.get("data_uris")

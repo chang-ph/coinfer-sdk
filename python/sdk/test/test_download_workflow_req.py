@@ -12,10 +12,10 @@
 
 import unittest
 
-from openapi_client.models.succ_rsp_any import SuccRspAny
+from openapi_client.models.download_workflow_req import DownloadWorkflowReq
 
-class TestSuccRspAny(unittest.TestCase):
-    """SuccRspAny unit test stubs"""
+class TestDownloadWorkflowReq(unittest.TestCase):
+    """DownloadWorkflowReq unit test stubs"""
 
     def setUp(self):
         pass
@@ -23,28 +23,27 @@ class TestSuccRspAny(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> SuccRspAny:
-        """Test SuccRspAny
+    def make_instance(self, include_optional) -> DownloadWorkflowReq:
+        """Test DownloadWorkflowReq
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `SuccRspAny`
+        # uncomment below to create an instance of `DownloadWorkflowReq`
         """
-        model = SuccRspAny()
+        model = DownloadWorkflowReq()
         if include_optional:
-            return SuccRspAny(
-                status = 'ok',
-                data = None
+            return DownloadWorkflowReq(
+                objid = '',
+                is_cloud = True
             )
         else:
-            return SuccRspAny(
-                status = 'ok',
-                data = None,
+            return DownloadWorkflowReq(
+                objid = '',
         )
         """
 
-    def testSuccRspAny(self):
-        """Test SuccRspAny"""
+    def testDownloadWorkflowReq(self):
+        """Test DownloadWorkflowReq"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

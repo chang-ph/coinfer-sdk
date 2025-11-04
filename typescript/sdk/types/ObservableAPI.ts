@@ -69,6 +69,7 @@ import { PlotRsp } from '../models/PlotRsp';
 import { RunCloudFunctionScript } from '../models/RunCloudFunctionScript';
 import { RunWorkflowAnalyzerReq } from '../models/RunWorkflowAnalyzerReq';
 import { RunWorkflowReq } from '../models/RunWorkflowReq';
+import { SaveAnalyzerResultReq } from '../models/SaveAnalyzerResultReq';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SoftDeletedRsp } from '../models/SoftDeletedRsp';
 import { SuccRspAny } from '../models/SuccRspAny';

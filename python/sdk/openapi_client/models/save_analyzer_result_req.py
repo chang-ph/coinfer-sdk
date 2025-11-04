@@ -15,24 +15,27 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class SuccRspAny(BaseModel):
+class SaveAnalyzerResultReq(BaseModel):
     """
-    SuccRspAny
+    SaveAnalyzerResultReq
     """ # noqa: E501
-    status: StrictStr
-    data: Optional[Any]
-    __properties: ClassVar[List[str]] = ["status", "data"]
+    object_type: StrictStr
+    return_code: StrictInt
+    errlines: List[StrictStr]
+    output_data: StrictStr
+    result: StrictStr
+    __properties: ClassVar[List[str]] = ["object_type", "return_code", "errlines", "output_data", "result"]
 
-    @field_validator('status')
-    def status_validate_enum(cls, value):
+    @field_validator('object_type')
+    def object_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['ok']):
-            raise ValueError("must be one of enum values ('ok')")
+        if value not in set(['workflow.analyzer_result']):
+            raise ValueError("must be one of enum values ('workflow.analyzer_result')")
         return value
 
     model_config = ConfigDict(
@@ -53,7 +56,7 @@ class SuccRspAny(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of SuccRspAny from a JSON string"""
+        """Create an instance of SaveAnalyzerResultReq from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,16 +77,11 @@ class SuccRspAny(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if data (nullable) is None
-        # and model_fields_set contains the field
-        if self.data is None and "data" in self.model_fields_set:
-            _dict['data'] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of SuccRspAny from a dict"""
+        """Create an instance of SaveAnalyzerResultReq from a dict"""
         if obj is None:
             return None
 
@@ -91,8 +89,11 @@ class SuccRspAny(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "status": obj.get("status"),
-            "data": obj.get("data")
+            "object_type": obj.get("object_type"),
+            "return_code": obj.get("return_code"),
+            "errlines": obj.get("errlines"),
+            "output_data": obj.get("output_data"),
+            "result": obj.get("result")
         })
         return _obj
 

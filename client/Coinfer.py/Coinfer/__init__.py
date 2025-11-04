@@ -1,6 +1,7 @@
 import gzip
 import json
 import os
+from pathlib import Path
 import sys
 import tarfile
 import tempfile
@@ -14,6 +15,7 @@ import numpy as np
 from bokeh.embed import json_item
 from bokeh.layouts import gridplot
 
+from . import cmd_impl
 from .client import Client, RunInfoData
 from .logged_requests import CheckResponseSubject, requests
 
@@ -48,9 +50,7 @@ class Experiment:
         self.experiment_id = experiment_id
         self.server_endpoint = server_endpoint
         self.auth_token = auth_token
-        self.inference_data = self._download_inference_data(
-            self.server_endpoint, self.auth_token, self.experiment_id
-        )
+        self.inference_data = self._download_inference_data(self.server_endpoint, self.auth_token, self.experiment_id)
 
     @lru_cache(maxsize=1)
     def all_chains(self) -> list[str]:
@@ -62,16 +62,12 @@ class Experiment:
         return list(idata.posterior.data_vars.keys())
 
     @classmethod
-    def _download_inference_data(
-        cls, server_endpoint: str, auth_token: str, experiment_id: str
-    ):
+    def _download_inference_data(cls, server_endpoint: str, auth_token: str, experiment_id: str):
         import arviz as az
 
         set_arviz_params(az)
 
-        download_url = (
-            f"{server_endpoint}/sys/get-arviz-data?experiment_id={experiment_id}"
-        )
+        download_url = f"{server_endpoint}/sys/get-arviz-data?experiment_id={experiment_id}"
         if auth_token:
             headers = {"Authorization": f"Bearer {auth_token}"}
         else:
@@ -90,10 +86,7 @@ class Experiment:
             for item in os.listdir(temp_dir):
                 if item.endswith(".nc"):
                     inference_data = az.from_netcdf(os.path.join(temp_dir, item))
-                    name_mapping = {
-                        name: unquote(name)
-                        for name in inference_data.posterior.data_vars.keys()
-                    }
+                    name_mapping = {name: unquote(name) for name in inference_data.posterior.data_vars.keys()}
                     inference_data.rename(name_mapping, inplace=True)
                     inference_data_by_chain[item[:-3]] = inference_data
             if not inference_data_by_chain:
@@ -151,9 +144,7 @@ def render_plots_to_html(plot) -> str:
                 divs.append(
                     f"<h4>chain={html_escape(chain, quote=False)} var_name={html_escape(var_name, quote=False)}</h4>"
                 )
-            divs.append(
-                f'<div id="{html_escape(plot_func)}_{html_escape(chain)}_{html_escape(var_name)}"></div>'
-            )
+            divs.append(f'<div id="{html_escape(plot_func)}_{html_escape(chain)}_{html_escape(var_name)}"></div>')
 
             # Embed the JSON data safely in a <script type="application/json"> tag
             divs.append(
@@ -190,36 +181,30 @@ def _convert_plots_to_json(plots):
 class Workflow:
     def __init__(self, workflow_id: str, client: Client) -> None:
         self.client = client
-        wf_rsp = client.get_object(workflow_id)
         self.workflow_id = workflow_id
-        self.model_id = wf_rsp["model_id"]
-        self.data_id = wf_rsp["data_id"]
-        self.experiment_id = wf_rsp["experiment_id"]
-        self.analyzer_id = wf_rsp["analyzer_id"]
+        if workflow_id:
+            wf_rsp = client.get_object(workflow_id)
+            self.model_id = wf_rsp["model_id"]
+            self.experiment_id = wf_rsp["experiment_id"]
+            self.analyzer_id = wf_rsp["analyzer_id"]
+        data_path = Path("data")
+        if data_path.is_file():
+            self.data = data_path.read_bytes()
+        else:
+            self.data = None
 
     @cached_property
     def experiment(self):
-        return Experiment(
-            self.client.endpoints, self.client.coinfer_auth_token, self.experiment_id
-        )
+        return Experiment(self.client.endpoints, self.client.coinfer_auth_token, self.experiment_id)
 
     def parse_data(self, parse_func: Callable[[bytes | None], Any]) -> None:
-        if self.data_id:
-            data = self.client.get_object(self.data_id)
-            url = data["path"]
-            rsp = requests.get(url)
-            assert rsp
-            parsed_data = json.dumps(parse_func(rsp.content))
-        else:
-            parsed_data = json.dumps(parse_func(None))
+        parsed_data = json.dumps(parse_func(self.data))
         with open(f"/tmp/parsed_data.{self.workflow_id}", "w") as fout:
             fout.write(parsed_data)
 
 
 def current_workflow():
-    client = Client(
-        os.environ["COINFER_SERVER_ENDPOINT"], os.environ["COINFER_AUTH_TOKEN"]
-    )
+    client = Client(os.environ["COINFER_SERVER_ENDPOINT"], os.environ["COINFER_AUTH_TOKEN"])
     return Workflow(os.environ["WORKFLOW_ID"], client)
 
 
@@ -233,4 +218,5 @@ __all__ = [
     "render_plots_to_html",
     "Workflow",
     "current_workflow",
+    "cmd_impl",
 ]

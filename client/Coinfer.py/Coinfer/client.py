@@ -1,8 +1,8 @@
 import json
 import logging
-from typing import TypedDict, Required, Any
+from typing import Any, Required, TypedDict
 
-from .logged_requests import requests
+from .logged_requests import requests, requests_lib
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -16,6 +16,11 @@ class RunInfoData(TypedDict, total=False):
     log_stream: str
     run_on: str
     status: str
+
+
+class LogDataDict(TypedDict):
+    vars: dict[str, dict[str, list[Any]]]
+    iteration: dict[str, tuple[int, int, int]]
 
 
 class Client:
@@ -41,15 +46,17 @@ class Client:
         return headers
 
     @staticmethod
-    def response_data(resp) -> dict[str, Any]:
+    def response_data(resp: requests_lib.Response | None) -> dict[str, Any]:
+        if not resp:
+            raise Exception("Empty response")
         rdata = resp.json()
         if rdata["status"] != "ok":
             msg = rdata["message"]
             logger.error(f"{msg}")
             raise Exception(msg)
-        return rdata["data"]
+        return rdata["data"] or {}
 
-    def sendmsg(self, group, data, mtype="object_broadcast"):
+    def sendmsg(self, group: str, data: dict[str, Any], mtype: str = "object_broadcast"):
         url = self.endpoint("api", "/object/" + self.run_info["experiment_id"])
         data = {
             "payload": {
@@ -64,12 +71,10 @@ class Client:
             }
         }
         data["payload"].update(self.run_info)
-        res = self.session.post(
-            url, data=json.dumps(data), headers=self.headers_with_auth()
-        )
+        res = self.session.post(url, data=json.dumps(data), headers=self.headers_with_auth())
         return self.response_data(res)
 
-    def update_experiment(self, exp_id, data):
+    def update_experiment(self, exp_id: str, data: dict[str, Any]):
         if self.run_info:
             data.setdefault("meta", {}).setdefault("run_info", {}).update(self.run_info)
             if data.get("status"):
@@ -83,10 +88,16 @@ class Client:
         return self.response_data(res)
 
     def create_experiment(
-        self, model_id, workflow_id, input_id, meta, name="", run_on=""
+        self,
+        model_id: str,
+        workflow_id: str,
+        input_id: str,
+        meta: dict[str, Any],
+        name: str = "",
+        run_on: str = "",
     ):
         url = self.endpoint("api", "/object")
-        data = {
+        data: dict[str, Any] = {
             "payload": {
                 "object_type": "experiment",
                 "model_id": model_id,
@@ -102,22 +113,20 @@ class Client:
         res = self.session.post(url, headers=headers, json=data)
         return self.response_data(res)
 
-    def get_experiment(self, exp_id):
+    def get_experiment(self, exp_id: str):
         url = self.endpoint("api", f"/object/{exp_id}")
         headers = self.headers_with_auth()
         res = self.session.get(url, headers=headers)
         ret = self.response_data(res)
-        if ret is None:
+        if not ret:
             logger.error("get experiment failed: %s", self.session.reqid)
             return ret
         return ret
 
-    def generate_script(self, params):
+    def generate_script(self, params: dict[str, Any]):
         url = self.endpoint("turing", "/model/generate-script")
         headers = self.headers_with_auth()
         res = self.session.post(url, headers=headers, json=params)
-        print(params)
-        print(res.json())
         return self.response_data(res)["script"]
 
     def set_experiment_run_info(self, run_info: RunInfoData):
@@ -132,22 +141,18 @@ class Client:
         res = self.session.get(url, headers=headers)
         return self.response_data(res)
 
-    def create_model(self, content, name=""):
+    def create_model(self, content: dict[str, Any], name: str = ""):
         url = self.endpoint("api", "/object")
         headers = self.headers_with_auth()
         res = self.session.post(
             url,
             headers=headers,
-            json={
-                "payload": {"object_type": "model", "name": name, "content": content}
-            },
+            json={"payload": {"object_type": "model", "name": name, "content": content}},
         )
         return self.response_data(res)["short_id"]
 
     def get_access_token(self) -> str:
-        res = self.session.get(
-            self.endpoint("base", "/access_token"), headers=self.headers_with_auth()
-        )
+        res = self.session.get(self.endpoint("base", "/access_token"), headers=self.headers_with_auth())
         return self.response_data(res)["access_token"]
 
     def get_object(self, object_id: str):
@@ -167,3 +172,42 @@ class Client:
         headers = self.headers_with_auth()
         res = self.session.post(url, headers=headers, json={"payload": payload})
         return self.response_data(res)
+
+    def download_workflow(self, workflow_id: str, is_cloud: bool = False):
+        params: dict[str, Any] = {
+            "objid": workflow_id,
+            "is_cloud": is_cloud,
+        }
+        url = self.endpoint("sys", "/download-workflow")
+        headers = self.headers_with_auth()
+        res = self.session.get(url, headers=headers, params=params, stream=True)
+        if not res or res.status_code != 200:
+            logger.error(
+                "download workflow failed: %s %s",
+                self.session.reqid,
+                self.session.errmsg,
+            )
+            return None
+
+        return res
+
+    def send_mcmc_data(
+        self,
+        experiment_id: str,
+        batch_id: str,
+        run_id: str,
+        log_data: LogDataDict,
+    ):
+        url = self.endpoint("api", f"/object/{experiment_id}")
+        headers = self.headers_with_auth()
+        headers["Content-Type"] = "application/json"
+        body: dict[str, Any] = {
+            "payload": {
+                "object_type": "experiment.protobuf_message",
+                "logs": log_data,
+                "batch_id": batch_id,
+                "run_id": run_id,
+            }
+        }
+        resp = self.session.post(url, headers=headers, json=body)
+        self.response_data(resp)

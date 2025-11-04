@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**arvizPlot**](SystemApi.md#arvizPlot) | **POST** /sys/plot | Get Arviz plot data.
 [**config**](SystemApi.md#config) | **GET** /sys/config | Get configuration about how to run a model.
+[**downloadWorkflow**](SystemApi.md#downloadWorkflow) | **GET** /sys/download-workflow | Download workflow.
 [**repository**](SystemApi.md#repository) | **GET** /sys/gallery | List gallery data.
 
 
@@ -114,6 +115,61 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **downloadWorkflow**
+> SuccRspAny downloadWorkflow()
+
+
+### Example
+
+
+```typescript
+import { createConfiguration, SystemApi } from 'coinfer-ts';
+import type { SystemApiDownloadWorkflowRequest } from 'coinfer-ts';
+
+const configuration = createConfiguration();
+const apiInstance = new SystemApi(configuration);
+
+const request: SystemApiDownloadWorkflowRequest = {
+  
+  objid: "objid_example",
+  
+  isCloud: false,
+};
+
+const data = await apiInstance.downloadWorkflow(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **objid** | [**string**] |  | defaults to undefined
+ **isCloud** | [**boolean**] |  | (optional) defaults to false
+
+
+### Return type
+
+**SuccRspAny**
+
+### Authorization
+
+[GlobalAuth](README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 

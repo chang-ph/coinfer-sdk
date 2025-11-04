@@ -3,7 +3,6 @@ module ServerlessBayes
 using StableRNGs
 using AbstractMCMC
 using Parameters
-using Mocking
 using JSON
 using HTTP
 using TOML
@@ -19,13 +18,19 @@ using Random
 using Base64
 using DynamicPPL
 using UUIDs
-using CodecZlib
 using DocStringExtensions
 using YAML
 using Base.Filesystem
+using DataFrames
+using CSV
 
 ### msg_collector
 interval = parse(Int, get(ENV, "COINFER_DATA_SENDING_INTERVAL", "3000"))
+
+function is_sync()
+    ENV["COINFER_SYNC"] != "off"
+end
+
 function default_endpoints()
     return get(ENV, "COINFER_SERVER_ENDPOINT", "https://api.coinfer.ai")
 end
@@ -54,13 +59,12 @@ function current_workflow()
         return wf[]
     end
     wf_id = get(ENV, "WORKFLOW_ID", "")
-    wf_rsp = get_object(wf_id)
+    settings = YAML.load(read("../workflow.yaml", String))  # cwd=workflow root directory
     parsed_data = []
     if Filesystem.isfile("/tmp/parsed_data.$wf_id")
         parsed_data = [_convert_type(x) for x in JSON.parsefile("/tmp/parsed_data.$wf_id")]
     end
 
-    settings = YAML.load(wf_rsp["settings"])
     wf[] = Workflow(nothing, parsed_data, nothing, settings)
     return wf[]
 end
@@ -276,10 +280,10 @@ end
 function as_local(cd::OpaqueData)
     url = endpoint("api", "/object/$(cd.cloud_id)")
     headers = headers_with_token()
-    resp = @mock HTTP.get(url, headers)
+    resp = HTTP.get(url, headers)
     data = response_data(resp)
     url = data["path"]
-    temp_file = @mock download(url)
+    temp_file = download(url)
     return LocalData(data["short_id"], temp_file, data["fmt"])
 end
 
@@ -438,7 +442,7 @@ function endpoint(name, path; endpoints=default_endpoints())
     return rstrip(endpoints, '/') * "/" * name * "/" * lstrip(path, '/')
 end
 
-const _TOKEN = Ref("")
+const _TOKEN = Ref{String}()
 set_token(t) = _TOKEN[] = t
 
 function get_token()
@@ -475,7 +479,7 @@ function response_data(resp; debug=false)
     return data["data"]
 end
 
-symbolize_keys(d::Dict) = Dict(Symbol(k) => v for (k, v) in d)
+symbolize_keys(d::Dict{Any,Any}) = Dict(Symbol(k) => v for (k, v) in d)
 
 function withdata_logger(experiment_id::String, url::String, collector::DataCollector)
     logger = CoinferLogger(experiment_id, collector; endpoint=url)
@@ -507,11 +511,15 @@ function create_experiment()
         data["xp_meta"] = xp_meta
     end
     headers = headers_with_token("Content-Type" => "application/json")
-    res = @mock HTTP.post(url, headers, JSON.json(data))
+    res = HTTP.post(url, headers, JSON.json(data))
     return response_data(res)
 end
 
 function update_experiment_runinfo(exp_id, batch_id, run_id, status)
+    if !is_sync()
+        println("Not sync, skip update experiment runinfo")
+        return nothing
+    end
     data = Dict{String,Any}(
         "payload" => Dict{String,Any}(
             "object_type" => "experiment",
@@ -527,8 +535,8 @@ function update_experiment_runinfo(exp_id, batch_id, run_id, status)
     )
     url = endpoint("api", "/object/$exp_id")
     headers = headers_with_token("Content-Type" => "application/json")
-    res = @mock HTTP.post(url, headers, JSON.json(data))
-    return response_data(res)
+    res = HTTP.post(url, headers, JSON.json(data))
+    response_data(res)
 end
 
 function get_experiment_id()
@@ -566,60 +574,14 @@ function get_proxy_lambda_endpoint(endpoint::String)
     return JSON.parse(String(rsp.body))["data"]["run_model_url"]
 end
 
-function send_msg_func(datas)
-    body = JSON.json(
-        Dict(
-            "payload" => Dict(
-                "object_type" => "experiment.text_message",
-                "datas" => datas,
-                "batch_id" => ENV["BATCH_ID"],
-                "run_id" => ENV["RUN_ID"],
-            ),
-        ),
-    )
-    headers = headers_with_token("Content-Type" => "application/json")
-
-    url = endpoint("api", "/object/" * ENV["EXPERIMENT_ID"])
-    resp = @mock HTTP.post(url, headers, body)
-    return response_data(resp)
-end
-
-function send_msg(collector::MsgCollector, message; group="", type="object_broadcast")
-    if !iscloud()
-        println(message)
-        return nothing
-    end
-    isempty(group) && (group = "object_$(get_experiment_id())")
-    data = Dict{Symbol,Any}(:group => group, :type => type, :message => message)
-    return collect_msg!(collector, data)
-end
-
-# https://github.com/TuringLang/TuringCallbacks.jl/blob/master/src/callbacks/tensorboard.jl#L113
-struct COINFERCallback
-    data::Vector{Dict}
-    tb_callback
-end
-
-function (cb::COINFERCallback)(rng, model, sampler, transition, iteration, state; kwargs...)
-    row = Dict()
-    for (ksym, val) in zip(Turing.Inference._params_to_array([transition])...)
-        k = string(ksym)
-        row[k] = val
-    end
-    push!(cb.data, row)
-    sample_data([row])
-    if iscloud()
-        cb.tb_callback(rng, model, sampler, transition, iteration, state; kwargs...)
-    end
-end
-
 function notify_after_sample(exp_id)
+    !is_sync() && return nothing
     headers = headers_with_token("Content-Type" => "application/json")
     url = endpoint("sys", "/config")
     rsp = HTTP.get(url; headers=headers)
     url = JSON.parse(String(rsp.body))["data"]["run_model_url"]
-    resp = @mock HTTP.post(
-        url,
+    resp = HTTP.post(
+        url;
         headrs=["Content-Type" => "application/json"],
         body=JSON.json(
             Dict{String,Any}(
@@ -633,7 +595,7 @@ function notify_after_sample(exp_id)
         ),
     )
 
-    return response_data(resp)
+    response_data(resp)
 end
 
 function initialize_batch_id()
@@ -642,36 +604,43 @@ function initialize_batch_id()
     end
 end
 
+function write_data_csv(log_data)
+    exp_id = get(ENV, "EXPERIMENT_ID", "")
+    mcmc_data_path = get(ENV, "COINFER_MCMC_DATA_PATH", "mcmcdata")
+    df = DataFrame(;
+        chain_name=String[], var_name=String[], var_value=Union{Float64,Int,Bool}[]
+    )
+    for (chain_name, chain_data) in pairs(log_data[:vars])
+        for (var_name, var_data) in pairs(chain_data)
+            for _var_data in var_data
+                push!(df, (chain_name, var_name, _var_data))
+            end
+        end
+        min_iter, max_iter, seqno = log_data[:iteration][chain_name]
+        _min_iter = lpad(min_iter, 10, "0")
+        _max_iter = lpad(max_iter, 10, "0")
+        _seqno = lpad(seqno, 20, "0")
+        if size(df)[1] > 0
+            csv_path = joinpath(
+                mcmc_data_path, "$chain_name-$_min_iter-$_max_iter-$_seqno.csv"
+            )
+            CSV.write(csv_path, df)
+        end
+    end
+end
+
 function sample(args...; kwargs...)
     initialize_batch_id()
-    exp_id = get_experiment_id()
-    url = endpoint("api", "/object/" * ENV["EXPERIMENT_ID"])
-
-    function send_sample_func(log_data)
-        headers = headers_with_token("Content-Type" => "application/json")
-        body = JSON.json(
-            Dict(
-                "payload" => Dict(
-                    "object_type" => "experiment.protobuf_message",
-                    "logs" => log_data,
-                    "batch_id" => ENV["BATCH_ID"],
-                    "run_id" => ENV["RUN_ID"],
-                ),
-            );
-            allownan=true,
-        )
-        resp = @mock HTTP.post(
-            url, headers, body; retry_non_idempotent=true, retries=2, retry=true
-        )
-        return response_data(resp)
-    end
+    # exp_id = get_experiment_id()
+    exp_id = ENV["EXPERIMENT_ID"]
+    mcmc_data_path = get(ENV, "COINFER_MCMC_DATA_PATH", "mcmcdata")
+    mkpath(mcmc_data_path)
+    url = endpoint("api", "/object/" * exp_id)
 
     try
-        open_data_collector("sample_data", send_sample_func) do collector
+        open_data_collector("sample_data", write_data_csv) do collector
             logger = withdata_logger(exp_id, url, collector)
             tb_callback = TensorBoardCallback(logger)
-            # we don't use the internal message now
-            # cd = COINFERCallback(Dict[], tb_callback)
             cb = tb_callback
             chain_name = get(kwargs, :callback, "")
             if !startswith(chain_name, "chain#")
@@ -684,13 +653,9 @@ function sample(args...; kwargs...)
     catch exp
         @error "ERROR" exception=(exp, catch_backtrace())
         update_experiment_runinfo(exp_id, ENV["BATCH_ID"], ENV["RUN_ID"], "ERR")
+        exit(-1)
     finally
         notify_after_sample(exp_id)
-    end
-
-    fin_msg = Dict("action" => "experiment:finish", "data" => nothing)
-    open_collector("fin_msg", send_msg_func) do collector
-        send_msg(collector, fin_msg)
     end
 end
 
@@ -766,7 +731,12 @@ function CoreLogging.handle_message(
                 i_step = val
                 continue
             end
-            TensorBoardLogger.preprocess(message * "/$key", val, data)
+            try
+                TensorBoardLogger.preprocess(message * "/$key", val, data)
+            catch
+                @error "Error in preprocess" val, key
+                rethrow()
+            end
         end
         log[:data] = data
     end
@@ -774,44 +744,6 @@ function CoreLogging.handle_message(
     log[:step] = iter
     log[:chain_name] = group
     return collect_msg!(lg.collector, log)
-end
-
-function save_tblog(dir, logs)
-    lg = TensorBoardLogger.TBLogger(dir; min_level=Logging.Info)
-
-    for line in logs
-        summ = TensorBoardLogger.SummaryCollection()
-        json_data = JSON.Parser.parse(line)
-        data = json_data["data"] # an Array
-        step = json_data["step"] # an Int
-        for d in data # d is a Dict
-            for (name, val) in d
-                if isa(val, Dict)
-                    # val is a Histogram
-                    # https://github.com/JuliaStats/StatsBase.jl/blob/master/src/hist.jl#L186
-                    # unmarshal StatsBase.Histogram/TensorBoardLogger.Histogram
-                    edges = tuple((convert(Vector{Float64}, x) for x in val["edges"])...)
-                    weights = convert(Vector{Float64}, val["weights"])
-                    val = TensorBoardLogger.Histogram(
-                        edges, weights, Symbol(val["closed"]), val["isdensity"]
-                    )
-                end
-                push!(summ.value, TensorBoardLogger.summary_impl(name, val))
-            end
-        end
-        evt = TensorBoardLogger.make_event(lg, summ; step=step)
-        TensorBoardLogger.write_event(lg.file, evt)
-    end
-    log_text = """
-log
-line 1
-line 2
-"""
-    val = TensorBoardLogger.TBText(log_text)
-    summ = TensorBoardLogger.SummaryCollection()
-    push!(summ.value, TensorBoardLogger.summary_impl("log", val))
-    evt = TensorBoardLogger.make_event(lg, summ; step=0)
-    return TensorBoardLogger.write_event(lg.file, evt)
 end
 
 ### Sample and Evaluate
@@ -823,7 +755,7 @@ _deserialize(params::String) = _deserialize(Val(Symbol(params)))
 _deserialize(::Val{:MCMCThreads}) = MCMCThreads()
 _deserialize(::Val{:MCMCDistributed}) = MCMCDistributed()
 _deserialize(::Val{:MCMCSerial}) = MCMCSerial()
-function _deserialize(item::Dict, m, sampler)
+function _deserialize(item::Dict{Any,Any}, m, sampler)
     return _deserialize(Val(Symbol(item["type"])), get(item, "params", nothing), m, sampler)
 end
 _deserialize(item::Any, m, sampler) = item

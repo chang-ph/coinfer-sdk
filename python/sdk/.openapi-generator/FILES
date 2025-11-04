@@ -39,6 +39,7 @@ docs/DeleteObject.md
 docs/DeleteTokenReq.md
 docs/DemoListItem.md
 docs/DemoListRsp.md
+docs/DownloadWorkflowReq.md
 docs/ErrRsp.md
 docs/ExperimentCloudwatchLogRsp.md
 docs/ExperimentPlotRsp.md
@@ -73,9 +74,11 @@ docs/PlotRsp.md
 docs/RunCloudFunctionScript.md
 docs/RunWorkflowAnalyzerReq.md
 docs/RunWorkflowReq.md
+docs/SaveAnalyzerResultReq.md
 docs/ShareApi.md
 docs/ShareInfoModel.md
 docs/SoftDeletedRsp.md
+docs/SuccRspAny.md
 docs/SuccRspAuth0ConfigRsp.md
 docs/SuccRspAuth0LoginRsp.md
 docs/SuccRspCode2TokenRsp.md
@@ -161,6 +164,7 @@ openapi_client/models/delete_object.py
 openapi_client/models/delete_token_req.py
 openapi_client/models/demo_list_item.py
 openapi_client/models/demo_list_rsp.py
+openapi_client/models/download_workflow_req.py
 openapi_client/models/err_rsp.py
 openapi_client/models/experiment_cloudwatch_log_rsp.py
 openapi_client/models/experiment_plot_rsp.py
@@ -193,8 +197,10 @@ openapi_client/models/plot_rsp.py
 openapi_client/models/run_cloud_function_script.py
 openapi_client/models/run_workflow_analyzer_req.py
 openapi_client/models/run_workflow_req.py
+openapi_client/models/save_analyzer_result_req.py
 openapi_client/models/share_info_model.py
 openapi_client/models/soft_deleted_rsp.py
+openapi_client/models/succ_rsp_any.py
 openapi_client/models/succ_rsp_auth0_config_rsp.py
 openapi_client/models/succ_rsp_auth0_login_rsp.py
 openapi_client/models/succ_rsp_code2_token_rsp.py
@@ -275,6 +281,7 @@ test/test_delete_object.py
 test/test_delete_token_req.py
 test/test_demo_list_item.py
 test/test_demo_list_rsp.py
+test/test_download_workflow_req.py
 test/test_err_rsp.py
 test/test_experiment_cloudwatch_log_rsp.py
 test/test_experiment_plot_rsp.py
@@ -309,9 +316,11 @@ test/test_plot_rsp.py
 test/test_run_cloud_function_script.py
 test/test_run_workflow_analyzer_req.py
 test/test_run_workflow_req.py
+test/test_save_analyzer_result_req.py
 test/test_share_api.py
 test/test_share_info_model.py
 test/test_soft_deleted_rsp.py
+test/test_succ_rsp_any.py
 test/test_succ_rsp_auth0_config_rsp.py
 test/test_succ_rsp_auth0_login_rsp.py
 test/test_succ_rsp_code2_token_rsp.py

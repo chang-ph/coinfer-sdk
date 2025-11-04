@@ -33,7 +33,7 @@ class TestPayload1(unittest.TestCase):
         model = Payload1()
         if include_optional:
             return Payload1(
-                object_type = 'workflow.run',
+                object_type = 'workflow.analyzer_result',
                 batch_id = '',
                 run_id = '',
                 chain_name = '',
@@ -97,11 +97,17 @@ class TestPayload1(unittest.TestCase):
                 data_script = '',
                 base64_encoded = True,
                 data = '',
-                data_uri = ''
+                data_uri = '',
+                return_code = 56,
+                errlines = [
+                    ''
+                    ],
+                output_data = '',
+                result = ''
             )
         else:
             return Payload1(
-                object_type = 'workflow.run',
+                object_type = 'workflow.analyzer_result',
                 batch_id = '',
                 run_id = '',
                 chain_name = '',
@@ -127,6 +133,12 @@ class TestPayload1(unittest.TestCase):
                                 ]
                             }
                         }, ),
+                return_code = 56,
+                errlines = [
+                    ''
+                    ],
+                output_data = '',
+                result = '',
         )
         """
 

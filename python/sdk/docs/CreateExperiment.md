@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **input_id** | **str** |  | [optional] [default to '']
 **meta** | **object** |  | [optional] 
 **name** | **str** |  | [optional] [default to '']
-**run_on** | **str** |  | [optional] [default to 'Lambda']
+**run_on** | **str** |  | [optional] [default to 'lambda']
 **data_file_type** | **str** |  | [optional] 
 **data_files** | **List[str]** | File data in text format | [optional] 
 **data_uris** | **List[str]** | File data URI | [optional] 

@@ -4,6 +4,7 @@ import { CreateTextMessageReq } from '../models/CreateTextMessageReq';
 import { RunCloudFunctionScript } from '../models/RunCloudFunctionScript';
 import { RunWorkflowAnalyzerReq } from '../models/RunWorkflowAnalyzerReq';
 import { RunWorkflowReq } from '../models/RunWorkflowReq';
+import { SaveAnalyzerResultReq } from '../models/SaveAnalyzerResultReq';
 import { UpdateDataReq } from '../models/UpdateDataReq';
 import { UpdateEventReq } from '../models/UpdateEventReq';
 import { UpdateExperiment } from '../models/UpdateExperiment';
@@ -16,7 +17,7 @@ import { HttpFile } from '../http/http';
  * Type
  * @export
  */
-export type Payload1 = CreateNSampleStatReq | CreateProtobufMessageReq | CreateTextMessageReq | RunCloudFunctionScript | RunWorkflowAnalyzerReq | RunWorkflowReq | UpdateDataReq | UpdateEventReq | UpdateExperiment | UpdateModel | UpdateWorkflowReq;
+export type Payload1 = CreateNSampleStatReq | CreateProtobufMessageReq | CreateTextMessageReq | RunCloudFunctionScript | RunWorkflowAnalyzerReq | RunWorkflowReq | SaveAnalyzerResultReq | UpdateDataReq | UpdateEventReq | UpdateExperiment | UpdateModel | UpdateWorkflowReq;
 
 /**
 * @type Payload1Class
@@ -35,10 +36,12 @@ export class Payload1Class {
         "model": "UpdateModel",
         "model.run_script": "RunCloudFunctionScript",
         "workflow": "UpdateWorkflowReq",
+        "workflow.analyzer_result": "SaveAnalyzerResultReq",
         "workflow.run": "RunWorkflowReq",
         "workflow.run_analyzer": "RunWorkflowAnalyzerReq",
     };
 }
+
 
 
 

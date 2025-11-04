@@ -1,9 +1,8 @@
-import { Null } from '../models/Null';
 import { HttpFile } from '../http/http';
 
 export class SuccRspNoneType {
     'status': SuccRspNoneTypeStatusEnum;
-    'data': Null;
+    'data': any | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -19,7 +18,7 @@ export class SuccRspNoneType {
         {
             "name": "data",
             "baseName": "data",
-            "type": "Null",
+            "type": "any",
             "format": ""
         }    ];
 

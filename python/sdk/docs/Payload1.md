@@ -39,6 +39,10 @@ Name | Type | Description | Notes
 **base64_encoded** | **bool** | Whether the data in &#x60;data&#x60; is base64 encoded | [optional] [default to False]
 **data** | **str** |  | [optional] 
 **data_uri** | **str** |  | [optional] 
+**return_code** | **int** |  | 
+**errlines** | **List[str]** |  | 
+**output_data** | **str** |  | 
+**result** | **str** |  | 
 
 ## Example
 

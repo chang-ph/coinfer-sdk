@@ -39,7 +39,7 @@ class TestCreateExperiment(unittest.TestCase):
                 input_id = '',
                 meta = None,
                 name = '',
-                run_on = 'Lambda',
+                run_on = 'lambda',
                 data_file_type = 'turing csv',
                 data_files = [
                     ''

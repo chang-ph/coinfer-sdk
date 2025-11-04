@@ -15,25 +15,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class SuccRspAny(BaseModel):
+class DownloadWorkflowReq(BaseModel):
     """
-    SuccRspAny
+    DownloadWorkflowReq
     """ # noqa: E501
-    status: StrictStr
-    data: Optional[Any]
-    __properties: ClassVar[List[str]] = ["status", "data"]
-
-    @field_validator('status')
-    def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['ok']):
-            raise ValueError("must be one of enum values ('ok')")
-        return value
+    objid: StrictStr
+    is_cloud: Optional[StrictBool] = False
+    __properties: ClassVar[List[str]] = ["objid", "is_cloud"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +46,7 @@ class SuccRspAny(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of SuccRspAny from a JSON string"""
+        """Create an instance of DownloadWorkflowReq from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,16 +67,11 @@ class SuccRspAny(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if data (nullable) is None
-        # and model_fields_set contains the field
-        if self.data is None and "data" in self.model_fields_set:
-            _dict['data'] = None
-
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of SuccRspAny from a dict"""
+        """Create an instance of DownloadWorkflowReq from a dict"""
         if obj is None:
             return None
 
@@ -91,8 +79,8 @@ class SuccRspAny(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "status": obj.get("status"),
-            "data": obj.get("data")
+            "objid": obj.get("objid"),
+            "is_cloud": obj.get("is_cloud") if obj.get("is_cloud") is not None else False
         })
         return _obj
 

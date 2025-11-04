@@ -70,6 +70,7 @@ docs/PlotRsp.md
 docs/RunCloudFunctionScript.md
 docs/RunWorkflowAnalyzerReq.md
 docs/RunWorkflowReq.md
+docs/SaveAnalyzerResultReq.md
 docs/ShareApi.md
 docs/ShareInfoModel.md
 docs/SoftDeletedRsp.md
@@ -186,6 +187,7 @@ src/models/model_PlotRsp.jl
 src/models/model_RunCloudFunctionScript.jl
 src/models/model_RunWorkflowAnalyzerReq.jl
 src/models/model_RunWorkflowReq.jl
+src/models/model_SaveAnalyzerResultReq.jl
 src/models/model_ShareInfoModel.jl
 src/models/model_SoftDeletedRsp.jl
 src/models/model_SuccRspAny.jl

@@ -65,6 +65,7 @@ export * from '../models/PlotRsp';
 export * from '../models/RunCloudFunctionScript';
 export * from '../models/RunWorkflowAnalyzerReq';
 export * from '../models/RunWorkflowReq';
+export * from '../models/SaveAnalyzerResultReq';
 export * from '../models/ShareInfoModel';
 export * from '../models/SoftDeletedRsp';
 export * from '../models/SuccRspAny';
@@ -173,6 +174,7 @@ import { PlotRsp } from '../models/PlotRsp';
 import { RunCloudFunctionScript, RunCloudFunctionScriptObjectTypeEnum   , RunCloudFunctionScriptEngineEnum    } from '../models/RunCloudFunctionScript';
 import { RunWorkflowAnalyzerReq, RunWorkflowAnalyzerReqObjectTypeEnum   } from '../models/RunWorkflowAnalyzerReq';
 import { RunWorkflowReq, RunWorkflowReqObjectTypeEnum    } from '../models/RunWorkflowReq';
+import { SaveAnalyzerResultReq, SaveAnalyzerResultReqObjectTypeEnum       } from '../models/SaveAnalyzerResultReq';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SoftDeletedRsp } from '../models/SoftDeletedRsp';
 import { SuccRspAny, SuccRspAnyStatusEnum    } from '../models/SuccRspAny';
@@ -281,6 +283,7 @@ let enumsMap: Set<string> = new Set<string>([
     "RunCloudFunctionScriptEngineEnum",
     "RunWorkflowAnalyzerReqObjectTypeEnum",
     "RunWorkflowReqObjectTypeEnum",
+    "SaveAnalyzerResultReqObjectTypeEnum",
     "SuccRspAnyStatusEnum",
     "SuccRspAuth0ConfigRspStatusEnum",
     "SuccRspAuth0LoginRspStatusEnum",
@@ -381,6 +384,7 @@ let typeMap: {[index: string]: any} = {
     "RunCloudFunctionScript": RunCloudFunctionScript,
     "RunWorkflowAnalyzerReq": RunWorkflowAnalyzerReq,
     "RunWorkflowReq": RunWorkflowReq,
+    "SaveAnalyzerResultReq": SaveAnalyzerResultReq,
     "ShareInfoModel": ShareInfoModel,
     "SoftDeletedRsp": SoftDeletedRsp,
     "SuccRspAny": SuccRspAny,

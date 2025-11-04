@@ -61,7 +61,7 @@ class TestPayload(unittest.TestCase):
                 workflow_id = '',
                 input_id = '',
                 meta = None,
-                run_on = 'Lambda',
+                run_on = 'lambda',
                 data_file_type = 'turing csv',
                 data_files = [
                     ''
