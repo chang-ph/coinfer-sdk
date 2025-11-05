@@ -35,7 +35,8 @@ docs/DeleteObject.md
 docs/DeleteTokenReq.md
 docs/DemoListItem.md
 docs/DemoListRsp.md
-docs/DownloadWorkflowReq.md
+docs/DownloadApi.md
+docs/DownloadReq.md
 docs/ErrRsp.md
 docs/ExperimentCloudwatchLogRsp.md
 docs/ExperimentPlotRsp.md
@@ -115,6 +116,7 @@ docs/ViewObjectTmp.md
 docs/WorkflowRunRsp.md
 src/APIClient.jl
 src/apis/api_AuthorizationApi.jl
+src/apis/api_DownloadApi.jl
 src/apis/api_NotificationApi.jl
 src/apis/api_ObjectApi.jl
 src/apis/api_ShareApi.jl
@@ -154,7 +156,7 @@ src/models/model_DeleteObject.jl
 src/models/model_DeleteTokenReq.jl
 src/models/model_DemoListItem.jl
 src/models/model_DemoListRsp.jl
-src/models/model_DownloadWorkflowReq.jl
+src/models/model_DownloadReq.jl
 src/models/model_ErrRsp.jl
 src/models/model_ExperimentCloudwatchLogRsp.jl
 src/models/model_ExperimentPlotRsp.jl

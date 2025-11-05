@@ -36,7 +36,7 @@ import { DeleteObject } from '../models/DeleteObject';
 import { DeleteTokenReq } from '../models/DeleteTokenReq';
 import { DemoListItem } from '../models/DemoListItem';
 import { DemoListRsp } from '../models/DemoListRsp';
-import { DownloadWorkflowReq } from '../models/DownloadWorkflowReq';
+import { DownloadReq } from '../models/DownloadReq';
 import { ErrRsp } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
 import { ExperimentPlotRsp } from '../models/ExperimentPlotRsp';
@@ -583,6 +583,57 @@ export class ObservableAuthorizationApi {
 
 }
 
+import { DownloadApiRequestFactory, DownloadApiResponseProcessor} from "../apis/DownloadApi";
+export class ObservableDownloadApi {
+    private requestFactory: DownloadApiRequestFactory;
+    private responseProcessor: DownloadApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: DownloadApiRequestFactory,
+        responseProcessor?: DownloadApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new DownloadApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new DownloadApiResponseProcessor();
+    }
+
+    /**
+     * Download resources.
+     * @param objid
+     * @param [isCloud] is the downloaded pakcage used to run workflow in cloud envirioment?
+     */
+    public downloadWithHttpInfo(objid: string, isCloud?: boolean, _options?: Configuration): Observable<HttpInfo<SuccRspAny>> {
+        const requestContextPromise = this.requestFactory.download(objid, isCloud, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.downloadWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Download resources.
+     * @param objid
+     * @param [isCloud] is the downloaded pakcage used to run workflow in cloud envirioment?
+     */
+    public download(objid: string, isCloud?: boolean, _options?: Configuration): Observable<SuccRspAny> {
+        return this.downloadWithHttpInfo(objid, isCloud, _options).pipe(map((apiResponse: HttpInfo<SuccRspAny>) => apiResponse.data));
+    }
+
+}
+
 import { NotificationApiRequestFactory, NotificationApiResponseProcessor} from "../apis/NotificationApi";
 export class ObservableNotificationApi {
     private requestFactory: NotificationApiRequestFactory;
@@ -1021,39 +1072,6 @@ export class ObservableSystemApi {
      */
     public config(_options?: Configuration): Observable<SuccRspGetConfigRsp> {
         return this.configWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<SuccRspGetConfigRsp>) => apiResponse.data));
-    }
-
-    /**
-     * Download workflow.
-     * @param objid
-     * @param [isCloud]
-     */
-    public downloadWorkflowWithHttpInfo(objid: string, isCloud?: boolean, _options?: Configuration): Observable<HttpInfo<SuccRspAny>> {
-        const requestContextPromise = this.requestFactory.downloadWorkflow(objid, isCloud, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.downloadWorkflowWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * Download workflow.
-     * @param objid
-     * @param [isCloud]
-     */
-    public downloadWorkflow(objid: string, isCloud?: boolean, _options?: Configuration): Observable<SuccRspAny> {
-        return this.downloadWorkflowWithHttpInfo(objid, isCloud, _options).pipe(map((apiResponse: HttpInfo<SuccRspAny>) => apiResponse.data));
     }
 
     /**

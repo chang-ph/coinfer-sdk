@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **object_type** | **str** |  | 
 **return_code** | **int** |  | 
 **errlines** | **List[str]** |  | 
-**output_data** | **str** |  | 
 **result** | **str** |  | 
 
 ## Example

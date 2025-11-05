@@ -32,7 +32,7 @@ export * from '../models/DeleteObject';
 export * from '../models/DeleteTokenReq';
 export * from '../models/DemoListItem';
 export * from '../models/DemoListRsp';
-export * from '../models/DownloadWorkflowReq';
+export * from '../models/DownloadReq';
 export * from '../models/ErrRsp';
 export * from '../models/ExperimentCloudwatchLogRsp';
 export * from '../models/ExperimentPlotRsp';
@@ -141,7 +141,7 @@ import { DeleteObject } from '../models/DeleteObject';
 import { DeleteTokenReq } from '../models/DeleteTokenReq';
 import { DemoListItem } from '../models/DemoListItem';
 import { DemoListRsp } from '../models/DemoListRsp';
-import { DownloadWorkflowReq } from '../models/DownloadWorkflowReq';
+import { DownloadReq } from '../models/DownloadReq';
 import { ErrRsp, ErrRspStatusEnum     } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp, ExperimentCloudwatchLogRspObjectTypeEnum    } from '../models/ExperimentCloudwatchLogRsp';
 import { ExperimentPlotRsp, ExperimentPlotRspObjectTypeEnum    } from '../models/ExperimentPlotRsp';
@@ -174,7 +174,7 @@ import { PlotRsp } from '../models/PlotRsp';
 import { RunCloudFunctionScript, RunCloudFunctionScriptObjectTypeEnum   , RunCloudFunctionScriptEngineEnum    } from '../models/RunCloudFunctionScript';
 import { RunWorkflowAnalyzerReq, RunWorkflowAnalyzerReqObjectTypeEnum   } from '../models/RunWorkflowAnalyzerReq';
 import { RunWorkflowReq, RunWorkflowReqObjectTypeEnum    } from '../models/RunWorkflowReq';
-import { SaveAnalyzerResultReq, SaveAnalyzerResultReqObjectTypeEnum       } from '../models/SaveAnalyzerResultReq';
+import { SaveAnalyzerResultReq, SaveAnalyzerResultReqObjectTypeEnum      } from '../models/SaveAnalyzerResultReq';
 import { ShareInfoModel } from '../models/ShareInfoModel';
 import { SoftDeletedRsp } from '../models/SoftDeletedRsp';
 import { SuccRspAny, SuccRspAnyStatusEnum    } from '../models/SuccRspAny';
@@ -351,7 +351,7 @@ let typeMap: {[index: string]: any} = {
     "DeleteTokenReq": DeleteTokenReq,
     "DemoListItem": DemoListItem,
     "DemoListRsp": DemoListRsp,
-    "DownloadWorkflowReq": DownloadWorkflowReq,
+    "DownloadReq": DownloadReq,
     "ErrRsp": ErrRsp,
     "ExperimentCloudwatchLogRsp": ExperimentCloudwatchLogRsp,
     "ExperimentPlotRsp": ExperimentPlotRsp,

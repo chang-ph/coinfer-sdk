@@ -38,7 +38,6 @@ class TestSaveAnalyzerResultReq(unittest.TestCase):
                 errlines = [
                     ''
                     ],
-                output_data = '',
                 result = ''
             )
         else:
@@ -48,7 +47,6 @@ class TestSaveAnalyzerResultReq(unittest.TestCase):
                 errlines = [
                     ''
                     ],
-                output_data = '',
                 result = '',
         )
         """

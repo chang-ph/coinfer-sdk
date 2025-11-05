@@ -41,7 +41,6 @@ Name | Type | Description | Notes
 **data_uri** | **str** |  | [optional] 
 **return_code** | **int** |  | 
 **errlines** | **List[str]** |  | 
-**output_data** | **str** |  | 
 **result** | **str** |  | 
 
 ## Example

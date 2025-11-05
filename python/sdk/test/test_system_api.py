@@ -38,13 +38,6 @@ class TestSystemApi(unittest.TestCase):
         """
         pass
 
-    def test_download_workflow(self) -> None:
-        """Test case for download_workflow
-
-        Download workflow.
-        """
-        pass
-
     def test_repository(self) -> None:
         """Test case for repository
 

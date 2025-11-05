@@ -35,7 +35,7 @@ import { DeleteObject } from '../models/DeleteObject';
 import { DeleteTokenReq } from '../models/DeleteTokenReq';
 import { DemoListItem } from '../models/DemoListItem';
 import { DemoListRsp } from '../models/DemoListRsp';
-import { DownloadWorkflowReq } from '../models/DownloadWorkflowReq';
+import { DownloadReq } from '../models/DownloadReq';
 import { ErrRsp } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
 import { ExperimentPlotRsp } from '../models/ExperimentPlotRsp';
@@ -400,6 +400,45 @@ export class PromiseAuthorizationApi {
 
 
 
+import { ObservableDownloadApi } from './ObservableAPI';
+
+import { DownloadApiRequestFactory, DownloadApiResponseProcessor} from "../apis/DownloadApi";
+export class PromiseDownloadApi {
+    private api: ObservableDownloadApi
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: DownloadApiRequestFactory,
+        responseProcessor?: DownloadApiResponseProcessor
+    ) {
+        this.api = new ObservableDownloadApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Download resources.
+     * @param objid
+     * @param [isCloud] is the downloaded pakcage used to run workflow in cloud envirioment?
+     */
+    public downloadWithHttpInfo(objid: string, isCloud?: boolean, _options?: Configuration): Promise<HttpInfo<SuccRspAny>> {
+        const result = this.api.downloadWithHttpInfo(objid, isCloud, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * Download resources.
+     * @param objid
+     * @param [isCloud] is the downloaded pakcage used to run workflow in cloud envirioment?
+     */
+    public download(objid: string, isCloud?: boolean, _options?: Configuration): Promise<SuccRspAny> {
+        const result = this.api.download(objid, isCloud, _options);
+        return result.toPromise();
+    }
+
+
+}
+
+
+
 import { ObservableNotificationApi } from './ObservableAPI';
 
 import { NotificationApiRequestFactory, NotificationApiResponseProcessor} from "../apis/NotificationApi";
@@ -708,26 +747,6 @@ export class PromiseSystemApi {
      */
     public config(_options?: Configuration): Promise<SuccRspGetConfigRsp> {
         const result = this.api.config(_options);
-        return result.toPromise();
-    }
-
-    /**
-     * Download workflow.
-     * @param objid
-     * @param [isCloud]
-     */
-    public downloadWorkflowWithHttpInfo(objid: string, isCloud?: boolean, _options?: Configuration): Promise<HttpInfo<SuccRspAny>> {
-        const result = this.api.downloadWorkflowWithHttpInfo(objid, isCloud, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * Download workflow.
-     * @param objid
-     * @param [isCloud]
-     */
-    public downloadWorkflow(objid: string, isCloud?: boolean, _options?: Configuration): Promise<SuccRspAny> {
-        const result = this.api.downloadWorkflow(objid, isCloud, _options);
         return result.toPromise();
     }
 

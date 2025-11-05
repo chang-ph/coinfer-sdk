@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **object_type** | **String** |  | [default to nothing]
 **return_code** | **Int64** |  | [default to nothing]
 **errlines** | **Vector{String}** |  | [default to nothing]
-**output_data** | **String** |  | [default to nothing]
 **result** | **String** |  | [default to nothing]
 
 

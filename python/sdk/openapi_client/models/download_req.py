@@ -15,27 +15,17 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class SaveAnalyzerResultReq(BaseModel):
+class DownloadReq(BaseModel):
     """
-    SaveAnalyzerResultReq
+    DownloadReq
     """ # noqa: E501
-    object_type: StrictStr
-    return_code: StrictInt
-    errlines: List[StrictStr]
-    result: StrictStr
-    __properties: ClassVar[List[str]] = ["object_type", "return_code", "errlines", "result"]
-
-    @field_validator('object_type')
-    def object_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['workflow.analyzer_result']):
-            raise ValueError("must be one of enum values ('workflow.analyzer_result')")
-        return value
+    is_cloud: Optional[StrictBool] = Field(default=False, description="is the downloaded pakcage used to run workflow in cloud envirioment?")
+    __properties: ClassVar[List[str]] = ["is_cloud"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -55,7 +45,7 @@ class SaveAnalyzerResultReq(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of SaveAnalyzerResultReq from a JSON string"""
+        """Create an instance of DownloadReq from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,7 +70,7 @@ class SaveAnalyzerResultReq(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of SaveAnalyzerResultReq from a dict"""
+        """Create an instance of DownloadReq from a dict"""
         if obj is None:
             return None
 
@@ -88,10 +78,7 @@ class SaveAnalyzerResultReq(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "object_type": obj.get("object_type"),
-            "return_code": obj.get("return_code"),
-            "errlines": obj.get("errlines"),
-            "result": obj.get("result")
+            "is_cloud": obj.get("is_cloud") if obj.get("is_cloud") is not None else False
         })
         return _obj
 

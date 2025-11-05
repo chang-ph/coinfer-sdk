@@ -46,7 +46,7 @@ from openapi_client.models.delete_object import DeleteObject
 from openapi_client.models.delete_token_req import DeleteTokenReq
 from openapi_client.models.demo_list_item import DemoListItem
 from openapi_client.models.demo_list_rsp import DemoListRsp
-from openapi_client.models.download_workflow_req import DownloadWorkflowReq
+from openapi_client.models.download_req import DownloadReq
 from openapi_client.models.err_rsp import ErrRsp
 from openapi_client.models.experiment_cloudwatch_log_rsp import ExperimentCloudwatchLogRsp
 from openapi_client.models.experiment_plot_rsp import ExperimentPlotRsp

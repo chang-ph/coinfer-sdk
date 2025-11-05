@@ -89,6 +89,7 @@ def main():
                 .removeprefix("coinfer_apis_unified_api_")
                 .removeprefix("coinfer_apis_system_api_")
                 .removeprefix("coinfer_apis_no_auth_api_")
+                .removeprefix("coinfer_apis_download_api_")
             )
 
     # check if all the operationIds are fixed

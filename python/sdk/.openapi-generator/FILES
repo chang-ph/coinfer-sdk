@@ -39,7 +39,8 @@ docs/DeleteObject.md
 docs/DeleteTokenReq.md
 docs/DemoListItem.md
 docs/DemoListRsp.md
-docs/DownloadWorkflowReq.md
+docs/DownloadApi.md
+docs/DownloadReq.md
 docs/ErrRsp.md
 docs/ExperimentCloudwatchLogRsp.md
 docs/ExperimentPlotRsp.md
@@ -121,6 +122,7 @@ git_push.sh
 openapi_client/__init__.py
 openapi_client/api/__init__.py
 openapi_client/api/authorization_api.py
+openapi_client/api/download_api.py
 openapi_client/api/notification_api.py
 openapi_client/api/object_api.py
 openapi_client/api/share_api.py
@@ -164,7 +166,7 @@ openapi_client/models/delete_object.py
 openapi_client/models/delete_token_req.py
 openapi_client/models/demo_list_item.py
 openapi_client/models/demo_list_rsp.py
-openapi_client/models/download_workflow_req.py
+openapi_client/models/download_req.py
 openapi_client/models/err_rsp.py
 openapi_client/models/experiment_cloudwatch_log_rsp.py
 openapi_client/models/experiment_plot_rsp.py
@@ -281,7 +283,8 @@ test/test_delete_object.py
 test/test_delete_token_req.py
 test/test_demo_list_item.py
 test/test_demo_list_rsp.py
-test/test_download_workflow_req.py
+test/test_download_api.py
+test/test_download_req.py
 test/test_err_rsp.py
 test/test_experiment_cloudwatch_log_rsp.py
 test/test_experiment_plot_rsp.py

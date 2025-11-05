@@ -4,7 +4,6 @@ export class SaveAnalyzerResultReq {
     'objectType': SaveAnalyzerResultReqObjectTypeEnum;
     'returnCode': number;
     'errlines': Array<string>;
-    'outputData': string;
     'result': string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -28,12 +27,6 @@ export class SaveAnalyzerResultReq {
             "name": "errlines",
             "baseName": "errlines",
             "type": "Array<string>",
-            "format": ""
-        },
-        {
-            "name": "outputData",
-            "baseName": "output_data",
-            "type": "string",
             "format": ""
         },
         {

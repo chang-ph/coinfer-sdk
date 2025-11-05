@@ -102,7 +102,6 @@ class TestPayload1(unittest.TestCase):
                 errlines = [
                     ''
                     ],
-                output_data = '',
                 result = ''
             )
         else:
@@ -137,7 +136,6 @@ class TestPayload1(unittest.TestCase):
                 errlines = [
                     ''
                     ],
-                output_data = '',
                 result = '',
         )
         """
