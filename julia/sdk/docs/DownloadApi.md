@@ -8,8 +8,8 @@ Method | HTTP request | Description
 
 
 # **download**
-> download(_api::DownloadApi, objid::String; is_cloud=nothing, _mediaType=nothing) -> SuccRspAny, OpenAPI.Clients.ApiResponse <br/>
-> download(_api::DownloadApi, response_stream::Channel, objid::String; is_cloud=nothing, _mediaType=nothing) -> Channel{ SuccRspAny }, OpenAPI.Clients.ApiResponse
+> download(_api::DownloadApi, objid::String; is_cloud=nothing, fmt=nothing, _mediaType=nothing) -> SuccRspAny, OpenAPI.Clients.ApiResponse <br/>
+> download(_api::DownloadApi, response_stream::Channel, objid::String; is_cloud=nothing, fmt=nothing, _mediaType=nothing) -> Channel{ SuccRspAny }, OpenAPI.Clients.ApiResponse
 
 Download resources.
 
@@ -24,7 +24,8 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **is_cloud** | **Bool** | is the downloaded pakcage used to run workflow in cloud envirioment? | [default to false]
+ **is_cloud** | **Bool** | is the downloaded package used to run workflow in cloud environment? | [default to false]
+ **fmt** | **String** | download format, tar.gz or zip | [default to &quot;zip&quot;]
 
 ### Return type
 

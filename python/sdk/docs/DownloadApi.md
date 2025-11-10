@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **download**
-> SuccRspAny download(objid, is_cloud=is_cloud)
+> SuccRspAny download(objid, is_cloud=is_cloud, fmt=fmt)
 
 Download resources.
 
@@ -42,11 +42,12 @@ with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.DownloadApi(api_client)
     objid = 'objid_example' # str | 
-    is_cloud = False # bool | is the downloaded pakcage used to run workflow in cloud envirioment? (optional) (default to False)
+    is_cloud = False # bool | is the downloaded package used to run workflow in cloud environment? (optional) (default to False)
+    fmt = zip # str | download format, tar.gz or zip (optional) (default to zip)
 
     try:
         # Download resources.
-        api_response = api_instance.download(objid, is_cloud=is_cloud)
+        api_response = api_instance.download(objid, is_cloud=is_cloud, fmt=fmt)
         print("The response of DownloadApi->download:\n")
         pprint(api_response)
     except Exception as e:
@@ -60,7 +61,8 @@ with openapi_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **objid** | **str**|  | 
- **is_cloud** | **bool**| is the downloaded pakcage used to run workflow in cloud envirioment? | [optional] [default to False]
+ **is_cloud** | **bool**| is the downloaded package used to run workflow in cloud environment? | [optional] [default to False]
+ **fmt** | **str**| download format, tar.gz or zip | [optional] [default to zip]
 
 ### Return type
 

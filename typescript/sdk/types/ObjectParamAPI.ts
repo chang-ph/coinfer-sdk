@@ -494,12 +494,19 @@ export interface DownloadApiDownloadRequest {
      */
     objid: string
     /**
-     * is the downloaded pakcage used to run workflow in cloud envirioment?
+     * is the downloaded package used to run workflow in cloud environment?
      * Defaults to: false
      * @type boolean
      * @memberof DownloadApidownload
      */
     isCloud?: boolean
+    /**
+     * download format, tar.gz or zip
+     * Defaults to: &#39;zip&#39;
+     * @type &#39;tar.gz&#39; | &#39;zip&#39;
+     * @memberof DownloadApidownload
+     */
+    fmt?: 'tar.gz' | 'zip'
 }
 
 export class ObjectDownloadApi {
@@ -514,7 +521,7 @@ export class ObjectDownloadApi {
      * @param param the request object
      */
     public downloadWithHttpInfo(param: DownloadApiDownloadRequest, options?: Configuration): Promise<HttpInfo<SuccRspAny>> {
-        return this.api.downloadWithHttpInfo(param.objid, param.isCloud,  options).toPromise();
+        return this.api.downloadWithHttpInfo(param.objid, param.isCloud, param.fmt,  options).toPromise();
     }
 
     /**
@@ -522,7 +529,7 @@ export class ObjectDownloadApi {
      * @param param the request object
      */
     public download(param: DownloadApiDownloadRequest, options?: Configuration): Promise<SuccRspAny> {
-        return this.api.download(param.objid, param.isCloud,  options).toPromise();
+        return this.api.download(param.objid, param.isCloud, param.fmt,  options).toPromise();
     }
 
 }

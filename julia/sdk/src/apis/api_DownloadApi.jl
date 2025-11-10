@@ -15,10 +15,11 @@ const _returntypes_download_DownloadApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspAny,
 )
 
-function _oacinternal_download(_api::DownloadApi, objid::String; is_cloud=nothing, _mediaType=nothing)
+function _oacinternal_download(_api::DownloadApi, objid::String; is_cloud=nothing, fmt=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_download_DownloadApi, "/download/{objid}", ["GlobalAuth", ])
     OpenAPI.Clients.set_param(_ctx.path, "objid", objid)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "is_cloud", is_cloud; style="form", is_explode=true)  # type Bool
+    OpenAPI.Clients.set_param(_ctx.query, "fmt", fmt; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -29,16 +30,17 @@ end
 Params:
 - objid::String (required)
 - is_cloud::Bool
+- fmt::String
 
 Return: SuccRspAny, OpenAPI.Clients.ApiResponse
 """
-function download(_api::DownloadApi, objid::String; is_cloud=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_download(_api, objid; is_cloud=is_cloud, _mediaType=_mediaType)
+function download(_api::DownloadApi, objid::String; is_cloud=nothing, fmt=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_download(_api, objid; is_cloud=is_cloud, fmt=fmt, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function download(_api::DownloadApi, response_stream::Channel, objid::String; is_cloud=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_download(_api, objid; is_cloud=is_cloud, _mediaType=_mediaType)
+function download(_api::DownloadApi, response_stream::Channel, objid::String; is_cloud=nothing, fmt=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_download(_api, objid; is_cloud=is_cloud, fmt=fmt, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 

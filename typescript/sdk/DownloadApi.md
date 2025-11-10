@@ -24,8 +24,10 @@ const apiInstance = new DownloadApi(configuration);
 const request: DownloadApiDownloadRequest = {
   
   objid: "objid_example",
-    // is the downloaded pakcage used to run workflow in cloud envirioment? (optional)
+    // is the downloaded package used to run workflow in cloud environment? (optional)
   isCloud: false,
+    // download format, tar.gz or zip (optional)
+  fmt: "zip",
 };
 
 const data = await apiInstance.download(request);
@@ -38,7 +40,8 @@ console.log('API called successfully. Returned data:', data);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **objid** | [**string**] |  | defaults to undefined
- **isCloud** | [**boolean**] | is the downloaded pakcage used to run workflow in cloud envirioment? | (optional) defaults to false
+ **isCloud** | [**boolean**] | is the downloaded package used to run workflow in cloud environment? | (optional) defaults to false
+ **fmt** | [**&#39;tar.gz&#39; | &#39;zip&#39;**]**Array<&#39;tar.gz&#39; &#124; &#39;zip&#39;>** | download format, tar.gz or zip | (optional) defaults to 'zip'
 
 
 ### Return type

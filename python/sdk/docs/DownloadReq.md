@@ -5,7 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**is_cloud** | **bool** | is the downloaded pakcage used to run workflow in cloud envirioment? | [optional] [default to False]
+**is_cloud** | **bool** | is the downloaded package used to run workflow in cloud environment? | [optional] [default to False]
+**fmt** | **str** | download format, tar.gz or zip | [optional] [default to 'zip']
 
 ## Example
 

@@ -19,15 +19,17 @@ export class DownloadApiRequestFactory extends BaseAPIRequestFactory {
      * Download resources.
      *
      * @param objid 
-     * @param isCloud is the downloaded pakcage used to run workflow in cloud envirioment?
+     * @param isCloud is the downloaded package used to run workflow in cloud environment?
+     * @param fmt download format, tar.gz or zip
      */
-    public async download(objid: string, isCloud?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async download(objid: string, isCloud?: boolean, fmt?: 'tar.gz' | 'zip', _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'objid' is not null or undefined
         if (objid === null || objid === undefined) {
             throw new RequiredError("DownloadApi", "download", "objid");
         }
+
 
 
 
@@ -42,6 +44,11 @@ export class DownloadApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (isCloud !== undefined) {
             requestContext.setQueryParam("is_cloud", ObjectSerializer.serialize(isCloud, "boolean", ""));
+        }
+
+        // Query Params
+        if (fmt !== undefined) {
+            requestContext.setQueryParam("fmt", ObjectSerializer.serialize(fmt, "'tar.gz' | 'zip'", ""));
         }
 
 

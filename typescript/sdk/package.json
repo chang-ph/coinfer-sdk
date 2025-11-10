@@ -1,6 +1,6 @@
 {
   "name": "@vectorly-ai/coinfer-ts",
-  "version": "0.0.1762386899+a5ef41a",
+  "version": "0.0.1762754171+ae58e74",
   "description": "OpenAPI client for @vectorly-ai/coinfer-ts",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
@@ -15,10 +15,11 @@
   ],
   "license": "Unlicense",
   "main": "./dist/index.js",
-  "type": "commonjs",
+  "type": "module",
+  "module": "./dist/index.js",
   "exports": {
     ".": {
-      "require": "./dist/index.js",
+      "import": "./dist/index.js",
       "types": "./dist/index.d.js"
     }
   },

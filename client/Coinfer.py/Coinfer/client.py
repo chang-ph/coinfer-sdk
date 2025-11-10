@@ -1,5 +1,7 @@
+import base64
 import json
 import logging
+from pathlib import Path
 from typing import Any, Required, TypedDict
 
 from .logged_requests import requests, requests_lib
@@ -38,7 +40,10 @@ class Client:
 
     def endpoint(self, name: str, path: str) -> str:
         sep = "/"
-        return self.endpoints + sep + name + sep + path.lstrip("/")
+        if name:
+            return self.endpoints + sep + name + sep + path.lstrip("/")
+        else:
+            return self.endpoints + sep + path.lstrip("/")
 
     def headers_with_auth(self, **kwargs: Any) -> dict[str, Any]:
         headers = {"Authorization": f"bearer {self.coinfer_auth_token}"}
@@ -175,10 +180,9 @@ class Client:
 
     def download_workflow(self, workflow_id: str, is_cloud: bool = False):
         params: dict[str, Any] = {
-            "objid": workflow_id,
             "is_cloud": is_cloud,
         }
-        url = self.endpoint("sys", "/download-workflow")
+        url = self.endpoint("", f"/download/{workflow_id}?fmt=tar.gz")
         headers = self.headers_with_auth()
         res = self.session.get(url, headers=headers, params=params, stream=True)
         if not res or res.status_code != 200:
@@ -207,6 +211,31 @@ class Client:
                 "logs": log_data,
                 "batch_id": batch_id,
                 "run_id": run_id,
+            }
+        }
+        resp = self.session.post(url, headers=headers, json=body)
+        self.response_data(resp)
+
+    def save_analyzer_result(
+        self,
+        workflow_id: str,
+        return_code: int,
+        errlines: list[str],
+        result_file: str,
+    ):
+        url = self.endpoint("api", f"/object/{workflow_id}")
+        headers = self.headers_with_auth()
+        headers["Content-Type"] = "application/json"
+        result = ''
+        if Path(result_file).exists():
+            result = base64.b64encode(Path(result_file).read_bytes()).decode()
+
+        body: dict[str, Any] = {
+            "payload": {
+                "object_type": "workflow.analyzer_result",
+                "return_code": return_code,
+                "errlines": errlines,
+                "result": result,
             }
         }
         resp = self.session.post(url, headers=headers, json=body)

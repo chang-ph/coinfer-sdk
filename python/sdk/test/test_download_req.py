@@ -33,7 +33,8 @@ class TestDownloadReq(unittest.TestCase):
         model = DownloadReq()
         if include_optional:
             return DownloadReq(
-                is_cloud = True
+                is_cloud = True,
+                fmt = 'zip'
             )
         else:
             return DownloadReq(

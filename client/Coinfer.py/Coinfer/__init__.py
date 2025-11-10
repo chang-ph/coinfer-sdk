@@ -15,7 +15,7 @@ import numpy as np
 from bokeh.embed import json_item
 from bokeh.layouts import gridplot
 
-from . import cmd_impl
+from . import sample_cmd_impl
 from .client import Client, RunInfoData
 from .logged_requests import CheckResponseSubject, requests
 
@@ -45,6 +45,10 @@ def set_arviz_params(az):
     az.rcParams["plot.max_subplots"] = 100
 
 
+def _is_sync():
+    return os.environ["COINFER_ANALYSIS_SYNC"] != "off"
+
+
 class Experiment:
     def __init__(self, server_endpoint: str, auth_token: str, experiment_id: str):
         self.experiment_id = experiment_id
@@ -67,30 +71,37 @@ class Experiment:
 
         set_arviz_params(az)
 
-        download_url = f"{server_endpoint}/sys/get-arviz-data?experiment_id={experiment_id}"
-        if auth_token:
-            headers = {"Authorization": f"Bearer {auth_token}"}
-        else:
-            headers = {}  # public share
-        rsp = requests.get(download_url, headers=headers)
-        if requests.errmsg:
-            raise RuntimeError(f"get inference data failed: {requests.errmsg}")
-        assert rsp
-        with tempfile.TemporaryDirectory() as temp_dir:
-            with open(os.path.join(temp_dir, "data.tar"), "wb") as f:
-                f.write(rsp.content)
-            with tarfile.open(os.path.join(temp_dir, "data.tar")) as tar:
-                tar.extractall(temp_dir)
+        if _is_sync():
+            download_url = f"{server_endpoint}/sys/get-arviz-data?experiment_id={experiment_id}"
+            if auth_token:
+                headers = {"Authorization": f"Bearer {auth_token}"}
+            else:
+                headers = {}  # public share
+            rsp = requests.get(download_url, headers=headers)
+            if requests.errmsg:
+                raise RuntimeError(f"get inference data failed: {requests.errmsg}")
+            assert rsp
+            with tempfile.TemporaryDirectory() as temp_dir:
+                with open(os.path.join(temp_dir, "data.tar"), "wb") as f:
+                    f.write(rsp.content)
+                with tarfile.open(os.path.join(temp_dir, "data.tar")) as tar:
+                    tar.extractall(temp_dir)
 
-            inference_data_by_chain: dict[str, az.InferenceData] = {}
-            for item in os.listdir(temp_dir):
-                if item.endswith(".nc"):
-                    inference_data = az.from_netcdf(os.path.join(temp_dir, item))
-                    name_mapping = {name: unquote(name) for name in inference_data.posterior.data_vars.keys()}
-                    inference_data.rename(name_mapping, inplace=True)
-                    inference_data_by_chain[item[:-3]] = inference_data
-            if not inference_data_by_chain:
-                raise RuntimeError("no inference data found")
+                inference_data_by_chain: dict[str, az.InferenceData] = {}
+                for item in os.listdir(temp_dir):
+                    if item.endswith(".nc"):
+                        inference_data = az.from_netcdf(os.path.join(temp_dir, item))
+                        name_mapping = {name: unquote(name) for name in inference_data.posterior.data_vars.keys()}
+                        inference_data.rename(name_mapping, inplace=True)
+                        inference_data_by_chain[item[:-3]] = inference_data
+                if not inference_data_by_chain:
+                    raise RuntimeError("no inference data found")
+                return inference_data_by_chain
+        else:
+            from .convert_csv_to_idata import convert_csv_to_idata
+
+            mcmcdata_dir = Path(os.environ["COINFER_MCMC_DATA_PATH"])
+            inference_data_by_chain = convert_csv_to_idata(mcmcdata_dir)
             return inference_data_by_chain
 
 
@@ -107,7 +118,7 @@ def current_experiment():
 
 
 def save_result(data: bytes):
-    with gzip.open(sys.argv[3], "wb") as fresult:
+    with gzip.open(sys.argv[2], "wb") as fresult:
         fresult.write(data)
 
 
@@ -187,6 +198,10 @@ class Workflow:
             self.model_id = wf_rsp["model_id"]
             self.experiment_id = wf_rsp["experiment_id"]
             self.analyzer_id = wf_rsp["analyzer_id"]
+        else:
+            self.model_id = ""
+            self.experiment_id = ""
+            self.analyzer_id = ""
         data_path = Path("data")
         if data_path.is_file():
             self.data = data_path.read_bytes()
@@ -218,5 +233,5 @@ __all__ = [
     "render_plots_to_html",
     "Workflow",
     "current_workflow",
-    "cmd_impl",
+    "sample_cmd_impl",
 ]

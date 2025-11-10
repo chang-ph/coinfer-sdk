@@ -602,10 +602,11 @@ export class ObservableDownloadApi {
     /**
      * Download resources.
      * @param objid
-     * @param [isCloud] is the downloaded pakcage used to run workflow in cloud envirioment?
+     * @param [isCloud] is the downloaded package used to run workflow in cloud environment?
+     * @param [fmt] download format, tar.gz or zip
      */
-    public downloadWithHttpInfo(objid: string, isCloud?: boolean, _options?: Configuration): Observable<HttpInfo<SuccRspAny>> {
-        const requestContextPromise = this.requestFactory.download(objid, isCloud, _options);
+    public downloadWithHttpInfo(objid: string, isCloud?: boolean, fmt?: 'tar.gz' | 'zip', _options?: Configuration): Observable<HttpInfo<SuccRspAny>> {
+        const requestContextPromise = this.requestFactory.download(objid, isCloud, fmt, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -626,10 +627,11 @@ export class ObservableDownloadApi {
     /**
      * Download resources.
      * @param objid
-     * @param [isCloud] is the downloaded pakcage used to run workflow in cloud envirioment?
+     * @param [isCloud] is the downloaded package used to run workflow in cloud environment?
+     * @param [fmt] download format, tar.gz or zip
      */
-    public download(objid: string, isCloud?: boolean, _options?: Configuration): Observable<SuccRspAny> {
-        return this.downloadWithHttpInfo(objid, isCloud, _options).pipe(map((apiResponse: HttpInfo<SuccRspAny>) => apiResponse.data));
+    public download(objid: string, isCloud?: boolean, fmt?: 'tar.gz' | 'zip', _options?: Configuration): Observable<SuccRspAny> {
+        return this.downloadWithHttpInfo(objid, isCloud, fmt, _options).pipe(map((apiResponse: HttpInfo<SuccRspAny>) => apiResponse.data));
     }
 
 }

@@ -15,7 +15,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -24,8 +24,19 @@ class DownloadReq(BaseModel):
     """
     DownloadReq
     """ # noqa: E501
-    is_cloud: Optional[StrictBool] = Field(default=False, description="is the downloaded pakcage used to run workflow in cloud envirioment?")
-    __properties: ClassVar[List[str]] = ["is_cloud"]
+    is_cloud: Optional[StrictBool] = Field(default=False, description="is the downloaded package used to run workflow in cloud environment?")
+    fmt: Optional[StrictStr] = Field(default='zip', description="download format, tar.gz or zip")
+    __properties: ClassVar[List[str]] = ["is_cloud", "fmt"]
+
+    @field_validator('fmt')
+    def fmt_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['tar.gz', 'zip']):
+            raise ValueError("must be one of enum values ('tar.gz', 'zip')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,7 +89,8 @@ class DownloadReq(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "is_cloud": obj.get("is_cloud") if obj.get("is_cloud") is not None else False
+            "is_cloud": obj.get("is_cloud") if obj.get("is_cloud") is not None else False,
+            "fmt": obj.get("fmt") if obj.get("fmt") is not None else 'zip'
         })
         return _obj
 

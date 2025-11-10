@@ -19,6 +19,7 @@ lang_config = {
             "npmName": "@vectorly-ai/coinfer-ts",
             "npmVersion": "",  # override in code
             "projectName": "coinfer-ts",
+            "supportsES6": True,
         }
     },
 }

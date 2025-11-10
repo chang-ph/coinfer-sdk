@@ -6,20 +6,24 @@
 
     DownloadReq(;
         is_cloud=false,
+        fmt="zip",
     )
 
-    - is_cloud::Bool : is the downloaded pakcage used to run workflow in cloud envirioment?
+    - is_cloud::Bool : is the downloaded package used to run workflow in cloud environment?
+    - fmt::String : download format, tar.gz or zip
 """
 Base.@kwdef mutable struct DownloadReq <: OpenAPI.APIModel
     is_cloud::Union{Nothing, Bool} = false
+    fmt::Union{Nothing, String} = "zip"
 
-    function DownloadReq(is_cloud, )
+    function DownloadReq(is_cloud, fmt, )
         OpenAPI.validate_property(DownloadReq, Symbol("is_cloud"), is_cloud)
-        return new(is_cloud, )
+        OpenAPI.validate_property(DownloadReq, Symbol("fmt"), fmt)
+        return new(is_cloud, fmt, )
     end
 end # type DownloadReq
 
-const _property_types_DownloadReq = Dict{Symbol,String}(Symbol("is_cloud")=>"Bool", )
+const _property_types_DownloadReq = Dict{Symbol,String}(Symbol("is_cloud")=>"Bool", Symbol("fmt")=>"String", )
 OpenAPI.property_type(::Type{ DownloadReq }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_DownloadReq[name]))}
 
 function check_required(o::DownloadReq)
@@ -27,5 +31,10 @@ function check_required(o::DownloadReq)
 end
 
 function OpenAPI.validate_property(::Type{ DownloadReq }, name::Symbol, val)
+
+
+    if name === Symbol("fmt")
+        OpenAPI.validate_param(name, "DownloadReq", :enum, val, ["tar.gz", "zip"])
+    end
 
 end

@@ -417,20 +417,22 @@ export class PromiseDownloadApi {
     /**
      * Download resources.
      * @param objid
-     * @param [isCloud] is the downloaded pakcage used to run workflow in cloud envirioment?
+     * @param [isCloud] is the downloaded package used to run workflow in cloud environment?
+     * @param [fmt] download format, tar.gz or zip
      */
-    public downloadWithHttpInfo(objid: string, isCloud?: boolean, _options?: Configuration): Promise<HttpInfo<SuccRspAny>> {
-        const result = this.api.downloadWithHttpInfo(objid, isCloud, _options);
+    public downloadWithHttpInfo(objid: string, isCloud?: boolean, fmt?: 'tar.gz' | 'zip', _options?: Configuration): Promise<HttpInfo<SuccRspAny>> {
+        const result = this.api.downloadWithHttpInfo(objid, isCloud, fmt, _options);
         return result.toPromise();
     }
 
     /**
      * Download resources.
      * @param objid
-     * @param [isCloud] is the downloaded pakcage used to run workflow in cloud envirioment?
+     * @param [isCloud] is the downloaded package used to run workflow in cloud environment?
+     * @param [fmt] download format, tar.gz or zip
      */
-    public download(objid: string, isCloud?: boolean, _options?: Configuration): Promise<SuccRspAny> {
-        const result = this.api.download(objid, isCloud, _options);
+    public download(objid: string, isCloud?: boolean, fmt?: 'tar.gz' | 'zip', _options?: Configuration): Promise<SuccRspAny> {
+        const result = this.api.download(objid, isCloud, fmt, _options);
         return result.toPromise();
     }
 

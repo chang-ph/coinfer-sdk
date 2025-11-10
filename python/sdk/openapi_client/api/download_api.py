@@ -14,7 +14,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictBool, StrictStr
+from pydantic import Field, StrictBool, StrictStr, field_validator
 from typing import Optional
 from typing_extensions import Annotated
 from openapi_client.models.succ_rsp_any import SuccRspAny
@@ -41,7 +41,8 @@ class DownloadApi:
     def download(
         self,
         objid: StrictStr,
-        is_cloud: Annotated[Optional[StrictBool], Field(description="is the downloaded pakcage used to run workflow in cloud envirioment?")] = None,
+        is_cloud: Annotated[Optional[StrictBool], Field(description="is the downloaded package used to run workflow in cloud environment?")] = None,
+        fmt: Annotated[Optional[StrictStr], Field(description="download format, tar.gz or zip")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -60,8 +61,10 @@ class DownloadApi:
 
         :param objid: (required)
         :type objid: str
-        :param is_cloud: is the downloaded pakcage used to run workflow in cloud envirioment?
+        :param is_cloud: is the downloaded package used to run workflow in cloud environment?
         :type is_cloud: bool
+        :param fmt: download format, tar.gz or zip
+        :type fmt: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -87,6 +90,7 @@ class DownloadApi:
         _param = self._download_serialize(
             objid=objid,
             is_cloud=is_cloud,
+            fmt=fmt,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -110,7 +114,8 @@ class DownloadApi:
     def download_with_http_info(
         self,
         objid: StrictStr,
-        is_cloud: Annotated[Optional[StrictBool], Field(description="is the downloaded pakcage used to run workflow in cloud envirioment?")] = None,
+        is_cloud: Annotated[Optional[StrictBool], Field(description="is the downloaded package used to run workflow in cloud environment?")] = None,
+        fmt: Annotated[Optional[StrictStr], Field(description="download format, tar.gz or zip")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -129,8 +134,10 @@ class DownloadApi:
 
         :param objid: (required)
         :type objid: str
-        :param is_cloud: is the downloaded pakcage used to run workflow in cloud envirioment?
+        :param is_cloud: is the downloaded package used to run workflow in cloud environment?
         :type is_cloud: bool
+        :param fmt: download format, tar.gz or zip
+        :type fmt: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -156,6 +163,7 @@ class DownloadApi:
         _param = self._download_serialize(
             objid=objid,
             is_cloud=is_cloud,
+            fmt=fmt,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -179,7 +187,8 @@ class DownloadApi:
     def download_without_preload_content(
         self,
         objid: StrictStr,
-        is_cloud: Annotated[Optional[StrictBool], Field(description="is the downloaded pakcage used to run workflow in cloud envirioment?")] = None,
+        is_cloud: Annotated[Optional[StrictBool], Field(description="is the downloaded package used to run workflow in cloud environment?")] = None,
+        fmt: Annotated[Optional[StrictStr], Field(description="download format, tar.gz or zip")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -198,8 +207,10 @@ class DownloadApi:
 
         :param objid: (required)
         :type objid: str
-        :param is_cloud: is the downloaded pakcage used to run workflow in cloud envirioment?
+        :param is_cloud: is the downloaded package used to run workflow in cloud environment?
         :type is_cloud: bool
+        :param fmt: download format, tar.gz or zip
+        :type fmt: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -225,6 +236,7 @@ class DownloadApi:
         _param = self._download_serialize(
             objid=objid,
             is_cloud=is_cloud,
+            fmt=fmt,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -244,6 +256,7 @@ class DownloadApi:
         self,
         objid,
         is_cloud,
+        fmt,
         _request_auth,
         _content_type,
         _headers,
@@ -271,6 +284,10 @@ class DownloadApi:
         if is_cloud is not None:
             
             _query_params.append(('is_cloud', is_cloud))
+            
+        if fmt is not None:
+            
+            _query_params.append(('fmt', fmt))
             
         # process the header parameters
         # process the form parameters

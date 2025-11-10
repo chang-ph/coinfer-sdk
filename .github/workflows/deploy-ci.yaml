@@ -30,6 +30,9 @@ jobs:
       with:
         node-version: ${{ matrix.node }}
 
+    - name: Install native jq
+      run: sudo apt-get update && sudo apt-get install -y jq
+
     - name: Install yarn
       run: npm install --global yarn
 
@@ -40,6 +43,23 @@ jobs:
 
     - name: Install dependencies
       run: yarn --cwd ./typescript/sdk
+      
+    - name: Bump package.json version with commit short id
+      shell: bash
+      run: |
+        set -e
+        cd "${{ github.workspace }}"
+        SHORT=$(git rev-parse --short HEAD)
+        PKG=./typescript/sdk/package.json
+        BASE_VERSION=$(jq -r '.version | split("+")[0] | split("-")[0]' "$PKG")
+        echo "Base version: $BASE_VERSION"
+        TIMESTAMP=$(date +%s)
+        NEW_VERSION="${BASE_VERSION}-${TIMESTAMP}-${SHORT}"
+        echo "New version: $NEW_VERSION"
+
+        jq --arg v "$NEW_VERSION" '.version = $v' "$PKG" > tmp.json && mv tmp.json "$PKG"
+
+        echo "Updated version: $(jq -r .version "$PKG")"
 
     - name: Publish to the Github.
       run: cd ./typescript/sdk && npm publish

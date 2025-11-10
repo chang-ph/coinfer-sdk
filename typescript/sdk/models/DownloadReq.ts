@@ -2,9 +2,13 @@ import { HttpFile } from '../http/http';
 
 export class DownloadReq {
     /**
-    * is the downloaded pakcage used to run workflow in cloud envirioment?
+    * is the downloaded package used to run workflow in cloud environment?
     */
     'isCloud'?: boolean;
+    /**
+    * download format, tar.gz or zip
+    */
+    'fmt'?: DownloadReqFmtEnum;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -16,6 +20,12 @@ export class DownloadReq {
             "baseName": "is_cloud",
             "type": "boolean",
             "format": ""
+        },
+        {
+            "name": "fmt",
+            "baseName": "fmt",
+            "type": "DownloadReqFmtEnum",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
@@ -25,3 +35,9 @@ export class DownloadReq {
     public constructor() {
     }
 }
+
+export enum DownloadReqFmtEnum {
+    TarGz = 'tar.gz',
+    Zip = 'zip'
+}
+

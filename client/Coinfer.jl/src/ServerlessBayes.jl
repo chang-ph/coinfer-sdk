@@ -8,7 +8,6 @@ using HTTP
 using TOML
 using SHA
 using Turing
-using MCMCChains
 using TuringCallbacks
 using Logging
 using Base.CoreLogging
@@ -23,6 +22,8 @@ using YAML
 using Base.Filesystem
 using DataFrames
 using CSV
+using OnlineStats
+using OnlineStatsBase
 
 ### msg_collector
 interval = parse(Int, get(ENV, "COINFER_DATA_SENDING_INTERVAL", "3000"))
@@ -706,6 +707,14 @@ CoreLogging.catch_exceptions(lg::CoinferLogger) = false
 CoreLogging.min_enabled_level(lg::CoinferLogger) = lg.min_level
 CoreLogging.shouldlog(lg::CoinferLogger, level, _module, group, id) = true
 
+function _preprocess(message, key, val::OnlineStatsBase.Series, data)
+    new_series = Series([x for x in val.stats if !isa(x, OnlineStats.KHist)]...)
+    TensorBoardLogger.preprocess(message * "/$key", new_series, data)
+end
+
+function _preprocess(message, key, val::T, data) where {T}
+    TensorBoardLogger.preprocess(message * "/$key", val, data)
+end
 function CoreLogging.handle_message(
     lg::CoinferLogger, level, message, _module, group, id, file, line; kwargs...
 )
@@ -731,12 +740,7 @@ function CoreLogging.handle_message(
                 i_step = val
                 continue
             end
-            try
-                TensorBoardLogger.preprocess(message * "/$key", val, data)
-            catch
-                @error "Error in preprocess" val, key
-                rethrow()
-            end
+            _preprocess(message, key, val, data)
         end
         log[:data] = data
     end

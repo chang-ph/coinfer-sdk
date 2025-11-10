@@ -141,7 +141,7 @@ import { DeleteObject } from '../models/DeleteObject';
 import { DeleteTokenReq } from '../models/DeleteTokenReq';
 import { DemoListItem } from '../models/DemoListItem';
 import { DemoListRsp } from '../models/DemoListRsp';
-import { DownloadReq } from '../models/DownloadReq';
+import { DownloadReq , DownloadReqFmtEnum   } from '../models/DownloadReq';
 import { ErrRsp, ErrRspStatusEnum     } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp, ExperimentCloudwatchLogRspObjectTypeEnum    } from '../models/ExperimentCloudwatchLogRsp';
 import { ExperimentPlotRsp, ExperimentPlotRspObjectTypeEnum    } from '../models/ExperimentPlotRsp';
@@ -256,6 +256,7 @@ let enumsMap: Set<string> = new Set<string>([
     "DataObjectTypeEnum",
     "Data1ObjectTypeEnum",
     "DataTag",
+    "DownloadReqFmtEnum",
     "ErrRspStatusEnum",
     "ExperimentCloudwatchLogRspObjectTypeEnum",
     "ExperimentPlotRspObjectTypeEnum",
