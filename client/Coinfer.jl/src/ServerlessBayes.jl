@@ -59,11 +59,10 @@ function current_workflow()
     if isassigned(wf)
         return wf[]
     end
-    wf_id = get(ENV, "WORKFLOW_ID", "")
-    settings = YAML.load(read("../workflow.yaml", String))  # cwd=workflow root directory
+    settings = YAML.load(read("../workflow.yaml", String))  # cwd=model root directory
     parsed_data = []
-    if Filesystem.isfile("tmp/parsed-data")
-        parsed_data = [_convert_type(x) for x in JSON.parsefile("tmp/parsed-data")]
+    if Filesystem.isfile("../tmp/parsed-data")
+        parsed_data = [_convert_type(x) for x in JSON.parsefile("../tmp/parsed-data")]
     end
 
     wf[] = Workflow(nothing, parsed_data, nothing, settings)
