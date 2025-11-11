@@ -12,6 +12,7 @@ from typing import Any, Callable, cast
 import yaml
 
 from .client import Client
+from .common import bool_sync
 
 logger = logging.getLogger(__name__)
 
@@ -40,9 +41,10 @@ def sample():
 
     sampling = settings['sampling']
     coinfer = settings.get(sampling['sync'], {})
-    is_sync = sampling['sync'] != 'off'
+    is_sync = bool_sync(sampling['sync'])
     if is_sync:
         client = Client(coinfer["endpoint"], coinfer["token"])
+        serverless = settings['serverless']
         wf_id = coinfer["workflow_id"]
         wf_rsp = client.get_object(wf_id)
         exp_id = wf_rsp["experiment_id"]
@@ -55,7 +57,7 @@ def sample():
                 input_id=wf_rsp["data_id"],
                 meta={"status": "RUN"},
                 name=coinfer["experiment_name"],
-                run_on=coinfer["engine"],
+                run_on=serverless["engine"],
             )
             exp_id = exp_rsp["short_id"]
         coinfer["experiment_id"] = exp_id
@@ -85,17 +87,14 @@ def _run_model(
     group_name: str,
 ):
     sampling = settings['sampling']
-    # is_cloud = bool('off' != sampling['sync'])
-    # if not is_cloud:
-    #     logger.setLevel(logging.ERROR)
 
     pre_script = """
     using Pkg
-    Pkg.instantiate()
+    Pkg.instantiate(;verbose=true)
     """
 
     coinfer = settings.get(sampling['sync'], {})
-    is_sync = sampling['sync'] != 'off'
+    is_sync = bool_sync(sampling['sync'])
     modelmeta = json.loads(Path("model", ".metadata").read_text())
     model_entrance_file = modelmeta["entrance_file"]
     run_model_scripts = "\n".join(
@@ -116,7 +115,7 @@ def _run_model(
         "BATCH_ID": batch_id,
         "RUN_ID": run_id,
         "WORKFLOW_ID": wf_id,
-        "COINFER_SYNC": sampling['sync'],
+        "COINFER_SYNC": "TRUE" if is_sync else "FALSE",
         "COINFER_AUTH_TOKEN": coinfer.get("token", ""),
         "COINFER_SERVER_ENDPOINT": coinfer.get("endpoint", ""),
         "COINFER_MCMC_DATA_PATH": mcmc_data_path.as_posix(),
@@ -129,7 +128,6 @@ def _run_model(
         run_model_scripts,
         (workflowdir / "client/Coinfer.jl").as_posix(),
     ]
-    print((workflowdir / "client/Coinfer.jl").as_posix())
     run_handler = ModelRunHandler(exp_id, batch_id, run_id, is_sync)
     status = run_handler.run_in_process(cmd, envs, workflowdir / "model", mcmc_data_path, client, group_name)
     if is_sync:

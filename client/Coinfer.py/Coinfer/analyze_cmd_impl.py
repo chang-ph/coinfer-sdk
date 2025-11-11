@@ -10,6 +10,7 @@ from typing import IO, Any, Callable, cast
 import yaml
 
 from .client import Client
+from .common import bool_sync
 
 logger = logging.getLogger(__name__)
 EFS_DIR = os.environ.get("EFS_DIR")
@@ -27,7 +28,7 @@ def analyze():
 
 def _save_analyzer_result(settings: dict[str, Any], return_code: int, errlines: list[str], result_file: str):
     analysis = settings.get("analysis", {})
-    is_sync = analysis["sync"] != 'off'
+    is_sync = bool_sync(analysis["sync"])
     if not is_sync:
         return
     local_settings = settings[analysis['sync']]
@@ -43,12 +44,13 @@ def _run(settings: dict[str, Any]) -> tuple[int, list[str], str]:
     coinfer = settings.get("coinfer", {})
     sampling = settings["sampling"]
     analysis = settings.get("analysis", {})
+    is_sync = bool_sync(analysis["sync"])
 
     working_dir = Path(workflow_dir / "analyzer")
     if not working_dir.exists():
         raise ValueError("No analyzer found. Attach an analyzer before call this command")
 
-    if coinfer.get("workflow_id"):
+    if is_sync and coinfer.get("workflow_id"):
         client = Client(coinfer["endpoint"], coinfer["token"])
         wf_id = coinfer["workflow_id"]
         wf_rsp = client.get_object(wf_id)
@@ -61,7 +63,7 @@ def _run(settings: dict[str, Any]) -> tuple[int, list[str], str]:
     else:
         mcmc_data_path = workflow_dir / sampling['mcmc_data'].get("directory", "mcmcdata")
     envs: dict[str, str] = os.environ | {
-        "COINFER_ANALYSIS_SYNC": analysis["sync"],
+        "COINFER_ANALYSIS_SYNC": "TRUE" if is_sync else "FALSE",
         "WORKFLOW_ID": coinfer.get("workflow_id", ""),
         "COINFER_SERVER_ENDPOINT": coinfer.get("endpoint", ""),
         "COINFER_AUTH_TOKEN": coinfer.get("token", ""),

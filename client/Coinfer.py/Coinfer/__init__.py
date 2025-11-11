@@ -1,13 +1,13 @@
 import gzip
 import json
 import os
-from pathlib import Path
 import sys
 import tarfile
 import tempfile
 from collections import defaultdict
 from functools import cached_property, lru_cache
 from html import escape as html_escape
+from pathlib import Path
 from typing import Any, Callable
 from urllib.parse import unquote
 
@@ -46,7 +46,11 @@ def set_arviz_params(az):
 
 
 def _is_sync():
-    return os.environ["COINFER_ANALYSIS_SYNC"] != "off"
+    if _sync := os.environ.get("COINFER_ANALYSIS_SYNC"):
+        return _sync != "FALSE"
+    if _sync := os.environ.get("COINFER_SYNC"):
+        return _sync != "FALSE"
+    return False
 
 
 class Experiment:
@@ -193,7 +197,7 @@ class Workflow:
     def __init__(self, workflow_id: str, client: Client) -> None:
         self.client = client
         self.workflow_id = workflow_id
-        if workflow_id:
+        if _is_sync() and workflow_id:
             wf_rsp = client.get_object(workflow_id)
             self.model_id = wf_rsp["model_id"]
             self.experiment_id = wf_rsp["experiment_id"]
@@ -214,7 +218,8 @@ class Workflow:
 
     def parse_data(self, parse_func: Callable[[bytes | None], Any]) -> None:
         parsed_data = json.dumps(parse_func(self.data))
-        with open(f"/tmp/parsed_data.{self.workflow_id}", "w") as fout:
+        os.makedirs("tmp", exist_ok=True)
+        with open("tmp/parsed-data", "w") as fout:
             fout.write(parsed_data)
 
 
