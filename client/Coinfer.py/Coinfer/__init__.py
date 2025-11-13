@@ -17,6 +17,7 @@ from bokeh.layouts import gridplot
 
 from . import sample_cmd_impl
 from .client import Client, RunInfoData
+from .client_common import get_token
 from .logged_requests import CheckResponseSubject, requests
 
 html_template = """
@@ -115,7 +116,7 @@ def current_experiment():
 
     xp = Experiment(
         input_data["coinfer_server_endpoint"],
-        input_data.get("coinfer_auth_token", ""),
+        get_token(),
         input_data["experiment_id"],
     )
     return xp

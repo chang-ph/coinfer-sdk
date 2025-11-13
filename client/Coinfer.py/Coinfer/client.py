@@ -240,3 +240,9 @@ class Client:
         }
         resp = self.session.post(url, headers=headers, json=body)
         self.response_data(resp)
+
+    def get_user_info(self):
+        url = self.endpoint("base", "/user")
+        headers = self.headers_with_auth()
+        res = self.session.get(url, headers=headers)
+        return self.response_data(res)

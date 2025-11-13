@@ -10,7 +10,7 @@ from typing import IO, Any, Callable, cast
 import yaml
 
 from .client import Client
-from .common import bool_sync
+from .client_common import NEED_LOGIN_PROMPT, bool_sync, get_token
 
 logger = logging.getLogger(__name__)
 EFS_DIR = os.environ.get("EFS_DIR")
@@ -22,6 +22,12 @@ def analyze():
     analysis = settings.get("analysis", {})
     if not analysis:
         raise ValueError("analysis section is not provided in workflow.yaml")
+    analysis = settings.get("analysis", {})
+    is_sync = bool_sync(analysis["sync"])
+    token = get_token()
+    if is_sync and not token:
+        return print(NEED_LOGIN_PROMPT)
+
     return_code, errlines, result_file = _run(settings)
     _save_analyzer_result(settings, return_code, errlines, result_file)
 
@@ -32,7 +38,7 @@ def _save_analyzer_result(settings: dict[str, Any], return_code: int, errlines: 
     if not is_sync:
         return
     local_settings = settings[analysis['sync']]
-    client = Client(local_settings["endpoint"], local_settings["token"])
+    client = Client(local_settings["endpoint"], get_token())
     client.save_analyzer_result(local_settings["workflow_id"], return_code, errlines, result_file)
 
 
@@ -51,7 +57,7 @@ def _run(settings: dict[str, Any]) -> tuple[int, list[str], str]:
         raise ValueError("No analyzer found. Attach an analyzer before call this command")
 
     if is_sync and coinfer.get("workflow_id"):
-        client = Client(coinfer["endpoint"], coinfer["token"])
+        client = Client(coinfer["endpoint"], get_token())
         wf_id = coinfer["workflow_id"]
         wf_rsp = client.get_object(wf_id)
         exp_id = wf_rsp["experiment_id"]
@@ -66,7 +72,7 @@ def _run(settings: dict[str, Any]) -> tuple[int, list[str], str]:
         "COINFER_ANALYSIS_SYNC": "TRUE" if is_sync else "FALSE",
         "WORKFLOW_ID": coinfer.get("workflow_id", ""),
         "COINFER_SERVER_ENDPOINT": coinfer.get("endpoint", ""),
-        "COINFER_AUTH_TOKEN": coinfer.get("token", ""),
+        "COINFER_AUTH_TOKEN": get_token(),
         "COINFER_MCMC_DATA_PATH": mcmc_data_path.as_posix(),
     }
 
@@ -75,8 +81,7 @@ def _run(settings: dict[str, Any]) -> tuple[int, list[str], str]:
         json.dump(
             {
                 "coinfer_server_endpoint": coinfer.get("endpoint", ""),
-                "coinfer_auth_token": coinfer.get("token", ""),
-                "experiment_id": coinfer.get("experiment_id", ""),
+                "experiment_id": exp_id,
             },
             ftmp,
         )

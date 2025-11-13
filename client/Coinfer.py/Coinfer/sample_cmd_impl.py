@@ -5,34 +5,15 @@ import os
 import subprocess
 import threading
 import time
-import uuid
 from pathlib import Path
-from typing import Any, Callable, cast
+from typing import Any, Callable
 
 import yaml
 
 from .client import Client
-from .common import bool_sync
+from .client_common import NEED_LOGIN_PROMPT, bool_sync, get_token, gen_batch_id
 
 logger = logging.getLogger(__name__)
-
-
-def base62(n: int) -> str:
-    if n == 0:
-        return "0"
-
-    base62_chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-    result: list[str] = []
-
-    while n > 0:
-        n, remainder = divmod(n, 62)
-        result.append(base62_chars[remainder])
-
-    return "".join(result[::-1])
-
-
-def gen_batch_id():
-    return base62(cast(int, uuid.uuid1().int))
 
 
 def sample():
@@ -43,7 +24,11 @@ def sample():
     coinfer = settings.get(sampling['sync'], {})
     is_sync = bool_sync(sampling['sync'])
     if is_sync:
-        client = Client(coinfer["endpoint"], coinfer["token"])
+        token = get_token()
+        if not token:
+            print(NEED_LOGIN_PROMPT)
+            return
+        client = Client(coinfer["endpoint"], token)
         serverless = settings['serverless']
         wf_id = coinfer["workflow_id"]
         wf_rsp = client.get_object(wf_id)
@@ -116,7 +101,7 @@ def _run_model(
         "RUN_ID": run_id,
         "WORKFLOW_ID": wf_id,
         "COINFER_SYNC": "TRUE" if is_sync else "FALSE",
-        "COINFER_AUTH_TOKEN": coinfer.get("token", ""),
+        "COINFER_AUTH_TOKEN": get_token(),
         "COINFER_SERVER_ENDPOINT": coinfer.get("endpoint", ""),
         "COINFER_MCMC_DATA_PATH": mcmc_data_path.as_posix(),
     }
@@ -302,7 +287,7 @@ def _run_data_script(settings: dict[str, Any], rootdir: Path, client: Client | N
         "PYTHONPATH": Path(rootdir, "client", "Coinfer.py").as_posix(),
         "WORKFLOW_ID": settings.get("coinfer", {}).get("workflow_id", ""),
         "COINFER_SERVER_ENDPOINT": settings.get("coinfer", {}).get("endpoint", ""),
-        "COINFER_AUTH_TOKEN": settings.get("coinfer", {}).get("token", ""),
+        "COINFER_AUTH_TOKEN": get_token(),
     }
     if EFS_DIR := os.environ.get("EFS_DIR"):
         extra_envs["UV_CACHE_DIR"] = f"{EFS_DIR}/uv_cache"
