@@ -517,7 +517,6 @@ end
 
 function update_experiment_runinfo(exp_id, batch_id, run_id, status)
     if !is_sync()
-        println("Not sync, skip update experiment runinfo")
         return nothing
     end
     data = Dict{String,Any}(

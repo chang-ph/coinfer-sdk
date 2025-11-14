@@ -160,7 +160,7 @@ class ModelRunHandler:
         client: Client | None,
         group_name: str,
     ):
-        logger.info("running sampling, sampling data is saved in: %s", mcmc_data_path)
+        logger.info("Running sampling, sampling data will be saved to: %s", mcmc_data_path)
         logger.debug("sampling params: %s, %s", cmd, _mask_envs(envs))
         popen = subprocess.Popen(
             cmd,
@@ -201,6 +201,7 @@ class ModelRunHandler:
                 client.sendmsg(group_name, {"action": "experiment:error", "data": return_code})
         else:
             status = "SAMPLE_FIN"
+            logger.info("Sampling data is saved to: %s", mcmc_data_path)
         return status
 
     def _sync_mcmc_data(self, mcmc_data_path: Path, client: Client | None, sampling_finished_evt: threading.Event):
@@ -313,7 +314,7 @@ def _run_data_script(settings: dict[str, Any], rootdir: Path, client: Client | N
         universal_newlines=True,
     )
     assert popen.stdout is not None
-    logger.info("running script: data.py")
+    logger.info("Running script: data.py")
     for stdout_line in iter(popen.stdout.readline, ""):
         logger.info("-->" + stdout_line.rstrip())
         if client:

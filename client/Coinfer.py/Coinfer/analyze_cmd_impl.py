@@ -18,11 +18,11 @@ PROCESS_WAIT_TIMEOUT_SECONDS = int(os.environ.get("PROCESS_WAIT_TIMEOUT_SECONDS"
 
 
 def analyze():
-    settings: dict[str, Any] = yaml.safe_load(open("workflow.yaml"))
+    with open("workflow.yaml") as f:
+        settings: dict[str, Any] = yaml.safe_load(f)
     analysis = settings.get("analysis", {})
     if not analysis:
         raise ValueError("analysis section is not provided in workflow.yaml")
-    analysis = settings.get("analysis", {})
     is_sync = bool_sync(analysis["sync"])
     token = get_token()
     if is_sync and not token:
@@ -50,7 +50,6 @@ def _run(settings: dict[str, Any]) -> tuple[int, list[str], str]:
     os.makedirs(outputdir, exist_ok=True)
     coinfer = settings.get("coinfer", {})
     sampling = settings["sampling"]
-    analysis = settings.get("analysis", {})
     is_sync = bool_sync(analysis["sync"])
 
     working_dir = Path(workflow_dir / "analyzer")
@@ -108,6 +107,9 @@ def _run(settings: dict[str, Any]) -> tuple[int, list[str], str]:
     logger.debug('envs=%s', envs)
     shutil.copytree(f'{workflow_dir}/client/Coinfer.py/Coinfer', working_dir / "Coinfer", dirs_exist_ok=True)
     return_code, _, errlines = _run_command(cmd, env=envs, cwd=working_dir)
+    if return_code != 0:
+        logger.error("Analyzer failed with return code %d", return_code)
+        return return_code, errlines, ""
 
     tmp_dir = Path(workflow_dir, "tmp")
     analyze_result_path = Path("analyzer", Path(tmp_dir, "analyze_result_path").read_text().strip())
