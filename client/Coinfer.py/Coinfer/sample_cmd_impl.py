@@ -160,7 +160,8 @@ class ModelRunHandler:
         client: Client | None,
         group_name: str,
     ):
-        logger.debug(f"about to run: {cmd}, {_mask_envs(envs)}")
+        logger.info("running sampling, sampling data is saved in: %s", mcmc_data_path)
+        logger.debug("sampling params: %s, %s", cmd, _mask_envs(envs))
         popen = subprocess.Popen(
             cmd,
             bufsize=1,
@@ -170,10 +171,13 @@ class ModelRunHandler:
             universal_newlines=True,
             cwd=model_path,
         )
-        evt = threading.Event()
-        thd = PropagatingThread(target=self._sync_mcmc_data, args=(mcmc_data_path, client, evt), daemon=True)
-        # thd = threading.Thread(target=self._sync_mcmc_data, args=(mcmc_data_path, client, evt))
-        thd.start()
+        if self.is_sync:
+            sampling_finishied_evt = threading.Event()
+            thd = PropagatingThread(
+                target=self._sync_mcmc_data, args=(mcmc_data_path, client, sampling_finishied_evt), daemon=True
+            )
+            # thd = threading.Thread(target=self._sync_mcmc_data, args=(mcmc_data_path, client, evt))
+            thd.start()
         assert popen.stdout is not None
         for stdout_line in iter(popen.stdout.readline, ""):
             logger.info("-->" + stdout_line.rstrip())
@@ -181,12 +185,15 @@ class ModelRunHandler:
                 client.sendmsg(group_name, {"action": "experiment:output", "data": stdout_line})
         popen.stdout.close()
         return_code = popen.wait()
-        evt.set()
-        try:
-            thd.join()
-        except Exception:
-            logging.exception("Error syncing MCMC data: %s", thd.exc)
-            return_code = -1
+        if self.is_sync:
+            assert sampling_finishied_evt  # type: ignore
+            assert thd  # type: ignore
+            sampling_finishied_evt.set()
+            try:
+                thd.join()
+            except Exception:
+                logging.exception("Error syncing MCMC data: %s", thd.exc)
+                return_code = -1
         if return_code:
             status = "ERR"
             logging.error("ERR: %s", return_code)
@@ -196,11 +203,11 @@ class ModelRunHandler:
             status = "SAMPLE_FIN"
         return status
 
-    def _sync_mcmc_data(self, mcmc_data_path: Path, client: Client | None, evt: threading.Event):
+    def _sync_mcmc_data(self, mcmc_data_path: Path, client: Client | None, sampling_finished_evt: threading.Event):
         logger.debug("syncing MCMC data")
         if not client:
             return
-        while not mcmc_data_path.exists() and not evt.is_set():
+        while not mcmc_data_path.exists() and not sampling_finished_evt.is_set():
             time.sleep(1)
 
         log_data: dict[str, dict[str, list[Any]]] = {}
@@ -213,13 +220,17 @@ class ModelRunHandler:
         while True:
             has_pending_data = False
             for mcmc_data_file in sorted(mcmc_data_path.iterdir()):
+                if mcmc_data_file.suffix != ".csv":
+                    continue
                 if mcmc_data_file.name in already_handled:
                     continue
                 logger.debug("handling file: %s", mcmc_data_file.name)
-                chain_name, min_iter, max_iter, _seqno = mcmc_data_file.stem.split("-")
+                parts = mcmc_data_file.stem.split("-")
+                min_iter, max_iter, _seqno = parts[-3:]
                 csvreader = csv.reader(mcmc_data_file.open())
                 skip_header = True
                 is_empty_csv = True
+                chain_name = ""
                 for row in csvreader:
                     is_empty_csv = False
                     if skip_header:
@@ -240,6 +251,7 @@ class ModelRunHandler:
                     break
                 already_handled.add(mcmc_data_file.name)
 
+                assert chain_name
                 if chain_name in chain_iter_map:
                     chain_iter_map[chain_name] = (
                         min(chain_iter_map[chain_name][0], int(min_iter)),
@@ -259,7 +271,7 @@ class ModelRunHandler:
                         "iteration": chain_iter_map,
                     },
                 )
-            if evt.is_set():
+            if sampling_finished_evt.is_set():
                 break
             time.sleep(1)
         with open(mcmc_data_path / ".mcmc_data_handled", "a") as f:
@@ -301,6 +313,7 @@ def _run_data_script(settings: dict[str, Any], rootdir: Path, client: Client | N
         universal_newlines=True,
     )
     assert popen.stdout is not None
+    logger.info("running script: data.py")
     for stdout_line in iter(popen.stdout.readline, ""):
         logger.info("-->" + stdout_line.rstrip())
         if client:

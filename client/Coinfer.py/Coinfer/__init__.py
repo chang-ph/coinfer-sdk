@@ -1,5 +1,5 @@
-import gzip
 import json
+import logging
 import os
 import sys
 import tarfile
@@ -19,6 +19,9 @@ from . import sample_cmd_impl
 from .client import Client, RunInfoData
 from .client_common import get_token
 from .logged_requests import CheckResponseSubject, requests
+
+logger = logging.getLogger(__name__)
+
 
 html_template = """
 <html>
@@ -122,9 +125,18 @@ def current_experiment():
     return xp
 
 
-def save_result(data: bytes):
-    with gzip.open(sys.argv[2], "wb") as fresult:
+def save_result(data: bytes, filename: str = "output.html"):
+    workflow_dir = os.environ["WORKFLOW_DIR"]
+    analyze_output_dir = os.environ["COINFER_ANALYZE_OUTPUT_DIR"]
+    full_output_file_path = Path(analyze_output_dir, filename)
+    with open(full_output_file_path, "wb") as fresult:
         fresult.write(data)
+    tmp_dir = Path(workflow_dir, "tmp")
+    os.makedirs(tmp_dir, exist_ok=True)
+    with open(Path(tmp_dir, "analyze_result_path"), "w") as f:
+        f.write(full_output_file_path.as_posix())
+
+    logger.info("Saved result to %s", full_output_file_path.as_posix())
 
 
 def _ensure_center_last(data: Any):

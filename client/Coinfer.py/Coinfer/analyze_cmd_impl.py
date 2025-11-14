@@ -40,6 +40,7 @@ def _save_analyzer_result(settings: dict[str, Any], return_code: int, errlines: 
     local_settings = settings[analysis['sync']]
     client = Client(local_settings["endpoint"], get_token())
     client.save_analyzer_result(local_settings["workflow_id"], return_code, errlines, result_file)
+    logger.info("Saved analyzer result to server.")
 
 
 def _run(settings: dict[str, Any]) -> tuple[int, list[str], str]:
@@ -73,7 +74,9 @@ def _run(settings: dict[str, Any]) -> tuple[int, list[str], str]:
         "WORKFLOW_ID": coinfer.get("workflow_id", ""),
         "COINFER_SERVER_ENDPOINT": coinfer.get("endpoint", ""),
         "COINFER_AUTH_TOKEN": get_token(),
+        "WORKFLOW_DIR": workflow_dir.as_posix(),
         "COINFER_MCMC_DATA_PATH": mcmc_data_path.as_posix(),
+        "COINFER_ANALYZE_OUTPUT_DIR": outputdir.as_posix(),
     }
 
     input_param_file = outputdir / "input_params"
@@ -102,13 +105,15 @@ def _run(settings: dict[str, Any]) -> tuple[int, list[str], str]:
     else:
         raise NotImplementedError(f"Unsupported language: {lang}")
 
-    result_file = outputdir / "result"
-    cmd.append(result_file.as_posix())
-
     logger.debug('envs=%s', envs)
     shutil.copytree(f'{workflow_dir}/client/Coinfer.py/Coinfer', working_dir / "Coinfer", dirs_exist_ok=True)
     return_code, _, errlines = _run_command(cmd, env=envs, cwd=working_dir)
-    return return_code, errlines, result_file.as_posix()
+
+    tmp_dir = Path(workflow_dir, "tmp")
+    analyze_result_path = Path("analyzer", Path(tmp_dir, "analyze_result_path").read_text().strip())
+    logger.info("Analyzer result saved to %s", analyze_result_path)
+
+    return return_code, errlines, analyze_result_path.as_posix()
 
 
 def _read_stream(stream: IO[str], callback: Callable[[str], None]):

@@ -1,4 +1,5 @@
 import base64
+import gzip
 import json
 import logging
 from pathlib import Path
@@ -228,7 +229,7 @@ class Client:
         headers["Content-Type"] = "application/json"
         result = ''
         if Path(result_file).exists():
-            result = base64.b64encode(Path(result_file).read_bytes()).decode()
+            result = base64.b64encode(gzip.compress(Path(result_file).read_bytes())).decode()
 
         body: dict[str, Any] = {
             "payload": {

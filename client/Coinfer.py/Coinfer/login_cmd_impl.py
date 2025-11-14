@@ -1,16 +1,21 @@
+import logging
 import dataclasses
 import pathlib
 
+import yaml
+
 from .client import Client
 from .client_common import get_token
+
+logger = logging.getLogger(__name__)
 
 
 def login():
     if token := get_token():
         userinfo = _get_user_info(token)
-        print(f"You're logged in as {userinfo.name}.")
+        logger.info(f"You're logged in as {userinfo.name}.")
     else:
-        print(_login_prompt)
+        logger.info(_login_prompt)
 
 
 @dataclasses.dataclass
@@ -19,8 +24,6 @@ class _UserInfo:
 
 
 def _get_user_info(token: str) -> _UserInfo:
-    import yaml
-
     with open("workflow.yaml", "r") as f:
         workflow_settings = yaml.safe_load(f)
 
