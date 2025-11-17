@@ -131,7 +131,7 @@ function list_object(_api::ObjectApi, response_stream::Channel, object_type::Str
 end
 
 const _returntypes_update_object_ObjectApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => UUUU28b510deefc97bb409a5d7911e299314,
+    Regex("^" * replace("200", "x"=>".") * "\$") => UUUUe66fb9eb8c8e63948bf34d0b2349c841,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
@@ -151,7 +151,7 @@ Params:
 - objid::String (required)
 - update_object_param::UpdateObject (required)
 
-Return: UUUU28b510deefc97bb409a5d7911e299314, OpenAPI.Clients.ApiResponse
+Return: UUUUe66fb9eb8c8e63948bf34d0b2349c841, OpenAPI.Clients.ApiResponse
 """
 function update_object(_api::ObjectApi, objid::String, update_object_param::UpdateObject; _mediaType=nothing)
     _ctx = _oacinternal_update_object(_api, objid, update_object_param; _mediaType=_mediaType)
@@ -164,7 +164,7 @@ function update_object(_api::ObjectApi, response_stream::Channel, objid::String,
 end
 
 const _returntypes_view_object_ObjectApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => UUUU0bdaccc02abe3e86fd53540d087462d8,
+    Regex("^" * replace("200", "x"=>".") * "\$") => UUUU3901522240c3ec762888a02c13900728,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
@@ -207,7 +207,7 @@ Params:
 - plot_chain::String
 - plot_var::String
 
-Return: UUUU0bdaccc02abe3e86fd53540d087462d8, OpenAPI.Clients.ApiResponse
+Return: UUUU3901522240c3ec762888a02c13900728, OpenAPI.Clients.ApiResponse
 """
 function view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, plot_func=nothing, plot_chain=nothing, plot_var=nothing, _mediaType=nothing)
     _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, view_analyzer=view_analyzer, plot_func=plot_func, plot_chain=plot_chain, plot_var=plot_var, _mediaType=_mediaType)

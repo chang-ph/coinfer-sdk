@@ -266,7 +266,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_object**
-> UUUU28b510deefc97bb409a5d7911e299314 update_object(objid, update_object)
+> UUUUe66fb9eb8c8e63948bf34d0b2349c841 update_object(objid, update_object)
 
 Update object.
 
@@ -278,7 +278,7 @@ Update object of certain ID.  ### Example  Update model: ``` POST /api/object/M1
 
 ```python
 import openapi_client
-from openapi_client.models.uuuu28b510deefc97bb409a5d7911e299314 import UUUU28b510deefc97bb409a5d7911e299314
+from openapi_client.models.uuuue66fb9eb8c8e63948bf34d0b2349c841 import UUUUe66fb9eb8c8e63948bf34d0b2349c841
 from openapi_client.models.update_object import UpdateObject
 from openapi_client.rest import ApiException
 from pprint import pprint
@@ -325,7 +325,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UUUU28b510deefc97bb409a5d7911e299314**](UUUU28b510deefc97bb409a5d7911e299314.md)
+[**UUUUe66fb9eb8c8e63948bf34d0b2349c841**](UUUUe66fb9eb8c8e63948bf34d0b2349c841.md)
 
 ### Authorization
 
@@ -346,7 +346,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **view_object**
-> UUUU0bdaccc02abe3e86fd53540d087462d8 view_object(objid, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, view_analyzer=view_analyzer, plot_func=plot_func, plot_chain=plot_chain, plot_var=plot_var)
+> UUUU3901522240c3ec762888a02c13900728 view_object(objid, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, view_analyzer=view_analyzer, plot_func=plot_func, plot_chain=plot_chain, plot_var=plot_var)
 
 View object.
 
@@ -359,7 +359,7 @@ View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view mo
 
 ```python
 import openapi_client
-from openapi_client.models.uuuu0bdaccc02abe3e86fd53540d087462d8 import UUUU0bdaccc02abe3e86fd53540d087462d8
+from openapi_client.models.uuuu3901522240c3ec762888a02c13900728 import UUUU3901522240c3ec762888a02c13900728
 from openapi_client.rest import ApiException
 from pprint import pprint
 
@@ -433,7 +433,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UUUU0bdaccc02abe3e86fd53540d087462d8**](UUUU0bdaccc02abe3e86fd53540d087462d8.md)
+[**UUUU3901522240c3ec762888a02c13900728**](UUUU3901522240c3ec762888a02c13900728.md)
 
 ### Authorization
 

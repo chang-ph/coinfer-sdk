@@ -18,7 +18,6 @@ from typing import Any, List, Optional
 from openapi_client.models.create_data_rsp import CreateDataRsp
 from openapi_client.models.create_workflow_rsp import CreateWorkflowRsp
 from openapi_client.models.experiment_cloudwatch_log_rsp import ExperimentCloudwatchLogRsp
-from openapi_client.models.experiment_plot_rsp import ExperimentPlotRsp
 from openapi_client.models.experiment_rsp import ExperimentRsp
 from openapi_client.models.experiment_sample_data_rsp import ExperimentSampleDataRsp
 from openapi_client.models.get_experiment_run_info_rsp import GetExperimentRunInfoRsp
@@ -29,7 +28,7 @@ from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-DATA1_ONE_OF_SCHEMAS = ["CreateDataRsp", "CreateWorkflowRsp", "ExperimentCloudwatchLogRsp", "ExperimentPlotRsp", "ExperimentRsp", "ExperimentSampleDataRsp", "GetExperimentRunInfoRsp", "ViewAnalyzerRsp", "ViewExperimentShareRsp", "ViewModelsRsp"]
+DATA1_ONE_OF_SCHEMAS = ["CreateDataRsp", "CreateWorkflowRsp", "ExperimentCloudwatchLogRsp", "ExperimentRsp", "ExperimentSampleDataRsp", "GetExperimentRunInfoRsp", "ViewAnalyzerRsp", "ViewExperimentShareRsp", "ViewModelsRsp"]
 
 class Data1(BaseModel):
     """
@@ -47,16 +46,14 @@ class Data1(BaseModel):
     oneof_schema_5_validator: Optional[ExperimentCloudwatchLogRsp] = None
     # data type: GetExperimentRunInfoRsp
     oneof_schema_6_validator: Optional[GetExperimentRunInfoRsp] = None
-    # data type: ExperimentPlotRsp
-    oneof_schema_7_validator: Optional[ExperimentPlotRsp] = None
     # data type: CreateDataRsp
-    oneof_schema_8_validator: Optional[CreateDataRsp] = None
+    oneof_schema_7_validator: Optional[CreateDataRsp] = None
     # data type: ViewAnalyzerRsp
-    oneof_schema_9_validator: Optional[ViewAnalyzerRsp] = None
+    oneof_schema_8_validator: Optional[ViewAnalyzerRsp] = None
     # data type: CreateWorkflowRsp
-    oneof_schema_10_validator: Optional[CreateWorkflowRsp] = None
-    actual_instance: Optional[Union[CreateDataRsp, CreateWorkflowRsp, ExperimentCloudwatchLogRsp, ExperimentPlotRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewAnalyzerRsp, ViewExperimentShareRsp, ViewModelsRsp]] = None
-    one_of_schemas: Set[str] = { "CreateDataRsp", "CreateWorkflowRsp", "ExperimentCloudwatchLogRsp", "ExperimentPlotRsp", "ExperimentRsp", "ExperimentSampleDataRsp", "GetExperimentRunInfoRsp", "ViewAnalyzerRsp", "ViewExperimentShareRsp", "ViewModelsRsp" }
+    oneof_schema_9_validator: Optional[CreateWorkflowRsp] = None
+    actual_instance: Optional[Union[CreateDataRsp, CreateWorkflowRsp, ExperimentCloudwatchLogRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewAnalyzerRsp, ViewExperimentShareRsp, ViewModelsRsp]] = None
+    one_of_schemas: Set[str] = { "CreateDataRsp", "CreateWorkflowRsp", "ExperimentCloudwatchLogRsp", "ExperimentRsp", "ExperimentSampleDataRsp", "GetExperimentRunInfoRsp", "ViewAnalyzerRsp", "ViewExperimentShareRsp", "ViewModelsRsp" }
 
     model_config = ConfigDict(
         validate_assignment=True,
@@ -112,11 +109,6 @@ class Data1(BaseModel):
             error_messages.append(f"Error! Input type `{type(v)}` is not `GetExperimentRunInfoRsp`")
         else:
             match += 1
-        # validate data type: ExperimentPlotRsp
-        if not isinstance(v, ExperimentPlotRsp):
-            error_messages.append(f"Error! Input type `{type(v)}` is not `ExperimentPlotRsp`")
-        else:
-            match += 1
         # validate data type: CreateDataRsp
         if not isinstance(v, CreateDataRsp):
             error_messages.append(f"Error! Input type `{type(v)}` is not `CreateDataRsp`")
@@ -134,10 +126,10 @@ class Data1(BaseModel):
             match += 1
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in Data1 with oneOf schemas: CreateDataRsp, CreateWorkflowRsp, ExperimentCloudwatchLogRsp, ExperimentPlotRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewAnalyzerRsp, ViewExperimentShareRsp, ViewModelsRsp. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in Data1 with oneOf schemas: CreateDataRsp, CreateWorkflowRsp, ExperimentCloudwatchLogRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewAnalyzerRsp, ViewExperimentShareRsp, ViewModelsRsp. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in Data1 with oneOf schemas: CreateDataRsp, CreateWorkflowRsp, ExperimentCloudwatchLogRsp, ExperimentPlotRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewAnalyzerRsp, ViewExperimentShareRsp, ViewModelsRsp. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in Data1 with oneOf schemas: CreateDataRsp, CreateWorkflowRsp, ExperimentCloudwatchLogRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewAnalyzerRsp, ViewExperimentShareRsp, ViewModelsRsp. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -188,12 +180,6 @@ class Data1(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into ExperimentPlotRsp
-        try:
-            instance.actual_instance = ExperimentPlotRsp.from_json(json_str)
-            match += 1
-        except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
         # deserialize data into CreateDataRsp
         try:
             instance.actual_instance = CreateDataRsp.from_json(json_str)
@@ -215,10 +201,10 @@ class Data1(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into Data1 with oneOf schemas: CreateDataRsp, CreateWorkflowRsp, ExperimentCloudwatchLogRsp, ExperimentPlotRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewAnalyzerRsp, ViewExperimentShareRsp, ViewModelsRsp. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into Data1 with oneOf schemas: CreateDataRsp, CreateWorkflowRsp, ExperimentCloudwatchLogRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewAnalyzerRsp, ViewExperimentShareRsp, ViewModelsRsp. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Data1 with oneOf schemas: CreateDataRsp, CreateWorkflowRsp, ExperimentCloudwatchLogRsp, ExperimentPlotRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewAnalyzerRsp, ViewExperimentShareRsp, ViewModelsRsp. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into Data1 with oneOf schemas: CreateDataRsp, CreateWorkflowRsp, ExperimentCloudwatchLogRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewAnalyzerRsp, ViewExperimentShareRsp, ViewModelsRsp. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -232,7 +218,7 @@ class Data1(BaseModel):
         else:
             return json.dumps(self.actual_instance)
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], CreateDataRsp, CreateWorkflowRsp, ExperimentCloudwatchLogRsp, ExperimentPlotRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewAnalyzerRsp, ViewExperimentShareRsp, ViewModelsRsp]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], CreateDataRsp, CreateWorkflowRsp, ExperimentCloudwatchLogRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewAnalyzerRsp, ViewExperimentShareRsp, ViewModelsRsp]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

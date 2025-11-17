@@ -11,10 +11,10 @@ import {SecurityAuthentication} from '../auth/auth';
 import { CreateObjectReq } from '../models/CreateObjectReq';
 import { ErrRsp } from '../models/ErrRsp';
 import { SuccRspSoftDeletedRsp } from '../models/SuccRspSoftDeletedRsp';
-import { UUUU0bdaccc02abe3e86fd53540d087462d8 } from '../models/UUUU0bdaccc02abe3e86fd53540d087462d8';
 import { UUUU18d10abbf81f28b86769c427804ea587 } from '../models/UUUU18d10abbf81f28b86769c427804ea587';
-import { UUUU28b510deefc97bb409a5d7911e299314 } from '../models/UUUU28b510deefc97bb409a5d7911e299314';
+import { UUUU3901522240c3ec762888a02c13900728 } from '../models/UUUU3901522240c3ec762888a02c13900728';
 import { UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66 } from '../models/UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66';
+import { UUUUe66fb9eb8c8e63948bf34d0b2349c841 } from '../models/UUUUe66fb9eb8c8e63948bf34d0b2349c841';
 import { UpdateObject } from '../models/UpdateObject';
 
 /**
@@ -542,13 +542,13 @@ export class ObjectApiResponseProcessor {
      * @params response Response returned by the server for a request to updateObject
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async updateObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<UUUU28b510deefc97bb409a5d7911e299314 >> {
+     public async updateObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<UUUUe66fb9eb8c8e63948bf34d0b2349c841 >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: UUUU28b510deefc97bb409a5d7911e299314 = ObjectSerializer.deserialize(
+            const body: UUUUe66fb9eb8c8e63948bf34d0b2349c841 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "UUUU28b510deefc97bb409a5d7911e299314", ""
-            ) as UUUU28b510deefc97bb409a5d7911e299314;
+                "UUUUe66fb9eb8c8e63948bf34d0b2349c841", ""
+            ) as UUUUe66fb9eb8c8e63948bf34d0b2349c841;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -561,10 +561,10 @@ export class ObjectApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: UUUU28b510deefc97bb409a5d7911e299314 = ObjectSerializer.deserialize(
+            const body: UUUUe66fb9eb8c8e63948bf34d0b2349c841 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "UUUU28b510deefc97bb409a5d7911e299314", ""
-            ) as UUUU28b510deefc97bb409a5d7911e299314;
+                "UUUUe66fb9eb8c8e63948bf34d0b2349c841", ""
+            ) as UUUUe66fb9eb8c8e63948bf34d0b2349c841;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
@@ -578,13 +578,13 @@ export class ObjectApiResponseProcessor {
      * @params response Response returned by the server for a request to viewObject
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async viewObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<UUUU0bdaccc02abe3e86fd53540d087462d8 >> {
+     public async viewObjectWithHttpInfo(response: ResponseContext): Promise<HttpInfo<UUUU3901522240c3ec762888a02c13900728 >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: UUUU0bdaccc02abe3e86fd53540d087462d8 = ObjectSerializer.deserialize(
+            const body: UUUU3901522240c3ec762888a02c13900728 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "UUUU0bdaccc02abe3e86fd53540d087462d8", ""
-            ) as UUUU0bdaccc02abe3e86fd53540d087462d8;
+                "UUUU3901522240c3ec762888a02c13900728", ""
+            ) as UUUU3901522240c3ec762888a02c13900728;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -597,10 +597,10 @@ export class ObjectApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: UUUU0bdaccc02abe3e86fd53540d087462d8 = ObjectSerializer.deserialize(
+            const body: UUUU3901522240c3ec762888a02c13900728 = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "UUUU0bdaccc02abe3e86fd53540d087462d8", ""
-            ) as UUUU0bdaccc02abe3e86fd53540d087462d8;
+                "UUUU3901522240c3ec762888a02c13900728", ""
+            ) as UUUU3901522240c3ec762888a02c13900728;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 

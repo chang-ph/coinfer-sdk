@@ -15,38 +15,25 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List
+from openapi_client.models.data1 import Data1
 from typing import Optional, Set
 from typing_extensions import Self
 
-class RunCloudFunctionScript(BaseModel):
+class UUUU3901522240c3ec762888a02c13900728(BaseModel):
     """
-    RunCloudFunctionScript
+    UUUU3901522240c3ec762888a02c13900728
     """ # noqa: E501
-    object_type: StrictStr
-    params: Optional[StrictStr] = ''
-    engine: Optional[StrictStr] = 'lambda'
-    get_response: Optional[StrictBool] = False
-    cache: Optional[StrictBool] = False
-    lock_key: Optional[StrictStr] = ''
-    __properties: ClassVar[List[str]] = ["object_type", "params", "engine", "get_response", "cache", "lock_key"]
+    status: StrictStr
+    data: Data1
+    __properties: ClassVar[List[str]] = ["status", "data"]
 
-    @field_validator('object_type')
-    def object_type_validate_enum(cls, value):
+    @field_validator('status')
+    def status_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['model.run_script']):
-            raise ValueError("must be one of enum values ('model.run_script')")
-        return value
-
-    @field_validator('engine')
-    def engine_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['lambda', 'fargate']):
-            raise ValueError("must be one of enum values ('lambda', 'fargate')")
+        if value not in set(['ok']):
+            raise ValueError("must be one of enum values ('ok')")
         return value
 
     model_config = ConfigDict(
@@ -67,7 +54,7 @@ class RunCloudFunctionScript(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RunCloudFunctionScript from a JSON string"""
+        """Create an instance of UUUU3901522240c3ec762888a02c13900728 from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -88,11 +75,14 @@ class RunCloudFunctionScript(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of data
+        if self.data:
+            _dict['data'] = self.data.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RunCloudFunctionScript from a dict"""
+        """Create an instance of UUUU3901522240c3ec762888a02c13900728 from a dict"""
         if obj is None:
             return None
 
@@ -100,12 +90,8 @@ class RunCloudFunctionScript(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "object_type": obj.get("object_type"),
-            "params": obj.get("params") if obj.get("params") is not None else '',
-            "engine": obj.get("engine") if obj.get("engine") is not None else 'lambda',
-            "get_response": obj.get("get_response") if obj.get("get_response") is not None else False,
-            "cache": obj.get("cache") if obj.get("cache") is not None else False,
-            "lock_key": obj.get("lock_key") if obj.get("lock_key") is not None else ''
+            "status": obj.get("status"),
+            "data": Data1.from_dict(obj["data"]) if obj.get("data") is not None else None
         })
         return _obj
 

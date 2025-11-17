@@ -36,6 +36,8 @@ class TestRunCloudFunctionScript(unittest.TestCase):
                 object_type = 'model.run_script',
                 params = '',
                 engine = 'lambda',
+                get_response = True,
+                cache = True,
                 lock_key = ''
             )
         else:

@@ -19,10 +19,10 @@ from typing import List, Optional
 from typing_extensions import Annotated
 from openapi_client.models.create_object_req import CreateObjectReq
 from openapi_client.models.succ_rsp_soft_deleted_rsp import SuccRspSoftDeletedRsp
-from openapi_client.models.uuuu0bdaccc02abe3e86fd53540d087462d8 import UUUU0bdaccc02abe3e86fd53540d087462d8
 from openapi_client.models.uuuu18d10abbf81f28b86769c427804ea587 import UUUU18d10abbf81f28b86769c427804ea587
-from openapi_client.models.uuuu28b510deefc97bb409a5d7911e299314 import UUUU28b510deefc97bb409a5d7911e299314
+from openapi_client.models.uuuu3901522240c3ec762888a02c13900728 import UUUU3901522240c3ec762888a02c13900728
 from openapi_client.models.uuuu4be0e69353a8fb4b4ca5b5b1a94b3f66 import UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66
+from openapi_client.models.uuuue66fb9eb8c8e63948bf34d0b2349c841 import UUUUe66fb9eb8c8e63948bf34d0b2349c841
 from openapi_client.models.update_object import UpdateObject
 
 from openapi_client.api_client import ApiClient, RequestSerialized
@@ -1050,7 +1050,7 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UUUU28b510deefc97bb409a5d7911e299314:
+    ) -> UUUUe66fb9eb8c8e63948bf34d0b2349c841:
         """Update object.
 
         Update object of certain ID.  ### Example  Update model: ``` POST /api/object/M1234567  {     \"payload\": {         \"object_type\": \"model\",         \"name\": \"model name\",         \"content\": {             \"meta\": {\"entrance_file\": \"main.jl\"},             \"tree\": [],         }     } } ```  Update experiment: ``` POST /api/object/X1234567  {     \"payload\": {         \"object_type\": \"experiment\",         \"name\": \"experiment name\",     } } ```
@@ -1091,7 +1091,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UUUU28b510deefc97bb409a5d7911e299314",
+            '200': "UUUUe66fb9eb8c8e63948bf34d0b2349c841",
             '400': "ErrRsp",
         }        response_data = self.api_client.call_api(
             *_param,
@@ -1121,7 +1121,7 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UUUU28b510deefc97bb409a5d7911e299314]:
+    ) -> ApiResponse[UUUUe66fb9eb8c8e63948bf34d0b2349c841]:
         """Update object.
 
         Update object of certain ID.  ### Example  Update model: ``` POST /api/object/M1234567  {     \"payload\": {         \"object_type\": \"model\",         \"name\": \"model name\",         \"content\": {             \"meta\": {\"entrance_file\": \"main.jl\"},             \"tree\": [],         }     } } ```  Update experiment: ``` POST /api/object/X1234567  {     \"payload\": {         \"object_type\": \"experiment\",         \"name\": \"experiment name\",     } } ```
@@ -1162,7 +1162,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UUUU28b510deefc97bb409a5d7911e299314",
+            '200': "UUUUe66fb9eb8c8e63948bf34d0b2349c841",
             '400': "ErrRsp",
         }        response_data = self.api_client.call_api(
             *_param,
@@ -1233,7 +1233,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UUUU28b510deefc97bb409a5d7911e299314",
+            '200': "UUUUe66fb9eb8c8e63948bf34d0b2349c841",
             '400': "ErrRsp",
         }        response_data = self.api_client.call_api(
             *_param,
@@ -1350,7 +1350,7 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UUUU0bdaccc02abe3e86fd53540d087462d8:
+    ) -> UUUU3901522240c3ec762888a02c13900728:
         """View object.
 
         View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view model data GET /api/object/X1234567  # view experiment data GET /api/object/S1234566  # view share data ```
@@ -1424,7 +1424,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UUUU0bdaccc02abe3e86fd53540d087462d8",
+            '200': "UUUU3901522240c3ec762888a02c13900728",
             '400': "ErrRsp",
         }        response_data = self.api_client.call_api(
             *_param,
@@ -1465,7 +1465,7 @@ class ObjectApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UUUU0bdaccc02abe3e86fd53540d087462d8]:
+    ) -> ApiResponse[UUUU3901522240c3ec762888a02c13900728]:
         """View object.
 
         View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view model data GET /api/object/X1234567  # view experiment data GET /api/object/S1234566  # view share data ```
@@ -1539,7 +1539,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UUUU0bdaccc02abe3e86fd53540d087462d8",
+            '200': "UUUU3901522240c3ec762888a02c13900728",
             '400': "ErrRsp",
         }        response_data = self.api_client.call_api(
             *_param,
@@ -1654,7 +1654,7 @@ class ObjectApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UUUU0bdaccc02abe3e86fd53540d087462d8",
+            '200': "UUUU3901522240c3ec762888a02c13900728",
             '400': "ErrRsp",
         }        response_data = self.api_client.call_api(
             *_param,

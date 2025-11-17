@@ -4,6 +4,8 @@ export class RunCloudFunctionScript {
     'objectType': RunCloudFunctionScriptObjectTypeEnum;
     'params'?: string;
     'engine'?: RunCloudFunctionScriptEngineEnum;
+    'getResponse'?: boolean;
+    'cache'?: boolean;
     'lockKey'?: string;
 
     static readonly discriminator: string | undefined = undefined;
@@ -27,6 +29,18 @@ export class RunCloudFunctionScript {
             "name": "engine",
             "baseName": "engine",
             "type": "RunCloudFunctionScriptEngineEnum",
+            "format": ""
+        },
+        {
+            "name": "getResponse",
+            "baseName": "get_response",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "cache",
+            "baseName": "cache",
+            "type": "boolean",
             "format": ""
         },
         {

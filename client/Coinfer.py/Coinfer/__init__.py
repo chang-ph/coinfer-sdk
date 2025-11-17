@@ -58,11 +58,14 @@ def _is_sync():
 
 
 class Experiment:
-    def __init__(self, server_endpoint: str, auth_token: str, experiment_id: str):
+    def __init__(self, server_endpoint: str, auth_token: str, experiment_id: str, share_password: str = ""):
         self.experiment_id = experiment_id
         self.server_endpoint = server_endpoint
         self.auth_token = auth_token
-        self.inference_data = self._download_inference_data(self.server_endpoint, self.auth_token, self.experiment_id)
+        self.share_password = share_password
+        self.inference_data = self._download_inference_data(
+            self.server_endpoint, self.auth_token, self.experiment_id, self.share_password
+        )
 
     @lru_cache(maxsize=1)
     def all_chains(self) -> list[str]:
@@ -74,14 +77,16 @@ class Experiment:
         return list(idata.posterior.data_vars.keys())
 
     @classmethod
-    def _download_inference_data(cls, server_endpoint: str, auth_token: str, experiment_id: str):
+    def _download_inference_data(cls, server_endpoint: str, auth_token: str, experiment_id: str, share_password: str):
         import arviz as az
 
         set_arviz_params(az)
 
         if _is_sync():
             download_url = f"{server_endpoint}/sys/get-arviz-data?experiment_id={experiment_id}"
-            if auth_token:
+            if share_password:
+                headers = {"X-Share-Password": share_password}
+            elif auth_token:
                 headers = {"Authorization": f"Bearer {auth_token}"}
             else:
                 headers = {}  # public share
@@ -121,6 +126,7 @@ def current_experiment():
         input_data["coinfer_server_endpoint"],
         get_token(),
         input_data["experiment_id"],
+        input_data.get("coinfer_share_password", ""),
     )
     return xp
 

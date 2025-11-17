@@ -8,30 +8,38 @@
         object_type=nothing,
         params="",
         engine="lambda",
+        get_response=false,
+        cache=false,
         lock_key="",
     )
 
     - object_type::String
     - params::String
     - engine::String
+    - get_response::Bool
+    - cache::Bool
     - lock_key::String
 """
 Base.@kwdef mutable struct RunCloudFunctionScript <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
     params::Union{Nothing, String} = ""
     engine::Union{Nothing, String} = "lambda"
+    get_response::Union{Nothing, Bool} = false
+    cache::Union{Nothing, Bool} = false
     lock_key::Union{Nothing, String} = ""
 
-    function RunCloudFunctionScript(object_type, params, engine, lock_key, )
+    function RunCloudFunctionScript(object_type, params, engine, get_response, cache, lock_key, )
         OpenAPI.validate_property(RunCloudFunctionScript, Symbol("object_type"), object_type)
         OpenAPI.validate_property(RunCloudFunctionScript, Symbol("params"), params)
         OpenAPI.validate_property(RunCloudFunctionScript, Symbol("engine"), engine)
+        OpenAPI.validate_property(RunCloudFunctionScript, Symbol("get_response"), get_response)
+        OpenAPI.validate_property(RunCloudFunctionScript, Symbol("cache"), cache)
         OpenAPI.validate_property(RunCloudFunctionScript, Symbol("lock_key"), lock_key)
-        return new(object_type, params, engine, lock_key, )
+        return new(object_type, params, engine, get_response, cache, lock_key, )
     end
 end # type RunCloudFunctionScript
 
-const _property_types_RunCloudFunctionScript = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("params")=>"String", Symbol("engine")=>"String", Symbol("lock_key")=>"String", )
+const _property_types_RunCloudFunctionScript = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("params")=>"String", Symbol("engine")=>"String", Symbol("get_response")=>"Bool", Symbol("cache")=>"Bool", Symbol("lock_key")=>"String", )
 OpenAPI.property_type(::Type{ RunCloudFunctionScript }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_RunCloudFunctionScript[name]))}
 
 function check_required(o::RunCloudFunctionScript)
@@ -50,6 +58,8 @@ function OpenAPI.validate_property(::Type{ RunCloudFunctionScript }, name::Symbo
     if name === Symbol("engine")
         OpenAPI.validate_param(name, "RunCloudFunctionScript", :enum, val, ["lambda", "fargate"])
     end
+
+
 
 
 end

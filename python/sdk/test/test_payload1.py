@@ -65,6 +65,8 @@ class TestPayload1(unittest.TestCase):
                     ],
                 params = '',
                 engine = 'lambda',
+                get_response = True,
+                cache = True,
                 lock_key = '',
                 action = '',
                 meta = { },

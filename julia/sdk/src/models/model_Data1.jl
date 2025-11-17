@@ -8,7 +8,7 @@
     Data1(; value=nothing)
 """
 mutable struct Data1 <: OpenAPI.OneOfAPIModel
-    value::Any # Union{ CreateDataRsp, CreateWorkflowRsp, ExperimentCloudwatchLogRsp, ExperimentPlotRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewAnalyzerRsp, ViewExperimentShareRsp, ViewModelsRsp }
+    value::Any # Union{ CreateDataRsp, CreateWorkflowRsp, ExperimentCloudwatchLogRsp, ExperimentRsp, ExperimentSampleDataRsp, GetExperimentRunInfoRsp, ViewAnalyzerRsp, ViewExperimentShareRsp, ViewModelsRsp }
     Data1() = new()
     Data1(value) = new(value)
 end # type Data1
@@ -21,8 +21,6 @@ function OpenAPI.property_type(::Type{ Data1 }, name::Symbol, json::Dict{String,
         return eval(Base.Meta.parse("ExperimentRsp"))
     elseif discriminator == "experiment.cloudwatch_log"
         return eval(Base.Meta.parse("ExperimentCloudwatchLogRsp"))
-    elseif discriminator == "experiment.plot"
-        return eval(Base.Meta.parse("ExperimentPlotRsp"))
     elseif discriminator == "experiment.run_info"
         return eval(Base.Meta.parse("GetExperimentRunInfoRsp"))
     elseif discriminator == "experiment.sampledata"

@@ -12,10 +12,10 @@
 
 import unittest
 
-from openapi_client.models.data1 import Data1
+from openapi_client.models.uuuue66fb9eb8c8e63948bf34d0b2349c841_data import UUUUe66fb9eb8c8e63948bf34d0b2349c841Data
 
-class TestData1(unittest.TestCase):
-    """Data1 unit test stubs"""
+class TestUUUUe66fb9eb8c8e63948bf34d0b2349c841Data(unittest.TestCase):
+    """UUUUe66fb9eb8c8e63948bf34d0b2349c841Data unit test stubs"""
 
     def setUp(self):
         pass
@@ -23,17 +23,17 @@ class TestData1(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> Data1:
-        """Test Data1
+    def make_instance(self, include_optional) -> UUUUe66fb9eb8c8e63948bf34d0b2349c841Data:
+        """Test UUUUe66fb9eb8c8e63948bf34d0b2349c841Data
             include_optional is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `Data1`
+        # uncomment below to create an instance of `UUUUe66fb9eb8c8e63948bf34d0b2349c841Data`
         """
-        model = Data1()
+        model = UUUUe66fb9eb8c8e63948bf34d0b2349c841Data()
         if include_optional:
-            return Data1(
-                object_type = 'workflow',
+            return UUUUe66fb9eb8c8e63948bf34d0b2349c841Data(
+                object_type = 'model.run_response',
                 short_id = '',
                 name = '',
                 model_id = '',
@@ -64,42 +64,19 @@ class TestData1(unittest.TestCase):
                 id = 56,
                 content = None,
                 tags = [
-                    'anonymous'
+                    ''
                     ],
                 lambda_image_url = '',
                 lambda_image_name = '',
-                require_password = True,
-                url = '',
-                progress = '',
-                message = '',
-                logs = [
-                    [
-                        null
-                        ]
-                    ],
-                description = '',
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                path = '',
-                fmt = 'raw',
-                data_id = '',
-                data_name = '',
-                data_fmt = '',
                 experiment_id = '',
                 experiment_name = '',
-                analyzer_id = '',
-                analyzer_name = '',
-                startup_script = '',
-                settings = '',
-                data_script = ''
+                data = None
             )
         else:
-            return Data1(
-                object_type = 'workflow',
+            return UUUUe66fb9eb8c8e63948bf34d0b2349c841Data(
+                object_type = 'model.run_response',
                 short_id = '',
                 name = '',
-                model_id = '',
-                status = '',
                 meta = openapi_client.models._model_meta_in_rsp._ModelMetaInRsp(
                     github = '', 
                     commit_id = '', 
@@ -108,24 +85,16 @@ class TestData1(unittest.TestCase):
                 model_name = '',
                 id = 56,
                 tags = [
-                    'anonymous'
+                    ''
                     ],
-                require_password = True,
-                url = '',
-                progress = '',
-                logs = [
-                    [
-                        null
-                        ]
-                    ],
-                description = '',
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
+                experiment_id = '',
+                experiment_name = '',
+                data = None,
         )
         """
 
-    def testData1(self):
-        """Test Data1"""
+    def testUUUUe66fb9eb8c8e63948bf34d0b2349c841Data(self):
+        """Test UUUUe66fb9eb8c8e63948bf34d0b2349c841Data"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 

@@ -123,8 +123,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **update_object**
-> update_object(_api::ObjectApi, objid::String, update_object_param::UpdateObject; _mediaType=nothing) -> UUUU28b510deefc97bb409a5d7911e299314, OpenAPI.Clients.ApiResponse <br/>
-> update_object(_api::ObjectApi, response_stream::Channel, objid::String, update_object_param::UpdateObject; _mediaType=nothing) -> Channel{ UUUU28b510deefc97bb409a5d7911e299314 }, OpenAPI.Clients.ApiResponse
+> update_object(_api::ObjectApi, objid::String, update_object_param::UpdateObject; _mediaType=nothing) -> UUUUe66fb9eb8c8e63948bf34d0b2349c841, OpenAPI.Clients.ApiResponse <br/>
+> update_object(_api::ObjectApi, response_stream::Channel, objid::String, update_object_param::UpdateObject; _mediaType=nothing) -> Channel{ UUUUe66fb9eb8c8e63948bf34d0b2349c841 }, OpenAPI.Clients.ApiResponse
 
 Update object.
 
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UUUU28b510deefc97bb409a5d7911e299314**](UUUU28b510deefc97bb409a5d7911e299314.md)
+[**UUUUe66fb9eb8c8e63948bf34d0b2349c841**](UUUUe66fb9eb8c8e63948bf34d0b2349c841.md)
 
 ### Authorization
 
@@ -154,8 +154,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **view_object**
-> view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, plot_func=nothing, plot_chain=nothing, plot_var=nothing, _mediaType=nothing) -> UUUU0bdaccc02abe3e86fd53540d087462d8, OpenAPI.Clients.ApiResponse <br/>
-> view_object(_api::ObjectApi, response_stream::Channel, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, plot_func=nothing, plot_chain=nothing, plot_var=nothing, _mediaType=nothing) -> Channel{ UUUU0bdaccc02abe3e86fd53540d087462d8 }, OpenAPI.Clients.ApiResponse
+> view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, plot_func=nothing, plot_chain=nothing, plot_var=nothing, _mediaType=nothing) -> UUUU3901522240c3ec762888a02c13900728, OpenAPI.Clients.ApiResponse <br/>
+> view_object(_api::ObjectApi, response_stream::Channel, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, plot_func=nothing, plot_chain=nothing, plot_var=nothing, _mediaType=nothing) -> Channel{ UUUU3901522240c3ec762888a02c13900728 }, OpenAPI.Clients.ApiResponse
 
 View object.
 
@@ -187,7 +187,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UUUU0bdaccc02abe3e86fd53540d087462d8**](UUUU0bdaccc02abe3e86fd53540d087462d8.md)
+[**UUUU3901522240c3ec762888a02c13900728**](UUUU3901522240c3ec762888a02c13900728.md)
 
 ### Authorization
 

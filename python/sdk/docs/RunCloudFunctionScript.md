@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **object_type** | **str** |  | 
 **params** | **str** |  | [optional] [default to '']
 **engine** | **str** |  | [optional] [default to 'lambda']
+**get_response** | **bool** |  | [optional] [default to False]
+**cache** | **bool** |  | [optional] [default to False]
 **lock_key** | **str** |  | [optional] [default to '']
 
 ## Example

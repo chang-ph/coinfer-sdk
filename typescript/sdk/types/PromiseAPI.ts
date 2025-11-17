@@ -38,7 +38,6 @@ import { DemoListRsp } from '../models/DemoListRsp';
 import { DownloadReq } from '../models/DownloadReq';
 import { ErrRsp } from '../models/ErrRsp';
 import { ExperimentCloudwatchLogRsp } from '../models/ExperimentCloudwatchLogRsp';
-import { ExperimentPlotRsp } from '../models/ExperimentPlotRsp';
 import { ExperimentRsp } from '../models/ExperimentRsp';
 import { ExperimentSampleDataRsp } from '../models/ExperimentSampleDataRsp';
 import { GetConfigRsp } from '../models/GetConfigRsp';
@@ -57,6 +56,7 @@ import { MetaModel } from '../models/MetaModel';
 import { ModelContent } from '../models/ModelContent';
 import { ModelMeta } from '../models/ModelMeta';
 import { ModelMetaInRsp } from '../models/ModelMetaInRsp';
+import { ModelRunScriptRsp } from '../models/ModelRunScriptRsp';
 import { ModelTreeNode } from '../models/ModelTreeNode';
 import { ModifyCurrentUser } from '../models/ModifyCurrentUser';
 import { ModifyToken } from '../models/ModifyToken';
@@ -87,13 +87,13 @@ import { SuccRspPlotRsp } from '../models/SuccRspPlotRsp';
 import { SuccRspSoftDeletedRsp } from '../models/SuccRspSoftDeletedRsp';
 import { SuccRspUserInfoRsp } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp } from '../models/SuccRspUserLoginRsp';
-import { UUUU0bdaccc02abe3e86fd53540d087462d8 } from '../models/UUUU0bdaccc02abe3e86fd53540d087462d8';
 import { UUUU18d10abbf81f28b86769c427804ea587 } from '../models/UUUU18d10abbf81f28b86769c427804ea587';
-import { UUUU28b510deefc97bb409a5d7911e299314 } from '../models/UUUU28b510deefc97bb409a5d7911e299314';
-import { UUUU28b510deefc97bb409a5d7911e299314Data } from '../models/UUUU28b510deefc97bb409a5d7911e299314Data';
+import { UUUU3901522240c3ec762888a02c13900728 } from '../models/UUUU3901522240c3ec762888a02c13900728';
 import { UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66 } from '../models/UUUU4be0e69353a8fb4b4ca5b5b1a94b3f66';
 import { UUUUc9932bea1f007b34d507c4c4c680b4a7 } from '../models/UUUUc9932bea1f007b34d507c4c4c680b4a7';
 import { UUUUc9932bea1f007b34d507c4c4c680b4a7ObjectsInner } from '../models/UUUUc9932bea1f007b34d507c4c4c680b4a7ObjectsInner';
+import { UUUUe66fb9eb8c8e63948bf34d0b2349c841 } from '../models/UUUUe66fb9eb8c8e63948bf34d0b2349c841';
+import { UUUUe66fb9eb8c8e63948bf34d0b2349c841Data } from '../models/UUUUe66fb9eb8c8e63948bf34d0b2349c841Data';
 import { UpdateDataReq } from '../models/UpdateDataReq';
 import { UpdateEventReq } from '../models/UpdateEventReq';
 import { UpdateExperiment } from '../models/UpdateExperiment';
@@ -606,7 +606,7 @@ export class PromiseObjectApi {
      * @param objid
      * @param updateObject
      */
-    public updateObjectWithHttpInfo(objid: string, updateObject: UpdateObject, _options?: Configuration): Promise<HttpInfo<UUUU28b510deefc97bb409a5d7911e299314>> {
+    public updateObjectWithHttpInfo(objid: string, updateObject: UpdateObject, _options?: Configuration): Promise<HttpInfo<UUUUe66fb9eb8c8e63948bf34d0b2349c841>> {
         const result = this.api.updateObjectWithHttpInfo(objid, updateObject, _options);
         return result.toPromise();
     }
@@ -617,7 +617,7 @@ export class PromiseObjectApi {
      * @param objid
      * @param updateObject
      */
-    public updateObject(objid: string, updateObject: UpdateObject, _options?: Configuration): Promise<UUUU28b510deefc97bb409a5d7911e299314> {
+    public updateObject(objid: string, updateObject: UpdateObject, _options?: Configuration): Promise<UUUUe66fb9eb8c8e63948bf34d0b2349c841> {
         const result = this.api.updateObject(objid, updateObject, _options);
         return result.toPromise();
     }
@@ -639,7 +639,7 @@ export class PromiseObjectApi {
      * @param [plotChain]
      * @param [plotVar]
      */
-    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, viewAnalyzer?: boolean, plotFunc?: string, plotChain?: string, plotVar?: string, _options?: Configuration): Promise<HttpInfo<UUUU0bdaccc02abe3e86fd53540d087462d8>> {
+    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, viewAnalyzer?: boolean, plotFunc?: string, plotChain?: string, plotVar?: string, _options?: Configuration): Promise<HttpInfo<UUUU3901522240c3ec762888a02c13900728>> {
         const result = this.api.viewObjectWithHttpInfo(objid, objectType, shareId, sampledata, fmt, nIteration, cloudwatchLog, batchId, runId, viewAnalyzer, plotFunc, plotChain, plotVar, _options);
         return result.toPromise();
     }
@@ -661,7 +661,7 @@ export class PromiseObjectApi {
      * @param [plotChain]
      * @param [plotVar]
      */
-    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, viewAnalyzer?: boolean, plotFunc?: string, plotChain?: string, plotVar?: string, _options?: Configuration): Promise<UUUU0bdaccc02abe3e86fd53540d087462d8> {
+    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, viewAnalyzer?: boolean, plotFunc?: string, plotChain?: string, plotVar?: string, _options?: Configuration): Promise<UUUU3901522240c3ec762888a02c13900728> {
         const result = this.api.viewObject(objid, objectType, shareId, sampledata, fmt, nIteration, cloudwatchLog, batchId, runId, viewAnalyzer, plotFunc, plotChain, plotVar, _options);
         return result.toPromise();
     }
