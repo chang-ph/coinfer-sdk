@@ -8,7 +8,7 @@ export class ViewObject {
     'shareId'?: string;
     'sampledata'?: boolean;
     'fmt'?: ViewObjectFmtEnum;
-    'nIteration'?: number | null;
+    'nIteration'?: number;
     'cloudwatchLog'?: boolean;
     'batchId'?: string;
     'runId'?: string;
@@ -16,6 +16,9 @@ export class ViewObject {
     * view analyzer result
     */
     'viewAnalyzer'?: boolean;
+    'plotFunc': string;
+    'plotChain': string;
+    'plotVar': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -74,6 +77,24 @@ export class ViewObject {
             "name": "viewAnalyzer",
             "baseName": "view-analyzer",
             "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "plotFunc",
+            "baseName": "plot_func",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "plotChain",
+            "baseName": "plot_chain",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "plotVar",
+            "baseName": "plot_var",
+            "type": "string",
             "format": ""
         }    ];
 

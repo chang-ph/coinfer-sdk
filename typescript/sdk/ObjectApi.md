@@ -292,6 +292,12 @@ const request: ObjectApiViewObjectRequest = {
   
   objid: "objid_example",
   
+  plotFunc: "plot_func_example",
+  
+  plotChain: "plot_chain_example",
+  
+  plotVar: "plot_var_example",
+  
   objectType: "",
     //                  Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot (optional)
   shareId: "",
@@ -299,8 +305,8 @@ const request: ObjectApiViewObjectRequest = {
   sampledata: false,
   
   fmt: "csv",
-    // Number of iterations to sample (optional)
-  nIteration: 1,
+  
+  nIteration: 0,
   
   cloudwatchLog: false,
   
@@ -321,11 +327,14 @@ console.log('API called successfully. Returned data:', data);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **objid** | [**string**] |  | defaults to undefined
+ **plotFunc** | [**string**] |  | defaults to undefined
+ **plotChain** | [**string**] |  | defaults to undefined
+ **plotVar** | [**string**] |  | defaults to undefined
  **objectType** | [**&#39;model&#39; | &#39;experiment&#39; | &#39;share&#39; | &#39;event&#39; | &#39;callback&#39; | &#39;relation&#39; | &#39;data&#39; | &#39;workflow&#39; | &#39;&#39;**]**Array<&#39;model&#39; &#124; &#39;experiment&#39; &#124; &#39;share&#39; &#124; &#39;event&#39; &#124; &#39;callback&#39; &#124; &#39;relation&#39; &#124; &#39;data&#39; &#124; &#39;workflow&#39; &#124; &#39;&#39;>** |  | (optional) defaults to ''
  **shareId** | [**string**] |                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot | (optional) defaults to ''
  **sampledata** | [**boolean**] |  | (optional) defaults to false
  **fmt** | [**&#39;csv&#39; | &#39;grist&#39; | &#39;arviz&#39;**]**Array<&#39;csv&#39; &#124; &#39;grist&#39; &#124; &#39;arviz&#39;>** |  | (optional) defaults to 'csv'
- **nIteration** | [**number**] | Number of iterations to sample | (optional) defaults to undefined
+ **nIteration** | [**number**] |  | (optional) defaults to 0
  **cloudwatchLog** | [**boolean**] |  | (optional) defaults to false
  **batchId** | [**string**] |  | (optional) defaults to ''
  **runId** | [**string**] |  | (optional) defaults to ''

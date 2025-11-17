@@ -1326,11 +1326,14 @@ class ObjectApi:
     def view_object(
         self,
         objid: StrictStr,
+        plot_func: StrictStr,
+        plot_chain: StrictStr,
+        plot_var: StrictStr,
         object_type: Optional[StrictStr] = None,
         share_id: Annotated[Optional[StrictStr], Field(description="                 Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot")] = None,
         sampledata: Optional[StrictBool] = None,
         fmt: Optional[StrictStr] = None,
-        n_iteration: Annotated[Optional[StrictInt], Field(description="Number of iterations to sample")] = None,
+        n_iteration: Optional[StrictInt] = None,
         cloudwatch_log: Optional[StrictBool] = None,
         batch_id: Optional[StrictStr] = None,
         run_id: Optional[StrictStr] = None,
@@ -1354,6 +1357,12 @@ class ObjectApi:
 
         :param objid: (required)
         :type objid: str
+        :param plot_func: (required)
+        :type plot_func: str
+        :param plot_chain: (required)
+        :type plot_chain: str
+        :param plot_var: (required)
+        :type plot_var: str
         :param object_type:
         :type object_type: str
         :param share_id:                  Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
@@ -1362,7 +1371,7 @@ class ObjectApi:
         :type sampledata: bool
         :param fmt:
         :type fmt: str
-        :param n_iteration: Number of iterations to sample
+        :param n_iteration:
         :type n_iteration: int
         :param cloudwatch_log:
         :type cloudwatch_log: bool
@@ -1396,6 +1405,9 @@ class ObjectApi:
 
         _param = self._view_object_serialize(
             objid=objid,
+            plot_func=plot_func,
+            plot_chain=plot_chain,
+            plot_var=plot_var,
             object_type=object_type,
             share_id=share_id,
             sampledata=sampledata,
@@ -1429,11 +1441,14 @@ class ObjectApi:
     def view_object_with_http_info(
         self,
         objid: StrictStr,
+        plot_func: StrictStr,
+        plot_chain: StrictStr,
+        plot_var: StrictStr,
         object_type: Optional[StrictStr] = None,
         share_id: Annotated[Optional[StrictStr], Field(description="                 Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot")] = None,
         sampledata: Optional[StrictBool] = None,
         fmt: Optional[StrictStr] = None,
-        n_iteration: Annotated[Optional[StrictInt], Field(description="Number of iterations to sample")] = None,
+        n_iteration: Optional[StrictInt] = None,
         cloudwatch_log: Optional[StrictBool] = None,
         batch_id: Optional[StrictStr] = None,
         run_id: Optional[StrictStr] = None,
@@ -1457,6 +1472,12 @@ class ObjectApi:
 
         :param objid: (required)
         :type objid: str
+        :param plot_func: (required)
+        :type plot_func: str
+        :param plot_chain: (required)
+        :type plot_chain: str
+        :param plot_var: (required)
+        :type plot_var: str
         :param object_type:
         :type object_type: str
         :param share_id:                  Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
@@ -1465,7 +1486,7 @@ class ObjectApi:
         :type sampledata: bool
         :param fmt:
         :type fmt: str
-        :param n_iteration: Number of iterations to sample
+        :param n_iteration:
         :type n_iteration: int
         :param cloudwatch_log:
         :type cloudwatch_log: bool
@@ -1499,6 +1520,9 @@ class ObjectApi:
 
         _param = self._view_object_serialize(
             objid=objid,
+            plot_func=plot_func,
+            plot_chain=plot_chain,
+            plot_var=plot_var,
             object_type=object_type,
             share_id=share_id,
             sampledata=sampledata,
@@ -1532,11 +1556,14 @@ class ObjectApi:
     def view_object_without_preload_content(
         self,
         objid: StrictStr,
+        plot_func: StrictStr,
+        plot_chain: StrictStr,
+        plot_var: StrictStr,
         object_type: Optional[StrictStr] = None,
         share_id: Annotated[Optional[StrictStr], Field(description="                 Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot")] = None,
         sampledata: Optional[StrictBool] = None,
         fmt: Optional[StrictStr] = None,
-        n_iteration: Annotated[Optional[StrictInt], Field(description="Number of iterations to sample")] = None,
+        n_iteration: Optional[StrictInt] = None,
         cloudwatch_log: Optional[StrictBool] = None,
         batch_id: Optional[StrictStr] = None,
         run_id: Optional[StrictStr] = None,
@@ -1560,6 +1587,12 @@ class ObjectApi:
 
         :param objid: (required)
         :type objid: str
+        :param plot_func: (required)
+        :type plot_func: str
+        :param plot_chain: (required)
+        :type plot_chain: str
+        :param plot_var: (required)
+        :type plot_var: str
         :param object_type:
         :type object_type: str
         :param share_id:                  Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
@@ -1568,7 +1601,7 @@ class ObjectApi:
         :type sampledata: bool
         :param fmt:
         :type fmt: str
-        :param n_iteration: Number of iterations to sample
+        :param n_iteration:
         :type n_iteration: int
         :param cloudwatch_log:
         :type cloudwatch_log: bool
@@ -1602,6 +1635,9 @@ class ObjectApi:
 
         _param = self._view_object_serialize(
             objid=objid,
+            plot_func=plot_func,
+            plot_chain=plot_chain,
+            plot_var=plot_var,
             object_type=object_type,
             share_id=share_id,
             sampledata=sampledata,
@@ -1630,6 +1666,9 @@ class ObjectApi:
     def _view_object_serialize(
         self,
         objid,
+        plot_func,
+        plot_chain,
+        plot_var,
         object_type,
         share_id,
         sampledata,
@@ -1698,6 +1737,18 @@ class ObjectApi:
         if view_analyzer is not None:
             
             _query_params.append(('view-analyzer', view_analyzer))
+            
+        if plot_func is not None:
+            
+            _query_params.append(('plot_func', plot_func))
+            
+        if plot_chain is not None:
+            
+            _query_params.append(('plot_chain', plot_chain))
+            
+        if plot_var is not None:
+            
+            _query_params.append(('plot_var', plot_var))
             
         # process the header parameters
         # process the form parameters

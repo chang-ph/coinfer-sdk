@@ -77,6 +77,7 @@ class TestData1(unittest.TestCase):
                         null
                         ]
                     ],
+                data = None,
                 description = '',
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
@@ -118,6 +119,7 @@ class TestData1(unittest.TestCase):
                         null
                         ]
                     ],
+                data = None,
                 description = '',
                 created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
                 updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),

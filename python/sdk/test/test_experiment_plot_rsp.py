@@ -34,12 +34,12 @@ class TestExperimentPlotRsp(unittest.TestCase):
         if include_optional:
             return ExperimentPlotRsp(
                 object_type = 'experiment.plot',
-                url = ''
+                data = None
             )
         else:
             return ExperimentPlotRsp(
                 object_type = 'experiment.plot',
-                url = '',
+                data = None,
         )
         """
 

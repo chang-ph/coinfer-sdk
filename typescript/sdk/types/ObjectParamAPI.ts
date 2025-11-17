@@ -752,6 +752,27 @@ export interface ObjectApiViewObjectRequest {
     objid: string
     /**
      * 
+     * Defaults to: undefined
+     * @type string
+     * @memberof ObjectApiviewObject
+     */
+    plotFunc: string
+    /**
+     * 
+     * Defaults to: undefined
+     * @type string
+     * @memberof ObjectApiviewObject
+     */
+    plotChain: string
+    /**
+     * 
+     * Defaults to: undefined
+     * @type string
+     * @memberof ObjectApiviewObject
+     */
+    plotVar: string
+    /**
+     * 
      * Defaults to: &#39;&#39;
      * @type &#39;model&#39; | &#39;experiment&#39; | &#39;share&#39; | &#39;event&#39; | &#39;callback&#39; | &#39;relation&#39; | &#39;data&#39; | &#39;workflow&#39; | &#39;&#39;
      * @memberof ObjectApiviewObject
@@ -779,8 +800,8 @@ export interface ObjectApiViewObjectRequest {
      */
     fmt?: 'csv' | 'grist' | 'arviz'
     /**
-     * Number of iterations to sample
-     * Defaults to: undefined
+     * 
+     * Defaults to: 0
      * @type number
      * @memberof ObjectApiviewObject
      */
@@ -900,7 +921,7 @@ export class ObjectObjectApi {
      * @param param the request object
      */
     public viewObjectWithHttpInfo(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<HttpInfo<UUUU0bdaccc02abe3e86fd53540d087462d8>> {
-        return this.api.viewObjectWithHttpInfo(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt, param.nIteration, param.cloudwatchLog, param.batchId, param.runId, param.viewAnalyzer,  options).toPromise();
+        return this.api.viewObjectWithHttpInfo(param.objid, param.plotFunc, param.plotChain, param.plotVar, param.objectType, param.shareId, param.sampledata, param.fmt, param.nIteration, param.cloudwatchLog, param.batchId, param.runId, param.viewAnalyzer,  options).toPromise();
     }
 
     /**
@@ -909,7 +930,7 @@ export class ObjectObjectApi {
      * @param param the request object
      */
     public viewObject(param: ObjectApiViewObjectRequest, options?: Configuration): Promise<UUUU0bdaccc02abe3e86fd53540d087462d8> {
-        return this.api.viewObject(param.objid, param.objectType, param.shareId, param.sampledata, param.fmt, param.nIteration, param.cloudwatchLog, param.batchId, param.runId, param.viewAnalyzer,  options).toPromise();
+        return this.api.viewObject(param.objid, param.plotFunc, param.plotChain, param.plotVar, param.objectType, param.shareId, param.sampledata, param.fmt, param.nIteration, param.cloudwatchLog, param.batchId, param.runId, param.viewAnalyzer,  options).toPromise();
     }
 
 }

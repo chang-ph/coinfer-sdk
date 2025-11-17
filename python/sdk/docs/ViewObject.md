@@ -9,11 +9,14 @@ Name | Type | Description | Notes
 **share_id** | **str** |                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot | [optional] [default to '']
 **sampledata** | **bool** |  | [optional] [default to False]
 **fmt** | **str** |  | [optional] [default to 'csv']
-**n_iteration** | **int** |  | [optional] 
+**n_iteration** | **int** |  | [optional] [default to 0]
 **cloudwatch_log** | **bool** |  | [optional] [default to False]
 **batch_id** | **str** |  | [optional] [default to '']
 **run_id** | **str** |  | [optional] [default to '']
 **view_analyzer** | **bool** | view analyzer result | [optional] [default to False]
+**plot_func** | **str** |  | 
+**plot_chain** | **str** |  | 
+**plot_var** | **str** |  | 
 
 ## Example
 

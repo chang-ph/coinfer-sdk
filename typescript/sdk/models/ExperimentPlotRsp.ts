@@ -2,7 +2,7 @@ import { HttpFile } from '../http/http';
 
 export class ExperimentPlotRsp {
     'objectType': ExperimentPlotRspObjectTypeEnum;
-    'url': string;
+    'data': any | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -16,9 +16,9 @@ export class ExperimentPlotRsp {
             "format": ""
         },
         {
-            "name": "url",
-            "baseName": "url",
-            "type": "string",
+            "name": "data",
+            "baseName": "data",
+            "type": "any",
             "format": ""
         }    ];
 

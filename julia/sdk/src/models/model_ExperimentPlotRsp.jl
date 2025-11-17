@@ -6,29 +6,29 @@
 
     ExperimentPlotRsp(;
         object_type=nothing,
-        url=nothing,
+        data=nothing,
     )
 
     - object_type::String
-    - url::String
+    - data::Any
 """
 Base.@kwdef mutable struct ExperimentPlotRsp <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = nothing
-    url::Union{Nothing, String} = nothing
+    data::Union{Nothing, Any} = nothing
 
-    function ExperimentPlotRsp(object_type, url, )
+    function ExperimentPlotRsp(object_type, data, )
         OpenAPI.validate_property(ExperimentPlotRsp, Symbol("object_type"), object_type)
-        OpenAPI.validate_property(ExperimentPlotRsp, Symbol("url"), url)
-        return new(object_type, url, )
+        OpenAPI.validate_property(ExperimentPlotRsp, Symbol("data"), data)
+        return new(object_type, data, )
     end
 end # type ExperimentPlotRsp
 
-const _property_types_ExperimentPlotRsp = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("url")=>"String", )
+const _property_types_ExperimentPlotRsp = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("data")=>"Any", )
 OpenAPI.property_type(::Type{ ExperimentPlotRsp }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_ExperimentPlotRsp[name]))}
 
 function check_required(o::ExperimentPlotRsp)
     o.object_type === nothing && (return false)
-    o.url === nothing && (return false)
+    o.data === nothing && (return false)
     true
 end
 

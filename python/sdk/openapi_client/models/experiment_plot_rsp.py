@@ -16,7 +16,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -25,8 +25,8 @@ class ExperimentPlotRsp(BaseModel):
     ExperimentPlotRsp
     """ # noqa: E501
     object_type: StrictStr
-    url: StrictStr
-    __properties: ClassVar[List[str]] = ["object_type", "url"]
+    data: Optional[Any]
+    __properties: ClassVar[List[str]] = ["object_type", "data"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -74,6 +74,11 @@ class ExperimentPlotRsp(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if data (nullable) is None
+        # and model_fields_set contains the field
+        if self.data is None and "data" in self.model_fields_set:
+            _dict['data'] = None
+
         return _dict
 
     @classmethod
@@ -87,7 +92,7 @@ class ExperimentPlotRsp(BaseModel):
 
         _obj = cls.model_validate({
             "object_type": obj.get("object_type"),
-            "url": obj.get("url")
+            "data": obj.get("data")
         })
         return _obj
 

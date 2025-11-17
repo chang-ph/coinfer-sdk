@@ -9,11 +9,14 @@
         share_id="",
         sampledata=false,
         fmt="csv",
-        n_iteration=nothing,
+        n_iteration=0,
         cloudwatch_log=false,
         batch_id="",
         run_id="",
         var"view-analyzer"=false,
+        plot_func=nothing,
+        plot_chain=nothing,
+        plot_var=nothing,
     )
 
     - object_type::String
@@ -25,19 +28,25 @@
     - batch_id::String
     - run_id::String
     - var"view-analyzer"::Bool : view analyzer result
+    - plot_func::String
+    - plot_chain::String
+    - plot_var::String
 """
 Base.@kwdef mutable struct ViewObject <: OpenAPI.APIModel
     object_type::Union{Nothing, String} = ""
     share_id::Union{Nothing, String} = ""
     sampledata::Union{Nothing, Bool} = false
     fmt::Union{Nothing, String} = "csv"
-    n_iteration::Union{Nothing, Int64} = nothing
+    n_iteration::Union{Nothing, Int64} = 0
     cloudwatch_log::Union{Nothing, Bool} = false
     batch_id::Union{Nothing, String} = ""
     run_id::Union{Nothing, String} = ""
     var"view-analyzer"::Union{Nothing, Bool} = false
+    plot_func::Union{Nothing, String} = nothing
+    plot_chain::Union{Nothing, String} = nothing
+    plot_var::Union{Nothing, String} = nothing
 
-    function ViewObject(object_type, share_id, sampledata, fmt, n_iteration, cloudwatch_log, batch_id, run_id, var"view-analyzer", )
+    function ViewObject(object_type, share_id, sampledata, fmt, n_iteration, cloudwatch_log, batch_id, run_id, var"view-analyzer", plot_func, plot_chain, plot_var, )
         OpenAPI.validate_property(ViewObject, Symbol("object_type"), object_type)
         OpenAPI.validate_property(ViewObject, Symbol("share_id"), share_id)
         OpenAPI.validate_property(ViewObject, Symbol("sampledata"), sampledata)
@@ -47,14 +56,20 @@ Base.@kwdef mutable struct ViewObject <: OpenAPI.APIModel
         OpenAPI.validate_property(ViewObject, Symbol("batch_id"), batch_id)
         OpenAPI.validate_property(ViewObject, Symbol("run_id"), run_id)
         OpenAPI.validate_property(ViewObject, Symbol("view-analyzer"), var"view-analyzer")
-        return new(object_type, share_id, sampledata, fmt, n_iteration, cloudwatch_log, batch_id, run_id, var"view-analyzer", )
+        OpenAPI.validate_property(ViewObject, Symbol("plot_func"), plot_func)
+        OpenAPI.validate_property(ViewObject, Symbol("plot_chain"), plot_chain)
+        OpenAPI.validate_property(ViewObject, Symbol("plot_var"), plot_var)
+        return new(object_type, share_id, sampledata, fmt, n_iteration, cloudwatch_log, batch_id, run_id, var"view-analyzer", plot_func, plot_chain, plot_var, )
     end
 end # type ViewObject
 
-const _property_types_ViewObject = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("share_id")=>"String", Symbol("sampledata")=>"Bool", Symbol("fmt")=>"String", Symbol("n_iteration")=>"Int64", Symbol("cloudwatch_log")=>"Bool", Symbol("batch_id")=>"String", Symbol("run_id")=>"String", Symbol("view-analyzer")=>"Bool", )
+const _property_types_ViewObject = Dict{Symbol,String}(Symbol("object_type")=>"String", Symbol("share_id")=>"String", Symbol("sampledata")=>"Bool", Symbol("fmt")=>"String", Symbol("n_iteration")=>"Int64", Symbol("cloudwatch_log")=>"Bool", Symbol("batch_id")=>"String", Symbol("run_id")=>"String", Symbol("view-analyzer")=>"Bool", Symbol("plot_func")=>"String", Symbol("plot_chain")=>"String", Symbol("plot_var")=>"String", )
 OpenAPI.property_type(::Type{ ViewObject }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_ViewObject[name]))}
 
 function check_required(o::ViewObject)
+    o.plot_func === nothing && (return false)
+    o.plot_chain === nothing && (return false)
+    o.plot_var === nothing && (return false)
     true
 end
 
@@ -70,6 +85,9 @@ function OpenAPI.validate_property(::Type{ ViewObject }, name::Symbol, val)
     if name === Symbol("fmt")
         OpenAPI.validate_param(name, "ViewObject", :enum, val, ["csv", "grist", "arviz"])
     end
+
+
+
 
 
 

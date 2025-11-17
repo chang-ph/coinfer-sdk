@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **object_type** | **str** |  | 
-**url** | **str** |  | 
+**data** | **object** |  | 
 
 ## Example
 

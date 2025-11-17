@@ -212,7 +212,7 @@ import { UserLoginRsp } from '../models/UserLoginRsp';
 import { ViewAnalyzerRsp, ViewAnalyzerRspObjectTypeEnum    } from '../models/ViewAnalyzerRsp';
 import { ViewExperimentShareRsp, ViewExperimentShareRspObjectTypeEnum    } from '../models/ViewExperimentShareRsp';
 import { ViewModelsRsp, ViewModelsRspObjectTypeEnum           } from '../models/ViewModelsRsp';
-import { ViewObject, ViewObjectObjectTypeEnum    , ViewObjectFmtEnum        } from '../models/ViewObject';
+import { ViewObject, ViewObjectObjectTypeEnum    , ViewObjectFmtEnum           } from '../models/ViewObject';
 import { ViewObjectTmp } from '../models/ViewObjectTmp';
 import { WorkflowRunRsp, WorkflowRunRspObjectTypeEnum     } from '../models/WorkflowRunRsp';
 

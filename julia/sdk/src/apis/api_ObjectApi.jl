@@ -168,7 +168,7 @@ const _returntypes_view_object_ObjectApi = Dict{Regex,Type}(
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
-function _oacinternal_view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, _mediaType=nothing)
+function _oacinternal_view_object(_api::ObjectApi, objid::String, plot_func::String, plot_chain::String, plot_var::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_view_object_ObjectApi, "/api/object/{objid}", ["GlobalAuth", "SharingAuth", ])
     OpenAPI.Clients.set_param(_ctx.path, "objid", objid)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "object_type", object_type; style="form", is_explode=true)  # type String
@@ -180,6 +180,9 @@ function _oacinternal_view_object(_api::ObjectApi, objid::String; object_type=no
     OpenAPI.Clients.set_param(_ctx.query, "batch_id", batch_id; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "run_id", run_id; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "view-analyzer", view_analyzer; style="form", is_explode=true)  # type Bool
+    OpenAPI.Clients.set_param(_ctx.query, "plot_func", plot_func; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "plot_chain", plot_chain; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "plot_var", plot_var; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
     return _ctx
@@ -191,6 +194,9 @@ View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view mo
 
 Params:
 - objid::String (required)
+- plot_func::String (required)
+- plot_chain::String (required)
+- plot_var::String (required)
 - object_type::String
 - share_id::String
 - sampledata::Bool
@@ -203,13 +209,13 @@ Params:
 
 Return: UUUU0bdaccc02abe3e86fd53540d087462d8, OpenAPI.Clients.ApiResponse
 """
-function view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, view_analyzer=view_analyzer, _mediaType=_mediaType)
+function view_object(_api::ObjectApi, objid::String, plot_func::String, plot_chain::String, plot_var::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_view_object(_api, objid, plot_func, plot_chain, plot_var; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, view_analyzer=view_analyzer, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function view_object(_api::ObjectApi, response_stream::Channel, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, view_analyzer=view_analyzer, _mediaType=_mediaType)
+function view_object(_api::ObjectApi, response_stream::Channel, objid::String, plot_func::String, plot_chain::String, plot_var::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_view_object(_api, objid, plot_func, plot_chain, plot_var; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, view_analyzer=view_analyzer, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 

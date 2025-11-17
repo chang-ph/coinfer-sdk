@@ -42,7 +42,10 @@ class TestViewObjectTmp(unittest.TestCase):
                     cloudwatch_log = True, 
                     batch_id = '', 
                     run_id = '', 
-                    view_analyzer = True, )
+                    view_analyzer = True, 
+                    plot_func = '', 
+                    plot_chain = '', 
+                    plot_var = '', )
             )
         else:
             return ViewObjectTmp(
@@ -55,7 +58,10 @@ class TestViewObjectTmp(unittest.TestCase):
                     cloudwatch_log = True, 
                     batch_id = '', 
                     run_id = '', 
-                    view_analyzer = True, ),
+                    view_analyzer = True, 
+                    plot_func = '', 
+                    plot_chain = '', 
+                    plot_var = '', ),
         )
         """
 

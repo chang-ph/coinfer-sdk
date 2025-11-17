@@ -28,12 +28,15 @@ class ViewObject(BaseModel):
     share_id: Optional[StrictStr] = Field(default='', description="                 Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot")
     sampledata: Optional[StrictBool] = False
     fmt: Optional[StrictStr] = 'csv'
-    n_iteration: Optional[StrictInt] = None
+    n_iteration: Optional[StrictInt] = 0
     cloudwatch_log: Optional[StrictBool] = False
     batch_id: Optional[StrictStr] = ''
     run_id: Optional[StrictStr] = ''
     view_analyzer: Optional[StrictBool] = Field(default=False, description="view analyzer result", alias="view-analyzer")
-    __properties: ClassVar[List[str]] = ["object_type", "share_id", "sampledata", "fmt", "n_iteration", "cloudwatch_log", "batch_id", "run_id", "view-analyzer"]
+    plot_func: StrictStr
+    plot_chain: StrictStr
+    plot_var: StrictStr
+    __properties: ClassVar[List[str]] = ["object_type", "share_id", "sampledata", "fmt", "n_iteration", "cloudwatch_log", "batch_id", "run_id", "view-analyzer", "plot_func", "plot_chain", "plot_var"]
 
     @field_validator('object_type')
     def object_type_validate_enum(cls, value):
@@ -94,11 +97,6 @@ class ViewObject(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # set to None if n_iteration (nullable) is None
-        # and model_fields_set contains the field
-        if self.n_iteration is None and "n_iteration" in self.model_fields_set:
-            _dict['n_iteration'] = None
-
         return _dict
 
     @classmethod
@@ -115,11 +113,14 @@ class ViewObject(BaseModel):
             "share_id": obj.get("share_id") if obj.get("share_id") is not None else '',
             "sampledata": obj.get("sampledata") if obj.get("sampledata") is not None else False,
             "fmt": obj.get("fmt") if obj.get("fmt") is not None else 'csv',
-            "n_iteration": obj.get("n_iteration"),
+            "n_iteration": obj.get("n_iteration") if obj.get("n_iteration") is not None else 0,
             "cloudwatch_log": obj.get("cloudwatch_log") if obj.get("cloudwatch_log") is not None else False,
             "batch_id": obj.get("batch_id") if obj.get("batch_id") is not None else '',
             "run_id": obj.get("run_id") if obj.get("run_id") is not None else '',
-            "view-analyzer": obj.get("view-analyzer") if obj.get("view-analyzer") is not None else False
+            "view-analyzer": obj.get("view-analyzer") if obj.get("view-analyzer") is not None else False,
+            "plot_func": obj.get("plot_func"),
+            "plot_chain": obj.get("plot_chain"),
+            "plot_var": obj.get("plot_var")
         })
         return _obj
 

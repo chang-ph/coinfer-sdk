@@ -32,6 +32,7 @@ Name | Type | Description | Notes
 **progress** | **str** |  | 
 **message** | **str** |  | [optional] [default to '']
 **logs** | **List[List[object]]** |  | 
+**data** | **object** |  | 
 **description** | **str** |  | 
 **created_at** | **datetime** |  | 
 **updated_at** | **datetime** |  | 
