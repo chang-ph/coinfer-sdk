@@ -1326,9 +1326,6 @@ class ObjectApi:
     def view_object(
         self,
         objid: StrictStr,
-        plot_func: StrictStr,
-        plot_chain: StrictStr,
-        plot_var: StrictStr,
         object_type: Optional[StrictStr] = None,
         share_id: Annotated[Optional[StrictStr], Field(description="                 Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot")] = None,
         sampledata: Optional[StrictBool] = None,
@@ -1338,6 +1335,9 @@ class ObjectApi:
         batch_id: Optional[StrictStr] = None,
         run_id: Optional[StrictStr] = None,
         view_analyzer: Annotated[Optional[StrictBool], Field(description="view analyzer result")] = None,
+        plot_func: Optional[StrictStr] = None,
+        plot_chain: Optional[StrictStr] = None,
+        plot_var: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1357,12 +1357,6 @@ class ObjectApi:
 
         :param objid: (required)
         :type objid: str
-        :param plot_func: (required)
-        :type plot_func: str
-        :param plot_chain: (required)
-        :type plot_chain: str
-        :param plot_var: (required)
-        :type plot_var: str
         :param object_type:
         :type object_type: str
         :param share_id:                  Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
@@ -1381,6 +1375,12 @@ class ObjectApi:
         :type run_id: str
         :param view_analyzer: view analyzer result
         :type view_analyzer: bool
+        :param plot_func:
+        :type plot_func: str
+        :param plot_chain:
+        :type plot_chain: str
+        :param plot_var:
+        :type plot_var: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1405,9 +1405,6 @@ class ObjectApi:
 
         _param = self._view_object_serialize(
             objid=objid,
-            plot_func=plot_func,
-            plot_chain=plot_chain,
-            plot_var=plot_var,
             object_type=object_type,
             share_id=share_id,
             sampledata=sampledata,
@@ -1417,6 +1414,9 @@ class ObjectApi:
             batch_id=batch_id,
             run_id=run_id,
             view_analyzer=view_analyzer,
+            plot_func=plot_func,
+            plot_chain=plot_chain,
+            plot_var=plot_var,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1441,9 +1441,6 @@ class ObjectApi:
     def view_object_with_http_info(
         self,
         objid: StrictStr,
-        plot_func: StrictStr,
-        plot_chain: StrictStr,
-        plot_var: StrictStr,
         object_type: Optional[StrictStr] = None,
         share_id: Annotated[Optional[StrictStr], Field(description="                 Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot")] = None,
         sampledata: Optional[StrictBool] = None,
@@ -1453,6 +1450,9 @@ class ObjectApi:
         batch_id: Optional[StrictStr] = None,
         run_id: Optional[StrictStr] = None,
         view_analyzer: Annotated[Optional[StrictBool], Field(description="view analyzer result")] = None,
+        plot_func: Optional[StrictStr] = None,
+        plot_chain: Optional[StrictStr] = None,
+        plot_var: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1472,12 +1472,6 @@ class ObjectApi:
 
         :param objid: (required)
         :type objid: str
-        :param plot_func: (required)
-        :type plot_func: str
-        :param plot_chain: (required)
-        :type plot_chain: str
-        :param plot_var: (required)
-        :type plot_var: str
         :param object_type:
         :type object_type: str
         :param share_id:                  Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
@@ -1496,6 +1490,12 @@ class ObjectApi:
         :type run_id: str
         :param view_analyzer: view analyzer result
         :type view_analyzer: bool
+        :param plot_func:
+        :type plot_func: str
+        :param plot_chain:
+        :type plot_chain: str
+        :param plot_var:
+        :type plot_var: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1520,9 +1520,6 @@ class ObjectApi:
 
         _param = self._view_object_serialize(
             objid=objid,
-            plot_func=plot_func,
-            plot_chain=plot_chain,
-            plot_var=plot_var,
             object_type=object_type,
             share_id=share_id,
             sampledata=sampledata,
@@ -1532,6 +1529,9 @@ class ObjectApi:
             batch_id=batch_id,
             run_id=run_id,
             view_analyzer=view_analyzer,
+            plot_func=plot_func,
+            plot_chain=plot_chain,
+            plot_var=plot_var,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1556,9 +1556,6 @@ class ObjectApi:
     def view_object_without_preload_content(
         self,
         objid: StrictStr,
-        plot_func: StrictStr,
-        plot_chain: StrictStr,
-        plot_var: StrictStr,
         object_type: Optional[StrictStr] = None,
         share_id: Annotated[Optional[StrictStr], Field(description="                 Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot")] = None,
         sampledata: Optional[StrictBool] = None,
@@ -1568,6 +1565,9 @@ class ObjectApi:
         batch_id: Optional[StrictStr] = None,
         run_id: Optional[StrictStr] = None,
         view_analyzer: Annotated[Optional[StrictBool], Field(description="view analyzer result")] = None,
+        plot_func: Optional[StrictStr] = None,
+        plot_chain: Optional[StrictStr] = None,
+        plot_var: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1587,12 +1587,6 @@ class ObjectApi:
 
         :param objid: (required)
         :type objid: str
-        :param plot_func: (required)
-        :type plot_func: str
-        :param plot_chain: (required)
-        :type plot_chain: str
-        :param plot_var: (required)
-        :type plot_var: str
         :param object_type:
         :type object_type: str
         :param share_id:                  Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
@@ -1611,6 +1605,12 @@ class ObjectApi:
         :type run_id: str
         :param view_analyzer: view analyzer result
         :type view_analyzer: bool
+        :param plot_func:
+        :type plot_func: str
+        :param plot_chain:
+        :type plot_chain: str
+        :param plot_var:
+        :type plot_var: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1635,9 +1635,6 @@ class ObjectApi:
 
         _param = self._view_object_serialize(
             objid=objid,
-            plot_func=plot_func,
-            plot_chain=plot_chain,
-            plot_var=plot_var,
             object_type=object_type,
             share_id=share_id,
             sampledata=sampledata,
@@ -1647,6 +1644,9 @@ class ObjectApi:
             batch_id=batch_id,
             run_id=run_id,
             view_analyzer=view_analyzer,
+            plot_func=plot_func,
+            plot_chain=plot_chain,
+            plot_var=plot_var,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1666,9 +1666,6 @@ class ObjectApi:
     def _view_object_serialize(
         self,
         objid,
-        plot_func,
-        plot_chain,
-        plot_var,
         object_type,
         share_id,
         sampledata,
@@ -1678,6 +1675,9 @@ class ObjectApi:
         batch_id,
         run_id,
         view_analyzer,
+        plot_func,
+        plot_chain,
+        plot_var,
         _request_auth,
         _content_type,
         _headers,

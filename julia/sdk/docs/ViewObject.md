@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 **batch_id** | **String** |  | [optional] [default to ""]
 **run_id** | **String** |  | [optional] [default to ""]
 **var&quot;view-analyzer&quot;** | **Bool** | view analyzer result | [optional] [default to false]
-**plot_func** | **String** |  | [default to nothing]
-**plot_chain** | **String** |  | [default to nothing]
-**plot_var** | **String** |  | [default to nothing]
+**plot_func** | **String** |  | [optional] [default to ""]
+**plot_chain** | **String** |  | [optional] [default to ""]
+**plot_var** | **String** |  | [optional] [default to ""]
 
 
 [[Back to Model list]](../README.md#models) [[Back to API list]](../README.md#api-endpoints) [[Back to README]](../README.md)

@@ -626,9 +626,6 @@ export class PromiseObjectApi {
      * View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view model data GET /api/object/X1234567  # view experiment data GET /api/object/S1234566  # view share data ```
      * View object.
      * @param objid
-     * @param plotFunc
-     * @param plotChain
-     * @param plotVar
      * @param [objectType]
      * @param [shareId]                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
      * @param [sampledata]
@@ -638,9 +635,12 @@ export class PromiseObjectApi {
      * @param [batchId]
      * @param [runId]
      * @param [viewAnalyzer] view analyzer result
+     * @param [plotFunc]
+     * @param [plotChain]
+     * @param [plotVar]
      */
-    public viewObjectWithHttpInfo(objid: string, plotFunc: string, plotChain: string, plotVar: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, viewAnalyzer?: boolean, _options?: Configuration): Promise<HttpInfo<UUUU0bdaccc02abe3e86fd53540d087462d8>> {
-        const result = this.api.viewObjectWithHttpInfo(objid, plotFunc, plotChain, plotVar, objectType, shareId, sampledata, fmt, nIteration, cloudwatchLog, batchId, runId, viewAnalyzer, _options);
+    public viewObjectWithHttpInfo(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, viewAnalyzer?: boolean, plotFunc?: string, plotChain?: string, plotVar?: string, _options?: Configuration): Promise<HttpInfo<UUUU0bdaccc02abe3e86fd53540d087462d8>> {
+        const result = this.api.viewObjectWithHttpInfo(objid, objectType, shareId, sampledata, fmt, nIteration, cloudwatchLog, batchId, runId, viewAnalyzer, plotFunc, plotChain, plotVar, _options);
         return result.toPromise();
     }
 
@@ -648,9 +648,6 @@ export class PromiseObjectApi {
      * View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view model data GET /api/object/X1234567  # view experiment data GET /api/object/S1234566  # view share data ```
      * View object.
      * @param objid
-     * @param plotFunc
-     * @param plotChain
-     * @param plotVar
      * @param [objectType]
      * @param [shareId]                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
      * @param [sampledata]
@@ -660,9 +657,12 @@ export class PromiseObjectApi {
      * @param [batchId]
      * @param [runId]
      * @param [viewAnalyzer] view analyzer result
+     * @param [plotFunc]
+     * @param [plotChain]
+     * @param [plotVar]
      */
-    public viewObject(objid: string, plotFunc: string, plotChain: string, plotVar: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, viewAnalyzer?: boolean, _options?: Configuration): Promise<UUUU0bdaccc02abe3e86fd53540d087462d8> {
-        const result = this.api.viewObject(objid, plotFunc, plotChain, plotVar, objectType, shareId, sampledata, fmt, nIteration, cloudwatchLog, batchId, runId, viewAnalyzer, _options);
+    public viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, viewAnalyzer?: boolean, plotFunc?: string, plotChain?: string, plotVar?: string, _options?: Configuration): Promise<UUUU0bdaccc02abe3e86fd53540d087462d8> {
+        const result = this.api.viewObject(objid, objectType, shareId, sampledata, fmt, nIteration, cloudwatchLog, batchId, runId, viewAnalyzer, plotFunc, plotChain, plotVar, _options);
         return result.toPromise();
     }
 

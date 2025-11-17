@@ -168,7 +168,7 @@ const _returntypes_view_object_ObjectApi = Dict{Regex,Type}(
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
-function _oacinternal_view_object(_api::ObjectApi, objid::String, plot_func::String, plot_chain::String, plot_var::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, _mediaType=nothing)
+function _oacinternal_view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, plot_func=nothing, plot_chain=nothing, plot_var=nothing, _mediaType=nothing)
     _ctx = OpenAPI.Clients.Ctx(_api.client, "GET", _returntypes_view_object_ObjectApi, "/api/object/{objid}", ["GlobalAuth", "SharingAuth", ])
     OpenAPI.Clients.set_param(_ctx.path, "objid", objid)  # type String
     OpenAPI.Clients.set_param(_ctx.query, "object_type", object_type; style="form", is_explode=true)  # type String
@@ -194,9 +194,6 @@ View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view mo
 
 Params:
 - objid::String (required)
-- plot_func::String (required)
-- plot_chain::String (required)
-- plot_var::String (required)
 - object_type::String
 - share_id::String
 - sampledata::Bool
@@ -206,16 +203,19 @@ Params:
 - batch_id::String
 - run_id::String
 - view_analyzer::Bool
+- plot_func::String
+- plot_chain::String
+- plot_var::String
 
 Return: UUUU0bdaccc02abe3e86fd53540d087462d8, OpenAPI.Clients.ApiResponse
 """
-function view_object(_api::ObjectApi, objid::String, plot_func::String, plot_chain::String, plot_var::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_view_object(_api, objid, plot_func, plot_chain, plot_var; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, view_analyzer=view_analyzer, _mediaType=_mediaType)
+function view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, plot_func=nothing, plot_chain=nothing, plot_var=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, view_analyzer=view_analyzer, plot_func=plot_func, plot_chain=plot_chain, plot_var=plot_var, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function view_object(_api::ObjectApi, response_stream::Channel, objid::String, plot_func::String, plot_chain::String, plot_var::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_view_object(_api, objid, plot_func, plot_chain, plot_var; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, view_analyzer=view_analyzer, _mediaType=_mediaType)
+function view_object(_api::ObjectApi, response_stream::Channel, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, plot_func=nothing, plot_chain=nothing, plot_var=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_view_object(_api, objid; object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, view_analyzer=view_analyzer, plot_func=plot_func, plot_chain=plot_chain, plot_var=plot_var, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 

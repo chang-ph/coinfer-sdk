@@ -300,9 +300,6 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
      *
      * View object of certain ID.  ### Example  ``` GET /api/object/M1234567  # view model data GET /api/object/X1234567  # view experiment data GET /api/object/S1234566  # view share data ```
      * @param objid 
-     * @param plotFunc 
-     * @param plotChain 
-     * @param plotVar 
      * @param objectType 
      * @param shareId                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot
      * @param sampledata 
@@ -312,8 +309,11 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
      * @param batchId 
      * @param runId 
      * @param viewAnalyzer view analyzer result
+     * @param plotFunc 
+     * @param plotChain 
+     * @param plotVar 
      */
-    public async viewObject(objid: string, plotFunc: string, plotChain: string, plotVar: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, viewAnalyzer?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async viewObject(objid: string, objectType?: 'model' | 'experiment' | 'share' | 'event' | 'callback' | 'relation' | 'data' | 'workflow' | '', shareId?: string, sampledata?: boolean, fmt?: 'csv' | 'grist' | 'arviz', nIteration?: number, cloudwatchLog?: boolean, batchId?: string, runId?: string, viewAnalyzer?: boolean, plotFunc?: string, plotChain?: string, plotVar?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'objid' is not null or undefined
@@ -322,22 +322,7 @@ export class ObjectApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-        // verify required parameter 'plotFunc' is not null or undefined
-        if (plotFunc === null || plotFunc === undefined) {
-            throw new RequiredError("ObjectApi", "viewObject", "plotFunc");
-        }
 
-
-        // verify required parameter 'plotChain' is not null or undefined
-        if (plotChain === null || plotChain === undefined) {
-            throw new RequiredError("ObjectApi", "viewObject", "plotChain");
-        }
-
-
-        // verify required parameter 'plotVar' is not null or undefined
-        if (plotVar === null || plotVar === undefined) {
-            throw new RequiredError("ObjectApi", "viewObject", "plotVar");
-        }
 
 
 

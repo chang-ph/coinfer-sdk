@@ -16,9 +16,9 @@ export class ViewObject {
     * view analyzer result
     */
     'viewAnalyzer'?: boolean;
-    'plotFunc': string;
-    'plotChain': string;
-    'plotVar': string;
+    'plotFunc'?: string;
+    'plotChain'?: string;
+    'plotVar'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

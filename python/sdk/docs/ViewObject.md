@@ -14,9 +14,9 @@ Name | Type | Description | Notes
 **batch_id** | **str** |  | [optional] [default to '']
 **run_id** | **str** |  | [optional] [default to '']
 **view_analyzer** | **bool** | view analyzer result | [optional] [default to False]
-**plot_func** | **str** |  | 
-**plot_chain** | **str** |  | 
-**plot_var** | **str** |  | 
+**plot_func** | **str** |  | [optional] [default to '']
+**plot_chain** | **str** |  | [optional] [default to '']
+**plot_var** | **str** |  | [optional] [default to '']
 
 ## Example
 

@@ -14,9 +14,9 @@
         batch_id="",
         run_id="",
         var"view-analyzer"=false,
-        plot_func=nothing,
-        plot_chain=nothing,
-        plot_var=nothing,
+        plot_func="",
+        plot_chain="",
+        plot_var="",
     )
 
     - object_type::String
@@ -42,9 +42,9 @@ Base.@kwdef mutable struct ViewObject <: OpenAPI.APIModel
     batch_id::Union{Nothing, String} = ""
     run_id::Union{Nothing, String} = ""
     var"view-analyzer"::Union{Nothing, Bool} = false
-    plot_func::Union{Nothing, String} = nothing
-    plot_chain::Union{Nothing, String} = nothing
-    plot_var::Union{Nothing, String} = nothing
+    plot_func::Union{Nothing, String} = ""
+    plot_chain::Union{Nothing, String} = ""
+    plot_var::Union{Nothing, String} = ""
 
     function ViewObject(object_type, share_id, sampledata, fmt, n_iteration, cloudwatch_log, batch_id, run_id, var"view-analyzer", plot_func, plot_chain, plot_var, )
         OpenAPI.validate_property(ViewObject, Symbol("object_type"), object_type)
@@ -67,9 +67,6 @@ const _property_types_ViewObject = Dict{Symbol,String}(Symbol("object_type")=>"S
 OpenAPI.property_type(::Type{ ViewObject }, name::Symbol) = Union{Nothing,eval(Base.Meta.parse(_property_types_ViewObject[name]))}
 
 function check_required(o::ViewObject)
-    o.plot_func === nothing && (return false)
-    o.plot_chain === nothing && (return false)
-    o.plot_var === nothing && (return false)
     true
 end
 

@@ -346,7 +346,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **view_object**
-> UUUU0bdaccc02abe3e86fd53540d087462d8 view_object(objid, plot_func, plot_chain, plot_var, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, view_analyzer=view_analyzer)
+> UUUU0bdaccc02abe3e86fd53540d087462d8 view_object(objid, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, view_analyzer=view_analyzer, plot_func=plot_func, plot_chain=plot_chain, plot_var=plot_var)
 
 View object.
 
@@ -389,9 +389,6 @@ with openapi_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = openapi_client.ObjectApi(api_client)
     objid = 'objid_example' # str | 
-    plot_func = 'plot_func_example' # str | 
-    plot_chain = 'plot_chain_example' # str | 
-    plot_var = 'plot_var_example' # str | 
     object_type =  # str |  (optional) (default to )
     share_id = '' # str |                  Only appicable to object_type == model or object_type == experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot (optional) (default to '')
     sampledata = False # bool |  (optional) (default to False)
@@ -401,10 +398,13 @@ with openapi_client.ApiClient(configuration) as api_client:
     batch_id = '' # str |  (optional) (default to '')
     run_id = '' # str |  (optional) (default to '')
     view_analyzer = False # bool | view analyzer result (optional) (default to False)
+    plot_func = '' # str |  (optional) (default to '')
+    plot_chain = '' # str |  (optional) (default to '')
+    plot_var = '' # str |  (optional) (default to '')
 
     try:
         # View object.
-        api_response = api_instance.view_object(objid, plot_func, plot_chain, plot_var, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, view_analyzer=view_analyzer)
+        api_response = api_instance.view_object(objid, object_type=object_type, share_id=share_id, sampledata=sampledata, fmt=fmt, n_iteration=n_iteration, cloudwatch_log=cloudwatch_log, batch_id=batch_id, run_id=run_id, view_analyzer=view_analyzer, plot_func=plot_func, plot_chain=plot_chain, plot_var=plot_var)
         print("The response of ObjectApi->view_object:\n")
         pprint(api_response)
     except Exception as e:
@@ -418,9 +418,6 @@ with openapi_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **objid** | **str**|  | 
- **plot_func** | **str**|  | 
- **plot_chain** | **str**|  | 
- **plot_var** | **str**|  | 
  **object_type** | **str**|  | [optional] [default to ]
  **share_id** | **str**|                  Only appicable to object_type &#x3D;&#x3D; model or object_type &#x3D;&#x3D; experiment                 If this field is empty, returns the latest version of the objects.                 otherwise returns the specified share snapshot | [optional] [default to &#39;&#39;]
  **sampledata** | **bool**|  | [optional] [default to False]
@@ -430,6 +427,9 @@ Name | Type | Description  | Notes
  **batch_id** | **str**|  | [optional] [default to &#39;&#39;]
  **run_id** | **str**|  | [optional] [default to &#39;&#39;]
  **view_analyzer** | **bool**| view analyzer result | [optional] [default to False]
+ **plot_func** | **str**|  | [optional] [default to &#39;&#39;]
+ **plot_chain** | **str**|  | [optional] [default to &#39;&#39;]
+ **plot_var** | **str**|  | [optional] [default to &#39;&#39;]
 
 ### Return type
 

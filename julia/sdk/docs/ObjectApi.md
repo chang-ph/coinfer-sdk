@@ -154,8 +154,8 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **view_object**
-> view_object(_api::ObjectApi, objid::String, plot_func::String, plot_chain::String, plot_var::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, _mediaType=nothing) -> UUUU0bdaccc02abe3e86fd53540d087462d8, OpenAPI.Clients.ApiResponse <br/>
-> view_object(_api::ObjectApi, response_stream::Channel, objid::String, plot_func::String, plot_chain::String, plot_var::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, _mediaType=nothing) -> Channel{ UUUU0bdaccc02abe3e86fd53540d087462d8 }, OpenAPI.Clients.ApiResponse
+> view_object(_api::ObjectApi, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, plot_func=nothing, plot_chain=nothing, plot_var=nothing, _mediaType=nothing) -> UUUU0bdaccc02abe3e86fd53540d087462d8, OpenAPI.Clients.ApiResponse <br/>
+> view_object(_api::ObjectApi, response_stream::Channel, objid::String; object_type=nothing, share_id=nothing, sampledata=nothing, fmt=nothing, n_iteration=nothing, cloudwatch_log=nothing, batch_id=nothing, run_id=nothing, view_analyzer=nothing, plot_func=nothing, plot_chain=nothing, plot_var=nothing, _mediaType=nothing) -> Channel{ UUUU0bdaccc02abe3e86fd53540d087462d8 }, OpenAPI.Clients.ApiResponse
 
 View object.
 
@@ -167,9 +167,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **_api** | **ObjectApi** | API context | 
 **objid** | **String** |  |
-**plot_func** | **String** |  |
-**plot_chain** | **String** |  |
-**plot_var** | **String** |  |
 
 ### Optional Parameters
 
@@ -184,6 +181,9 @@ Name | Type | Description  | Notes
  **batch_id** | **String** |  | [default to &quot;&quot;]
  **run_id** | **String** |  | [default to &quot;&quot;]
  **view_analyzer** | **Bool** | view analyzer result | [default to false]
+ **plot_func** | **String** |  | [default to &quot;&quot;]
+ **plot_chain** | **String** |  | [default to &quot;&quot;]
+ **plot_var** | **String** |  | [default to &quot;&quot;]
 
 ### Return type
 

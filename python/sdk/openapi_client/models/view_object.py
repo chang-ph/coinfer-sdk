@@ -33,9 +33,9 @@ class ViewObject(BaseModel):
     batch_id: Optional[StrictStr] = ''
     run_id: Optional[StrictStr] = ''
     view_analyzer: Optional[StrictBool] = Field(default=False, description="view analyzer result", alias="view-analyzer")
-    plot_func: StrictStr
-    plot_chain: StrictStr
-    plot_var: StrictStr
+    plot_func: Optional[StrictStr] = ''
+    plot_chain: Optional[StrictStr] = ''
+    plot_var: Optional[StrictStr] = ''
     __properties: ClassVar[List[str]] = ["object_type", "share_id", "sampledata", "fmt", "n_iteration", "cloudwatch_log", "batch_id", "run_id", "view-analyzer", "plot_func", "plot_chain", "plot_var"]
 
     @field_validator('object_type')
@@ -118,9 +118,9 @@ class ViewObject(BaseModel):
             "batch_id": obj.get("batch_id") if obj.get("batch_id") is not None else '',
             "run_id": obj.get("run_id") if obj.get("run_id") is not None else '',
             "view-analyzer": obj.get("view-analyzer") if obj.get("view-analyzer") is not None else False,
-            "plot_func": obj.get("plot_func"),
-            "plot_chain": obj.get("plot_chain"),
-            "plot_var": obj.get("plot_var")
+            "plot_func": obj.get("plot_func") if obj.get("plot_func") is not None else '',
+            "plot_chain": obj.get("plot_chain") if obj.get("plot_chain") is not None else '',
+            "plot_var": obj.get("plot_var") if obj.get("plot_var") is not None else ''
         })
         return _obj
 

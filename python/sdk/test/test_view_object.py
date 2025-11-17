@@ -48,9 +48,6 @@ class TestViewObject(unittest.TestCase):
             )
         else:
             return ViewObject(
-                plot_func = '',
-                plot_chain = '',
-                plot_var = '',
         )
         """
 
