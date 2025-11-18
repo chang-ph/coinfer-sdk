@@ -63,6 +63,8 @@ import { ModifyToken } from '../models/ModifyToken';
 import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
+import { PlotReq } from '../models/PlotReq';
+import { PlotRsp } from '../models/PlotRsp';
 import { RunCloudFunctionScript } from '../models/RunCloudFunctionScript';
 import { RunWorkflowAnalyzerReq } from '../models/RunWorkflowAnalyzerReq';
 import { RunWorkflowReq } from '../models/RunWorkflowReq';
@@ -81,6 +83,7 @@ import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
 import { SuccRspListLinkedAccountRsp } from '../models/SuccRspListLinkedAccountRsp';
 import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingRspDataNotificationDict';
 import { SuccRspNoneType } from '../models/SuccRspNoneType';
+import { SuccRspPlotRsp } from '../models/SuccRspPlotRsp';
 import { SuccRspSoftDeletedRsp } from '../models/SuccRspSoftDeletedRsp';
 import { SuccRspUserInfoRsp } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp } from '../models/SuccRspUserLoginRsp';
@@ -973,6 +976,15 @@ export class ObjectShareApi {
 import { ObservableSystemApi } from "./ObservableAPI";
 import { SystemApiRequestFactory, SystemApiResponseProcessor} from "../apis/SystemApi";
 
+export interface SystemApiArvizPlotRequest {
+    /**
+     * 
+     * @type PlotReq
+     * @memberof SystemApiarvizPlot
+     */
+    plotReq: PlotReq
+}
+
 export interface SystemApiConfigRequest {
 }
 
@@ -984,6 +996,22 @@ export class ObjectSystemApi {
 
     public constructor(configuration: Configuration, requestFactory?: SystemApiRequestFactory, responseProcessor?: SystemApiResponseProcessor) {
         this.api = new ObservableSystemApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Get Arviz plot data.
+     * @param param the request object
+     */
+    public arvizPlotWithHttpInfo(param: SystemApiArvizPlotRequest, options?: Configuration): Promise<HttpInfo<SuccRspPlotRsp>> {
+        return this.api.arvizPlotWithHttpInfo(param.plotReq,  options).toPromise();
+    }
+
+    /**
+     * Get Arviz plot data.
+     * @param param the request object
+     */
+    public arvizPlot(param: SystemApiArvizPlotRequest, options?: Configuration): Promise<SuccRspPlotRsp> {
+        return this.api.arvizPlot(param.plotReq,  options).toPromise();
     }
 
     /**

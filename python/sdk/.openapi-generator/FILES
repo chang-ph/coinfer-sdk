@@ -70,6 +70,8 @@ docs/NotificationDict.md
 docs/ObjectApi.md
 docs/Payload.md
 docs/Payload1.md
+docs/PlotReq.md
+docs/PlotRsp.md
 docs/RunCloudFunctionScript.md
 docs/RunWorkflowAnalyzerReq.md
 docs/RunWorkflowReq.md
@@ -89,6 +91,7 @@ docs/SuccRspListGetTokensRsp.md
 docs/SuccRspListLinkedAccountRsp.md
 docs/SuccRspListingRspDataNotificationDict.md
 docs/SuccRspNoneType.md
+docs/SuccRspPlotRsp.md
 docs/SuccRspSoftDeletedRsp.md
 docs/SuccRspUserInfoRsp.md
 docs/SuccRspUserLoginRsp.md
@@ -191,6 +194,8 @@ openapi_client/models/modify_token.py
 openapi_client/models/notification_dict.py
 openapi_client/models/payload.py
 openapi_client/models/payload1.py
+openapi_client/models/plot_req.py
+openapi_client/models/plot_rsp.py
 openapi_client/models/run_cloud_function_script.py
 openapi_client/models/run_workflow_analyzer_req.py
 openapi_client/models/run_workflow_req.py
@@ -209,6 +214,7 @@ openapi_client/models/succ_rsp_list_get_tokens_rsp.py
 openapi_client/models/succ_rsp_list_linked_account_rsp.py
 openapi_client/models/succ_rsp_listing_rsp_data_notification_dict.py
 openapi_client/models/succ_rsp_none_type.py
+openapi_client/models/succ_rsp_plot_rsp.py
 openapi_client/models/succ_rsp_soft_deleted_rsp.py
 openapi_client/models/succ_rsp_user_info_rsp.py
 openapi_client/models/succ_rsp_user_login_rsp.py
@@ -308,6 +314,8 @@ test/test_notification_dict.py
 test/test_object_api.py
 test/test_payload.py
 test/test_payload1.py
+test/test_plot_req.py
+test/test_plot_rsp.py
 test/test_run_cloud_function_script.py
 test/test_run_workflow_analyzer_req.py
 test/test_run_workflow_req.py
@@ -327,6 +335,7 @@ test/test_succ_rsp_list_get_tokens_rsp.py
 test/test_succ_rsp_list_linked_account_rsp.py
 test/test_succ_rsp_listing_rsp_data_notification_dict.py
 test/test_succ_rsp_none_type.py
+test/test_succ_rsp_plot_rsp.py
 test/test_succ_rsp_soft_deleted_rsp.py
 test/test_succ_rsp_user_info_rsp.py
 test/test_succ_rsp_user_login_rsp.py

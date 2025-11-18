@@ -66,6 +66,8 @@ docs/NotificationDict.md
 docs/ObjectApi.md
 docs/Payload.md
 docs/Payload1.md
+docs/PlotReq.md
+docs/PlotRsp.md
 docs/RunCloudFunctionScript.md
 docs/RunWorkflowAnalyzerReq.md
 docs/RunWorkflowReq.md
@@ -85,6 +87,7 @@ docs/SuccRspListGetTokensRsp.md
 docs/SuccRspListLinkedAccountRsp.md
 docs/SuccRspListingRspDataNotificationDict.md
 docs/SuccRspNoneType.md
+docs/SuccRspPlotRsp.md
 docs/SuccRspSoftDeletedRsp.md
 docs/SuccRspUserInfoRsp.md
 docs/SuccRspUserLoginRsp.md
@@ -181,6 +184,8 @@ src/models/model_ModifyToken.jl
 src/models/model_NotificationDict.jl
 src/models/model_Payload.jl
 src/models/model_Payload1.jl
+src/models/model_PlotReq.jl
+src/models/model_PlotRsp.jl
 src/models/model_RunCloudFunctionScript.jl
 src/models/model_RunWorkflowAnalyzerReq.jl
 src/models/model_RunWorkflowReq.jl
@@ -199,6 +204,7 @@ src/models/model_SuccRspListGetTokensRsp.jl
 src/models/model_SuccRspListLinkedAccountRsp.jl
 src/models/model_SuccRspListingRspDataNotificationDict.jl
 src/models/model_SuccRspNoneType.jl
+src/models/model_SuccRspPlotRsp.jl
 src/models/model_SuccRspSoftDeletedRsp.jl
 src/models/model_SuccRspUserInfoRsp.jl
 src/models/model_SuccRspUserLoginRsp.jl

@@ -60,6 +60,8 @@ export * from '../models/ModifyToken';
 export * from '../models/NotificationDict';
 export * from '../models/Payload';
 export * from '../models/Payload1';
+export * from '../models/PlotReq';
+export * from '../models/PlotRsp';
 export * from '../models/RunCloudFunctionScript';
 export * from '../models/RunWorkflowAnalyzerReq';
 export * from '../models/RunWorkflowReq';
@@ -78,6 +80,7 @@ export * from '../models/SuccRspListGetTokensRsp';
 export * from '../models/SuccRspListLinkedAccountRsp';
 export * from '../models/SuccRspListingRspDataNotificationDict';
 export * from '../models/SuccRspNoneType';
+export * from '../models/SuccRspPlotRsp';
 export * from '../models/SuccRspSoftDeletedRsp';
 export * from '../models/SuccRspUserInfoRsp';
 export * from '../models/SuccRspUserLoginRsp';
@@ -166,6 +169,8 @@ import { ModifyToken } from '../models/ModifyToken';
 import { NotificationDict } from '../models/NotificationDict';
 import { PayloadClass } from '../models/Payload';
 import { Payload1Class } from '../models/Payload1';
+import { PlotReq } from '../models/PlotReq';
+import { PlotRsp } from '../models/PlotRsp';
 import { RunCloudFunctionScript, RunCloudFunctionScriptObjectTypeEnum   , RunCloudFunctionScriptEngineEnum      } from '../models/RunCloudFunctionScript';
 import { RunWorkflowAnalyzerReq, RunWorkflowAnalyzerReqObjectTypeEnum   } from '../models/RunWorkflowAnalyzerReq';
 import { RunWorkflowReq, RunWorkflowReqObjectTypeEnum    } from '../models/RunWorkflowReq';
@@ -184,6 +189,7 @@ import { SuccRspListGetTokensRsp, SuccRspListGetTokensRspStatusEnum    } from '.
 import { SuccRspListLinkedAccountRsp, SuccRspListLinkedAccountRspStatusEnum    } from '../models/SuccRspListLinkedAccountRsp';
 import { SuccRspListingRspDataNotificationDict, SuccRspListingRspDataNotificationDictStatusEnum    } from '../models/SuccRspListingRspDataNotificationDict';
 import { SuccRspNoneType, SuccRspNoneTypeStatusEnum    } from '../models/SuccRspNoneType';
+import { SuccRspPlotRsp, SuccRspPlotRspStatusEnum    } from '../models/SuccRspPlotRsp';
 import { SuccRspSoftDeletedRsp, SuccRspSoftDeletedRspStatusEnum    } from '../models/SuccRspSoftDeletedRsp';
 import { SuccRspUserInfoRsp, SuccRspUserInfoRspStatusEnum    } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp, SuccRspUserLoginRspStatusEnum    } from '../models/SuccRspUserLoginRsp';
@@ -291,6 +297,7 @@ let enumsMap: Set<string> = new Set<string>([
     "SuccRspListLinkedAccountRspStatusEnum",
     "SuccRspListingRspDataNotificationDictStatusEnum",
     "SuccRspNoneTypeStatusEnum",
+    "SuccRspPlotRspStatusEnum",
     "SuccRspSoftDeletedRspStatusEnum",
     "SuccRspUserInfoRspStatusEnum",
     "SuccRspUserLoginRspStatusEnum",
@@ -373,6 +380,8 @@ let typeMap: {[index: string]: any} = {
     "NotificationDict": NotificationDict,
     "Payload": PayloadClass,
     "Payload1": Payload1Class,
+    "PlotReq": PlotReq,
+    "PlotRsp": PlotRsp,
     "RunCloudFunctionScript": RunCloudFunctionScript,
     "RunWorkflowAnalyzerReq": RunWorkflowAnalyzerReq,
     "RunWorkflowReq": RunWorkflowReq,
@@ -391,6 +400,7 @@ let typeMap: {[index: string]: any} = {
     "SuccRspListLinkedAccountRsp": SuccRspListLinkedAccountRsp,
     "SuccRspListingRspDataNotificationDict": SuccRspListingRspDataNotificationDict,
     "SuccRspNoneType": SuccRspNoneType,
+    "SuccRspPlotRsp": SuccRspPlotRsp,
     "SuccRspSoftDeletedRsp": SuccRspSoftDeletedRsp,
     "SuccRspUserInfoRsp": SuccRspUserInfoRsp,
     "SuccRspUserLoginRsp": SuccRspUserLoginRsp,

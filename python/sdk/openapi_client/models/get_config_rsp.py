@@ -16,7 +16,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,11 +30,12 @@ class GetConfigRsp(BaseModel):
     upload_file_types: StrictStr
     google_client_id: StrictStr
     google_app_id: StrictStr
+    arviz_plotting_endpoint: Optional[StrictStr]
     default_model: StrictStr
     default_data: StrictStr
     default_analyzer: StrictStr
     default_data_script: StrictStr
-    __properties: ClassVar[List[str]] = ["run_model_url", "max_upload_sample_size", "max_upload_sample_file", "upload_file_types", "google_client_id", "google_app_id", "default_model", "default_data", "default_analyzer", "default_data_script"]
+    __properties: ClassVar[List[str]] = ["run_model_url", "max_upload_sample_size", "max_upload_sample_file", "upload_file_types", "google_client_id", "google_app_id", "arviz_plotting_endpoint", "default_model", "default_data", "default_analyzer", "default_data_script"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -75,6 +76,11 @@ class GetConfigRsp(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # set to None if arviz_plotting_endpoint (nullable) is None
+        # and model_fields_set contains the field
+        if self.arviz_plotting_endpoint is None and "arviz_plotting_endpoint" in self.model_fields_set:
+            _dict['arviz_plotting_endpoint'] = None
+
         return _dict
 
     @classmethod
@@ -93,6 +99,7 @@ class GetConfigRsp(BaseModel):
             "upload_file_types": obj.get("upload_file_types"),
             "google_client_id": obj.get("google_client_id"),
             "google_app_id": obj.get("google_app_id"),
+            "arviz_plotting_endpoint": obj.get("arviz_plotting_endpoint"),
             "default_model": obj.get("default_model"),
             "default_data": obj.get("default_data"),
             "default_analyzer": obj.get("default_analyzer"),

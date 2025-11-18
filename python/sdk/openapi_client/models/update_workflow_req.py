@@ -30,7 +30,7 @@ class UpdateWorkflowReq(BaseModel):
     description: Optional[Annotated[str, Field(strict=True, max_length=2048)]] = None
     data_id: Optional[Annotated[str, Field(strict=True, max_length=9)]] = None
     experiment_id: Optional[Annotated[str, Field(strict=True, max_length=9)]] = None
-    analyzer_id: Optional[Annotated[str, Field(strict=True, max_length=20)]] = None
+    analyzer_id: Optional[Annotated[str, Field(strict=True, max_length=9)]] = None
     analyzer_result: Optional[StrictStr] = None
     startup_script: Optional[StrictStr] = None
     settings: Optional[StrictStr] = None

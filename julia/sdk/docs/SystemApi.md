@@ -4,9 +4,38 @@ All URIs are relative to *https://api.coinfer.ai*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**arviz_plot**](SystemApi.md#arviz_plot) | **POST** /sys/plot | Get Arviz plot data.
 [**config**](SystemApi.md#config) | **GET** /sys/config | Get configuration about how to run a model.
 [**repository**](SystemApi.md#repository) | **GET** /sys/gallery | List gallery data.
 
+
+# **arviz_plot**
+> arviz_plot(_api::SystemApi, plot_req::PlotReq; _mediaType=nothing) -> SuccRspPlotRsp, OpenAPI.Clients.ApiResponse <br/>
+> arviz_plot(_api::SystemApi, response_stream::Channel, plot_req::PlotReq; _mediaType=nothing) -> Channel{ SuccRspPlotRsp }, OpenAPI.Clients.ApiResponse
+
+Get Arviz plot data.
+
+### Required Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **_api** | **SystemApi** | API context | 
+**plot_req** | [**PlotReq**](PlotReq.md) |  |
+
+### Return type
+
+[**SuccRspPlotRsp**](SuccRspPlotRsp.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
 # **config**
 > config(_api::SystemApi; _mediaType=nothing) -> SuccRspGetConfigRsp, OpenAPI.Clients.ApiResponse <br/>

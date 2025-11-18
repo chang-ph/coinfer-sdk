@@ -84,7 +84,7 @@ function OpenAPI.validate_property(::Type{ UpdateWorkflowReq }, name::Symbol, va
     end
 
     if name === Symbol("analyzer_id")
-        OpenAPI.validate_param(name, "UpdateWorkflowReq", :maxLength, val, 20)
+        OpenAPI.validate_param(name, "UpdateWorkflowReq", :maxLength, val, 9)
     end
 
 

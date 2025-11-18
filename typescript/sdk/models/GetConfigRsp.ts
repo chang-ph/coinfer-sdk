@@ -7,6 +7,7 @@ export class GetConfigRsp {
     'uploadFileTypes': string;
     'googleClientId': string;
     'googleAppId': string;
+    'arvizPlottingEndpoint': string | null;
     'defaultModel': string;
     'defaultData': string;
     'defaultAnalyzer': string;
@@ -50,6 +51,12 @@ export class GetConfigRsp {
         {
             "name": "googleAppId",
             "baseName": "google_app_id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "arvizPlottingEndpoint",
+            "baseName": "arviz_plotting_endpoint",
             "type": "string",
             "format": ""
         },
