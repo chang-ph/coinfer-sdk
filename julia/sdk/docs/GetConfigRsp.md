@@ -10,7 +10,6 @@ Name | Type | Description | Notes
 **upload_file_types** | **String** |  | [default to nothing]
 **google_client_id** | **String** |  | [default to nothing]
 **google_app_id** | **String** |  | [default to nothing]
-**arviz_plotting_endpoint** | **String** |  | [default to nothing]
 **default_model** | **String** |  | [default to nothing]
 **default_data** | **String** |  | [default to nothing]
 **default_analyzer** | **String** |  | [default to nothing]

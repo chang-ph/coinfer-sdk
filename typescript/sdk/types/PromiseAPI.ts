@@ -63,8 +63,6 @@ import { ModifyToken } from '../models/ModifyToken';
 import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
-import { PlotReq } from '../models/PlotReq';
-import { PlotRsp } from '../models/PlotRsp';
 import { RunCloudFunctionScript } from '../models/RunCloudFunctionScript';
 import { RunWorkflowAnalyzerReq } from '../models/RunWorkflowAnalyzerReq';
 import { RunWorkflowReq } from '../models/RunWorkflowReq';
@@ -83,7 +81,6 @@ import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
 import { SuccRspListLinkedAccountRsp } from '../models/SuccRspListLinkedAccountRsp';
 import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingRspDataNotificationDict';
 import { SuccRspNoneType } from '../models/SuccRspNoneType';
-import { SuccRspPlotRsp } from '../models/SuccRspPlotRsp';
 import { SuccRspSoftDeletedRsp } from '../models/SuccRspSoftDeletedRsp';
 import { SuccRspUserInfoRsp } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp } from '../models/SuccRspUserLoginRsp';
@@ -720,24 +717,6 @@ export class PromiseSystemApi {
         responseProcessor?: SystemApiResponseProcessor
     ) {
         this.api = new ObservableSystemApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * Get Arviz plot data.
-     * @param plotReq
-     */
-    public arvizPlotWithHttpInfo(plotReq: PlotReq, _options?: Configuration): Promise<HttpInfo<SuccRspPlotRsp>> {
-        const result = this.api.arvizPlotWithHttpInfo(plotReq, _options);
-        return result.toPromise();
-    }
-
-    /**
-     * Get Arviz plot data.
-     * @param plotReq
-     */
-    public arvizPlot(plotReq: PlotReq, _options?: Configuration): Promise<SuccRspPlotRsp> {
-        const result = this.api.arvizPlot(plotReq, _options);
-        return result.toPromise();
     }
 
     /**

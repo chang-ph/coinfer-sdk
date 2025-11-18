@@ -24,13 +24,6 @@ class TestSystemApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_arviz_plot(self) -> None:
-        """Test case for arviz_plot
-
-        Get Arviz plot data.
-        """
-        pass
-
     def test_config(self) -> None:
         """Test case for config
 

@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **upload_file_types** | **str** |  | 
 **google_client_id** | **str** |  | 
 **google_app_id** | **str** |  | 
-**arviz_plotting_endpoint** | **str** |  | 
 **default_model** | **str** |  | 
 **default_data** | **str** |  | 
 **default_analyzer** | **str** |  | 

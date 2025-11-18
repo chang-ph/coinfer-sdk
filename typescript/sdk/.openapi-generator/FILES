@@ -86,8 +86,6 @@ models/NotificationDict.ts
 models/ObjectSerializer.ts
 models/Payload.ts
 models/Payload1.ts
-models/PlotReq.ts
-models/PlotRsp.ts
 models/RunCloudFunctionScript.ts
 models/RunWorkflowAnalyzerReq.ts
 models/RunWorkflowReq.ts
@@ -106,7 +104,6 @@ models/SuccRspListGetTokensRsp.ts
 models/SuccRspListLinkedAccountRsp.ts
 models/SuccRspListingRspDataNotificationDict.ts
 models/SuccRspNoneType.ts
-models/SuccRspPlotRsp.ts
 models/SuccRspSoftDeletedRsp.ts
 models/SuccRspUserInfoRsp.ts
 models/SuccRspUserLoginRsp.ts
