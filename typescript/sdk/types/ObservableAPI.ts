@@ -64,8 +64,6 @@ import { ModifyToken } from '../models/ModifyToken';
 import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
-import { PlotReq } from '../models/PlotReq';
-import { PlotRsp } from '../models/PlotRsp';
 import { RunCloudFunctionScript } from '../models/RunCloudFunctionScript';
 import { RunWorkflowAnalyzerReq } from '../models/RunWorkflowAnalyzerReq';
 import { RunWorkflowReq } from '../models/RunWorkflowReq';
@@ -84,7 +82,6 @@ import { SuccRspListGetTokensRsp } from '../models/SuccRspListGetTokensRsp';
 import { SuccRspListLinkedAccountRsp } from '../models/SuccRspListLinkedAccountRsp';
 import { SuccRspListingRspDataNotificationDict } from '../models/SuccRspListingRspDataNotificationDict';
 import { SuccRspNoneType } from '../models/SuccRspNoneType';
-import { SuccRspPlotRsp } from '../models/SuccRspPlotRsp';
 import { SuccRspSoftDeletedRsp } from '../models/SuccRspSoftDeletedRsp';
 import { SuccRspUserInfoRsp } from '../models/SuccRspUserInfoRsp';
 import { SuccRspUserLoginRsp } from '../models/SuccRspUserLoginRsp';
@@ -1018,37 +1015,6 @@ export class ObservableSystemApi {
         this.configuration = configuration;
         this.requestFactory = requestFactory || new SystemApiRequestFactory(configuration);
         this.responseProcessor = responseProcessor || new SystemApiResponseProcessor();
-    }
-
-    /**
-     * Get Arviz plot data.
-     * @param plotReq
-     */
-    public arvizPlotWithHttpInfo(plotReq: PlotReq, _options?: Configuration): Observable<HttpInfo<SuccRspPlotRsp>> {
-        const requestContextPromise = this.requestFactory.arvizPlot(plotReq, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.arvizPlotWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * Get Arviz plot data.
-     * @param plotReq
-     */
-    public arvizPlot(plotReq: PlotReq, _options?: Configuration): Observable<SuccRspPlotRsp> {
-        return this.arvizPlotWithHttpInfo(plotReq, _options).pipe(map((apiResponse: HttpInfo<SuccRspPlotRsp>) => apiResponse.data));
     }
 
     /**

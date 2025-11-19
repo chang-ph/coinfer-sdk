@@ -9,57 +9,13 @@ import {SecurityAuthentication} from '../auth/auth';
 
 
 import { ErrRsp } from '../models/ErrRsp';
-import { PlotReq } from '../models/PlotReq';
 import { SuccRspDemoListRsp } from '../models/SuccRspDemoListRsp';
 import { SuccRspGetConfigRsp } from '../models/SuccRspGetConfigRsp';
-import { SuccRspPlotRsp } from '../models/SuccRspPlotRsp';
 
 /**
  * no description
  */
 export class SystemApiRequestFactory extends BaseAPIRequestFactory {
-
-    /**
-     * Get Arviz plot data.
-     *
-     * @param plotReq 
-     */
-    public async arvizPlot(plotReq: PlotReq, _options?: Configuration): Promise<RequestContext> {
-        let _config = _options || this.configuration;
-
-        // verify required parameter 'plotReq' is not null or undefined
-        if (plotReq === null || plotReq === undefined) {
-            throw new RequiredError("SystemApi", "arvizPlot", "plotReq");
-        }
-
-
-        // Path Params
-        const localVarPath = '/sys/plot';
-
-        // Make Request Context
-        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
-        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
-
-
-        // Body Params
-        const contentType = ObjectSerializer.getPreferredMediaType([
-            "application/json"
-        ]);
-        requestContext.setHeaderParam("Content-Type", contentType);
-        const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(plotReq, "PlotReq", ""),
-            contentType
-        );
-        requestContext.setBody(serializedBody);
-
-        
-        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
-        if (defaultAuth?.applySecurityAuthentication) {
-            await defaultAuth?.applySecurityAuthentication(requestContext);
-        }
-
-        return requestContext;
-    }
 
     /**
      * Get configuration about how to run a model.
@@ -113,42 +69,6 @@ export class SystemApiRequestFactory extends BaseAPIRequestFactory {
 }
 
 export class SystemApiResponseProcessor {
-
-    /**
-     * Unwraps the actual response sent by the server from the response context and deserializes the response content
-     * to the expected objects
-     *
-     * @params response Response returned by the server for a request to arvizPlot
-     * @throws ApiException if the response code was not in [200, 299]
-     */
-     public async arvizPlotWithHttpInfo(response: ResponseContext): Promise<HttpInfo<SuccRspPlotRsp >> {
-        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
-        if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: SuccRspPlotRsp = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspPlotRsp", ""
-            ) as SuccRspPlotRsp;
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
-        }
-        if (isCodeInRange("400", response.httpStatusCode)) {
-            const body: ErrRsp = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "ErrRsp", ""
-            ) as ErrRsp;
-            throw new ApiException<ErrRsp>(response.httpStatusCode, "Bad Request", body, response.headers);
-        }
-
-        // Work around for missing responses in specification, e.g. for petstore.yaml
-        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: SuccRspPlotRsp = ObjectSerializer.deserialize(
-                ObjectSerializer.parse(await response.body.text(), contentType),
-                "SuccRspPlotRsp", ""
-            ) as SuccRspPlotRsp;
-            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
-        }
-
-        throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
-    }
 
     /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content

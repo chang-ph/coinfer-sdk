@@ -74,8 +74,6 @@ from openapi_client.models.modify_token import ModifyToken
 from openapi_client.models.notification_dict import NotificationDict
 from openapi_client.models.payload import Payload
 from openapi_client.models.payload1 import Payload1
-from openapi_client.models.plot_req import PlotReq
-from openapi_client.models.plot_rsp import PlotRsp
 from openapi_client.models.run_cloud_function_script import RunCloudFunctionScript
 from openapi_client.models.run_workflow_analyzer_req import RunWorkflowAnalyzerReq
 from openapi_client.models.run_workflow_req import RunWorkflowReq
@@ -94,7 +92,6 @@ from openapi_client.models.succ_rsp_list_get_tokens_rsp import SuccRspListGetTok
 from openapi_client.models.succ_rsp_list_linked_account_rsp import SuccRspListLinkedAccountRsp
 from openapi_client.models.succ_rsp_listing_rsp_data_notification_dict import SuccRspListingRspDataNotificationDict
 from openapi_client.models.succ_rsp_none_type import SuccRspNoneType
-from openapi_client.models.succ_rsp_plot_rsp import SuccRspPlotRsp
 from openapi_client.models.succ_rsp_soft_deleted_rsp import SuccRspSoftDeletedRsp
 from openapi_client.models.succ_rsp_user_info_rsp import SuccRspUserInfoRsp
 from openapi_client.models.succ_rsp_user_login_rsp import SuccRspUserLoginRsp

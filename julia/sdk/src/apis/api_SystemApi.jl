@@ -11,35 +11,6 @@ This can be used to construct the `OpenAPI.Clients.Client` instance.
 """
 basepath(::Type{ SystemApi }) = "https://api.coinfer.ai"
 
-const _returntypes_arviz_plot_SystemApi = Dict{Regex,Type}(
-    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspPlotRsp,
-    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
-)
-
-function _oacinternal_arviz_plot(_api::SystemApi, plot_req::PlotReq; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_arviz_plot_SystemApi, "/sys/plot", [], plot_req)
-    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
-    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json", ] : [_mediaType])
-    return _ctx
-end
-
-@doc raw"""Get Arviz plot data.
-
-Params:
-- plot_req::PlotReq (required)
-
-Return: SuccRspPlotRsp, OpenAPI.Clients.ApiResponse
-"""
-function arviz_plot(_api::SystemApi, plot_req::PlotReq; _mediaType=nothing)
-    _ctx = _oacinternal_arviz_plot(_api, plot_req; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx)
-end
-
-function arviz_plot(_api::SystemApi, response_stream::Channel, plot_req::PlotReq; _mediaType=nothing)
-    _ctx = _oacinternal_arviz_plot(_api, plot_req; _mediaType=_mediaType)
-    return OpenAPI.Clients.exec(_ctx, response_stream)
-end
-
 const _returntypes_config_SystemApi = Dict{Regex,Type}(
     Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspGetConfigRsp,
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
@@ -98,6 +69,5 @@ function repository(_api::SystemApi, response_stream::Channel; _mediaType=nothin
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
-export arviz_plot
 export config
 export repository
