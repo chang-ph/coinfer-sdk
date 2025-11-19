@@ -180,7 +180,7 @@ class ModelRunHandler:
             thd.start()
         assert popen.stdout is not None
         for stdout_line in iter(popen.stdout.readline, ""):
-            logger.info("-->" + stdout_line.rstrip())
+            logger.info("-->%s", stdout_line.rstrip())
             if client and not os.environ.get("JULIA_DEBUG"):
                 client.sendmsg(group_name, {"action": "experiment:output", "data": stdout_line})
         popen.stdout.close()

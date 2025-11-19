@@ -53,8 +53,10 @@ class Client:
 
     @staticmethod
     def response_data(resp: requests_lib.Response | None) -> dict[str, Any]:
-        if not resp:
+        if resp is None:
             raise Exception("Empty response")
+        if resp.status_code == 401:
+            raise Exception("Unauthorized")
         rdata = resp.json()
         if rdata["status"] != "ok":
             msg = rdata["message"]

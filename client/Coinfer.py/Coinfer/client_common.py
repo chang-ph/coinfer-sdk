@@ -1,9 +1,14 @@
+import logging
+
 from functools import lru_cache
 import pathlib
 import uuid
 from typing import cast
 
 import yaml
+from ruamel.yaml import YAML  # uses as writer to keep user comments
+
+logger = logging.getLogger(__name__)
 
 
 def bool_sync(sync: str | bool) -> bool:
@@ -50,3 +55,18 @@ NEED_LOGIN_PROMPT = """
 You are not logged in. Please run `inv login` first.
 Or you can change to 'sync: off' in workflow.yaml to disable sync with cloud.
 """
+
+
+def set_token(token: str):
+    config_file = pathlib.Path.home() / ".config" / "coinfer" / "config.yaml"
+    if config_file.is_file():
+        with open(config_file, 'r') as f:
+            config = YAML().load(f)  # type: ignore
+    else:
+        config = {}
+    if 'auth' not in config:
+        config['auth'] = {}
+    config['auth']['token'] = token
+    with open(config_file, 'w') as f:
+        YAML().dump(config, f)  # type: ignore
+    return token
