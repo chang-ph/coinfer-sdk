@@ -61,6 +61,7 @@ export * from '../models/NotificationDict';
 export * from '../models/Payload';
 export * from '../models/Payload1';
 export * from '../models/RunCloudFunctionScript';
+export * from '../models/RunCommandReq';
 export * from '../models/RunWorkflowAnalyzerReq';
 export * from '../models/RunWorkflowReq';
 export * from '../models/SaveAnalyzerResultReq';
@@ -167,6 +168,7 @@ import { NotificationDict } from '../models/NotificationDict';
 import { PayloadClass } from '../models/Payload';
 import { Payload1Class } from '../models/Payload1';
 import { RunCloudFunctionScript, RunCloudFunctionScriptObjectTypeEnum   , RunCloudFunctionScriptEngineEnum      } from '../models/RunCloudFunctionScript';
+import { RunCommandReq } from '../models/RunCommandReq';
 import { RunWorkflowAnalyzerReq, RunWorkflowAnalyzerReqObjectTypeEnum   } from '../models/RunWorkflowAnalyzerReq';
 import { RunWorkflowReq, RunWorkflowReqObjectTypeEnum    } from '../models/RunWorkflowReq';
 import { SaveAnalyzerResultReq, SaveAnalyzerResultReqObjectTypeEnum      } from '../models/SaveAnalyzerResultReq';
@@ -374,6 +376,7 @@ let typeMap: {[index: string]: any} = {
     "Payload": PayloadClass,
     "Payload1": Payload1Class,
     "RunCloudFunctionScript": RunCloudFunctionScript,
+    "RunCommandReq": RunCommandReq,
     "RunWorkflowAnalyzerReq": RunWorkflowAnalyzerReq,
     "RunWorkflowReq": RunWorkflowReq,
     "SaveAnalyzerResultReq": SaveAnalyzerResultReq,

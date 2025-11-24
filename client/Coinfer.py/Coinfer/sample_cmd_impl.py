@@ -1,8 +1,10 @@
 import csv
+import signal
 import json
 import logging
 import os
 import subprocess
+import sys
 import threading
 import time
 from pathlib import Path
@@ -10,10 +12,47 @@ from typing import Any, Callable
 
 import yaml
 
-from .client import Client
+from .client import Client, RunInfoData
 from .client_common import NEED_LOGIN_PROMPT, bool_sync, get_token, gen_batch_id
 
+
 logger = logging.getLogger(__name__)
+
+signal_handler_params = {
+    "coinfer_server_endpoint": "",
+    "coinfer_auth_token": "",
+    "experiment_id": "",
+    "batch_id": "",
+    "run_id": "",
+}
+
+
+def signal_handler(signum: int, _: Any):
+    logger.warning("received signal: %s %s", signum, signal_handler_params)
+    exp_id = signal_handler_params["experiment_id"]
+    token = signal_handler_params["coinfer_auth_token"]
+
+    logger.warning("received signal: %s, exp_id=%s, token=%s", signum, exp_id, token)
+    if signum not in (signal.SIGTERM, signal.SIGINT):
+        return
+    if not exp_id or not token:
+        return
+
+    group_name = f"object_{exp_id}"
+    wdserver = Client(signal_handler_params["coinfer_server_endpoint"], token)
+    wdserver.set_experiment_run_info(
+        {
+            "experiment_id": exp_id,
+            "batch_id": signal_handler_params["batch_id"],
+            "run_id": signal_handler_params["run_id"],
+        }
+    )
+    logger.warning("update experiment status")
+    wdserver.update_experiment(exp_id, {"status": "ERR"})
+    logger.warning("send error message")
+    wdserver.sendmsg(group_name, {"action": "experiment:error", "data": "server terminated"})
+    logger.warning("finished signal handling")
+    sys.exit(0)
 
 
 def sample():
@@ -24,27 +63,34 @@ def sample():
     coinfer = settings.get(sampling['sync'], {})
     is_sync = bool_sync(sampling['sync'])
     if is_sync:
+        is_cloud = os.environ.get("ECS_AGENT_URI") or os.environ.get("AWS_LAMBDA_LOG_STREAM_NAME")
         token = get_token()
         if not token:
             print(NEED_LOGIN_PROMPT)
             return
+
         client = Client(coinfer["endpoint"], token)
         serverless = settings['serverless']
         wf_id = coinfer["workflow_id"]
-        wf_rsp = client.get_object(wf_id)
-        exp_id = wf_rsp["experiment_id"]
+        exp_data, _ = client.ensure_experiment_for_workflow(wf_id, coinfer["experiment_name"], serverless["engine"])
+        exp_id = exp_data["short_id"]
         batch_id = coinfer.get("batch_id", gen_batch_id())
         run_id = coinfer.get("run_id", gen_batch_id())
-        if not exp_id:
-            exp_rsp = client.create_experiment(
-                model_id=wf_rsp["model_id"],
-                workflow_id=wf_id,
-                input_id=wf_rsp["data_id"],
-                meta={"status": "RUN"},
-                name=coinfer["experiment_name"],
-                run_on=serverless["engine"],
-            )
-            exp_id = exp_rsp["short_id"]
+        if is_cloud:
+            signal.signal(signal.SIGINT, signal_handler)
+            signal.signal(signal.SIGTERM, signal_handler)
+            signal.signal(signal.SIGHUP, signal_handler)
+            cloudwatch_info = collect_cloudwatch_info()
+            run_info: RunInfoData = {
+                "experiment_id": exp_id,
+                "batch_id": os.environ.get("COINFER_BATCH_ID", batch_id),
+                "run_id": os.environ.get("COINFER_RUN_ID", run_id),
+                "log_group": cloudwatch_info["group_name"],
+                "log_stream": cloudwatch_info["stream_name"],
+                "run_on": cloudwatch_info["engine_type"],
+            }
+            client.set_experiment_run_info(run_info)
+
         coinfer["experiment_id"] = exp_id
         client.set_experiment_run_info({"batch_id": batch_id, "run_id": run_id, "experiment_id": exp_id})
         client.update_experiment(exp_id, {"status": "RUN"})
@@ -57,8 +103,28 @@ def sample():
         exp_id = ""
         batch_id = ""
         run_id = ""
-    _run_data_script(settings, workflowdir, client, group_name)
-    return _run_model(settings, workflowdir, wf_id, exp_id, batch_id, run_id, client, group_name)
+
+    status = None
+    try:
+        _run_data_script(settings, workflowdir, client, group_name)
+        status = _run_model(settings, workflowdir, wf_id, exp_id, batch_id, run_id, client, group_name)
+    except BaseException as e:
+        if is_sync:
+            logging.exception(f"failed to run experiment: {exp_id=}")
+            group_name = f"object_{exp_id}"
+            assert client
+            client.sendmsg(group_name, {"action": "experiment:error", "data": str(e)})
+            client.update_experiment(exp_id, {"status": "ERR"})
+            sys.exit(-1)
+    finally:
+        signal_handler_params["coinfer_server_endpoint"] = ""
+        signal_handler_params["coinfer_auth_token"] = ""
+        signal_handler_params["experiment_id"] = ""
+        signal_handler_params["batch_id"] = ""
+        signal_handler_params["run_id"] = ""
+
+    if status != 'SAMPLE_FIN':
+        sys.exit(-1)
 
 
 def _run_model(
@@ -323,3 +389,27 @@ def _run_data_script(settings: dict[str, Any], rootdir: Path, client: Client | N
     return_code = popen.wait()
     if not return_code == 0:
         raise RuntimeError(f"run data script failed: {return_code}")
+
+
+def collect_cloudwatch_info():
+    engine_type = ''
+    group_name = ''
+    stream_name = ''
+    prno = os.environ.get('PRNO', '')
+
+    if os.environ.get("ECS_AGENT_URI"):
+        engine_type = 'fargate'
+        group_name = f"/ecs/wd-run-model-pr{prno}"
+
+        task_id = os.environ["ECS_AGENT_URI"].split("/")[-1].split('-')[0]
+        # ref: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_awslogs.html#create_awslogs_logdriver_options
+        # stream_name is <stream_prefix>/<container_name>/<task_id>
+        # stream_prefix and container_name is defined in task definition
+        stream_name = f"ecs/wd-run-model/{task_id}"
+    elif os.environ.get('AWS_LAMBDA_LOG_STREAM_NAME'):
+        engine_type = 'lambda'
+        func_name = os.environ.get('AWS_LAMBDA_FUNCTION_NAME', 'JuliaSampleFunction')
+        group_name = f'/aws/lambda/{func_name}'
+        stream_name = os.environ['AWS_LAMBDA_LOG_STREAM_NAME']
+
+    return {'engine_type': engine_type, "group_name": group_name, "stream_name": stream_name}

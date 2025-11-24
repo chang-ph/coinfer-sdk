@@ -1,9 +1,9 @@
+import base64
 import logging
-
-from functools import lru_cache
 import pathlib
 import uuid
-from typing import cast
+from functools import lru_cache
+from typing import Required, TypedDict, cast
 
 import yaml
 from ruamel.yaml import YAML  # uses as writer to keep user comments
@@ -70,3 +70,21 @@ def set_token(token: str):
     with open(config_file, 'w') as f:
         YAML().dump(config, f)  # type: ignore
     return token
+
+
+class UnifiedTreeNode(TypedDict, total=False):
+    name: Required[str]
+    type: Required[str]
+    content: str
+    children: list["UnifiedTreeNode"]
+
+
+def extract_files_from_json(json_data: list[UnifiedTreeNode], current_dir: pathlib.Path):
+    for item in json_data:
+        if item['type'] == "file":
+            file: pathlib.Path = current_dir / item['name']
+            if not file.exists():
+                file.write_bytes(base64.b64decode(item['content']))  # type: ignore
+        else:
+            (current_dir / item['name']).mkdir(exist_ok=True)
+            extract_files_from_json(item['children'], current_dir / item['name'])  # type: ignore

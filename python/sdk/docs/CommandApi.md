@@ -1,0 +1,74 @@
+# openapi_client.CommandApi
+
+All URIs are relative to *https://api.coinfer.ai*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**run_command**](CommandApi.md#run_command) | **POST** /command | Run command
+
+
+# **run_command**
+> SuccRspAny run_command(run_command_req)
+
+Run command
+
+### Example
+
+
+```python
+import openapi_client
+from openapi_client.models.run_command_req import RunCommandReq
+from openapi_client.models.succ_rsp_any import SuccRspAny
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.coinfer.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "https://api.coinfer.ai"
+)
+
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = openapi_client.CommandApi(api_client)
+    run_command_req = openapi_client.RunCommandReq() # RunCommandReq | 
+
+    try:
+        # Run command
+        api_response = api_instance.run_command(run_command_req)
+        print("The response of CommandApi->run_command:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling CommandApi->run_command: %s\n" % e)
+```
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **run_command_req** | [**RunCommandReq**](RunCommandReq.md)|  | 
+
+### Return type
+
+[**SuccRspAny**](SuccRspAny.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+

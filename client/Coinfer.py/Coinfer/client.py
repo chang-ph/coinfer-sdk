@@ -249,3 +249,24 @@ class Client:
         headers = self.headers_with_auth()
         res = self.session.get(url, headers=headers)
         return self.response_data(res)
+
+    def ensure_experiment_for_workflow(self, workflow_id: str, experiment_name: str, engine: str):
+        url = self.endpoint("api", f"/object/{workflow_id}")
+        headers = self.headers_with_auth()
+        res = self.session.get(url, headers=headers)
+        wf_data = self.response_data(res)
+        if wf_data.get("experiment_id"):
+            exp_rsp = self.get_object(wf_data["experiment_id"])
+            return exp_rsp, wf_data
+
+        exp_rsp = self.create_experiment(
+            model_id=wf_data["model_id"],
+            workflow_id=workflow_id,
+            input_id=(wf_data["data_id"] or ""),
+            meta={"status": "RUN"},
+            name=experiment_name,
+            run_on=engine,
+        )
+        wf_data["experiment_id"] = exp_rsp["short_id"]
+        wf_data["experiment_name"] = experiment_name
+        return exp_rsp, wf_data

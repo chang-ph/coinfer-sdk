@@ -8,5 +8,5 @@ export * from "./servers";
 export { RequiredError } from "./apis/baseapi";
 
 export type { PromiseMiddleware as Middleware } from './middleware';
-export { PromiseAuthorizationApi as AuthorizationApi,  PromiseDownloadApi as DownloadApi,  PromiseNotificationApi as NotificationApi,  PromiseObjectApi as ObjectApi,  PromiseShareApi as ShareApi,  PromiseSystemApi as SystemApi } from './types/PromiseAPI';
+export { PromiseAuthorizationApi as AuthorizationApi,  PromiseCommandApi as CommandApi,  PromiseDownloadApi as DownloadApi,  PromiseNotificationApi as NotificationApi,  PromiseObjectApi as ObjectApi,  PromiseShareApi as ShareApi,  PromiseSystemApi as SystemApi } from './types/PromiseAPI';
 

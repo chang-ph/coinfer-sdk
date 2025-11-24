@@ -75,6 +75,7 @@ from openapi_client.models.notification_dict import NotificationDict
 from openapi_client.models.payload import Payload
 from openapi_client.models.payload1 import Payload1
 from openapi_client.models.run_cloud_function_script import RunCloudFunctionScript
+from openapi_client.models.run_command_req import RunCommandReq
 from openapi_client.models.run_workflow_analyzer_req import RunWorkflowAnalyzerReq
 from openapi_client.models.run_workflow_req import RunWorkflowReq
 from openapi_client.models.save_analyzer_result_req import SaveAnalyzerResultReq

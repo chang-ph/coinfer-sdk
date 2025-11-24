@@ -65,6 +65,7 @@ import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
 import { RunCloudFunctionScript } from '../models/RunCloudFunctionScript';
+import { RunCommandReq } from '../models/RunCommandReq';
 import { RunWorkflowAnalyzerReq } from '../models/RunWorkflowAnalyzerReq';
 import { RunWorkflowReq } from '../models/RunWorkflowReq';
 import { SaveAnalyzerResultReq } from '../models/SaveAnalyzerResultReq';
@@ -576,6 +577,55 @@ export class ObservableAuthorizationApi {
      */
     public userLogout(_options?: Configuration): Observable<SuccRspNoneType> {
         return this.userLogoutWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<SuccRspNoneType>) => apiResponse.data));
+    }
+
+}
+
+import { CommandApiRequestFactory, CommandApiResponseProcessor} from "../apis/CommandApi";
+export class ObservableCommandApi {
+    private requestFactory: CommandApiRequestFactory;
+    private responseProcessor: CommandApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: CommandApiRequestFactory,
+        responseProcessor?: CommandApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new CommandApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new CommandApiResponseProcessor();
+    }
+
+    /**
+     * Run command
+     * @param runCommandReq
+     */
+    public runCommandWithHttpInfo(runCommandReq: RunCommandReq, _options?: Configuration): Observable<HttpInfo<SuccRspAny>> {
+        const requestContextPromise = this.requestFactory.runCommand(runCommandReq, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.runCommandWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Run command
+     * @param runCommandReq
+     */
+    public runCommand(runCommandReq: RunCommandReq, _options?: Configuration): Observable<SuccRspAny> {
+        return this.runCommandWithHttpInfo(runCommandReq, _options).pipe(map((apiResponse: HttpInfo<SuccRspAny>) => apiResponse.data));
     }
 
 }

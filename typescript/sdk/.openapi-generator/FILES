@@ -2,6 +2,7 @@
 .gitignore
 .openapi-generator-ignore
 AuthorizationApi.md
+CommandApi.md
 DownloadApi.md
 NotificationApi.md
 ObjectApi.md
@@ -9,6 +10,7 @@ README.md
 ShareApi.md
 SystemApi.md
 apis/AuthorizationApi.ts
+apis/CommandApi.ts
 apis/DownloadApi.ts
 apis/NotificationApi.ts
 apis/ObjectApi.ts
@@ -87,6 +89,7 @@ models/ObjectSerializer.ts
 models/Payload.ts
 models/Payload1.ts
 models/RunCloudFunctionScript.ts
+models/RunCommandReq.ts
 models/RunWorkflowAnalyzerReq.ts
 models/RunWorkflowReq.ts
 models/SaveAnalyzerResultReq.ts

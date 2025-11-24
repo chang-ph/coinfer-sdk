@@ -7,6 +7,7 @@ docs/CloudFunctionKind.md
 docs/CloudFunctionLang.md
 docs/CloudFunctionTag.md
 docs/Code2TokenRsp.md
+docs/CommandApi.md
 docs/CreateCallbackReq.md
 docs/CreateCallbackRsp.md
 docs/CreateDataReq.md
@@ -67,6 +68,7 @@ docs/ObjectApi.md
 docs/Payload.md
 docs/Payload1.md
 docs/RunCloudFunctionScript.md
+docs/RunCommandReq.md
 docs/RunWorkflowAnalyzerReq.md
 docs/RunWorkflowReq.md
 docs/SaveAnalyzerResultReq.md
@@ -113,6 +115,7 @@ docs/ViewObjectTmp.md
 docs/WorkflowRunRsp.md
 src/APIClient.jl
 src/apis/api_AuthorizationApi.jl
+src/apis/api_CommandApi.jl
 src/apis/api_DownloadApi.jl
 src/apis/api_NotificationApi.jl
 src/apis/api_ObjectApi.jl
@@ -182,6 +185,7 @@ src/models/model_NotificationDict.jl
 src/models/model_Payload.jl
 src/models/model_Payload1.jl
 src/models/model_RunCloudFunctionScript.jl
+src/models/model_RunCommandReq.jl
 src/models/model_RunWorkflowAnalyzerReq.jl
 src/models/model_RunWorkflowReq.jl
 src/models/model_SaveAnalyzerResultReq.jl

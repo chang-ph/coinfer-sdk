@@ -7,11 +7,12 @@ using Dates, TimeZones
 using OpenAPI
 using OpenAPI.Clients
 
-const API_VERSION = "0.0.1763618324+98ec1f6"
+const API_VERSION = "0.0.1763972020+c7e7837"
 
 include("modelincludes.jl")
 
 include("apis/api_AuthorizationApi.jl")
+include("apis/api_CommandApi.jl")
 include("apis/api_DownloadApi.jl")
 include("apis/api_NotificationApi.jl")
 include("apis/api_ObjectApi.jl")

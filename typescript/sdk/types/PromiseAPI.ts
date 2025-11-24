@@ -64,6 +64,7 @@ import { NotificationDict } from '../models/NotificationDict';
 import { Payload } from '../models/Payload';
 import { Payload1 } from '../models/Payload1';
 import { RunCloudFunctionScript } from '../models/RunCloudFunctionScript';
+import { RunCommandReq } from '../models/RunCommandReq';
 import { RunWorkflowAnalyzerReq } from '../models/RunWorkflowAnalyzerReq';
 import { RunWorkflowReq } from '../models/RunWorkflowReq';
 import { SaveAnalyzerResultReq } from '../models/SaveAnalyzerResultReq';
@@ -389,6 +390,43 @@ export class PromiseAuthorizationApi {
      */
     public userLogout(_options?: Configuration): Promise<SuccRspNoneType> {
         const result = this.api.userLogout(_options);
+        return result.toPromise();
+    }
+
+
+}
+
+
+
+import { ObservableCommandApi } from './ObservableAPI';
+
+import { CommandApiRequestFactory, CommandApiResponseProcessor} from "../apis/CommandApi";
+export class PromiseCommandApi {
+    private api: ObservableCommandApi
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: CommandApiRequestFactory,
+        responseProcessor?: CommandApiResponseProcessor
+    ) {
+        this.api = new ObservableCommandApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Run command
+     * @param runCommandReq
+     */
+    public runCommandWithHttpInfo(runCommandReq: RunCommandReq, _options?: Configuration): Promise<HttpInfo<SuccRspAny>> {
+        const result = this.api.runCommandWithHttpInfo(runCommandReq, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * Run command
+     * @param runCommandReq
+     */
+    public runCommand(runCommandReq: RunCommandReq, _options?: Configuration): Promise<SuccRspAny> {
+        const result = this.api.runCommand(runCommandReq, _options);
         return result.toPromise();
     }
 

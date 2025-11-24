@@ -16,6 +16,7 @@ __version__ = "1.0.0"
 
 # import apis into sdk package
 from openapi_client.api.authorization_api import AuthorizationApi
+from openapi_client.api.command_api import CommandApi
 from openapi_client.api.download_api import DownloadApi
 from openapi_client.api.notification_api import NotificationApi
 from openapi_client.api.object_api import ObjectApi
@@ -97,6 +98,7 @@ from openapi_client.models.notification_dict import NotificationDict
 from openapi_client.models.payload import Payload
 from openapi_client.models.payload1 import Payload1
 from openapi_client.models.run_cloud_function_script import RunCloudFunctionScript
+from openapi_client.models.run_command_req import RunCommandReq
 from openapi_client.models.run_workflow_analyzer_req import RunWorkflowAnalyzerReq
 from openapi_client.models.run_workflow_req import RunWorkflowReq
 from openapi_client.models.save_analyzer_result_req import SaveAnalyzerResultReq

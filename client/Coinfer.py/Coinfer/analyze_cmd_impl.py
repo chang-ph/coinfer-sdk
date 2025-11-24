@@ -29,7 +29,11 @@ def analyze():
         return print(NEED_LOGIN_PROMPT)
 
     return_code, errlines, result_file = _run(settings)
-    _save_analyzer_result(settings, return_code, errlines, result_file)
+    if result_file:
+        if Path(result_file).is_file():
+            _save_analyzer_result(settings, return_code, errlines, result_file)
+        else:
+            logger.error(f"Analyzer result file {result_file} does not exist.")
 
 
 def _save_analyzer_result(settings: dict[str, Any], return_code: int, errlines: list[str], result_file: str):
