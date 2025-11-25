@@ -574,13 +574,24 @@ export class PromiseObjectApi {
     }
 
     /**
-     * Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
-     * Delete objects.
-     * @param [objids] list of object ids
+     * Delete single object by ID  ### Example  ``` DELETE /api/object/M1234567 ```
+     * Delete object.
+     * @param objid
      * @param [deletedKey]
      */
-    public deleteObjectWithHttpInfo(objids?: Array<string>, deletedKey?: string, _options?: Configuration): Promise<HttpInfo<SuccRspSoftDeletedRsp>> {
-        const result = this.api.deleteObjectWithHttpInfo(objids, deletedKey, _options);
+    public deleteObjectWithHttpInfo(objid: string, deletedKey?: string, _options?: Configuration): Promise<HttpInfo<SuccRspSoftDeletedRsp>> {
+        const result = this.api.deleteObjectWithHttpInfo(objid, deletedKey, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * Delete single object by ID  ### Example  ``` DELETE /api/object/M1234567 ```
+     * Delete object.
+     * @param objid
+     * @param [deletedKey]
+     */
+    public deleteObject(objid: string, deletedKey?: string, _options?: Configuration): Promise<SuccRspSoftDeletedRsp> {
+        const result = this.api.deleteObject(objid, deletedKey, _options);
         return result.toPromise();
     }
 
@@ -590,8 +601,19 @@ export class PromiseObjectApi {
      * @param [objids] list of object ids
      * @param [deletedKey]
      */
-    public deleteObject(objids?: Array<string>, deletedKey?: string, _options?: Configuration): Promise<SuccRspSoftDeletedRsp> {
-        const result = this.api.deleteObject(objids, deletedKey, _options);
+    public deleteObjectsWithHttpInfo(objids?: Array<string>, deletedKey?: string, _options?: Configuration): Promise<HttpInfo<SuccRspSoftDeletedRsp>> {
+        const result = this.api.deleteObjectsWithHttpInfo(objids, deletedKey, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
+     * Delete objects.
+     * @param [objids] list of object ids
+     * @param [deletedKey]
+     */
+    public deleteObjects(objids?: Array<string>, deletedKey?: string, _options?: Configuration): Promise<SuccRspSoftDeletedRsp> {
+        const result = this.api.deleteObjects(objids, deletedKey, _options);
         return result.toPromise();
     }
 

@@ -5,7 +5,8 @@ All URIs are relative to *https://api.coinfer.ai*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createObject**](ObjectApi.md#createObject) | **POST** /api/object | Create new object.
-[**deleteObject**](ObjectApi.md#deleteObject) | **DELETE** /api/object | Delete objects.
+[**deleteObject**](ObjectApi.md#deleteObject) | **DELETE** /api/object/{objid} | Delete object.
+[**deleteObjects**](ObjectApi.md#deleteObjects) | **DELETE** /api/object | Delete objects.
 [**listObject**](ObjectApi.md#listObject) | **GET** /api/object | List objects.
 [**updateObject**](ObjectApi.md#updateObject) | **POST** /api/object/{objid} | Update object.
 [**viewObject**](ObjectApi.md#viewObject) | **GET** /api/object/{objid} | View object.
@@ -70,7 +71,7 @@ Name | Type | Description  | Notes
 # **deleteObject**
 > SuccRspSoftDeletedRsp deleteObject()
 
-Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
+Delete single object by ID  ### Example  ``` DELETE /api/object/M1234567 ```
 
 ### Example
 
@@ -83,6 +84,63 @@ const configuration = createConfiguration();
 const apiInstance = new ObjectApi(configuration);
 
 const request: ObjectApiDeleteObjectRequest = {
+  
+  objid: "objid_example",
+  
+  deletedKey: "",
+};
+
+const data = await apiInstance.deleteObject(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **objid** | [**string**] |  | defaults to undefined
+ **deletedKey** | [**string**] |  | (optional) defaults to ''
+
+
+### Return type
+
+**SuccRspSoftDeletedRsp**
+
+### Authorization
+
+[GlobalAuth](README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **deleteObjects**
+> SuccRspSoftDeletedRsp deleteObjects()
+
+Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
+
+### Example
+
+
+```typescript
+import { createConfiguration, ObjectApi } from 'coinfer-ts';
+import type { ObjectApiDeleteObjectsRequest } from 'coinfer-ts';
+
+const configuration = createConfiguration();
+const apiInstance = new ObjectApi(configuration);
+
+const request: ObjectApiDeleteObjectsRequest = {
     // list of object ids (optional)
   objids: [
     "objids_example",
@@ -91,7 +149,7 @@ const request: ObjectApiDeleteObjectRequest = {
   deletedKey: "",
 };
 
-const data = await apiInstance.deleteObject(request);
+const data = await apiInstance.deleteObjects(request);
 console.log('API called successfully. Returned data:', data);
 ```
 

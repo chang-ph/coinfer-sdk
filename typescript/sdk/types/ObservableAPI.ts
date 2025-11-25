@@ -821,13 +821,13 @@ export class ObservableObjectApi {
     }
 
     /**
-     * Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
-     * Delete objects.
-     * @param [objids] list of object ids
+     * Delete single object by ID  ### Example  ``` DELETE /api/object/M1234567 ```
+     * Delete object.
+     * @param objid
      * @param [deletedKey]
      */
-    public deleteObjectWithHttpInfo(objids?: Array<string>, deletedKey?: string, _options?: Configuration): Observable<HttpInfo<SuccRspSoftDeletedRsp>> {
-        const requestContextPromise = this.requestFactory.deleteObject(objids, deletedKey, _options);
+    public deleteObjectWithHttpInfo(objid: string, deletedKey?: string, _options?: Configuration): Observable<HttpInfo<SuccRspSoftDeletedRsp>> {
+        const requestContextPromise = this.requestFactory.deleteObject(objid, deletedKey, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -846,13 +846,48 @@ export class ObservableObjectApi {
     }
 
     /**
+     * Delete single object by ID  ### Example  ``` DELETE /api/object/M1234567 ```
+     * Delete object.
+     * @param objid
+     * @param [deletedKey]
+     */
+    public deleteObject(objid: string, deletedKey?: string, _options?: Configuration): Observable<SuccRspSoftDeletedRsp> {
+        return this.deleteObjectWithHttpInfo(objid, deletedKey, _options).pipe(map((apiResponse: HttpInfo<SuccRspSoftDeletedRsp>) => apiResponse.data));
+    }
+
+    /**
      * Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
      * Delete objects.
      * @param [objids] list of object ids
      * @param [deletedKey]
      */
-    public deleteObject(objids?: Array<string>, deletedKey?: string, _options?: Configuration): Observable<SuccRspSoftDeletedRsp> {
-        return this.deleteObjectWithHttpInfo(objids, deletedKey, _options).pipe(map((apiResponse: HttpInfo<SuccRspSoftDeletedRsp>) => apiResponse.data));
+    public deleteObjectsWithHttpInfo(objids?: Array<string>, deletedKey?: string, _options?: Configuration): Observable<HttpInfo<SuccRspSoftDeletedRsp>> {
+        const requestContextPromise = this.requestFactory.deleteObjects(objids, deletedKey, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.deleteObjectsWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
+     * Delete objects.
+     * @param [objids] list of object ids
+     * @param [deletedKey]
+     */
+    public deleteObjects(objids?: Array<string>, deletedKey?: string, _options?: Configuration): Observable<SuccRspSoftDeletedRsp> {
+        return this.deleteObjectsWithHttpInfo(objids, deletedKey, _options).pipe(map((apiResponse: HttpInfo<SuccRspSoftDeletedRsp>) => apiResponse.data));
     }
 
     /**

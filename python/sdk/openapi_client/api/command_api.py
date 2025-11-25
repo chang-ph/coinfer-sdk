@@ -282,6 +282,7 @@ class CommandApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'GlobalAuth'
         ]
 
         return self.api_client.param_serialize(

@@ -16,7 +16,7 @@ const _returntypes_run_command_CommandApi = Dict{Regex,Type}(
 )
 
 function _oacinternal_run_command(_api::CommandApi, run_command_req::RunCommandReq; _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_run_command_CommandApi, "/command", [], run_command_req)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "POST", _returntypes_run_command_CommandApi, "/command", ["GlobalAuth", ], run_command_req)
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
     OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? ["application/json", ] : [_mediaType])
     return _ctx

@@ -26,7 +26,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[GlobalAuth](../README.md#GlobalAuth)
 
 ### HTTP request headers
 

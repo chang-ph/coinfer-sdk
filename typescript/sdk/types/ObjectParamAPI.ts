@@ -665,17 +665,34 @@ export interface ObjectApiCreateObjectRequest {
 
 export interface ObjectApiDeleteObjectRequest {
     /**
+     * 
+     * Defaults to: undefined
+     * @type string
+     * @memberof ObjectApideleteObject
+     */
+    objid: string
+    /**
+     * 
+     * Defaults to: &#39;&#39;
+     * @type string
+     * @memberof ObjectApideleteObject
+     */
+    deletedKey?: string
+}
+
+export interface ObjectApiDeleteObjectsRequest {
+    /**
      * list of object ids
      * Defaults to: undefined
      * @type Array&lt;string&gt;
-     * @memberof ObjectApideleteObject
+     * @memberof ObjectApideleteObjects
      */
     objids?: Array<string>
     /**
      * 
      * Defaults to: &#39;&#39;
      * @type string
-     * @memberof ObjectApideleteObject
+     * @memberof ObjectApideleteObjects
      */
     deletedKey?: string
 }
@@ -897,12 +914,21 @@ export class ObjectObjectApi {
     }
 
     /**
-     * Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
-     * Delete objects.
+     * Delete single object by ID  ### Example  ``` DELETE /api/object/M1234567 ```
+     * Delete object.
      * @param param the request object
      */
-    public deleteObjectWithHttpInfo(param: ObjectApiDeleteObjectRequest = {}, options?: Configuration): Promise<HttpInfo<SuccRspSoftDeletedRsp>> {
-        return this.api.deleteObjectWithHttpInfo(param.objids, param.deletedKey,  options).toPromise();
+    public deleteObjectWithHttpInfo(param: ObjectApiDeleteObjectRequest, options?: Configuration): Promise<HttpInfo<SuccRspSoftDeletedRsp>> {
+        return this.api.deleteObjectWithHttpInfo(param.objid, param.deletedKey,  options).toPromise();
+    }
+
+    /**
+     * Delete single object by ID  ### Example  ``` DELETE /api/object/M1234567 ```
+     * Delete object.
+     * @param param the request object
+     */
+    public deleteObject(param: ObjectApiDeleteObjectRequest, options?: Configuration): Promise<SuccRspSoftDeletedRsp> {
+        return this.api.deleteObject(param.objid, param.deletedKey,  options).toPromise();
     }
 
     /**
@@ -910,8 +936,17 @@ export class ObjectObjectApi {
      * Delete objects.
      * @param param the request object
      */
-    public deleteObject(param: ObjectApiDeleteObjectRequest = {}, options?: Configuration): Promise<SuccRspSoftDeletedRsp> {
-        return this.api.deleteObject(param.objids, param.deletedKey,  options).toPromise();
+    public deleteObjectsWithHttpInfo(param: ObjectApiDeleteObjectsRequest = {}, options?: Configuration): Promise<HttpInfo<SuccRspSoftDeletedRsp>> {
+        return this.api.deleteObjectsWithHttpInfo(param.objids, param.deletedKey,  options).toPromise();
+    }
+
+    /**
+     * Delete objects of certain IDs in batch.  ### Example  ``` DELETE /api/object?objids=M1234567&objids=X1234567 ```
+     * Delete objects.
+     * @param param the request object
+     */
+    public deleteObjects(param: ObjectApiDeleteObjectsRequest = {}, options?: Configuration): Promise<SuccRspSoftDeletedRsp> {
+        return this.api.deleteObjects(param.objids, param.deletedKey,  options).toPromise();
     }
 
     /**

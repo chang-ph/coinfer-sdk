@@ -34,6 +34,13 @@ class TestObjectApi(unittest.TestCase):
     def test_delete_object(self) -> None:
         """Test case for delete_object
 
+        Delete object.
+        """
+        pass
+
+    def test_delete_objects(self) -> None:
+        """Test case for delete_objects
+
         Delete objects.
         """
         pass

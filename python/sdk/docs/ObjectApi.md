@@ -5,7 +5,8 @@ All URIs are relative to *https://api.coinfer.ai*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_object**](ObjectApi.md#create_object) | **POST** /api/object | Create new object.
-[**delete_object**](ObjectApi.md#delete_object) | **DELETE** /api/object | Delete objects.
+[**delete_object**](ObjectApi.md#delete_object) | **DELETE** /api/object/{objid} | Delete object.
+[**delete_objects**](ObjectApi.md#delete_objects) | **DELETE** /api/object | Delete objects.
 [**list_object**](ObjectApi.md#list_object) | **GET** /api/object | List objects.
 [**update_object**](ObjectApi.md#update_object) | **POST** /api/object/{objid} | Update object.
 [**view_object**](ObjectApi.md#view_object) | **GET** /api/object/{objid} | View object.
@@ -90,7 +91,86 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_object**
-> SuccRspSoftDeletedRsp delete_object(objids=objids, deleted_key=deleted_key)
+> SuccRspSoftDeletedRsp delete_object(objid, deleted_key=deleted_key)
+
+Delete object.
+
+Delete single object by ID  ### Example  ``` DELETE /api/object/M1234567 ```
+
+### Example
+
+* Bearer Authentication (GlobalAuth):
+
+```python
+import openapi_client
+from openapi_client.models.succ_rsp_soft_deleted_rsp import SuccRspSoftDeletedRsp
+from openapi_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.coinfer.ai
+# See configuration.py for a list of all supported configuration parameters.
+configuration = openapi_client.Configuration(
+    host = "https://api.coinfer.ai"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization: GlobalAuth
+configuration = openapi_client.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+# Enter a context with an instance of the API client
+with openapi_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = openapi_client.ObjectApi(api_client)
+    objid = 'objid_example' # str | 
+    deleted_key = '' # str |  (optional) (default to '')
+
+    try:
+        # Delete object.
+        api_response = api_instance.delete_object(objid, deleted_key=deleted_key)
+        print("The response of ObjectApi->delete_object:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ObjectApi->delete_object: %s\n" % e)
+```
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **objid** | **str**|  | 
+ **deleted_key** | **str**|  | [optional] [default to &#39;&#39;]
+
+### Return type
+
+[**SuccRspSoftDeletedRsp**](SuccRspSoftDeletedRsp.md)
+
+### Authorization
+
+[GlobalAuth](../README.md#GlobalAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_objects**
+> SuccRspSoftDeletedRsp delete_objects(objids=objids, deleted_key=deleted_key)
 
 Delete objects.
 
@@ -130,11 +210,11 @@ with openapi_client.ApiClient(configuration) as api_client:
 
     try:
         # Delete objects.
-        api_response = api_instance.delete_object(objids=objids, deleted_key=deleted_key)
-        print("The response of ObjectApi->delete_object:\n")
+        api_response = api_instance.delete_objects(objids=objids, deleted_key=deleted_key)
+        print("The response of ObjectApi->delete_objects:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling ObjectApi->delete_object: %s\n" % e)
+        print("Exception when calling ObjectApi->delete_objects: %s\n" % e)
 ```
 
 

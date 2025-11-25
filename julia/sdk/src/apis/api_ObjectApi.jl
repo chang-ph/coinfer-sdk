@@ -47,8 +47,42 @@ const _returntypes_delete_object_ObjectApi = Dict{Regex,Type}(
     Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
 )
 
-function _oacinternal_delete_object(_api::ObjectApi; objids=nothing, deleted_key=nothing, _mediaType=nothing)
-    _ctx = OpenAPI.Clients.Ctx(_api.client, "DELETE", _returntypes_delete_object_ObjectApi, "/api/object", ["GlobalAuth", ])
+function _oacinternal_delete_object(_api::ObjectApi, objid::String; deleted_key=nothing, _mediaType=nothing)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "DELETE", _returntypes_delete_object_ObjectApi, "/api/object/{objid}", ["GlobalAuth", ])
+    OpenAPI.Clients.set_param(_ctx.path, "objid", objid)  # type String
+    OpenAPI.Clients.set_param(_ctx.query, "deleted_key", deleted_key; style="form", is_explode=true)  # type String
+    OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
+    OpenAPI.Clients.set_header_content_type(_ctx, (_mediaType === nothing) ? [] : [_mediaType])
+    return _ctx
+end
+
+@doc raw"""Delete object.
+
+Delete single object by ID  ### Example  ``` DELETE /api/object/M1234567 ```
+
+Params:
+- objid::String (required)
+- deleted_key::String
+
+Return: SuccRspSoftDeletedRsp, OpenAPI.Clients.ApiResponse
+"""
+function delete_object(_api::ObjectApi, objid::String; deleted_key=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_delete_object(_api, objid; deleted_key=deleted_key, _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx)
+end
+
+function delete_object(_api::ObjectApi, response_stream::Channel, objid::String; deleted_key=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_delete_object(_api, objid; deleted_key=deleted_key, _mediaType=_mediaType)
+    return OpenAPI.Clients.exec(_ctx, response_stream)
+end
+
+const _returntypes_delete_objects_ObjectApi = Dict{Regex,Type}(
+    Regex("^" * replace("200", "x"=>".") * "\$") => SuccRspSoftDeletedRsp,
+    Regex("^" * replace("400", "x"=>".") * "\$") => ErrRsp,
+)
+
+function _oacinternal_delete_objects(_api::ObjectApi; objids=nothing, deleted_key=nothing, _mediaType=nothing)
+    _ctx = OpenAPI.Clients.Ctx(_api.client, "DELETE", _returntypes_delete_objects_ObjectApi, "/api/object", ["GlobalAuth", ])
     OpenAPI.Clients.set_param(_ctx.query, "objids", objids; style="form", is_explode=true)  # type Vector{String}
     OpenAPI.Clients.set_param(_ctx.query, "deleted_key", deleted_key; style="form", is_explode=true)  # type String
     OpenAPI.Clients.set_header_accept(_ctx, ["application/json", ])
@@ -66,13 +100,13 @@ Params:
 
 Return: SuccRspSoftDeletedRsp, OpenAPI.Clients.ApiResponse
 """
-function delete_object(_api::ObjectApi; objids=nothing, deleted_key=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_delete_object(_api; objids=objids, deleted_key=deleted_key, _mediaType=_mediaType)
+function delete_objects(_api::ObjectApi; objids=nothing, deleted_key=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_delete_objects(_api; objids=objids, deleted_key=deleted_key, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx)
 end
 
-function delete_object(_api::ObjectApi, response_stream::Channel; objids=nothing, deleted_key=nothing, _mediaType=nothing)
-    _ctx = _oacinternal_delete_object(_api; objids=objids, deleted_key=deleted_key, _mediaType=_mediaType)
+function delete_objects(_api::ObjectApi, response_stream::Channel; objids=nothing, deleted_key=nothing, _mediaType=nothing)
+    _ctx = _oacinternal_delete_objects(_api; objids=objids, deleted_key=deleted_key, _mediaType=_mediaType)
     return OpenAPI.Clients.exec(_ctx, response_stream)
 end
 
@@ -221,6 +255,7 @@ end
 
 export create_object
 export delete_object
+export delete_objects
 export list_object
 export update_object
 export view_object
